@@ -1,0 +1,30 @@
+Package: glfishr
+Title: Fetch fisheries assessment data from the FN Portal
+Version: 0.0.0.9000
+Authors@R:
+    person(given = "Adam",
+           family = "Cottrill",
+           role = c("aut", "cre"),
+           email = "adam.cottrill@ontario.ca")
+Description: glfishr contains a series of R functions that are
+    intended to make it easy to get fisheries assessment data from the
+    fn_portal api and into R for subsequent analysis and reporting.
+    Functions are named semantically to reflect the FN-II table they fetch
+    data from (e.g. get_FN011() for project meta data, get_FN121() for net
+    set/sample data and get_FN125() for biological sample data).  Most of
+    the functions take an optional filter_list parameter that can be used
+    to finely control which records are returned.  Care has been taken to
+    ensure that the available filters are consistent with FN-II field
+    names whenever possible, and in many cases, filters can be re-used
+    across different tables (e.g. - if a filter is passed to the
+    get_FN121() function to find a subset of net sets, that same filter
+    can be applied to the get_FN125() function to get the all of the
+    biological samples collected in those net sets).
+License: MIT + file LICENSE
+Imports:
+        httr,
+        jsonlite
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1

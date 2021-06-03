@@ -1,0 +1,486 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+
+anonymize = function(df) {
+  drop <- c("prj_ldr.username", "prj_ldr.first_name", "prj_ldr.last_name")
+  df  <- df[,!(names(df) %in% drop)]
+}
+
+
+```
+
+# glfishr
+
+glfishr contains a series of R functions that are intended to make it
+easy to get fisheries assessment data from the fn_portal api and into
+R for subsequent analysis and reporting.  Functions are named
+semantically to reflect the FN-II table they fetch data from
+(e.g. `get_FN011()` for project meta data, `get_FN121()` for net
+set/sample data and `get_FN125()` for biological sample data).  Most
+of the functions take an optional filter_list parameter that can be
+used to finely control which records are returned.  Care has been
+taken to ensure that the available filters are consistent with FN-II
+field names whenever possible, and in many cases, filters can be
+re-used across different tables (e.g. - if a filter is passed to the
+`get_FN121()` function to find a subset of net sets, that same filter
+can be applied to the `get_FN125()` function to get the all of the
+biological samples collected in those net sets).
+
+
+## FN011 - Projects
+
+Project meta data can be accessed using the `get_fn011()` function
+FN011 records contiain the hi-level meta data about an
+OMNR netting project.  The FN011 record contain information like
+project code, project name, projet leader, start and end date,
+protocol, and the lake where the project was conducted.  This
+function takes an optional filter list which can be used to select
+record based on several attributes of the project such as
+project code, or part of the project code, lake, first year, last
+year, protocol, ect.
+
+
+```{r fn011}
+
+fn011 <- get_FN011(list(lake='ON', first_year=2012, last_year=2018))
+fn011 <- anonymize(fn011)
+nrow(fn011)
+head(fn011)
+
+fn011 <- get_FN011(list(lake='ER', protocol='TWL'))
+fn011 <- anonymize(fn011)
+nrow(fn011)
+head(fn011)
+
+
+filters <- list(lake='SU', prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'))
+fn011 <- get_FN011(filters)
+fn011 <- anonymize(fn011)
+nrow(fn011)
+head(fn011)
+
+
+fn011 <- get_FN011(list(lake='HU', prj_cd_like='_006'))
+fn011 <- anonymize(fn011)
+nrow(fn011)
+head(fn011)
+
+
+```
+
+
+## FN121 - Net Sets
+
+Net sets can be retrieved using the `get_FN121()` function.  The FN121
+records contain information like set and lift date and time, effort
+duration, gear, site depth and location.  This function takes an
+optional filter list which can be used to return record based on
+several attributes of the net set including set and lift date and
+time, effort duration, gear, site depth and location as well as
+attributes of the projects they are associated with such project code,
+or part of the project code, lake, first year, last year, protocol,
+etc.
+
+
+```{r fn121}
+
+fn121 <- get_FN121(list(lake='ON', year=2012))
+nrow(fn121)
+head(fn121)
+
+
+fn121 <- get_FN121(list(lake='ER', protocol='TWL', sidep_lte=20))
+nrow(fn121)
+head(fn121)
+
+
+filters <- list(lake='SU',
+           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'))
+
+fn121 <- get_FN121(filters)
+
+nrow(fn121)
+head(fn121)
+
+
+fn121 <- get_FN121(list(lake='HU', prj_cd_like='_006'))
+nrow(fn121)
+head(fn121)
+
+```
+
+
+## FN122 - Sample Efforts
+
+
+Sample Efforts can be retieved using the `get_fn122()` function. FN122
+records contain information about efforts within a sample.  For most
+gill netting project an effort corresponds to a single panel of a
+particular mesh size within a net set (gang). For trap netting and
+trawling projects, there is usually just a single effort. The FN122
+table contains information about that particular effort such as gear
+depth, gear temperature at set and lift, and effort distance.  This
+function takes an optional filter list which can be used to return
+records based on several attributes of the effort including effort
+distance and depth but also attributes of the projects or nets set
+they are associated with such project code, lake, first year, last
+year, protocol, gear etc.
+
+
+```{r fn122}
+
+
+fn122 <- get_FN122(list(lake='ON', year=2012, gear="GL"))
+nrow(fn122)
+head(fn122)
+
+
+fn122 <- get_FN122(list(lake='ER', protocol='TWL', sidep_lte=20))
+nrow(fn122)
+head(fn122)
+
+
+filters <- list(lake='SU',
+           prj_cd__in=c('LSA_IA15_CIN','LSA_IA17_CIN', eff='051'))
+fn122 <- get_FN122(filters)
+nrow(fn122)
+head(fn122)
+
+
+
+filters <- list(lake='HU', prj_cd_like='_006', eff_in=c('127','140'))
+fn122 <- get_FN122(filters)
+nrow(fn122)
+head(fn122)
+
+
+
+```
+
+
+
+## FN123 - Catch Counts
+
+
+Catch counts by effort, species, and group are available using the
+`get_FN123()` function.  FN123 records contain information about catch
+counts by species for each effort in a sample.  For most gill netting
+projects this corresponds to catches within a single panel of a
+particular mesh size within a net set (gang). Group (GRP) is
+occationally included to futher sub-devide the catch into user defined
+groups that are usually specific to the project, but will alway be
+included and will be '00' by default. This function takes an optional
+filter list which can be used to return record based on several
+attributes of the catch including species, or group code but also
+attributes of the effort, the sample or the project(s) that the
+catches were made in.
+
+
+```{r fn123}
+
+
+fn123 <- get_FN123(list(lake='ON', year=2012, spc='334',gear="GL"))
+nrow(fn123)
+head(fn123)
+
+filters <- list(lake='ER',
+                protocol='TWL',
+                year=2010,
+                spc=c('331', '334'),
+                sidep_lte=20)
+fn123 <- get_FN123(filters)
+nrow(fn123)
+head(fn123)
+
+
+filters <- list(lake='SU',
+           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
+           eff='051',
+           spc='091')
+fn123 <- get_FN123(filters)
+nrow(fn123)
+head(fn123)
+
+
+filters <- list(lake='HU', spc='076', grp='55')
+fn123 <- get_FN123(filters)
+nrow(fn123)
+head(fn123)
+
+```
+
+
+
+## FN124 - Length Tallies
+
+An api endpoint and  associated function for FN124 records has not been created yet, but will be coming soon.
+
+
+
+## FN125 - Biological Data
+
+Bioligical data is maintained in the FN125 table and can be accessed
+using the `get_FN125` fucntion. FN125 records contain the biological
+data collected from individual fish sampled in assessment projects
+such as length, weight, sex, and maturity. For convience this end point
+also returns data from child tables such as the 'preferred' age, and
+lamprey wounds.  This function takes an optional filter list which can
+be used to return records based on several different biologial
+attributes (such as size, sex, or maturity), but also of the species,
+or group code, or attributes of the effort, the sample, or the
+project(s) that the samples were collected in.
+
+```{r fn125}
+
+
+
+fn125 <- get_FN125(list(lake='ON', year=2012, spc='334',gear='GL'))
+nrow(fn125)
+head(fn125)
+
+filters <- list(lake='ER',
+                protocol='TWL',
+                spc_in=c('331', '334'),
+                sidep_lte=20)
+fn125 <- get_FN125(filters)
+nrow(fn125)
+head(fn125)
+
+
+
+filters <- list(lake='SU',
+           prj_cd__in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
+           eff='051',
+           spc='091')
+fn125 <- get_FN125(filters)
+nrow(fn125)
+head(fn125)
+
+
+
+filters <- list(lake='HU', spc='076', grp='55')
+fn125 <- get_FN125(filters)
+nrow(fn125)
+head(fn125)
+
+
+
+```
+
+
+## FN125Tags - Tags Recovered or Applied
+
+FN125Tags records contain information about the individual tags
+applied to or recovered from on a sampled fish and can be fetched from
+the api using `get_FN125Tags()` function.  Historically, tag data was
+stored in three related fields - TAGDOC, TAGSTAT and TAGID.  This
+convention is fine as long a single biological sample only has a one
+tag. In recent years, it has been come increasingly common for fish to
+have multiple tags, or tag types associated with indiviudal sampling
+events. FN125Tag accomodates those events.  This function takes an
+optional filter list which can be used to return records based on
+several different attributes of the tag (tag type, colour, placement,
+agency, tag stat, and tag number) as well as, attributes of the
+sampled fish such as the species, or group code, or attributes of the
+effort, the sample, or the project(s) that the samples were collected
+in.
+
+
+```{r fn125Tags}
+
+fn125Tags <- get_FN125Tags(list(lake='ON', year=2012, spc='334',gear='GL'))
+nrow(fn125Tags)
+head(fn125Tags)
+
+filters <- list(lake='ER',
+                protocol='TWL',
+                spc_in=c('331', '334'),
+                sidep_lte=20)
+fn125Tags <- get_FN125Tags(filters)
+nrow(fn125Tags)
+head(fn125Tags)
+
+filters <- list(lake='SU',
+           prj_cd__in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
+           eff='051',
+           spc='091')
+fn125Tags <- get_FN125Tags(filters)
+nrow(fn125Tags)
+head(fn125Tags)
+
+
+filters <- list(lake='HU', spc='076', grp='55')
+fn125Tags <- get_FN125Tags(filters)
+nrow(fn125Tags)
+head(fn125Tags)
+
+
+```
+
+
+## FN125Lamprey - Observed Lamprey Wounds
+
+
+FN125Lam records contain information about the individual lamprey
+wounds observed on a sampled fish and can be fetched using the
+`get_Fn125Lamprey()` function.  Historically, lamprey wounds were
+reported as a single field (XLAM) in the FN125 table.  In the early
+2000 the Great Lakes fishery community agreed to capture lamprey
+wounding data in a more consistent fashion across the basin using the
+conventions described in Ebener etal 2006.  The FN125Lam table
+captures data from individual lamprey wounds collected using those
+conventions.  A sampled fish with no observed wound will have a single
+record in this table (with lamijc value of 0), while fish with lamprey
+wounds, will have one record for every observed wound.  This function
+takes an optional filter list which can be used to return records
+based on several different attributes of the wound (wound type, degree
+of healing, and wound size) as well as, attributes of the sampled fish
+such as the species, or group code, or attributes of the effort, the
+sample, or the project(s) that the samples were collected in.
+
+
+```{r fn125Lamprey}
+
+fn125Lam <- get_FN125Lam(list(lake='ON', spc='081', gear='GL'))
+nrow(fn125Tags)
+head(fn125Tags)
+
+
+
+fn125Lam <- get_FN125Lam(list(lake='HU', spc='081', year=2012, gear='GL',
+   lamijc_type=c('A1', 'A2', 'A3')))
+nrow(fn125Tags)
+head(fn125Tags)
+
+
+filters <- list(lake='ER',
+                protocol='TWL',
+                spc=c('331', '334'),
+                year=2010,
+                sidep_lte=20)
+fn125Lam <- get_FN125Lam(filters)
+nrow(fn125Tags)
+head(fn125Tags)
+
+
+filters <- list(lake='SU',
+           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
+           eff='051',
+           spc='091')
+fn125Lam <- get_FN125Lam(filters)
+nrow(fn125Tags)
+head(fn125Tags)
+
+
+filters <- list(lake='HU', spc='076', grp='55')
+fn125Lam <- get_FN125Lam(filters)
+nrow(fn125Tags)
+head(fn125Tags)
+
+
+```
+
+
+## Fn126 - Diet Data
+
+The `get_Fn126()` function can be used to access the api endpoint to
+for FN126 records. FN126 records contain the counts of identifiable
+items in found in the stomachs of fish sampled and processed in the
+field (the FN126 table does include more detailed analaysis that is
+often conducted in the labratory).  The `get_FN126()` function takes
+an optional filter list which can be used to return records based on
+several different attributes of the diet item (taxon, taxon_like), as
+well as, attributes of the sampled fish such as the species, or group
+code, or attributes of the effort, the sample, or the project(s) that
+the samples were collected in.
+
+```{r fn126}
+
+fn126 <- get_FN126(list(lake='ON', year=2012, spc='334',gear='GL'))
+nrow(fn126)
+head(fn126)
+
+filters <- list(lake='ER',
+                protocol='TWL',
+                spc=c('331', '334'),
+                sidep_lte=20)
+fn126 <- get_FN126(filters)
+nrow(fn126)
+head(fn126)
+
+filters <- list(lake='SU',
+           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
+           eff='051',
+           spc='091')
+fn126 <- get_FN126(filters)
+nrow(fn126)
+head(fn126)
+
+filters <- list(lake='HU', spc='076', grp='55')
+fn126 <- get_FN126(filters)
+nrow(fn126)
+head(fn126)
+
+
+```
+
+
+## Fn127 - Age Estimates
+
+The `get_fn127()` function can be used to access the api endpoint to
+for FN127 records which contain age estimate/interpretations.  This
+function takes an optional filter list which can be used to return
+records based on several different attributes of the age estimate such
+as the assigned age, the aging structure, confidence, number of
+complete annuli and edge code, or whether or not it was identified as
+the 'preferred' age for this fish. Additionally, filters can be
+applied to select age estimates based on attributes of the sampled
+fish such as the species, or group code, or attributes of the effort,
+the sample, or the project(s) that the samples were collected in.
+
+```{r fn127}
+
+fn127 <- get_FN127(list(lake='ON', year=2012, spc='334', gear='GL'))
+nrow(fn127)
+head(fn127)
+
+
+
+filters <- list(lake='ER',
+                protocol='TWL',
+                spc=c('331', '334'),
+                year=2010,
+                sidep_lte=20)
+fn127 <- get_FN127(filters)
+nrow(fn127)
+head(fn127)
+
+filters <- list(lake='SU',
+           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
+           eff='051',
+           spc='091')
+fn127 <- get_FN127(filters)
+nrow(fn127)
+head(fn127)
+
+
+
+filters <- list(lake='HU', spc='076', grp='55')
+fn127 <- get_FN127(filters)
+nrow(fn127)
+head(fn127)
+
+
+
+```
