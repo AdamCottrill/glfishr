@@ -36,19 +36,10 @@ for the full list of available filter keys (query parameters)
 }
 \examples{
 
-fn125Tags <- get_FN125Tags(list(lake='ON', year=2012, spc='334',gear='GL'))
+fn125Tags <- get_FN125Tags(list(lake='ON', year=2019, spc='081',gear='GL'))
 
-filters <- list(lake='ER',
-                protocol='TWL',
-                spc_in=c('331', '334'),
-                sidep_lte=20)
-fn125Tags <- get_FN125Tags(filters)
 
-filters <- list(lake='SU',
-           prj_cd__in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
-           eff='051',
-           spc='091')
-fn125Tags <- get_FN125Tags(filters)
+fn125Tags <- get_FN125Tags(list(lake='SU'))
 
 filters <- list(lake='HU', spc='076', grp='55')
 fn125Tags <- get_FN125Tags(filters)

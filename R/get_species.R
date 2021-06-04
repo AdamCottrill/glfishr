@@ -1,7 +1,7 @@
 ##' Get Species list data from FN_Portal API
 ##'
 ##' This function accesses the api endpoint to for Species list
-##' available in Fn_portal. The species list contain all of the fields
+##' available in Fn_portal. The species list does not contain all of the fields
 ##' in common lookup table, but the fields are limited to spc,
 ##' spc_nmco, and spc_nmsc.  This
 ##' function takes an optional filter list which can be used to return

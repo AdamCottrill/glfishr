@@ -50,7 +50,7 @@
 ##'
 ##' filters <- list(lake='HU', spc='076', grp='55')
 ##' fn125Lam <- get_FN125Lam(filters)
-##' ##'
+##'
 
 get_FN125Lam <- function(filter_list = list()) {
   query_string <- build_query_string(filter_list)

@@ -285,41 +285,48 @@ fn122 <- get_FN122(list(lake='ON', year=2012, gear="GL"))
 nrow(fn122)
 #> [1] 1000
 head(fn122)
-#>       id effdst grdep grtem0 grtem1               slug
-#> 1 212459    4.6   6.7   19.2     NA loa_ia12_gl1-1-038
-#> 2 212460   15.2   6.7   19.2     NA loa_ia12_gl1-1-051
-#> 3 212461   15.2   6.7   19.2     NA loa_ia12_gl1-1-064
-#> 4 212462   15.2   6.7   19.2     NA loa_ia12_gl1-1-076
-#> 5 212463   15.2   6.7   19.2     NA loa_ia12_gl1-1-089
-#> 6 212464   15.2   6.7   19.2     NA loa_ia12_gl1-1-102
+#>       id       prj_cd sam eff effdst grdep grtem0 grtem1               slug
+#> 1 212459 LOA_IA12_GL1   1 038    4.6   6.7   19.2     NA loa_ia12_gl1-1-038
+#> 2 212460 LOA_IA12_GL1   1 051   15.2   6.7   19.2     NA loa_ia12_gl1-1-051
+#> 3 212461 LOA_IA12_GL1   1 064   15.2   6.7   19.2     NA loa_ia12_gl1-1-064
+#> 4 212462 LOA_IA12_GL1   1 076   15.2   6.7   19.2     NA loa_ia12_gl1-1-076
+#> 5 212463 LOA_IA12_GL1   1 089   15.2   6.7   19.2     NA loa_ia12_gl1-1-089
+#> 6 212464 LOA_IA12_GL1   1 102   15.2   6.7   19.2     NA loa_ia12_gl1-1-102
 
 
 fn122 <- get_FN122(list(lake='ER', protocol='TWL', sidep_lte=20))
 nrow(fn122)
 #> [1] 1000
 head(fn122)
-#>       id effdst grdep grtem0 grtem1                 slug
-#> 1 306437     NA   7.4   25.5     NA lea_if87_001-012-001
-#> 2 306438     NA   7.3   24.5     NA lea_if87_001-023-001
-#> 3 306439     NA   8.8   25.5     NA lea_if87_001-022-001
-#> 4 306440     NA   2.5   26.0     NA lea_if87_001-021-001
-#> 5 306441     NA   4.9   25.5     NA lea_if87_001-020-001
-#> 6 306442     NA   8.2   25.0     NA lea_if87_001-019-001
+#>       id       prj_cd sam eff effdst grdep grtem0 grtem1                 slug
+#> 1 306437 LEA_IF87_001 012 001     NA   7.4   25.5     NA lea_if87_001-012-001
+#> 2 306438 LEA_IF87_001 023 001     NA   7.3   24.5     NA lea_if87_001-023-001
+#> 3 306439 LEA_IF87_001 022 001     NA   8.8   25.5     NA lea_if87_001-022-001
+#> 4 306440 LEA_IF87_001 021 001     NA   2.5   26.0     NA lea_if87_001-021-001
+#> 5 306441 LEA_IF87_001 020 001     NA   4.9   25.5     NA lea_if87_001-020-001
+#> 6 306442 LEA_IF87_001 019 001     NA   8.2   25.0     NA lea_if87_001-019-001
 
 
 filters <- list(lake='SU',
-           prj_cd__in=c('LSA_IA15_CIN','LSA_IA17_CIN', eff='051'))
+           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN', eff='051'))
 fn122 <- get_FN122(filters)
 nrow(fn122)
 #> [1] 1000
 head(fn122)
-#>       id effdst    grdep grtem0 grtem1                   slug
-#> 1 157338  30.48 35.36585     NA     NA lsa_ia09_cin-01001-038
-#> 2 157339  30.48 35.36585     NA     NA lsa_ia09_cin-01001-051
-#> 3 157340  30.48 34.75610     NA     NA lsa_ia09_cin-01001-064
-#> 4 157341  30.48 35.67073     NA     NA lsa_ia09_cin-01001-076
-#> 5 157342  30.48 35.67073     NA     NA lsa_ia09_cin-01001-089
-#> 6 157343  30.48 34.75610     NA     NA lsa_ia09_cin-01001-102
+#>       id       prj_cd   sam eff effdst grdep grtem0 grtem1
+#> 1 164058 LSA_IA15_CIN 01001 038  30.48     6     NA     NA
+#> 2 164059 LSA_IA15_CIN 01001 051  30.48     5     NA     NA
+#> 3 164060 LSA_IA15_CIN 01001 064  30.48     5     NA     NA
+#> 4 164061 LSA_IA15_CIN 01001 076  30.48     5     NA     NA
+#> 5 164062 LSA_IA15_CIN 01001 089  30.48     5     NA     NA
+#> 6 164063 LSA_IA15_CIN 01001 102  30.48     6     NA     NA
+#>                     slug
+#> 1 lsa_ia15_cin-01001-038
+#> 2 lsa_ia15_cin-01001-051
+#> 3 lsa_ia15_cin-01001-064
+#> 4 lsa_ia15_cin-01001-076
+#> 5 lsa_ia15_cin-01001-089
+#> 6 lsa_ia15_cin-01001-102
 
 
 
@@ -328,13 +335,13 @@ fn122 <- get_FN122(filters)
 nrow(fn122)
 #> [1] 1000
 head(fn122)
-#>     id effdst grdep grtem0 grtem1                 slug
-#> 1 8288     46    18     NA     NA lha_ia84_006-101-038
-#> 2 8289     91    18     NA     NA lha_ia84_006-101-051
-#> 3 8290     91    18     NA     NA lha_ia84_006-101-064
-#> 4 8291     91    18     NA     NA lha_ia84_006-101-076
-#> 5 8292     91    18     NA     NA lha_ia84_006-101-089
-#> 6 8293     91    18     NA     NA lha_ia84_006-101-102
+#>     id       prj_cd sam eff effdst grdep grtem0 grtem1                 slug
+#> 1 8288 LHA_IA84_006 101 038     46    18     NA     NA lha_ia84_006-101-038
+#> 2 8289 LHA_IA84_006 101 051     91    18     NA     NA lha_ia84_006-101-051
+#> 3 8290 LHA_IA84_006 101 064     91    18     NA     NA lha_ia84_006-101-064
+#> 4 8291 LHA_IA84_006 101 076     91    18     NA     NA lha_ia84_006-101-076
+#> 5 8292 LHA_IA84_006 101 089     91    18     NA     NA lha_ia84_006-101-089
+#> 6 8293 LHA_IA84_006 101 102     91    18     NA     NA lha_ia84_006-101-102
 ```
 
 
@@ -541,41 +548,41 @@ head(fn125)
 
 
 filters <- list(lake='SU',
-           prj_cd__in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
+           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
            eff='051',
            spc='091')
 fn125 <- get_FN125(filters)
 nrow(fn125)
-#> [1] 1000
+#> [1] 72
 head(fn125)
-#>       id       prj_cd   sam eff species grp fish flen tlen rwt girth clipc sex
-#> 1 813647 LSA_IA09_CIN 01002 051     091  00  128  235  259 132     0     0   1
-#> 2 813913 LSA_IA09_CIN 01006 051     091  00  332  276  309 233     0     0   1
-#> 3 814094 LSA_IA09_CIN 01008 051     091  00  574  215  241  96     0     0   9
-#> 4 814095 LSA_IA09_CIN 01008 051     091  00  575  232  259 128     0     0   2
-#> 5 814374 LSA_IA09_CIN 01012 051     091  00 2856  194  217  86     0     0   9
-#> 6 814375 LSA_IA09_CIN 01012 051     091  00 2857  200  221  90     0     0   9
+#>       id       prj_cd   sam eff species grp  fish flen tlen rwt girth clipc sex
+#> 1 845842 LSA_IA15_CIN 01003 051     091  00 10217  220  240 100     0     0   9
+#> 2 845843 LSA_IA15_CIN 01003 051     091  00 10218  270  305 205     0     0   1
+#> 3 845844 LSA_IA15_CIN 01003 051     091  00 10219  260  290 185     0     0   9
+#> 4 846006 LSA_IA15_CIN 01005 051     091  00 10403  293  348 285     0     0   1
+#> 5 846007 LSA_IA15_CIN 01005 051     091  00 10404  286  320 235     0     0   9
+#> 6 846008 LSA_IA15_CIN 01005 051     091  00 10405  290  327 265     0     0   1
 #>   mat gon noda nodc agest fate fishtags                lamprey_marks
-#> 1   2  22   NA   NA    NA    K     NULL 502301, 1, NA, NA, 0, NA, NA
-#> 2   1  10   NA   NA    NA    K     NULL 502132, 1, NA, NA, 0, NA, NA
-#> 3   1  10   NA   NA    NA    K     NULL 502555, 1, NA, NA, 0, NA, NA
-#> 4   1  10   NA   NA    NA    K     NULL 502556, 1, NA, NA, 0, NA, NA
-#> 5   1  10   NA   NA    NA    K     NULL 502855, 1, NA, NA, 0, NA, NA
-#> 6   1  10   NA   NA    NA    K     NULL 502856, 1, NA, NA, 0, NA, NA
-#>                                                     age_estimates diet_data
-#> 1                                                            NULL      NULL
-#> 2                                                            NULL      NULL
-#> 3                                                            NULL      NULL
-#> 4 406077, 1, 211AT, O1, 3, TRUE, 9, 3, *, NA, Aquatech Consulting      NULL
-#> 5 406176, 1, 211AT, O1, 2, TRUE, 9, 2, *, NA, Aquatech Consulting      NULL
-#> 6 406177, 1, 211AT, O1, 2, TRUE, 9, 2, *, NA, Aquatech Consulting      NULL
-#>   comment5                               slug
-#> 1           lsa_ia09_cin-01002-051-091-00-128
-#> 2           lsa_ia09_cin-01006-051-091-00-332
-#> 3           lsa_ia09_cin-01008-051-091-00-574
-#> 4           lsa_ia09_cin-01008-051-091-00-575
-#> 5          lsa_ia09_cin-01012-051-091-00-2856
-#> 6          lsa_ia09_cin-01012-051-091-00-2857
+#> 1   9  99   NA   NA    NA    K     NULL 535239, 1, NA, NA, 0, NA, NA
+#> 2   1  10   NA   NA    NA    K     NULL 535240, 1, NA, NA, 0, NA, NA
+#> 3   9  99   NA   NA    NA    K     NULL 535241, 1, NA, NA, 0, NA, NA
+#> 4   2  22   NA   NA    NA    K     NULL 535406, 1, NA, NA, 0, NA, NA
+#> 5   9  99   NA   NA    NA    K     NULL 535407, 1, NA, NA, 0, NA, NA
+#> 6   1  10   NA   NA    NA    K     NULL 535408, 1, NA, NA, 0, NA, NA
+#>                                                 age_estimates diet_data
+#> 1 423604, 1, A34PD, 86, 2, TRUE, 6, 2, ++, NA, Paul Drombolis      NULL
+#> 2 423605, 1, A34PD, 86, 6, TRUE, 5, 6, ++, NA, Paul Drombolis      NULL
+#> 3 423606, 1, A34PD, 86, 4, TRUE, 5, 4, ++, NA, Paul Drombolis      NULL
+#> 4 423729, 1, A34PD, 86, 6, TRUE, 6, 6, ++, NA, Paul Drombolis      NULL
+#> 5 423730, 1, A34PD, 86, 5, TRUE, 6, 5, ++, NA, Paul Drombolis      NULL
+#> 6 423731, 1, A34PD, 86, 5, TRUE, 6, 5, ++, NA, Paul Drombolis      NULL
+#>   comment5                                slug
+#> 1       NA lsa_ia15_cin-01003-051-091-00-10217
+#> 2       NA lsa_ia15_cin-01003-051-091-00-10218
+#> 3       NA lsa_ia15_cin-01003-051-091-00-10219
+#> 4       NA lsa_ia15_cin-01005-051-091-00-10403
+#> 5       NA lsa_ia15_cin-01005-051-091-00-10404
+#> 6       NA lsa_ia15_cin-01005-051-091-00-10405
 
 
 
@@ -643,31 +650,52 @@ in.
 
 ```r
 
-fn125Tags <- get_FN125Tags(list(lake='ON', year=2012, spc='334',gear='GL'))
-nrow(fn125Tags)
-#> NULL
-head(fn125Tags)
-#> list()
 
-filters <- list(lake='ER',
-                protocol='TWL',
-                spc_in=c('331', '334'),
-                sidep_lte=20)
-fn125Tags <- get_FN125Tags(filters)
+fn125Tags <- get_FN125Tags(list(lake='ON', year=2019, spc='081',gear='GL'))
 nrow(fn125Tags)
-#> NULL
+#> [1] 186
 head(fn125Tags)
-#> list()
+#>      id       prj_cd sam eff species grp fish fish_tag_id tagstat  tagid tagdoc
+#> 1 52461 LOA_IA19_GL1   5 076     081  00   00           1      NA 640715  67026
+#> 2 52462 LOA_IA19_GL1  11 127     081  00   00           1      NA 600214  67026
+#> 3 52463 LOA_IA19_GL1  14 089     081  00   00           1      NA 600136  67026
+#> 4 52464 LOA_IA19_GL1  14 152     081  00   00           1      NA 600163  67026
+#> 5 52465 LOA_IA19_GL1  16 051     081  00   00           1      NA 600216  67026
+#> 6 52466 LOA_IA19_GL1  16 114     081  00   00           1      NA 600149  67026
+#>   xcwtseq xtaginckd xtag_chk comment_tag                            slug
+#> 1      NA        NA       NA          NA   loa_ia19_gl1-5-076-081-00-1-1
+#> 2      NA        NA       NA          NA loa_ia19_gl1-11-127-081-00-14-1
+#> 3      NA        NA       NA          NA  loa_ia19_gl1-14-089-081-00-1-1
+#> 4      NA        NA       NA          NA  loa_ia19_gl1-14-152-081-00-2-1
+#> 5      NA        NA       NA          NA  loa_ia19_gl1-16-051-081-00-1-1
+#> 6      NA        NA       NA          NA  loa_ia19_gl1-16-114-081-00-5-1
 
-filters <- list(lake='SU',
-           prj_cd__in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
-           eff='051',
-           spc='091')
-fn125Tags <- get_FN125Tags(filters)
+
+fn125Tags <- get_FN125Tags(list(lake='SU'))
 nrow(fn125Tags)
-#> NULL
+#> [1] 39
 head(fn125Tags)
-#> list()
+#>      id       prj_cd   sam eff species grp fish fish_tag_id tagstat
+#> 1 52236 LSA_IA13_CIN 01105 140     031  00   00           1       C
+#> 2 52237 LSA_IA13_CIN 01105 153     031  00   00           1       C
+#> 3 52238 LSA_IA13_CIN 01105 153     031  00   00           2       C
+#> 4 52239 LSA_IA13_CIN 01105 153     031  00   00           1       C
+#> 5 52240 LSA_IA13_CIN 01105 153     031  00   00           2       C
+#> 6 52241 LSA_IA14_CIN 01096 153     031  00   00           1       A
+#>             tagid tagdoc xcwtseq xtaginckd xtag_chk comment_tag
+#> 1 982000088052225  P7999      NA        NA       NA          NA
+#> 2            8588  23262      NA        NA       NA          NA
+#> 3      0137908309  P4261      NA        NA       NA          NA
+#> 4            8363  23262      NA        NA       NA          NA
+#> 5      0137908644  P4261      NA        NA       NA          NA
+#> 6           25529  23019      NA        NA       NA          NA
+#>                                    slug
+#> 1 lsa_ia13_cin-01105-140-031-00-13876-1
+#> 2 lsa_ia13_cin-01105-153-031-00-13868-1
+#> 3 lsa_ia13_cin-01105-153-031-00-13868-2
+#> 4 lsa_ia13_cin-01105-153-031-00-13869-1
+#> 5 lsa_ia13_cin-01105-153-031-00-13869-2
+#> 6 lsa_ia14_cin-01096-153-031-00-12899-1
 
 
 filters <- list(lake='HU', spc='076', grp='55')
@@ -716,71 +744,46 @@ sample, or the project(s) that the samples were collected in.
 
 ```r
 
-fn125Lam <- get_FN125Lam(list(lake='ON', spc='081', gear='GL'))
-nrow(fn125Tags)
-#> [1] 161
-head(fn125Tags)
-#>      id       prj_cd sam eff species grp fish fish_tag_id tagstat tagid tagdoc
-#> 1 23894 LHA_IS02_014   1   1     076  55   55           1       A 12631  25012
-#> 2 23895 LHA_IS02_014   1   1     076  55   55           1       A 12636  25012
-#> 3 24184 LHA_IS02_014  10   1     076  55   55           1       A 14085  25012
-#> 4 24185 LHA_IS02_014  10   1     076  55   55           1       A 14086  25012
-#> 5 24186 LHA_IS02_014  10   1     076  55   55           1       A 14092  25012
-#> 6 24187 LHA_IS02_014  10   1     076  55   55           1       A 14094  25012
-#>   xcwtseq xtaginckd xtag_chk comment_tag                         slug
-#> 1      NA        NA       NA          NA  lha_is02_014-1-1-076-55-1-1
-#> 2      NA        NA       NA          NA  lha_is02_014-1-1-076-55-3-1
-#> 3      NA        NA       NA          NA lha_is02_014-10-1-076-55-1-1
-#> 4      NA        NA       NA          NA lha_is02_014-10-1-076-55-2-1
-#> 5      NA        NA       NA          NA lha_is02_014-10-1-076-55-3-1
-#> 6      NA        NA       NA          NA lha_is02_014-10-1-076-55-4-1
-
+fn125Lam <- get_FN125Lam(list(lake='ON', spc='081', year='2015', gear='GL'))
+nrow(fn125Lam)
+#> [1] 48
+head(fn125Lam)
+#>         prj_cd sam eff species grp fish     id lamid xlam lamijc lamijc_type
+#> 1 LOA_IA15_GL1 102 038     081  00   00 552189     1   NA     NA           0
+#> 2 LOA_IA15_GL1 102 102     081  00   00 552190     1   NA     NA           0
+#> 3 LOA_IA15_GL1 102 114     081  00   00 552191     1   NA     NA           0
+#> 4 LOA_IA15_GL1 103 114     081  00   00 552192     1   NA     NA           0
+#> 5 LOA_IA15_GL1 116 114     081  00   00 552193     1   NA     NA           0
+#> 6 LOA_IA15_GL1 119 089     081  00   00 552194     1   NA     NA           0
+#>   lamijc_size comment_lam                            slug
+#> 1          NA          NA loa_ia15_gl1-102-038-081-00-1-1
+#> 2          NA          NA loa_ia15_gl1-102-102-081-00-5-1
+#> 3          NA          NA loa_ia15_gl1-102-114-081-00-7-1
+#> 4          NA          NA loa_ia15_gl1-103-114-081-00-2-1
+#> 5          NA          NA loa_ia15_gl1-116-114-081-00-2-1
+#> 6          NA          NA loa_ia15_gl1-119-089-081-00-1-1
 
 
 fn125Lam <- get_FN125Lam(list(lake='HU', spc='081', year=2012, gear='GL',
    lamijc_type=c('A1', 'A2', 'A3')))
-nrow(fn125Tags)
-#> [1] 161
-head(fn125Tags)
-#>      id       prj_cd sam eff species grp fish fish_tag_id tagstat tagid tagdoc
-#> 1 23894 LHA_IS02_014   1   1     076  55   55           1       A 12631  25012
-#> 2 23895 LHA_IS02_014   1   1     076  55   55           1       A 12636  25012
-#> 3 24184 LHA_IS02_014  10   1     076  55   55           1       A 14085  25012
-#> 4 24185 LHA_IS02_014  10   1     076  55   55           1       A 14086  25012
-#> 5 24186 LHA_IS02_014  10   1     076  55   55           1       A 14092  25012
-#> 6 24187 LHA_IS02_014  10   1     076  55   55           1       A 14094  25012
-#>   xcwtseq xtaginckd xtag_chk comment_tag                         slug
-#> 1      NA        NA       NA          NA  lha_is02_014-1-1-076-55-1-1
-#> 2      NA        NA       NA          NA  lha_is02_014-1-1-076-55-3-1
-#> 3      NA        NA       NA          NA lha_is02_014-10-1-076-55-1-1
-#> 4      NA        NA       NA          NA lha_is02_014-10-1-076-55-2-1
-#> 5      NA        NA       NA          NA lha_is02_014-10-1-076-55-3-1
-#> 6      NA        NA       NA          NA lha_is02_014-10-1-076-55-4-1
+nrow(fn125Lam)
+#> [1] 23
+head(fn125Lam)
+#>         prj_cd sam eff species grp fish     id lamid xlam lamijc lamijc_type
+#> 1 LHA_IA12_002 215 114     081  00   00 210798     1   NA   A137          A1
+#> 2 LHA_IA12_002 215 140     081  00   00 210791     1   NA   A335          A3
+#> 3 LHA_IA12_005 509 114     081  00   00 211234     1   NA   A225          A2
+#> 4 LHA_IA12_007 707 076     081  00   00 212542     1   NA   A330          A3
+#> 5 LHA_IA12_008 807 051     081  00   00 213212     1   NA   A119          A1
+#> 6 LHA_IS12_007   1 114     081  00   00 213483     1   NA   A133          A1
+#>   lamijc_size comment_lam                            slug
+#> 1          37          NA lha_ia12_002-215-114-081-00-1-1
+#> 2          35          NA lha_ia12_002-215-140-081-00-1-1
+#> 3          25          NA lha_ia12_005-509-114-081-00-1-1
+#> 4          30          NA lha_ia12_007-707-076-081-00-1-1
+#> 5          19          NA lha_ia12_008-807-051-081-00-2-1
+#> 6          33          NA   lha_is12_007-1-114-081-00-1-1
 
-
-filters <- list(lake='ER',
-                protocol='TWL',
-                spc=c('331', '334'),
-                year=2010,
-                sidep_lte=20)
-fn125Lam <- get_FN125Lam(filters)
-nrow(fn125Tags)
-#> [1] 161
-head(fn125Tags)
-#>      id       prj_cd sam eff species grp fish fish_tag_id tagstat tagid tagdoc
-#> 1 23894 LHA_IS02_014   1   1     076  55   55           1       A 12631  25012
-#> 2 23895 LHA_IS02_014   1   1     076  55   55           1       A 12636  25012
-#> 3 24184 LHA_IS02_014  10   1     076  55   55           1       A 14085  25012
-#> 4 24185 LHA_IS02_014  10   1     076  55   55           1       A 14086  25012
-#> 5 24186 LHA_IS02_014  10   1     076  55   55           1       A 14092  25012
-#> 6 24187 LHA_IS02_014  10   1     076  55   55           1       A 14094  25012
-#>   xcwtseq xtaginckd xtag_chk comment_tag                         slug
-#> 1      NA        NA       NA          NA  lha_is02_014-1-1-076-55-1-1
-#> 2      NA        NA       NA          NA  lha_is02_014-1-1-076-55-3-1
-#> 3      NA        NA       NA          NA lha_is02_014-10-1-076-55-1-1
-#> 4      NA        NA       NA          NA lha_is02_014-10-1-076-55-2-1
-#> 5      NA        NA       NA          NA lha_is02_014-10-1-076-55-3-1
-#> 6      NA        NA       NA          NA lha_is02_014-10-1-076-55-4-1
 
 
 filters <- list(lake='SU',
@@ -788,44 +791,44 @@ filters <- list(lake='SU',
            eff='051',
            spc='091')
 fn125Lam <- get_FN125Lam(filters)
-nrow(fn125Tags)
-#> [1] 161
-head(fn125Tags)
-#>      id       prj_cd sam eff species grp fish fish_tag_id tagstat tagid tagdoc
-#> 1 23894 LHA_IS02_014   1   1     076  55   55           1       A 12631  25012
-#> 2 23895 LHA_IS02_014   1   1     076  55   55           1       A 12636  25012
-#> 3 24184 LHA_IS02_014  10   1     076  55   55           1       A 14085  25012
-#> 4 24185 LHA_IS02_014  10   1     076  55   55           1       A 14086  25012
-#> 5 24186 LHA_IS02_014  10   1     076  55   55           1       A 14092  25012
-#> 6 24187 LHA_IS02_014  10   1     076  55   55           1       A 14094  25012
-#>   xcwtseq xtaginckd xtag_chk comment_tag                         slug
-#> 1      NA        NA       NA          NA  lha_is02_014-1-1-076-55-1-1
-#> 2      NA        NA       NA          NA  lha_is02_014-1-1-076-55-3-1
-#> 3      NA        NA       NA          NA lha_is02_014-10-1-076-55-1-1
-#> 4      NA        NA       NA          NA lha_is02_014-10-1-076-55-2-1
-#> 5      NA        NA       NA          NA lha_is02_014-10-1-076-55-3-1
-#> 6      NA        NA       NA          NA lha_is02_014-10-1-076-55-4-1
+nrow(fn125Lam)
+#> [1] 75
+head(fn125Lam)
+#>         prj_cd   sam eff species grp fish     id lamid xlam lamijc lamijc_type
+#> 1 LSA_IA15_CIN 01003 051     091  00   00 535239     1   NA     NA           0
+#> 2 LSA_IA15_CIN 01003 051     091  00   00 535240     1   NA     NA           0
+#> 3 LSA_IA15_CIN 01003 051     091  00   00 535241     1   NA     NA           0
+#> 4 LSA_IA15_CIN 01005 051     091  00   00 535406     1   NA     NA           0
+#> 5 LSA_IA15_CIN 01005 051     091  00   00 535407     1   NA     NA           0
+#> 6 LSA_IA15_CIN 01005 051     091  00   00 535408     1   NA     NA           0
+#>   lamijc_size comment_lam                                  slug
+#> 1          NA          NA lsa_ia15_cin-01003-051-091-00-10217-1
+#> 2          NA          NA lsa_ia15_cin-01003-051-091-00-10218-1
+#> 3          NA          NA lsa_ia15_cin-01003-051-091-00-10219-1
+#> 4          NA          NA lsa_ia15_cin-01005-051-091-00-10403-1
+#> 5          NA          NA lsa_ia15_cin-01005-051-091-00-10404-1
+#> 6          NA          NA lsa_ia15_cin-01005-051-091-00-10405-1
 
 
 filters <- list(lake='HU', spc='076', grp='55')
 fn125Lam <- get_FN125Lam(filters)
-nrow(fn125Tags)
-#> [1] 161
-head(fn125Tags)
-#>      id       prj_cd sam eff species grp fish fish_tag_id tagstat tagid tagdoc
-#> 1 23894 LHA_IS02_014   1   1     076  55   55           1       A 12631  25012
-#> 2 23895 LHA_IS02_014   1   1     076  55   55           1       A 12636  25012
-#> 3 24184 LHA_IS02_014  10   1     076  55   55           1       A 14085  25012
-#> 4 24185 LHA_IS02_014  10   1     076  55   55           1       A 14086  25012
-#> 5 24186 LHA_IS02_014  10   1     076  55   55           1       A 14092  25012
-#> 6 24187 LHA_IS02_014  10   1     076  55   55           1       A 14094  25012
-#>   xcwtseq xtaginckd xtag_chk comment_tag                         slug
-#> 1      NA        NA       NA          NA  lha_is02_014-1-1-076-55-1-1
-#> 2      NA        NA       NA          NA  lha_is02_014-1-1-076-55-3-1
-#> 3      NA        NA       NA          NA lha_is02_014-10-1-076-55-1-1
-#> 4      NA        NA       NA          NA lha_is02_014-10-1-076-55-2-1
-#> 5      NA        NA       NA          NA lha_is02_014-10-1-076-55-3-1
-#> 6      NA        NA       NA          NA lha_is02_014-10-1-076-55-4-1
+nrow(fn125Lam)
+#> [1] 348
+head(fn125Lam)
+#>         prj_cd sam eff species grp fish     id lamid xlam lamijc lamijc_type
+#> 1 LHA_IA03_002 219 064     076  55   55 172081     1 <NA>      0           0
+#> 2 LHA_IA03_002 219 064     076  55   55 172082     1 <NA>      0           0
+#> 3 LHA_IA03_002 219 089     076  55   55 172050     1 <NA>      0           0
+#> 4 LHA_IA03_002 219 089     076  55   55 172051     1 <NA>      0           0
+#> 5 LHA_IA03_002 219 114     076  55   55 172053     1 <NA>      0           0
+#> 6 LHA_IA03_007 706 064     076  55   55 172329     1 <NA>      0           0
+#>   lamijc_size comment_lam                                slug
+#> 1          NA          NA lha_ia03_002-219-064-076-55-00001-1
+#> 2          NA          NA lha_ia03_002-219-064-076-55-00002-1
+#> 3          NA          NA lha_ia03_002-219-089-076-55-00001-1
+#> 4          NA          NA lha_ia03_002-219-089-076-55-00002-1
+#> 5          NA          NA lha_ia03_002-219-114-076-55-00001-1
+#> 6          NA          NA lha_ia03_007-706-064-076-55-00001-1
 ```
 
 
@@ -864,25 +867,27 @@ head(fn126)
 #> 5 loa_ia12_gl1-2-127-334-00-3-2
 #> 6 loa_ia12_gl1-2-127-334-00-4-1
 
-filters <- list(lake='ER',
-                protocol='TWL',
-                spc=c('331', '334'),
-                sidep_lte=20)
-fn126 <- get_FN126(filters)
-nrow(fn126)
-#> NULL
-head(fn126)
-#> list()
 
-filters <- list(lake='SU',
-           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
-           eff='051',
-           spc='091')
+
+filters <- list(lake='SU', prj_cd_in=c("LSA_IA12_CIN", "LSA_IA17_CIN"))
 fn126 <- get_FN126(filters)
 nrow(fn126)
-#> NULL
+#> [1] 331
 head(fn126)
-#> list()
+#>      id       prj_cd   sam eff species grp fish food taxon foodcnt comment6
+#> 1 45883 LSA_IA12_CIN 01002 064     081  01   01    1  F121      NA     <NA>
+#> 2 45884 LSA_IA12_CIN 01002 076     081  01   01    1  F121      NA     <NA>
+#> 3 45885 LSA_IA12_CIN 01002 102     081  01   01    1  F093      NA     <NA>
+#> 4 45886 LSA_IA12_CIN 01002 102     081  01   01    1  F121      NA     <NA>
+#> 5 45887 LSA_IA12_CIN 01010 038     081  01   01    1     0      NA    empty
+#> 6 45888 LSA_IA12_CIN 01010 064     081  01   01    1  F121      NA     <NA>
+#>                                    slug
+#> 1 lsa_ia12_cin-01002-064-081-01-10040-1
+#> 2 lsa_ia12_cin-01002-076-081-01-10049-1
+#> 3 lsa_ia12_cin-01002-102-081-01-10059-1
+#> 4 lsa_ia12_cin-01002-102-081-01-10060-1
+#> 5 lsa_ia12_cin-01010-038-081-01-10421-1
+#> 6 lsa_ia12_cin-01010-064-081-01-10440-1
 
 filters <- list(lake='HU', spc='076', grp='55')
 fn126 <- get_FN126(filters)

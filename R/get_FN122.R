@@ -28,7 +28,7 @@
 ##' fn122 <- get_FN122(list(lake='ON', year=2012, gear="GL"))
 ##' fn122 <- get_FN122(list(lake='ER', protocol='TWL', sidep_lte=20))
 ##' filters <- list(lake='SU',
-##'            prj_cd__in=c('LSA_IA15_CIN','LSA_IA17_CIN', eff='051'))
+##'            prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN', eff='051'))
 ##' fn122 <- get_FN122(filters)
 ##' filters <- list(lake='HU', prj_cd_like='_006', eff_in=c('127','140'))
 ##' fn122 <- get_FN122(filters)

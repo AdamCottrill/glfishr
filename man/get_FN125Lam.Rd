@@ -59,7 +59,7 @@ fn125Lam <- get_FN125Lam(filters)
 
 filters <- list(lake='HU', spc='076', grp='55')
 fn125Lam <- get_FN125Lam(filters)
-##'
+
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

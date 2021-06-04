@@ -15,7 +15,7 @@ dataframe
 \description{
 This function accesses the api endpoint to for FN125
 records. FN125 records contain the biological data collected from
-individual fish sampled in assessment projects such as legth,
+individual fish sampled in assessment projects such as length,
 weight, sex, and maturity. For convience this end point also
 returns data from child tables such as the 'preferred' age, and
 lamprey wounds.  This function takes an optional
@@ -42,7 +42,7 @@ filters <- list(lake='ER',
 fn125 <- get_FN125(filters)
 
 filters <- list(lake='SU',
-           prj_cd__in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
+           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
            eff='051',
            spc='091')
 fn125 <- get_FN125(filters)

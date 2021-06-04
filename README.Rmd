@@ -152,7 +152,7 @@ head(fn122)
 
 
 filters <- list(lake='SU',
-           prj_cd__in=c('LSA_IA15_CIN','LSA_IA17_CIN', eff='051'))
+           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN', eff='051'))
 fn122 <- get_FN122(filters)
 nrow(fn122)
 head(fn122)
@@ -260,7 +260,7 @@ head(fn125)
 
 
 filters <- list(lake='SU',
-           prj_cd__in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
+           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
            eff='051',
            spc='091')
 fn125 <- get_FN125(filters)
@@ -299,23 +299,13 @@ in.
 
 ```{r fn125Tags}
 
-fn125Tags <- get_FN125Tags(list(lake='ON', year=2012, spc='334',gear='GL'))
+
+fn125Tags <- get_FN125Tags(list(lake='ON', year=2019, spc='081',gear='GL'))
 nrow(fn125Tags)
 head(fn125Tags)
 
-filters <- list(lake='ER',
-                protocol='TWL',
-                spc_in=c('331', '334'),
-                sidep_lte=20)
-fn125Tags <- get_FN125Tags(filters)
-nrow(fn125Tags)
-head(fn125Tags)
 
-filters <- list(lake='SU',
-           prj_cd__in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
-           eff='051',
-           spc='091')
-fn125Tags <- get_FN125Tags(filters)
+fn125Tags <- get_FN125Tags(list(lake='SU'))
 nrow(fn125Tags)
 head(fn125Tags)
 
@@ -352,26 +342,16 @@ sample, or the project(s) that the samples were collected in.
 
 ```{r fn125Lamprey}
 
-fn125Lam <- get_FN125Lam(list(lake='ON', spc='081', gear='GL'))
-nrow(fn125Tags)
-head(fn125Tags)
-
+fn125Lam <- get_FN125Lam(list(lake='ON', spc='081', year='2015', gear='GL'))
+nrow(fn125Lam)
+head(fn125Lam)
 
 
 fn125Lam <- get_FN125Lam(list(lake='HU', spc='081', year=2012, gear='GL',
    lamijc_type=c('A1', 'A2', 'A3')))
-nrow(fn125Tags)
-head(fn125Tags)
+nrow(fn125Lam)
+head(fn125Lam)
 
-
-filters <- list(lake='ER',
-                protocol='TWL',
-                spc=c('331', '334'),
-                year=2010,
-                sidep_lte=20)
-fn125Lam <- get_FN125Lam(filters)
-nrow(fn125Tags)
-head(fn125Tags)
 
 
 filters <- list(lake='SU',
@@ -379,14 +359,14 @@ filters <- list(lake='SU',
            eff='051',
            spc='091')
 fn125Lam <- get_FN125Lam(filters)
-nrow(fn125Tags)
-head(fn125Tags)
+nrow(fn125Lam)
+head(fn125Lam)
 
 
 filters <- list(lake='HU', spc='076', grp='55')
 fn125Lam <- get_FN125Lam(filters)
-nrow(fn125Tags)
-head(fn125Tags)
+nrow(fn125Lam)
+head(fn125Lam)
 
 
 ```
@@ -411,18 +391,9 @@ fn126 <- get_FN126(list(lake='ON', year=2012, spc='334',gear='GL'))
 nrow(fn126)
 head(fn126)
 
-filters <- list(lake='ER',
-                protocol='TWL',
-                spc=c('331', '334'),
-                sidep_lte=20)
-fn126 <- get_FN126(filters)
-nrow(fn126)
-head(fn126)
 
-filters <- list(lake='SU',
-           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
-           eff='051',
-           spc='091')
+
+filters <- list(lake='SU', prj_cd_in=c("LSA_IA12_CIN", "LSA_IA17_CIN"))
 fn126 <- get_FN126(filters)
 nrow(fn126)
 head(fn126)
