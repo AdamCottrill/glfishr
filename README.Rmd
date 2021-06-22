@@ -50,7 +50,7 @@ library(glfishr)
 
 Project meta data can be accessed using the `get_fn011()` function
 FN011 records contiain the hi-level meta data about an
-OMNR netting project.  The FN011 record contain information like
+OMNR netting project.  The FN011 records contain information like
 project code, project name, projet leader, start and end date,
 protocol, and the lake where the project was conducted.  This
 function takes an optional filter list which can be used to select
@@ -106,7 +106,7 @@ nrow(fn121)
 head(fn121)
 
 
-fn121 <- get_FN121(list(lake = "ER", protocol = "TWL", sidep_lte = 20))
+fn121 <- get_FN121(list(lake = "ER", protocol = "TWL", first_year=2010, sidep_lte = 20))
 nrow(fn121)
 head(fn121)
 
@@ -122,7 +122,7 @@ nrow(fn121)
 head(fn121)
 
 
-fn121 <- get_FN121(list(lake = "HU", prj_cd_like = "_006"))
+fn121 <- get_FN121(list(lake = "HU", prj_cd_like = "_003"))
 nrow(fn121)
 head(fn121)
 ```
@@ -148,19 +148,19 @@ year, protocol, gear etc.
 ```{r fn122}
 
 
-fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL"))
+fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL", sidep_lte=15))
 nrow(fn122)
 head(fn122)
 
 
-fn122 <- get_FN122(list(lake = "ER", protocol = "TWL", sidep_lte = 20))
+fn122 <- get_FN122(list(lake = "ER", protocol = "TWL", first_year=2010, sidep_lte = 20))
 nrow(fn122)
 head(fn122)
 
 
 filters <- list(
   lake = "SU",
-  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN", eff = "051")
+  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"), eff = "051"
 )
 fn122 <- get_FN122(filters)
 nrow(fn122)
@@ -168,7 +168,7 @@ head(fn122)
 
 
 
-filters <- list(lake = "HU", prj_cd_like = "_006", eff_in = c("127", "140"))
+filters <- list(lake = "HU", prj_cd_like = "_007", eff = c("127", "140"))
 fn122 <- get_FN122(filters)
 nrow(fn122)
 head(fn122)
@@ -259,16 +259,15 @@ nrow(fn125)
 head(fn125)
 
 filters <- list(
-  lake = "ER",
-  protocol = "TWL",
-  spc_in = c("331", "334"),
-  sidep_lte = 20
-)
+      lake = "ER",
+      year='2019',
+      protocol = "TWL",
+      spc_in = c("331","334"),
+      sidep_lte = 10
+    )
 fn125 <- get_FN125(filters)
 nrow(fn125)
 head(fn125)
-
-
 
 filters <- list(
   lake = "SU",
@@ -311,7 +310,9 @@ in.
 
 
 fn125_tags <- get_FN125Tags(list(
-  lake = "ON", year = 2019, spc = "081",
+  lake = "ON",
+  year = 2019,
+  spc = "081",
   gear = "GL"
 ))
 nrow(fn125_tags)

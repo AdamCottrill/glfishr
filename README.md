@@ -167,13 +167,9 @@ head(fn121)
 #> 6 loa_ia12_gl1-103   on_9999      9999
 
 
-fn121 <- get_FN121(list(lake = "ER", protocol = "TWL", sidep_lte = 20))
-#> Warning in api_to_dataframe(next_url, data, page): The response from the server exceeded the maximum number of api calls and may be incomplete.
-#> Verify your filters and consider refining your selection. If you meant to fetch
-#> a large number of rows, it may be necessary to submit multiple requests with
-#> different filters and combine them in R.
+fn121 <- get_FN121(list(lake = "ER", protocol = "TWL", first_year=2010, sidep_lte = 20))
 nrow(fn121)
-#> [1] 1000
+#> [1] 384
 head(fn121)
 #>      id       prj_cd sam     effdt0     effdt1    effdur   efftm0   efftm1
 #> 1 59708 LEA_IF19_001 250 2019-08-12 2019-08-12 0.1666667 11:11:00 01:21:00
@@ -231,35 +227,31 @@ head(fn121)
 #> 6     NA lsa_ia17_cin-01006   su_1137      1137
 
 
-fn121 <- get_FN121(list(lake = "HU", prj_cd_like = "_006"))
-#> Warning in api_to_dataframe(next_url, data, page): The response from the server exceeded the maximum number of api calls and may be incomplete.
-#> Verify your filters and consider refining your selection. If you meant to fetch
-#> a large number of rows, it may be necessary to submit multiple requests with
-#> different filters and combine them in R.
+fn121 <- get_FN121(list(lake = "HU", prj_cd_like = "_003"))
 nrow(fn121)
-#> [1] 1000
+#> [1] 160
 head(fn121)
 #>      id       prj_cd sam     effdt0     effdt1 effdur   efftm0   efftm1 effst
-#> 1 48481 LHA_IA19_006 601 2019-06-17 2019-06-18  15.43 18:23:00 09:49:00     1
-#> 2 48482 LHA_IA19_006 602 2019-06-17 2019-06-18  14.21 18:50:00 09:03:00     1
-#> 3 48483 LHA_IA19_006 603 2019-06-17 2019-06-18  13.23 19:11:00 08:25:00     1
-#> 4 48484 LHA_IA19_006 604 2019-06-18 2019-06-19  25.00 10:48:00 11:48:00     1
-#> 5 48485 LHA_IA19_006 605 2019-06-18 2019-06-19  24.20 11:03:00 11:15:00     1
-#> 6 48486 LHA_IA19_006 606 2019-06-18 2019-06-19  23.28 11:30:00 10:47:00     1
+#> 1 48340 LHA_IA18_003 301 2018-08-27 2018-08-28  23.15 11:13:00 10:22:00     1
+#> 2 48341 LHA_IA18_003 302 2018-08-27 2018-08-28  23.05 11:58:00 11:01:00     1
+#> 3 48342 LHA_IA18_003 303 2018-08-27 2018-08-28  23.56 12:25:00 11:59:00     1
+#> 4 48343 LHA_IA18_003 304 2018-08-28 2018-08-29  22.36 13:00:00 11:22:00     1
+#> 5 48344 LHA_IA18_003 305 2018-08-28 2018-08-29  21.33 13:21:00 10:41:00     1
+#> 6 48345 LHA_IA18_003 306 2018-08-28 2018-08-29  20.48 13:37:00 10:06:00     1
 #>   grtp   gr orient sidep site   dd_lat    dd_lon sitem    comment1 secchi
-#> 1   GL GL21      1  30.1 3627 43.39013 -81.93372    NA    CJ MM TW     NA
-#> 2   GL GL21      1  24.2 3628 43.34737 -81.91447    NA    CJ MM TW     NA
-#> 3   GL GL21      1  20.4 3728 43.31910 -81.89620    NA    CJ MM TW     NA
-#> 4   GL GL21      1  37.2 3626 43.36205 -82.03072    NA CJ RD MM TW     NA
-#> 5   GL GL21      1  34.9 3626 43.34585 -82.01992    NA CJ RD MM TW     NA
-#> 6   GL GL21      1  27.5 3727 43.32137 -81.96190    NA CJ RD MM TW     NA
+#> 1   GL GL21      1  32.4 2248 44.58082 -80.24860    NA    CJ TW RG     NA
+#> 2   GL GL21      1  39.7 2248 44.53477 -80.16673    NA    CJ TW RG     NA
+#> 3   GL GL21      1  36.0 2249 44.51710 -80.12047    NA    CJ TW RG     NA
+#> 4   GL GL21      1  60.7 2248 44.58107 -80.21178    NA CJ TW CP RG     NA
+#> 5   GL GL21      1  56.6 2248 44.57018 -80.18608    NA CJ TW CP RG     NA
+#> 6   GL GL21      1  53.1 2248 44.56537 -80.16705    NA CJ TW CP RG     NA
 #>               slug grid.slug grid.grid
-#> 1 lha_ia19_006-601   hu_3627      3627
-#> 2 lha_ia19_006-602   hu_3628      3628
-#> 3 lha_ia19_006-603   hu_3728      3728
-#> 4 lha_ia19_006-604   hu_3626      3626
-#> 5 lha_ia19_006-605   hu_3626      3626
-#> 6 lha_ia19_006-606   hu_3727      3727
+#> 1 lha_ia18_003-301   hu_2248      2248
+#> 2 lha_ia18_003-302   hu_2248      2248
+#> 3 lha_ia18_003-303   hu_2249      2249
+#> 4 lha_ia18_003-304   hu_2248      2248
+#> 5 lha_ia18_003-305   hu_2248      2248
+#> 6 lha_ia18_003-306   hu_2248      2248
 ```
 
 ## FN122 - Sample Efforts
@@ -278,85 +270,69 @@ such project code, lake, first year, last year, protocol, gear etc.
 
 ``` r
 
-fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL"))
-#> Warning in api_to_dataframe(next_url, data, page): The response from the server exceeded the maximum number of api calls and may be incomplete.
-#> Verify your filters and consider refining your selection. If you meant to fetch
-#> a large number of rows, it may be necessary to submit multiple requests with
-#> different filters and combine them in R.
+fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL", sidep_lte=15))
 nrow(fn122)
-#> [1] 1001
+#> [1] 619
 head(fn122)
-#>       id       prj_cd  sam  eff effdst grdep grtem0 grtem1               slug
-#> 1      1         TRUE TRUE TRUE    1.0   1.0    1.0   TRUE               TRUE
-#> 2 289449 LOA_IA12_GL1    1  038    4.6   6.7   19.2     NA loa_ia12_gl1-1-038
-#> 3 289450 LOA_IA12_GL1    1  051   15.2   6.7   19.2     NA loa_ia12_gl1-1-051
-#> 4 289451 LOA_IA12_GL1    1  064   15.2   6.7   19.2     NA loa_ia12_gl1-1-064
-#> 5 289452 LOA_IA12_GL1    1  076   15.2   6.7   19.2     NA loa_ia12_gl1-1-076
-#> 6 289453 LOA_IA12_GL1    1  089   15.2   6.7   19.2     NA loa_ia12_gl1-1-089
+#>       id       prj_cd sam eff effdst grdep grtem0 grtem1               slug
+#> 1 289449 LOA_IA12_GL1   1 038    4.6   6.7   19.2     NA loa_ia12_gl1-1-038
+#> 2 289450 LOA_IA12_GL1   1 051   15.2   6.7   19.2     NA loa_ia12_gl1-1-051
+#> 3 289451 LOA_IA12_GL1   1 064   15.2   6.7   19.2     NA loa_ia12_gl1-1-064
+#> 4 289452 LOA_IA12_GL1   1 076   15.2   6.7   19.2     NA loa_ia12_gl1-1-076
+#> 5 289453 LOA_IA12_GL1   1 089   15.2   6.7   19.2     NA loa_ia12_gl1-1-089
+#> 6 289454 LOA_IA12_GL1   1 102   15.2   6.7   19.2     NA loa_ia12_gl1-1-102
 
 
-fn122 <- get_FN122(list(lake = "ER", protocol = "TWL", sidep_lte = 20))
-#> Warning in api_to_dataframe(next_url, data, page): The response from the server exceeded the maximum number of api calls and may be incomplete.
-#> Verify your filters and consider refining your selection. If you meant to fetch
-#> a large number of rows, it may be necessary to submit multiple requests with
-#> different filters and combine them in R.
+fn122 <- get_FN122(list(lake = "ER", protocol = "TWL", first_year=2010, sidep_lte = 20))
 nrow(fn122)
-#> [1] 1001
+#> [1] 384
 head(fn122)
-#>       id       prj_cd  sam  eff effdst grdep grtem0 grtem1                 slug
-#> 1      1         TRUE TRUE TRUE      1   1.0    1.0    1.0                 TRUE
-#> 2 314330 LEA_IF19_001  250  001    320  13.4   16.9   17.4 lea_if19_001-250-001
-#> 3 314329 LEA_IF19_001  251  001    320  12.4   18.0   18.6 lea_if19_001-251-001
-#> 4 314328 LEA_IF19_001  252  001    280  10.6   20.2   20.1 lea_if19_001-252-001
-#> 5 314299 LEA_IF19_001  253  001    270   7.8   24.0   24.1 lea_if19_001-253-001
-#> 6 314311 LEA_IF19_001  254  001    270   8.5   24.3   24.0 lea_if19_001-254-001
+#>       id       prj_cd sam eff effdst grdep grtem0 grtem1                 slug
+#> 1 314330 LEA_IF19_001 250 001    320  13.4   16.9   17.4 lea_if19_001-250-001
+#> 2 314329 LEA_IF19_001 251 001    320  12.4   18.0   18.6 lea_if19_001-251-001
+#> 3 314328 LEA_IF19_001 252 001    280  10.6   20.2   20.1 lea_if19_001-252-001
+#> 4 314299 LEA_IF19_001 253 001    270   7.8   24.0   24.1 lea_if19_001-253-001
+#> 5 314311 LEA_IF19_001 254 001    270   8.5   24.3   24.0 lea_if19_001-254-001
+#> 6 314310 LEA_IF19_001 255 001    260  11.2   16.4   15.2 lea_if19_001-255-001
 
 
 filters <- list(
   lake = "SU",
-  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN", eff = "051")
+  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"), eff = "051"
 )
 fn122 <- get_FN122(filters)
-#> Warning in api_to_dataframe(next_url, data, page): The response from the server exceeded the maximum number of api calls and may be incomplete.
-#> Verify your filters and consider refining your selection. If you meant to fetch
-#> a large number of rows, it may be necessary to submit multiple requests with
-#> different filters and combine them in R.
 nrow(fn122)
-#> [1] 1001
+#> [1] 171
 head(fn122)
-#>      id       prj_cd   sam  eff effdst grdep grtem0 grtem1
-#> 1     1         TRUE  TRUE TRUE   1.00     1   TRUE   TRUE
-#> 2 25220 LSA_IA17_CIN 01001  038  30.48    22     NA     NA
-#> 3 25221 LSA_IA17_CIN 01001  051  30.48    26     NA     NA
-#> 4 25222 LSA_IA17_CIN 01001  064  30.48    23     NA     NA
-#> 5 25223 LSA_IA17_CIN 01001  076  30.48    25     NA     NA
-#> 6 25224 LSA_IA17_CIN 01001  089  30.48    23     NA     NA
+#>      id       prj_cd   sam eff effdst grdep grtem0 grtem1
+#> 1 25221 LSA_IA17_CIN 01001 051  30.48    26     NA     NA
+#> 2 25231 LSA_IA17_CIN 01002 051  30.48    36     NA     NA
+#> 3 25241 LSA_IA17_CIN 01003 051  30.48    15     NA     NA
+#> 4 25251 LSA_IA17_CIN 01004 051  30.48    13     NA     NA
+#> 5 25261 LSA_IA17_CIN 01005 051  30.48    19     NA     NA
+#> 6 25271 LSA_IA17_CIN 01006 051  30.48    37     NA     NA
 #>                     slug
-#> 1                   TRUE
-#> 2 lsa_ia17_cin-01001-038
-#> 3 lsa_ia17_cin-01001-051
-#> 4 lsa_ia17_cin-01001-064
-#> 5 lsa_ia17_cin-01001-076
-#> 6 lsa_ia17_cin-01001-089
+#> 1 lsa_ia17_cin-01001-051
+#> 2 lsa_ia17_cin-01002-051
+#> 3 lsa_ia17_cin-01003-051
+#> 4 lsa_ia17_cin-01004-051
+#> 5 lsa_ia17_cin-01005-051
+#> 6 lsa_ia17_cin-01006-051
 
 
 
-filters <- list(lake = "HU", prj_cd_like = "_006", eff_in = c("127", "140"))
+filters <- list(lake = "HU", prj_cd_like = "_007", eff = c("127", "140"))
 fn122 <- get_FN122(filters)
-#> Warning in api_to_dataframe(next_url, data, page): The response from the server exceeded the maximum number of api calls and may be incomplete.
-#> Verify your filters and consider refining your selection. If you meant to fetch
-#> a large number of rows, it may be necessary to submit multiple requests with
-#> different filters and combine them in R.
 nrow(fn122)
-#> [1] 1001
+#> [1] 758
 head(fn122)
-#>       id       prj_cd  sam  eff effdst grdep grtem0 grtem1                 slug
-#> 1      1         TRUE TRUE TRUE      1   1.0   TRUE   TRUE                 TRUE
-#> 2 217976 LHA_IA19_006  601  032     15  29.8     NA     NA lha_ia19_006-601-032
-#> 3 218090 LHA_IA19_006  601  038     25  30.5     NA     NA lha_ia19_006-601-038
-#> 4 218204 LHA_IA19_006  601  051     50  29.9     NA     NA lha_ia19_006-601-051
-#> 5 218318 LHA_IA19_006  601  064     50  29.8     NA     NA lha_ia19_006-601-064
-#> 6 218432 LHA_IA19_006  601  076     50  30.6     NA     NA lha_ia19_006-601-076
+#>       id       prj_cd sam eff effdst grdep grtem0 grtem1                 slug
+#> 1 217649 LHA_IA18_007 701 127     50  16.5     NA     NA lha_ia18_007-701-127
+#> 2 217768 LHA_IA18_007 701 140     50  16.2     NA     NA lha_ia18_007-701-140
+#> 3 217650 LHA_IA18_007 702 127     50  11.6     NA     NA lha_ia18_007-702-127
+#> 4 217769 LHA_IA18_007 702 140     50  11.6     NA     NA lha_ia18_007-702-140
+#> 5 217651 LHA_IA18_007 703 127     50  11.4     NA     NA lha_ia18_007-703-127
+#> 6 217770 LHA_IA18_007 703 140     50  12.2     NA     NA lha_ia18_007-703-140
 ```
 
 ## FN123 - Catch Counts
@@ -407,12 +383,12 @@ nrow(fn123)
 #> [1] 107
 head(fn123)
 #>       id       prj_cd sam eff spc grp catcnt catwt biocnt comment
-#> 1 793328 LEA_IF10_001 250 001 331  01      4    NA      4
-#> 2 793333 LEA_IF10_001 250 001 331  03     22    NA     22
-#> 3 793222 LEA_IF10_001 250 001 334  01      1    NA      1
-#> 4 793343 LEA_IF10_001 251 001 331  01      2    NA      2
-#> 5 793337 LEA_IF10_001 251 001 331  03     25    NA     25
-#> 6 793342 LEA_IF10_001 251 001 334  01      1    NA      1
+#> 1 793328 LEA_IF10_001 250 001 331  01      4    NA      4        
+#> 2 793333 LEA_IF10_001 250 001 331  03     22    NA     22        
+#> 3 793222 LEA_IF10_001 250 001 334  01      1    NA      1        
+#> 4 793343 LEA_IF10_001 251 001 331  01      2    NA      2        
+#> 5 793337 LEA_IF10_001 251 001 331  03     25    NA     25        
+#> 6 793342 LEA_IF10_001 251 001 334  01      1    NA      1        
 #>                          slug
 #> 1 lea_if10_001-250-001-331-01
 #> 2 lea_if10_001-250-001-331-03
@@ -459,7 +435,7 @@ head(fn123)
 #> 3 419272 LHA_IA19_802 161 032 076  55      1    NA      1    <NA>
 #> 4 419405 LHA_IA19_802  41 114 076  55      1    NA      1    <NA>
 #> 5 419408 LHA_IA19_802  42 064 076  55      1    NA      1    <NA>
-#> 6 570629 LHA_IA19_077 701 089 076  55      2     0      2
+#> 6 570629 LHA_IA19_077 701 089 076  55      2     0      2        
 #>                          slug
 #> 1 lha_ia19_802-122-051-076-55
 #> 2 lha_ia19_802-122-076-076-55
@@ -524,18 +500,15 @@ head(fn125)
 #> 6       NA loa_ia12_gl1-102-127-334-00-1
 
 filters <- list(
-  lake = "ER",
-  protocol = "TWL",
-  spc_in = c("331", "334"),
-  sidep_lte = 20
-)
+      lake = "ER",
+      year='2019',
+      protocol = "TWL",
+      spc_in = c("331","334"),
+      sidep_lte = 10
+    )
 fn125 <- get_FN125(filters)
-#> Warning in api_to_dataframe(next_url, data, page): The response from the server exceeded the maximum number of api calls and may be incomplete.
-#> Verify your filters and consider refining your selection. If you meant to fetch
-#> a large number of rows, it may be necessary to submit multiple requests with
-#> different filters and combine them in R.
 nrow(fn125)
-#> [1] 1000
+#> [1] 862
 head(fn125)
 #>        id       prj_cd sam eff species grp fish flen tlen rwt girth clipc  sex
 #> 1 1613248 LEA_IF19_001 253 001     331  01    1   50   58   2    NA    NA <NA>
@@ -558,8 +531,6 @@ head(fn125)
 #> 4          lea_if19_001-253-001-331-01-12
 #> 5          lea_if19_001-253-001-331-01-13
 #> 6          lea_if19_001-253-001-331-01-14
-
-
 
 filters <- list(
   lake = "SU",
@@ -649,7 +620,9 @@ project(s) that the samples were collected in.
 ``` r
 
 fn125_tags <- get_FN125Tags(list(
-  lake = "ON", year = 2019, spc = "081",
+  lake = "ON",
+  year = 2019,
+  spc = "081",
   gear = "GL"
 ))
 nrow(fn125_tags)

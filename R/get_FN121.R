@@ -24,11 +24,12 @@
 ##' @examples
 ##'
 ##' fn121 <- get_FN121(list(lake='ON', year=2012))
-##' fn121 <- get_FN121(list(lake='ER', protocol='TWL', sidep_lte=20))
+##' fn121 <- get_FN121(list(lake='ER', protocol='TWL',
+##'                    sidep_lte=20, first_year=2010))
 ##' filters <- list(lake='SU',
 ##'            prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'))
 ##' fn121 <- get_FN121(filters)
-##' fn121 <- get_FN121(list(lake='HU', prj_cd_like='_006'))
+##' fn121 <- get_FN121(list(lake='HU', prj_cd_like='_003'))
 ##'
 get_FN121 <- function(filter_list = list()) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)

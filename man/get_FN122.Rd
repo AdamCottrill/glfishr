@@ -34,12 +34,13 @@ for the full list of available filter keys (query parameters)
 }
 \examples{
 
-fn122 <- get_FN122(list(lake='ON', year=2012, gear="GL"))
-fn122 <- get_FN122(list(lake='ER', protocol='TWL', sidep_lte=20))
+fn122 <- get_FN122(list(lake='ON', year=2012, gear="GL",  sidep_lte=15))
+fn122 <- get_FN122(list(lake='ER', protocol='TWL',
+                   first_year=2010, sidep_lte=20))
 filters <- list(lake='SU',
            prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN', eff='051'))
 fn122 <- get_FN122(filters)
-filters <- list(lake='HU', prj_cd_like='_006', eff_in=c('127','140'))
+filters <- list(lake='HU', prj_cd_like='_006', eff=c('127','140'))
 fn122 <- get_FN122(filters)
 
 }
