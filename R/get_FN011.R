@@ -11,7 +11,7 @@
 ##' year, protocol, ect.
 ##'
 ##' See
-##' http://http://10.167.37.157/fn_portal/redoc/#operation/fn_011_list
+##' http://10.167.37.157/fn_portal/redoc/#operation/fn_011_list
 ##' for the full list of available filter keys (query parameters)
 ##'
 ##' @param filter_list list
@@ -31,11 +31,12 @@
 ##' fn011 <- get_FN011(list(lake='HU', prj_cd_like='_006'))
 ##'
 get_FN011 <- function(filter_list = list()) {
+  recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   my_url <- sprintf(
     "%s/fn011/%s",
     get_fn_portal_root(),
     query_string
   )
-  return(api_to_dataframe(my_url))
+  return(api_to_dataframe(my_url, recursive = recursive))
 }

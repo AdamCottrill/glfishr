@@ -27,7 +27,7 @@ samples were collected in.
 }
 \details{
 See
-http://http://10.167.37.157/fn_portal/redoc/#operation/fn_123_list
+http://10.167.37.157/fn_portal/redoc/#operation/fn_123_list
 for the full list of available filter keys (query parameters)
 }
 \examples{

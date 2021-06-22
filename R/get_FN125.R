@@ -13,7 +13,7 @@
 ##' samples were collected in.
 ##'
 ##' See
-##' http://http://10.167.37.157/fn_portal/redoc/#operation/fn_123_list
+##' http://10.167.37.157/fn_portal/redoc/#operation/fn_123_list
 ##' for the full list of available filter keys (query parameters)
 ##'
 ##' @param filter_list list
@@ -43,11 +43,12 @@
 
 ##'
 get_FN125 <- function(filter_list = list()) {
+  recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   my_url <- sprintf(
     "%s/fn125/%s",
     get_fn_portal_root(),
     query_string
   )
-  return(api_to_dataframe(my_url))
+  return(api_to_dataframe(my_url, recursive = recursive))
 }

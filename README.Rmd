@@ -12,12 +12,10 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 
-anonymize = function(df) {
+anonymize <- function(df) {
   drop <- c("prj_ldr.username", "prj_ldr.first_name", "prj_ldr.last_name")
-  df  <- df[,!(names(df) %in% drop)]
+  df <- df[, !(names(df) %in% drop)]
 }
-
-
 ```
 
 # glfishr
@@ -37,6 +35,16 @@ re-used across different tables (e.g. - if a filter is passed to the
 can be applied to the `get_FN125()` function to get the all of the
 biological samples collected in those net sets).
 
+## Load glfishr
+
+All of the functions in glfishr have been bundled up into an R-package
+that can be installed and then loaded as needed:
+
+```{r load_library}
+library(glfishr)
+
+```
+
 
 ## FN011 - Projects
 
@@ -53,30 +61,28 @@ year, protocol, ect.
 
 ```{r fn011}
 
-fn011 <- get_FN011(list(lake='ON', first_year=2012, last_year=2018))
+fn011 <- get_FN011(list(lake = "ON", first_year = 2012, last_year = 2018))
 fn011 <- anonymize(fn011)
 nrow(fn011)
 head(fn011)
 
-fn011 <- get_FN011(list(lake='ER', protocol='TWL'))
+fn011 <- get_FN011(list(lake = "ER", protocol = "TWL"))
 fn011 <- anonymize(fn011)
 nrow(fn011)
 head(fn011)
 
 
-filters <- list(lake='SU', prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'))
+filters <- list(lake = "SU", prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
 fn011 <- get_FN011(filters)
 fn011 <- anonymize(fn011)
 nrow(fn011)
 head(fn011)
 
 
-fn011 <- get_FN011(list(lake='HU', prj_cd_like='_006'))
+fn011 <- get_FN011(list(lake = "HU", prj_cd_like = "_006"))
 fn011 <- anonymize(fn011)
 nrow(fn011)
 head(fn011)
-
-
 ```
 
 
@@ -95,18 +101,20 @@ etc.
 
 ```{r fn121}
 
-fn121 <- get_FN121(list(lake='ON', year=2012))
+fn121 <- get_FN121(list(lake = "ON", year = 2012))
 nrow(fn121)
 head(fn121)
 
 
-fn121 <- get_FN121(list(lake='ER', protocol='TWL', sidep_lte=20))
+fn121 <- get_FN121(list(lake = "ER", protocol = "TWL", sidep_lte = 20))
 nrow(fn121)
 head(fn121)
 
 
-filters <- list(lake='SU',
-           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'))
+filters <- list(
+  lake = "SU",
+  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN")
+)
 
 fn121 <- get_FN121(filters)
 
@@ -114,10 +122,9 @@ nrow(fn121)
 head(fn121)
 
 
-fn121 <- get_FN121(list(lake='HU', prj_cd_like='_006'))
+fn121 <- get_FN121(list(lake = "HU", prj_cd_like = "_006"))
 nrow(fn121)
 head(fn121)
-
 ```
 
 
@@ -141,31 +148,30 @@ year, protocol, gear etc.
 ```{r fn122}
 
 
-fn122 <- get_FN122(list(lake='ON', year=2012, gear="GL"))
+fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL"))
 nrow(fn122)
 head(fn122)
 
 
-fn122 <- get_FN122(list(lake='ER', protocol='TWL', sidep_lte=20))
+fn122 <- get_FN122(list(lake = "ER", protocol = "TWL", sidep_lte = 20))
 nrow(fn122)
 head(fn122)
 
 
-filters <- list(lake='SU',
-           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN', eff='051'))
+filters <- list(
+  lake = "SU",
+  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN", eff = "051")
+)
 fn122 <- get_FN122(filters)
 nrow(fn122)
 head(fn122)
 
 
 
-filters <- list(lake='HU', prj_cd_like='_006', eff_in=c('127','140'))
+filters <- list(lake = "HU", prj_cd_like = "_006", eff_in = c("127", "140"))
 fn122 <- get_FN122(filters)
 nrow(fn122)
 head(fn122)
-
-
-
 ```
 
 
@@ -190,34 +196,37 @@ catches were made in.
 ```{r fn123}
 
 
-fn123 <- get_FN123(list(lake='ON', year=2012, spc='334',gear="GL"))
+fn123 <- get_FN123(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 nrow(fn123)
 head(fn123)
 
-filters <- list(lake='ER',
-                protocol='TWL',
-                year=2010,
-                spc=c('331', '334'),
-                sidep_lte=20)
+filters <- list(
+  lake = "ER",
+  protocol = "TWL",
+  year = 2010,
+  spc = c("331", "334"),
+  sidep_lte = 20
+)
 fn123 <- get_FN123(filters)
 nrow(fn123)
 head(fn123)
 
 
-filters <- list(lake='SU',
-           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
-           eff='051',
-           spc='091')
+filters <- list(
+  lake = "SU",
+  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
+  eff = "051",
+  spc = "091"
+)
 fn123 <- get_FN123(filters)
 nrow(fn123)
 head(fn123)
 
 
-filters <- list(lake='HU', spc='076', grp='55')
+filters <- list(lake = "HU", spc = "076", grp = "55")
 fn123 <- get_FN123(filters)
 nrow(fn123)
 head(fn123)
-
 ```
 
 
@@ -245,37 +254,38 @@ project(s) that the samples were collected in.
 
 
 
-fn125 <- get_FN125(list(lake='ON', year=2012, spc='334',gear='GL'))
+fn125 <- get_FN125(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 nrow(fn125)
 head(fn125)
 
-filters <- list(lake='ER',
-                protocol='TWL',
-                spc_in=c('331', '334'),
-                sidep_lte=20)
+filters <- list(
+  lake = "ER",
+  protocol = "TWL",
+  spc_in = c("331", "334"),
+  sidep_lte = 20
+)
 fn125 <- get_FN125(filters)
 nrow(fn125)
 head(fn125)
 
 
 
-filters <- list(lake='SU',
-           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
-           eff='051',
-           spc='091')
+filters <- list(
+  lake = "SU",
+  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
+  eff = "051",
+  spc = "091"
+)
 fn125 <- get_FN125(filters)
 nrow(fn125)
 head(fn125)
 
 
 
-filters <- list(lake='HU', spc='076', grp='55')
+filters <- list(lake = "HU", spc = "076", grp = "55")
 fn125 <- get_FN125(filters)
 nrow(fn125)
 head(fn125)
-
-
-
 ```
 
 
@@ -300,22 +310,23 @@ in.
 ```{r fn125Tags}
 
 
-fn125Tags <- get_FN125Tags(list(lake='ON', year=2019, spc='081',gear='GL'))
-nrow(fn125Tags)
-head(fn125Tags)
+fn125_tags <- get_FN125Tags(list(
+  lake = "ON", year = 2019, spc = "081",
+  gear = "GL"
+))
+nrow(fn125_tags)
+head(fn125_tags)
 
 
-fn125Tags <- get_FN125Tags(list(lake='SU'))
-nrow(fn125Tags)
-head(fn125Tags)
+fn125_tags <- get_FN125Tags(list(lake = "SU"))
+nrow(fn125_tags)
+head(fn125_tags)
 
 
-filters <- list(lake='HU', spc='076', grp='55')
-fn125Tags <- get_FN125Tags(filters)
-nrow(fn125Tags)
-head(fn125Tags)
-
-
+filters <- list(lake = "HU", spc = "076", grp = "55")
+fn125_tags <- get_FN125Tags(filters)
+nrow(fn125_tags)
+head(fn125_tags)
 ```
 
 
@@ -340,35 +351,40 @@ such as the species, or group code, or attributes of the effort, the
 sample, or the project(s) that the samples were collected in.
 
 
-```{r fn125Lamprey}
+```{r fn125_lamprey}
 
-fn125Lam <- get_FN125Lam(list(lake='ON', spc='081', year='2015', gear='GL'))
-nrow(fn125Lam)
-head(fn125Lam)
-
-
-fn125Lam <- get_FN125Lam(list(lake='HU', spc='081', year=2012, gear='GL',
-   lamijc_type=c('A1', 'A2', 'A3')))
-nrow(fn125Lam)
-head(fn125Lam)
+fn125_lam <- get_FN125Lam(list(
+  lake = "ON", spc = "081",
+  year = "2015", gear = "GL"
+))
+nrow(fn125_lam)
+head(fn125_lam)
 
 
-
-filters <- list(lake='SU',
-           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
-           eff='051',
-           spc='091')
-fn125Lam <- get_FN125Lam(filters)
-nrow(fn125Lam)
-head(fn125Lam)
+fn125_lam <- get_FN125Lam(list(
+  lake = "HU", spc = "081", year = 2012, gear = "GL",
+  lamijc_type = c("A1", "A2", "A3")
+))
+nrow(fn125_lam)
+head(fn125_lam)
 
 
-filters <- list(lake='HU', spc='076', grp='55')
-fn125Lam <- get_FN125Lam(filters)
-nrow(fn125Lam)
-head(fn125Lam)
+
+filters <- list(
+  lake = "SU",
+  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
+  eff = "051",
+  spc = "091"
+)
+fn125_lam <- get_FN125Lam(filters)
+nrow(fn125_lam)
+head(fn125_lam)
 
 
+filters <- list(lake = "HU", spc = "076", grp = "55")
+fn125_lam <- get_FN125Lam(filters)
+nrow(fn125_lam)
+head(fn125_lam)
 ```
 
 
@@ -387,23 +403,21 @@ the samples were collected in.
 
 ```{r fn126}
 
-fn126 <- get_FN126(list(lake='ON', year=2012, spc='334',gear='GL'))
+fn126 <- get_FN126(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 nrow(fn126)
 head(fn126)
 
 
 
-filters <- list(lake='SU', prj_cd_in=c("LSA_IA12_CIN", "LSA_IA17_CIN"))
+filters <- list(lake = "SU", prj_cd_in = c("LSA_IA12_CIN", "LSA_IA17_CIN"))
 fn126 <- get_FN126(filters)
 nrow(fn126)
 head(fn126)
 
-filters <- list(lake='HU', spc='076', grp='55')
+filters <- list(lake = "HU", spc = "076", grp = "55")
 fn126 <- get_FN126(filters)
 nrow(fn126)
 head(fn126)
-
-
 ```
 
 
@@ -422,36 +436,37 @@ the sample, or the project(s) that the samples were collected in.
 
 ```{r fn127}
 
-fn127 <- get_FN127(list(lake='ON', year=2012, spc='334', gear='GL'))
+fn127 <- get_FN127(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 nrow(fn127)
 head(fn127)
 
 
 
-filters <- list(lake='ER',
-                protocol='TWL',
-                spc=c('331', '334'),
-                year=2010,
-                sidep_lte=20)
+filters <- list(
+  lake = "ER",
+  protocol = "TWL",
+  spc = c("331", "334"),
+  year = 2010,
+  sidep_lte = 20
+)
 fn127 <- get_FN127(filters)
 nrow(fn127)
 head(fn127)
 
-filters <- list(lake='SU',
-           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
-           eff='051',
-           spc='091')
+filters <- list(
+  lake = "SU",
+  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
+  eff = "051",
+  spc = "091"
+)
 fn127 <- get_FN127(filters)
 nrow(fn127)
 head(fn127)
 
 
 
-filters <- list(lake='HU', spc='076', grp='55')
+filters <- list(lake = "HU", spc = "076", grp = "55")
 fn127 <- get_FN127(filters)
 nrow(fn127)
 head(fn127)
-
-
-
 ```

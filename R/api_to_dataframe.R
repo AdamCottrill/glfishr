@@ -20,12 +20,17 @@
 
 api_to_dataframe <- function(url, data = NULL, page = 0, recursive = TRUE) {
   maxPageCount <- 10
-  response <- httr::GET(url)
+  response <- tryCatch(httr::GET(url),
+    error = function(err) {
+      print("unable to fetch from the server. Is your VPN active?")
+    }
+  )
+
   json <- httr::content(response, "text", encoding = "UTF-8")
   payload <- jsonlite::fromJSON(json, flatten = TRUE)
   page <- page + 1
 
-  if (page > maxPageCount) {
+  if (page >= maxPageCount) {
     warning(paste0(
       "The response from the server exceeded the maximum number of api calls and may be incomplete.\n",
       "Verify your filters and consider refining your selection. If you meant to fetch \n",
