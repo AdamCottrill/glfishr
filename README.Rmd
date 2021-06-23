@@ -20,7 +20,7 @@ anonymize <- function(df) {
 
 # glfishr
 
-glfishr contains a series of R functions that are intended to make it
+*glfishr* contains a series of R functions that are intended to make it
 easy to get fisheries assessment data from the fn_portal api and into
 R for subsequent analysis and reporting.  Functions are named
 semantically to reflect the FN-II table they fetch data from
@@ -49,14 +49,14 @@ library(glfishr)
 ## FN011 - Projects
 
 Project meta data can be accessed using the `get_fn011()` function
-FN011 records contiain the hi-level meta data about an
+FN011 records contain the hi-level meta data about an
 OMNR netting project.  The FN011 records contain information like
-project code, project name, projet leader, start and end date,
+project code, project name, project leader, start and end date,
 protocol, and the lake where the project was conducted.  This
 function takes an optional filter list which can be used to select
 record based on several attributes of the project such as
-project code, or part of the project code, lake, first year, last
-year, protocol, ect.
+project code, or part of the project code, lake, first year (**year__gte**), last
+year (**year__lte**), protocol, etc.
 
 
 ```{r fn011}
@@ -131,7 +131,7 @@ head(fn121)
 ## FN122 - Sample Efforts
 
 
-Sample Efforts can be retieved using the `get_fn122()` function. FN122
+Sample Efforts can be retrieved using the `get_fn122()` function. FN122
 records contain information about efforts within a sample.  For most
 gill netting project an effort corresponds to a single panel of a
 particular mesh size within a net set (gang). For trap netting and
@@ -184,8 +184,8 @@ Catch counts by effort, species, and group are available using the
 counts by species for each effort in a sample.  For most gill netting
 projects this corresponds to catches within a single panel of a
 particular mesh size within a net set (gang). Group (GRP) is
-occationally included to futher sub-devide the catch into user defined
-groups that are usually specific to the project, but will alway be
+occasionally included to further sub-divide the catch into user defined
+groups that are usually specific to the project, but will always be
 included and will be '00' by default. This function takes an optional
 filter list which can be used to return record based on several
 attributes of the catch including species, or group code but also
@@ -233,27 +233,24 @@ head(fn123)
 
 ## FN124 - Length Tallies
 
-An api endpoint and  associated function for FN124 records has not been created yet, but will be coming soon.
+An api endpoint and associated function for FN124 records has not been created yet, but will be coming soon.
 
 
 
 ## FN125 - Biological Data
 
-Bioligical data is maintained in the FN125 table and can be accessed
-using the `get_FN125` fucntion. FN125 records contain the biological
+Biological data is maintained in the FN125 table and can be accessed
+using the `get_FN125` function. FN125 records contain the biological
 data collected from individual fish sampled in assessment projects
-such as length, weight, sex, and maturity. For convience this end point
+such as length, weight, sex, and maturity. For convenience this end point
 also returns data from child tables such as the 'preferred' age, and
 lamprey wounds.  This function takes an optional filter list which can
-be used to return records based on several different biologial
+be used to return records based on several different biological
 attributes (such as size, sex, or maturity), but also of the species,
 or group code, or attributes of the effort, the sample, or the
 project(s) that the samples were collected in.
 
 ```{r fn125}
-
-
-
 fn125 <- get_FN125(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 nrow(fn125)
 head(fn125)
@@ -296,8 +293,8 @@ the api using `get_FN125Tags()` function.  Historically, tag data was
 stored in three related fields - TAGDOC, TAGSTAT and TAGID.  This
 convention is fine as long a single biological sample only has a one
 tag. In recent years, it has been come increasingly common for fish to
-have multiple tags, or tag types associated with indiviudal sampling
-events. FN125Tag accomodates those events.  This function takes an
+have multiple tags, or tag types associated with individual sampling
+events. FN125Tag accommodates those events.  This function takes an
 optional filter list which can be used to return records based on
 several different attributes of the tag (tag type, colour, placement,
 agency, tag stat, and tag number) as well as, attributes of the
@@ -340,7 +337,7 @@ wounds observed on a sampled fish and can be fetched using the
 reported as a single field (XLAM) in the FN125 table.  In the early
 2000 the Great Lakes fishery community agreed to capture lamprey
 wounding data in a more consistent fashion across the basin using the
-conventions described in Ebener etal 2006.  The FN125Lam table
+conventions described in Ebener et al 2006.  The FN125Lam table
 captures data from individual lamprey wounds collected using those
 conventions.  A sampled fish with no observed wound will have a single
 record in this table (with lamijc value of 0), while fish with lamprey
@@ -394,8 +391,8 @@ head(fn125_lam)
 The `get_Fn126()` function can be used to access the api endpoint to
 for FN126 records. FN126 records contain the counts of identifiable
 items in found in the stomachs of fish sampled and processed in the
-field (the FN126 table does include more detailed analaysis that is
-often conducted in the labratory).  The `get_FN126()` function takes
+field (the FN126 table does include more detailed analysis that is
+often conducted in the laboratory).  The `get_FN126()` function takes
 an optional filter list which can be used to return records based on
 several different attributes of the diet item (taxon, taxon_like), as
 well as, attributes of the sampled fish such as the species, or group
