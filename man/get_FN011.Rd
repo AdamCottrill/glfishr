@@ -30,7 +30,7 @@ for the full list of available filter keys (query parameters)
 }
 \examples{
 
-fn011 <- get_FN011(list(lake='ON', first_year=2012, last_year=2018))
+fn011 <- get_FN011(list(lake='ON', year__gte=2012, year__lte=2018))
 
 fn011 <- get_FN011(list(lake='ER', protocol='TWL'))
 
