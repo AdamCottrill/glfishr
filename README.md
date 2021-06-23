@@ -38,7 +38,7 @@ such as project code, or part of the project code, lake, first year,
 last year, protocol, ect.
 
 ``` r
-fn011 <- get_FN011(list(lake = "ON", first_year = 2012, last_year = 2018))
+fn011 <- get_FN011(list(lake = "ON", year__gte = 2012, year__lte = 2018))
 fn011 <- anonymize(fn011)
 nrow(fn011)
 #> [1] 7
