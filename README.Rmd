@@ -35,6 +35,31 @@ re-used across different tables (e.g. - if a filter is passed to the
 can be applied to the `get_FN125()` function to get the all of the
 biological samples collected in those net sets).
 
+All of the filters are specified using the following convention:
+`<field_name>__<expression>` - the field name, two underscores, and
+the expression that is to be applied to the field to select the subset
+of records.  In most cases, the field name is a lowercase fishnet-II
+field (prj_cd, tlen, gon, ect.) and will be documented in the Data Dictionary.
+The avaialble expressions are dependent on the type of data in the field. In
+most cases, strings (such as prj_nm, prj_cd) can be filtered with 'like',
+'not_like', and 'endswith'.  Fields with a well defined number of choices
+(prj_cd, spc, gon, sex, tagstat)  can be selected by passing a
+comma seperated list of choices to include or exclude (`gon=10,20` or
+`gon__not=10,20`), as well as null or not_null.  Numeric fields (sidep,
+flen, rwt etc) typically have the following filter expressions available:
+
++ equal: `year=2010`
++ greater than or equal to: `tlen__gte=350`
++ greater than: `tlen__gt=350`
++ less than or equal to: `flen__lte=350`
++ less than: `flen__lt=350`
++ null: `clipc__null`
++ not null: `rwt__not_null`
+
+Many of these filters are illustrated in the following examples. More
+detailed information can be found in the technical documentation for the fn_portal API.
+
+
 ## Load glfishr
 
 All of the functions in glfishr have been bundled up into an R-package
@@ -72,14 +97,14 @@ nrow(fn011)
 head(fn011)
 
 
-filters <- list(lake = "SU", prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
+filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
 fn011 <- get_FN011(filters)
 fn011 <- anonymize(fn011)
 nrow(fn011)
 head(fn011)
 
 
-fn011 <- get_FN011(list(lake = "HU", prj_cd_like = "_006"))
+fn011 <- get_FN011(list(lake = "HU", prj_cd__like = "_006"))
 fn011 <- anonymize(fn011)
 nrow(fn011)
 head(fn011)
@@ -106,14 +131,14 @@ nrow(fn121)
 head(fn121)
 
 
-fn121 <- get_FN121(list(lake = "ER", protocol = "TWL", first_year=2010, sidep_lte = 20))
+fn121 <- get_FN121(list(lake = "ER", protocol = "TWL", year__gte = 2010, sidep__lte = 20))
 nrow(fn121)
 head(fn121)
 
 
 filters <- list(
   lake = "SU",
-  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN")
+  prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN")
 )
 
 fn121 <- get_FN121(filters)
@@ -122,7 +147,7 @@ nrow(fn121)
 head(fn121)
 
 
-fn121 <- get_FN121(list(lake = "HU", prj_cd_like = "_003"))
+fn121 <- get_FN121(list(lake = "HU", prj_cd__endswith = "_003"))
 nrow(fn121)
 head(fn121)
 ```
@@ -148,19 +173,25 @@ year, protocol, gear etc.
 ```{r fn122}
 
 
-fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL", sidep_lte=15))
+fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL", sidep__lte = 15))
 nrow(fn122)
 head(fn122)
 
 
-fn122 <- get_FN122(list(lake = "ER", protocol = "TWL", first_year=2010, sidep_lte = 20))
+filters <- list(
+  lake = "ER",
+  protocol = "TWL",
+  year__gte = 2010,
+  sidep__lte = 20
+)
+fn122 <- get_FN122(filters)
 nrow(fn122)
 head(fn122)
 
 
 filters <- list(
   lake = "SU",
-  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"), eff = "051"
+  prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"), eff = "051"
 )
 fn122 <- get_FN122(filters)
 nrow(fn122)
@@ -168,7 +199,7 @@ head(fn122)
 
 
 
-filters <- list(lake = "HU", prj_cd_like = "_007", eff = c("127", "140"))
+filters <- list(lake = "HU", prj_cd__like = "_007", eff = c("127", "140"))
 fn122 <- get_FN122(filters)
 nrow(fn122)
 head(fn122)
@@ -205,7 +236,7 @@ filters <- list(
   protocol = "TWL",
   year = 2010,
   spc = c("331", "334"),
-  sidep_lte = 20
+  sidep__lte = 20
 )
 fn123 <- get_FN123(filters)
 nrow(fn123)
@@ -214,7 +245,7 @@ head(fn123)
 
 filters <- list(
   lake = "SU",
-  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
+  prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
   eff = "051",
   spc = "091"
 )
@@ -256,19 +287,19 @@ nrow(fn125)
 head(fn125)
 
 filters <- list(
-      lake = "ER",
-      year='2019',
-      protocol = "TWL",
-      spc_in = c("331","334"),
-      sidep_lte = 10
-    )
+  lake = "ER",
+  year = "2019",
+  protocol = "TWL",
+  spc_in = c("331", "334"),
+  sidep__lte = 10
+)
 fn125 <- get_FN125(filters)
 nrow(fn125)
 head(fn125)
 
 filters <- list(
   lake = "SU",
-  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
+  prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
   eff = "051",
   spc = "091"
 )
@@ -352,15 +383,17 @@ sample, or the project(s) that the samples were collected in.
 ```{r fn125_lamprey}
 
 fn125_lam <- get_FN125Lam(list(
-  lake = "ON", spc = "081",
-  year = "2015", gear = "GL"
+  lake = "ON",
+  spc = "081",
+  year = "2015",
+  gear = "GL"
 ))
 nrow(fn125_lam)
 head(fn125_lam)
 
 
 fn125_lam <- get_FN125Lam(list(
-  lake = "HU", spc = "081", year = 2012, gear = "GL",
+  lake = "SU", spc = "081", year__gte = 2015,
   lamijc_type = c("A1", "A2", "A3")
 ))
 nrow(fn125_lam)
@@ -370,7 +403,7 @@ head(fn125_lam)
 
 filters <- list(
   lake = "SU",
-  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
+  prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
   eff = "051",
   spc = "091"
 )
@@ -394,7 +427,7 @@ items in found in the stomachs of fish sampled and processed in the
 field (the FN126 table does include more detailed analysis that is
 often conducted in the laboratory).  The `get_FN126()` function takes
 an optional filter list which can be used to return records based on
-several different attributes of the diet item (taxon, taxon_like), as
+several different attributes of the diet item (taxon, taxon__like), as
 well as, attributes of the sampled fish such as the species, or group
 code, or attributes of the effort, the sample, or the project(s) that
 the samples were collected in.
@@ -407,7 +440,7 @@ head(fn126)
 
 
 
-filters <- list(lake = "SU", prj_cd_in = c("LSA_IA12_CIN", "LSA_IA17_CIN"))
+filters <- list(lake = "SU", prj_cd = c("LSA_IA12_CIN", "LSA_IA17_CIN"))
 fn126 <- get_FN126(filters)
 nrow(fn126)
 head(fn126)
@@ -438,14 +471,12 @@ fn127 <- get_FN127(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 nrow(fn127)
 head(fn127)
 
-
-
 filters <- list(
   lake = "ER",
   protocol = "TWL",
   spc = c("331", "334"),
   year = 2010,
-  sidep_lte = 20
+  sidep__lte = 20
 )
 fn127 <- get_FN127(filters)
 nrow(fn127)
@@ -453,7 +484,7 @@ head(fn127)
 
 filters <- list(
   lake = "SU",
-  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
+  prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
   eff = "051",
   spc = "091"
 )

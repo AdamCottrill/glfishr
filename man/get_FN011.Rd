@@ -30,15 +30,14 @@ for the full list of available filter keys (query parameters)
 }
 \examples{
 
-fn011 <- get_FN011(list(lake='ON', year__gte=2012, year__lte=2018))
+fn011 <- get_FN011(list(lake = "ON", year__gte = 2012, year__lte = 2018))
 
-fn011 <- get_FN011(list(lake='ER', protocol='TWL'))
+fn011 <- get_FN011(list(lake = "ER", protocol = "TWL"))
 
-filters <- list(lake='SU', prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'))
+filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
 fn011 <- get_FN011(filters)
 
-fn011 <- get_FN011(list(lake='HU', prj_cd_like='_006'))
-
+fn011 <- get_FN011(list(lake = "HU", prj_cd__like = "_006"))
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

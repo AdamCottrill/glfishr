@@ -27,29 +27,32 @@ samples were collected in.
 }
 \details{
 See
-http://10.167.37.157/fn_portal/redoc/#operation/fn_123_list
+http://10.167.37.157/fn_portal/redoc/#operation/fn_125_list
 for the full list of available filter keys (query parameters)
 }
 \examples{
 
 
-fn125 <- get_FN125(list(lake='ON', year=2012, spc='334',gear='GL'))
+fn125 <- get_FN125(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 
-filters <- list(lake='ER',
-                protocol='TWL',
-                spc_in=c('331', '334'),
-                sidep_lte=20)
+filters <- list(
+  lake = "ER",
+  protocol = "TWL",
+  spc_in = c("331", "334"),
+  sidep__lte = 20
+)
 fn125 <- get_FN125(filters)
 
-filters <- list(lake='SU',
-           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
-           eff='051',
-           spc='091')
+filters <- list(
+  lake = "SU",
+  prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
+  eff = "051",
+  spc = "091"
+)
 fn125 <- get_FN125(filters)
 
-filters <- list(lake='HU', spc='076', grp='55')
+filters <- list(lake = "HU", spc = "076", grp = "55")
 fn125 <- get_FN125(filters)
-
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}
