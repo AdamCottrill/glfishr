@@ -39,27 +39,32 @@ for the full list of available filter keys (query parameters)
 }
 \examples{
 
-fn125Lam <- get_FN125Lam(list(lake='ON', spc='081', gear='GL'))
+fn125Lam <- get_FN125Lam(list(lake = "ON", spc = "081", gear = "GL"))
 
-fn125Lam <- get_FN125Lam(list(lake='HU', spc='081', year=2012, gear='GL',
-   lamijc_type=c('A1', 'A2', 'A3')))
+fn125Lam <- get_FN125Lam(list(
+  lake = "SU", spc = "081", year__gte = 2015,
+  lamijc_type = c("A1", "A2", "A3")
+))
 
-filters <- list(lake='ER',
-                protocol='TWL',
-                spc=c('331', '334'),
-                year=2010,
-                sidep_lte=20)
+filters <- list(
+  lake = "ER",
+  protocol = "TWL",
+  spc = c("331", "334"),
+  year = 2010,
+  sidep__lte = 20
+)
 fn125Lam <- get_FN125Lam(filters)
 
-filters <- list(lake='SU',
-           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
-           eff='051',
-           spc='091')
+filters <- list(
+  lake = "SU",
+  prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
+  eff = "051",
+  spc = "091"
+)
 fn125Lam <- get_FN125Lam(filters)
 
-filters <- list(lake='HU', spc='076', grp='55')
+filters <- list(lake = "HU", spc = "076", grp = "55")
 fn125Lam <- get_FN125Lam(filters)
-
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

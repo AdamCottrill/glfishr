@@ -21,13 +21,11 @@ values.
 }
 \examples{
 # return "?size=sm"
-build_query_string(list(size="sm"))
+build_query_string(list(size = "sm"))
 # return "?colour=red,blue"
-build_query_string(list(colours=c("red","blue")))
+build_query_string(list(colours = c("red", "blue")))
 # return "?size=sm&colour=red,blue"
-build_query_string(list(size='sm', colours=c("red","blue")))
-
-
+build_query_string(list(size = "sm", colours = c("red", "blue")))
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

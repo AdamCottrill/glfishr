@@ -28,7 +28,7 @@ for the full list of available filter keys (query parameters)
 \examples{
 
 species <- get_species()
-trout <- get_species(list(spc_nmco_like='trout'))
+trout <- get_species(list(spc_nmco_like = "trout"))
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

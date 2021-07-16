@@ -17,6 +17,32 @@ filter is passed to the `get_FN121()` function to find a subset of net
 sets, that same filter can be applied to the `get_FN125()` function to
 get the all of the biological samples collected in those net sets).
 
+All of the filters are specified using the following convention:
+`<field_name>__<expression>` - the field name, two underscores, and the
+expression that is to be applied to the field to select the subset of
+records. In most cases, the field name is a lowercase fishnet-II field
+(prj\_cd, tlen, gon, ect.) and will be documented in the Data
+Dictionary. The avaialble expressions are dependent on the type of data
+in the field. In most cases, strings (such as prj\_nm, prj\_cd) can be
+filtered with ‘like’, ‘not\_like’, and ‘endswith’. Fields with a well
+defined number of choices (prj\_cd, spc, gon, sex, tagstat) can be
+selected by passing a comma seperated list of choices to include or
+exclude (`gon=10,20` or `gon__not=10,20`), as well as null or not\_null.
+Numeric fields (sidep, flen, rwt etc) typically have the following
+filter expressions available:
+
+-   equal: `year=2010`
+-   greater than or equal to: `tlen__gte=350`
+-   greater than: `tlen__gt=350`
+-   less than or equal to: `flen__lte=350`
+-   less than: `flen__lt=350`
+-   null: `clipc__null`
+-   not null: `rwt__not_null`
+
+Many of these filters are illustrated in the following examples. More
+detailed information can be found in the technical documentation for the
+fn\_portal API.
+
 ## Load glfishr
 
 All of the functions in glfishr have been bundled up into an R-package
@@ -38,28 +64,27 @@ such as project code, or part of the project code, lake, first year
 (\*\*year\_\_gte**), last year (**year\_\_lte\*\*), protocol, etc.
 
 ``` r
-
 fn011 <- get_FN011(list(lake = "ON", year__gte = 2012, year__lte = 2018))
 fn011 <- anonymize(fn011)
 nrow(fn011)
-#> [1] 124
+#> [1] 7
 head(fn011)
 #>     id year       prj_cd         slug
-#> 1 1468 2019 LOA_IA19_GL1 loa_ia19_gl1
-#> 2 1467 2018 LOA_IA18_GL1 loa_ia18_gl1
-#> 3 1466 2017 LOA_IA17_GL1 loa_ia17_gl1
-#> 4 1465 2016 LOA_IA16_GL1 loa_ia16_gl1
-#> 5 1464 2015 LOA_IA15_GL1 loa_ia15_gl1
-#> 6 1463 2014 LOA_IA14_GL1 loa_ia14_gl1
-#>                                               prj_nm  prj_date0  prj_date1
-#> 1 2019 Lake Ontario Fish Community Index Gillnetting 2019-06-17 2019-10-31
-#> 2     2018 Lake Ontario Fish Community Index Gillnet 2018-06-18 2018-10-31
-#> 3     2017 Lake Ontario Fish Community Index Gillnet 2017-06-19 2017-11-02
-#> 4     2016 Lake Ontario Fish Community Index Gillnet 2016-06-20 2016-09-09
-#> 5  2015 Eastern Lake Ontario Community Index Gillnet 2015-06-05 2015-09-15
-#> 6            2014 E.L.O. Community Index Gillnetting 2014-06-09 2014-09-15
+#> 1 1467 2018 LOA_IA18_GL1 loa_ia18_gl1
+#> 2 1466 2017 LOA_IA17_GL1 loa_ia17_gl1
+#> 3 1465 2016 LOA_IA16_GL1 loa_ia16_gl1
+#> 4 1464 2015 LOA_IA15_GL1 loa_ia15_gl1
+#> 5 1463 2014 LOA_IA14_GL1 loa_ia14_gl1
+#> 6 1462 2013 LOA_IA13_GL1 loa_ia13_gl1
+#>                                                   prj_nm  prj_date0  prj_date1
+#> 1         2018 Lake Ontario Fish Community Index Gillnet 2018-06-18 2018-10-31
+#> 2         2017 Lake Ontario Fish Community Index Gillnet 2017-06-19 2017-11-02
+#> 3         2016 Lake Ontario Fish Community Index Gillnet 2016-06-20 2016-09-09
+#> 4      2015 Eastern Lake Ontario Community Index Gillnet 2015-06-05 2015-09-15
+#> 5                2014 E.L.O. Community Index Gillnetting 2014-06-09 2014-09-15
+#> 6 2013 Eastern Lake Ontario Fish Community Index Gillnet 2013-06-24 2013-09-15
 #>   protocol   source comment0 lake.lake_name lake.abbrev
-#> 1     OSIA offshore       11   Lake Ontario          ON
+#> 1     OSIA offshore        8   Lake Ontario          ON
 #> 2     OSIA offshore        8   Lake Ontario          ON
 #> 3     OSIA offshore        8   Lake Ontario          ON
 #> 4     OSIA offshore        8   Lake Ontario          ON
@@ -87,7 +112,7 @@ head(fn011)
 #> 6 2014-08-20      TWL le_trawl_db               Lake Erie          ER
 
 
-filters <- list(lake = "SU", prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
+filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
 fn011 <- get_FN011(filters)
 fn011 <- anonymize(fn011)
 nrow(fn011)
@@ -101,7 +126,7 @@ head(fn011)
 #> 2 2015-08-02 2015-08-28     OSIA offshore       NA  Lake Superior          SU
 
 
-fn011 <- get_FN011(list(lake = "HU", prj_cd_like = "_006"))
+fn011 <- get_FN011(list(lake = "HU", prj_cd__like = "_006"))
 fn011 <- anonymize(fn011)
 nrow(fn011)
 #> [1] 35
@@ -141,7 +166,6 @@ projects they are associated with such project code, or part of the
 project code, lake, first year, last year, protocol, etc.
 
 ``` r
-
 fn121 <- get_FN121(list(lake = "ON", year = 2012))
 nrow(fn121)
 #> [1] 178
@@ -169,7 +193,7 @@ head(fn121)
 #> 6 loa_ia12_gl1-103   on_9999      9999
 
 
-fn121 <- get_FN121(list(lake = "ER", protocol = "TWL", first_year=2010, sidep_lte = 20))
+fn121 <- get_FN121(list(lake = "ER", protocol = "TWL", year__gte = 2010, sidep__lte = 20))
 nrow(fn121)
 #> [1] 384
 head(fn121)
@@ -198,7 +222,7 @@ head(fn121)
 
 filters <- list(
   lake = "SU",
-  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN")
+  prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN")
 )
 
 fn121 <- get_FN121(filters)
@@ -229,7 +253,7 @@ head(fn121)
 #> 6     NA lsa_ia17_cin-01006   su_1137      1137
 
 
-fn121 <- get_FN121(list(lake = "HU", prj_cd_like = "_003"))
+fn121 <- get_FN121(list(lake = "HU", prj_cd__endswith = "_003"))
 nrow(fn121)
 #> [1] 160
 head(fn121)
@@ -272,8 +296,7 @@ such project code, lake, first year, last year, protocol, gear etc.
 
 ``` r
 
-
-fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL", sidep_lte=15))
+fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL", sidep__lte = 15))
 nrow(fn122)
 #> [1] 619
 head(fn122)
@@ -286,26 +309,28 @@ head(fn122)
 #> 6 289454 LOA_IA12_GL1   1 102   15.2   6.7   19.2     NA loa_ia12_gl1-1-102
 
 
-fn122 <- get_FN122(list(lake = "ER", protocol = "TWL", first_year=2010, sidep_lte = 20))
-#> Warning in api_to_dataframe(next_url, data, page): The response from the server exceeded the maximum number of api calls and may be incomplete.
-#> Verify your filters and consider refining your selection. If you meant to fetch 
-#> a large number of rows, it may be necessary to submit multiple requests with 
-#> different filters and combine them in R.
+filters <- list(
+  lake = "ER",
+  protocol = "TWL",
+  year__gte = 2010,
+  sidep__lte = 20
+)
+fn122 <- get_FN122(filters)
 nrow(fn122)
-#> [1] 1000
+#> [1] 384
 head(fn122)
 #>       id       prj_cd sam eff effdst grdep grtem0 grtem1                 slug
-#> 1 428964 LEM_IA19_002 200 032     50     7   15.8     NA lem_ia19_002-200-032
-#> 2 428965 LEM_IA19_002 200 038     50     7   15.8     NA lem_ia19_002-200-038
-#> 3 428966 LEM_IA19_002 200 044     50     7   15.8     NA lem_ia19_002-200-044
-#> 4 428967 LEM_IA19_002 200 051     50     7   15.8     NA lem_ia19_002-200-051
-#> 5 428968 LEM_IA19_002 200 057     50     7   15.8     NA lem_ia19_002-200-057
-#> 6 428969 LEM_IA19_002 200 064     50     7   15.8     NA lem_ia19_002-200-064
+#> 1 314330 LEA_IF19_001 250 001    320  13.4   16.9   17.4 lea_if19_001-250-001
+#> 2 314329 LEA_IF19_001 251 001    320  12.4   18.0   18.6 lea_if19_001-251-001
+#> 3 314328 LEA_IF19_001 252 001    280  10.6   20.2   20.1 lea_if19_001-252-001
+#> 4 314299 LEA_IF19_001 253 001    270   7.8   24.0   24.1 lea_if19_001-253-001
+#> 5 314311 LEA_IF19_001 254 001    270   8.5   24.3   24.0 lea_if19_001-254-001
+#> 6 314310 LEA_IF19_001 255 001    260  11.2   16.4   15.2 lea_if19_001-255-001
 
 
 filters <- list(
   lake = "SU",
-  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"), eff = "051"
+  prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"), eff = "051"
 )
 fn122 <- get_FN122(filters)
 nrow(fn122)
@@ -328,7 +353,7 @@ head(fn122)
 
 
 
-filters <- list(lake = "HU", prj_cd_like = "_007", eff = c("127", "140"))
+filters <- list(lake = "HU", prj_cd__like = "_007", eff = c("127", "140"))
 fn122 <- get_FN122(filters)
 nrow(fn122)
 #> [1] 758
@@ -359,7 +384,6 @@ were made in.
 
 ``` r
 
-
 fn123 <- get_FN123(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 nrow(fn123)
 #> [1] 101
@@ -384,7 +408,7 @@ filters <- list(
   protocol = "TWL",
   year = 2010,
   spc = c("331", "334"),
-  sidep_lte = 20
+  sidep__lte = 20
 )
 fn123 <- get_FN123(filters)
 nrow(fn123)
@@ -408,7 +432,7 @@ head(fn123)
 
 filters <- list(
   lake = "SU",
-  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
+  prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
   eff = "051",
   spc = "091"
 )
@@ -506,12 +530,12 @@ head(fn125)
 #> 6       NA loa_ia12_gl1-102-127-334-00-1
 
 filters <- list(
-      lake = "ER",
-      year='2019',
-      protocol = "TWL",
-      spc_in = c("331","334"),
-      sidep_lte = 10
-    )
+  lake = "ER",
+  year = "2019",
+  protocol = "TWL",
+  spc_in = c("331", "334"),
+  sidep__lte = 10
+)
 fn125 <- get_FN125(filters)
 nrow(fn125)
 #> [1] 862
@@ -540,7 +564,7 @@ head(fn125)
 
 filters <- list(
   lake = "SU",
-  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
+  prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
   eff = "051",
   spc = "091"
 )
@@ -624,7 +648,6 @@ species, or group code, or attributes of the effort, the sample, or the
 project(s) that the samples were collected in.
 
 ``` r
-
 
 fn125_tags <- get_FN125Tags(list(
   lake = "ON",
@@ -712,10 +735,11 @@ code, or attributes of the effort, the sample, or the project(s) that
 the samples were collected in.
 
 ``` r
-
 fn125_lam <- get_FN125Lam(list(
-  lake = "ON", spc = "081",
-  year = "2015", gear = "GL"
+  lake = "ON",
+  spc = "081",
+  year = "2015",
+  gear = "GL"
 ))
 nrow(fn125_lam)
 #> [1] 48
@@ -737,19 +761,32 @@ head(fn125_lam)
 
 
 fn125_lam <- get_FN125Lam(list(
-  lake = "HU", spc = "081", year = 2012, gear = "GL",
+  lake = "SU", spc = "081", year__gte = 2015,
   lamijc_type = c("A1", "A2", "A3")
 ))
 nrow(fn125_lam)
-#> NULL
+#> [1] 352
 head(fn125_lam)
-#> list()
+#>         prj_cd   sam eff species grp fish    id lamid xlam lamijc lamijc_type
+#> 1 LSA_IA15_CIN 01009 076     081  01   01 54353     1   NA     NA          A3
+#> 2 LSA_IA15_CIN 01014 064     081  01   01 54603     1   NA     NA          A1
+#> 3 LSA_IA15_CIN 01014 102     081  01   01 54614     1   NA     NA          A1
+#> 4 LSA_IA15_CIN 01017 089     081  01   01 54719     1   NA     NA          A1
+#> 5 LSA_IA15_CIN 01017 089     081  01   01 54720     2   NA     NA          A2
+#> 6 LSA_IA15_CIN 01017 089     081  01   01 54721     3   NA     NA          A3
+#>   lamijc_size comment_lam                                  slug
+#> 1          NA        <NA> lsa_ia15_cin-01009-076-081-01-10639-1
+#> 2          NA        <NA> lsa_ia15_cin-01014-064-081-01-10784-1
+#> 3          NA        <NA> lsa_ia15_cin-01014-102-081-01-10771-1
+#> 4          NA        <NA> lsa_ia15_cin-01017-089-081-01-10916-1
+#> 5          NA        <NA> lsa_ia15_cin-01017-089-081-01-10916-2
+#> 6          NA        <NA> lsa_ia15_cin-01017-089-081-01-10916-3
 
 
 
 filters <- list(
   lake = "SU",
-  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
+  prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
   eff = "051",
   spc = "091"
 )
@@ -802,13 +839,12 @@ found in the stomachs of fish sampled and processed in the field (the
 FN126 table does include more detailed analysis that is often conducted
 in the laboratory). The `get_FN126()` function takes an optional filter
 list which can be used to return records based on several different
-attributes of the diet item (taxon, taxon\_like), as well as, attributes
-of the sampled fish such as the species, or group code, or attributes of
-the effort, the sample, or the project(s) that the samples were
-collected in.
+attributes of the diet item (taxon, taxon\_\_like), as well as,
+attributes of the sampled fish such as the species, or group code, or
+attributes of the effort, the sample, or the project(s) that the samples
+were collected in.
 
 ``` r
-
 fn126 <- get_FN126(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 nrow(fn126)
 #> [1] 97
@@ -830,7 +866,7 @@ head(fn126)
 
 
 
-filters <- list(lake = "SU", prj_cd_in = c("LSA_IA12_CIN", "LSA_IA17_CIN"))
+filters <- list(lake = "SU", prj_cd = c("LSA_IA12_CIN", "LSA_IA17_CIN"))
 fn126 <- get_FN126(filters)
 nrow(fn126)
 #> [1] 331
@@ -885,7 +921,6 @@ code, or attributes of the effort, the sample, or the project(s) that
 the samples were collected in.
 
 ``` r
-
 fn127 <- get_FN127(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 nrow(fn127)
 #> [1] 229
@@ -905,14 +940,12 @@ head(fn127)
 #> 5    9  11   NA    NA       NA loa_ia12_gl1-102-127-334-00-1-362
 #> 6    9   9   NA    NA       NA loa_ia12_gl1-103-140-334-00-1-364
 
-
-
 filters <- list(
   lake = "ER",
   protocol = "TWL",
   spc = c("331", "334"),
   year = 2010,
-  sidep_lte = 20
+  sidep__lte = 20
 )
 fn127 <- get_FN127(filters)
 nrow(fn127)
@@ -935,7 +968,7 @@ head(fn127)
 
 filters <- list(
   lake = "SU",
-  prj_cd_in = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
+  prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
   eff = "051",
   spc = "091"
 )

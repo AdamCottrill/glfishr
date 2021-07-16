@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_fn_portal_root.R
 \name{get_fn_portal_root}
 \alias{get_fn_portal_root}
-\title{Internal function to return the root url for the FN_Portal api.}
+\title{Internal function to url to the FN_Portal api.}
 \usage{
 get_fn_portal_root()
 }
@@ -10,23 +10,13 @@ get_fn_portal_root()
 string
 }
 \description{
-This funciton is intended to be used by all of the functions that
-call an api endpoint exposed by fn_portal.  If the api enpoint
-changes in the future, (ie - the domain name changes or the
-version changes) we just need to update this value.  Note that the
-url string does \emph{NOT} include a trailing slash.
-}
-\details{
-To use a local version of glfishr api during developement, set the
-local environment variable to True:\preformatted{>  Sys.setenv(FN_PORTAL_DEV=TRUE)
-}
-
-By default, it is assumed that the api is being served on
-localhost and port 8000, but these can be changed by setting the
-environment variables FN_PORTAL_HOST, FN_PORTAL_PORT to the
-appropriate host and port number.\preformatted{ >  Sys.setenv(FN_PORTAL_HOST='<some-ip-address>')
- >  Sys.setenv(FN_PORTAL_PORT=8080)
-}
+This funciton is intended to be used by all of the functions that call an
+api endpoint exposed by fn_portal. Each of the portals (tfat, sc_portal, fn_portal etc.)
+all have a slightly different access point, and each will have a similar
+function. If the api enpoint for that portal changes in the future, (.i.e.
+the  version changes) we just need to update the value in this file and all
+of the dependent functions will use it.  Note that the url string does
+\emph{NOT} include a trailing slash.
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

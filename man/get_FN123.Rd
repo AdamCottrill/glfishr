@@ -32,24 +32,27 @@ for the full list of available filter keys (query parameters)
 }
 \examples{
 
-fn123 <- get_FN123(list(lake='ON', year=2012, spc='334',gear="GL"))
+fn123 <- get_FN123(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 
-filters <- list(lake='ER',
-                protocol='TWL',
-                year=2010,
-                spc=c('331', '334'),
-                sidep_lte=20)
+filters <- list(
+  lake = "ER",
+  protocol = "TWL",
+  year = 2010,
+  spc = c("331", "334"),
+  sidep__lte = 20
+)
 fn123 <- get_FN123(filters)
 
-filters <- list(lake='SU',
-           prj_cd_in=c('LSA_IA15_CIN','LSA_IA17_CIN'),
-           eff='051',
-           spc='091')
+filters <- list(
+  lake = "SU",
+  prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"),
+  eff = "051",
+  spc = "091"
+)
 fn123 <- get_FN123(filters)
 
-filters <- list(lake='HU', spc='076', grp='55')
+filters <- list(lake = "HU", spc = "076", grp = "55")
 fn123 <- get_FN123(filters)
-
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

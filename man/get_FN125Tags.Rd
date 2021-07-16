@@ -36,14 +36,13 @@ for the full list of available filter keys (query parameters)
 }
 \examples{
 
-fn125Tags <- get_FN125Tags(list(lake='ON', year=2019, spc='081',gear='GL'))
+fn125Tags <- get_FN125Tags(list(lake = "ON", year = 2019, spc = "081", gear = "GL"))
 
 
-fn125Tags <- get_FN125Tags(list(lake='SU'))
+fn125Tags <- get_FN125Tags(list(lake = "SU"))
 
-filters <- list(lake='HU', spc='076', grp='55')
+filters <- list(lake = "HU", spc = "076", grp = "55")
 fn125Tags <- get_FN125Tags(filters)
-
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}
