@@ -2,3 +2,5 @@
 ^README\.Rmd$
 .vscode
 notes.org
+^.*\.Rproj$
+^\.Rproj\.user$

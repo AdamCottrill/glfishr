@@ -40,11 +40,11 @@ All of the filters are specified using the following convention:
 the expression that is to be applied to the field to select the subset
 of records.  In most cases, the field name is a lowercase fishnet-II
 field (prj_cd, tlen, gon, ect.) and will be documented in the Data Dictionary.
-The avaialble expressions are dependent on the type of data in the field. In
+The available expressions are dependent on the type of data in the field. In
 most cases, strings (such as prj_nm, prj_cd) can be filtered with 'like',
 'not_like', and 'endswith'.  Fields with a well defined number of choices
 (prj_cd, spc, gon, sex, tagstat)  can be selected by passing a
-comma seperated list of choices to include or exclude (`gon=10,20` or
+comma separated list of choices to include or exclude (`gon=10,20` or
 `gon__not=10,20`), as well as null or not_null.  Numeric fields (sidep,
 flen, rwt etc) typically have the following filter expressions available:
 
