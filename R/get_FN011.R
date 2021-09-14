@@ -15,6 +15,9 @@
 #' for the full list of available filter keys (query parameters)
 #'
 #' @param filter_list list
+#' @param show_id When 'FALSE', the default, the 'id' and 'slug' 
+#' fields are hidden from the data frame. To return these columns 
+#' as part of the data frame, use 'show_id = TRUE'. 
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
@@ -29,7 +32,10 @@
 #' fn011 <- get_FN011(filters)
 #'
 #' fn011 <- get_FN011(list(lake = "HU", prj_cd__like = "_006"))
-get_FN011 <- function(filter_list = list()) {
+#' 
+#' fn011 <- get_FN011(list(lake = "HU", protocol = "USA"))
+#' fn011 <- get_FN011(list(lake = "HU", protocol = "USA"), show_id = TRUE)
+get_FN011 <- function(filter_list = list(), show_id = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   my_url <- sprintf(
@@ -37,5 +43,10 @@ get_FN011 <- function(filter_list = list()) {
     get_fn_portal_root(),
     query_string
   )
-  return(api_to_dataframe(my_url, recursive = recursive))
+  payload <- api_to_dataframe(my_url, recursive = recursive)
+
+  if(show_id == FALSE & !is.null(dim(payload))){
+    payload <- subset(payload, select = -c(id, slug))
+  }
+  return(payload)
 }
