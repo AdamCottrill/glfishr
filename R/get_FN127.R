@@ -16,9 +16,9 @@
 #' for the full list of available filter keys (query parameters)
 #'
 #' @param filter_list list
-#' @param show_id When 'FALSE', the default, the 'id' and 'slug' 
-#' fields are hidden from the data frame. To return these columns 
-#' as part of the data frame, use 'show_id = TRUE'. 
+#' @param show_id When 'FALSE', the default, the 'id' and 'slug'
+#' fields are hidden from the data frame. To return these columns
+#' as part of the data frame, use 'show_id = TRUE'.
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
@@ -50,15 +50,16 @@
 get_FN127 <- function(filter_list = list(), show_id = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
+  check_filters("fn127", filter_list)
   my_url <- sprintf(
     "%s/fn127/%s",
     get_fn_portal_root(),
     query_string
   )
   payload <- api_to_dataframe(my_url, recursive = recursive)
-  
-  if(show_id == FALSE & !is.null(dim(payload))){
-    payload <- subset(payload, select=-c(id, slug))
+
+  if (show_id == FALSE & !is.null(dim(payload))) {
+    payload <- subset(payload, select = -c(id, slug))
   }
   return(payload)
 }

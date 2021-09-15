@@ -4,10 +4,14 @@
 \alias{get_FN125}
 \title{Get FN125 - Biological data from FN_Portal API}
 \usage{
-get_FN125(filter_list = list())
+get_FN125(filter_list = list(), show_id = FALSE)
 }
 \arguments{
 \item{filter_list}{list}
+
+\item{show_id}{When 'FALSE', the default, the 'id' and 'slug'
+fields are hidden from the data frame. To return these columns
+as part of the data frame, use 'show_id = TRUE'.}
 }
 \value{
 dataframe
@@ -53,6 +57,9 @@ fn125 <- get_FN125(filters)
 
 filters <- list(lake = "HU", spc = "076", grp = "55")
 fn125 <- get_FN125(filters)
+
+fn125 <- get_FN125(list(prj_cd = "LHA_IA19_812"))
+fn125 <- get_FN125(list(prj_cd = "LHA_IA19_812"), show_id = TRUE)
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

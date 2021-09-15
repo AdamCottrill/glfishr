@@ -4,10 +4,14 @@
 \alias{get_FN125Tags}
 \title{Get FN125Tags - Tagging data from FN_Portal API}
 \usage{
-get_FN125Tags(filter_list = list())
+get_FN125Tags(filter_list = list(), show_id = FALSE)
 }
 \arguments{
 \item{filter_list}{list}
+
+\item{show_id}{When 'FALSE', the default, the 'id' and 'slug'
+fields are hidden from the data frame. To return these columns
+as part of the data frame, use 'show_id = TRUE'.}
 }
 \value{
 dataframe
@@ -43,6 +47,7 @@ fn125Tags <- get_FN125Tags(list(lake = "SU"))
 
 filters <- list(lake = "HU", spc = "076", grp = "55")
 fn125Tags <- get_FN125Tags(filters)
+fn125Tags <- get_FN125Tags(filters, show_id = TRUE)
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

@@ -2,3 +2,4 @@
 ^README\.Rmd$
 .vscode
 notes.org
+sandbox.R

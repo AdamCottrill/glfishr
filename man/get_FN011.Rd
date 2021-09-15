@@ -4,10 +4,14 @@
 \alias{get_FN011}
 \title{Get FN011 - Project meta data from FN_Portal API}
 \usage{
-get_FN011(filter_list = list())
+get_FN011(filter_list = list(), show_id = FALSE)
 }
 \arguments{
 \item{filter_list}{list}
+
+\item{show_id}{When 'FALSE', the default, the 'id' and 'slug'
+fields are hidden from the data frame. To return these columns
+as part of the data frame, use 'show_id = TRUE'.}
 }
 \value{
 dataframe
@@ -38,6 +42,9 @@ filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
 fn011 <- get_FN011(filters)
 
 fn011 <- get_FN011(list(lake = "HU", prj_cd__like = "_006"))
+
+fn011 <- get_FN011(list(lake = "HU", protocol = "USA"))
+fn011 <- get_FN011(list(lake = "HU", protocol = "USA"), show_id = TRUE)
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

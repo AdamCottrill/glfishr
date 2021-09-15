@@ -22,6 +22,7 @@
 #' trout <- get_species(list(spc_nmco_like = "trout"))
 get_species <- function(filter_list = list()) {
   query_string <- build_query_string(filter_list)
+  check_filters("species_list", filter_list)
   my_url <- sprintf(
     "%s/species_list/%s",
     get_fn_portal_root(),

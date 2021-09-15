@@ -4,10 +4,14 @@
 \alias{get_FN127}
 \title{Get FN127 - Diet data from FN_Portal API}
 \usage{
-get_FN127(filter_list = list())
+get_FN127(filter_list = list(), show_id = FALSE)
 }
 \arguments{
 \item{filter_list}{list}
+
+\item{show_id}{When 'FALSE', the default, the 'id' and 'slug'
+fields are hidden from the data frame. To return these columns
+as part of the data frame, use 'show_id = TRUE'.}
 }
 \value{
 dataframe
@@ -52,6 +56,7 @@ fn127 <- get_FN127(filters)
 
 filters <- list(lake = "HU", spc = "076", grp = "55")
 fn127 <- get_FN127(filters)
+fn127 <- get_FN127(filters, show_id = TRUE)
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

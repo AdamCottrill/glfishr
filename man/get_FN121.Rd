@@ -4,10 +4,14 @@
 \alias{get_FN121}
 \title{Get FN121 - Net set data from FN_Portal API}
 \usage{
-get_FN121(filter_list = list())
+get_FN121(filter_list = list(), show_id = FALSE)
 }
 \arguments{
 \item{filter_list}{list}
+
+\item{show_id}{When 'FALSE', the default, the 'id' and 'slug'
+fields are hidden from the data frame. To return these columns
+as part of the data frame, use 'show_id = TRUE'.}
 }
 \value{
 dataframe
@@ -43,6 +47,7 @@ filters <- list(
 )
 fn121 <- get_FN121(filters)
 fn121 <- get_FN121(list(lake = "HU", prj_cd__like = "_003"))
+fn121 <- get_FN121(list(lake = "HU", prj_cd__like = "_003"), show_id = TRUE)
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}
