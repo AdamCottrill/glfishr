@@ -1,5 +1,6 @@
-.Rhistory
+*.Rhistory
 .vscode/
 notes.org
 sandbox.R
 .#*
+*.Rproj
