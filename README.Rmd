@@ -40,11 +40,11 @@ All of the filters are specified using the following convention:
 the expression that is to be applied to the field to select the subset
 of records.  In most cases, the field name is a lowercase fishnet-II
 field (prj_cd, tlen, gon, ect.) and will be documented in the Data Dictionary.
-The avaialble expressions are dependent on the type of data in the field. In
+The available expressions are dependent on the type of data in the field. In
 most cases, strings (such as prj_nm, prj_cd) can be filtered with 'like',
 'not_like', and 'endswith'.  Fields with a well defined number of choices
 (prj_cd, spc, gon, sex, tagstat)  can be selected by passing a
-comma seperated list of choices to include or exclude (`gon=10,20` or
+comma separated list of choices to include or exclude (`gon=10,20` or
 `gon__not=10,20`), as well as null or not_null.  Numeric fields (sidep,
 flen, rwt etc) typically have the following filter expressions available:
 
@@ -73,13 +73,13 @@ library(glfishr)
 
 ## FN011 - Projects
 
-Project meta data can be accessed using the `get_fn011()` function
+Project meta data can be accessed using the `get_fn011()` function.
 FN011 records contain the hi-level meta data about an
 OMNR netting project.  The FN011 records contain information like
 project code, project name, project leader, start and end date,
 protocol, and the lake where the project was conducted.  This
 function takes an optional filter list which can be used to select
-record based on several attributes of the project such as
+records based on several attributes of the project such as
 project code, or part of the project code, lake, first year (**year__gte**), last
 year (**year__lte**), protocol, etc.
 
@@ -116,10 +116,10 @@ head(fn011)
 Net sets can be retrieved using the `get_FN121()` function.  The FN121
 records contain information like set and lift date and time, effort
 duration, gear, site depth and location.  This function takes an
-optional filter list which can be used to return record based on
+optional filter list which can be used to return records based on
 several attributes of the net set including set and lift date and
 time, effort duration, gear, site depth and location as well as
-attributes of the projects they are associated with such project code,
+attributes of the projects they are associated with such as project code
 or part of the project code, lake, first year, last year, protocol,
 etc.
 
@@ -166,7 +166,7 @@ depth, gear temperature at set and lift, and effort distance.  This
 function takes an optional filter list which can be used to return
 records based on several attributes of the effort including effort
 distance and depth but also attributes of the projects or nets set
-they are associated with such project code, lake, first year, last
+they are associated with such as project code, lake, first year, last
 year, protocol, gear etc.
 
 
@@ -218,8 +218,8 @@ particular mesh size within a net set (gang). Group (GRP) is
 occasionally included to further sub-divide the catch into user defined
 groups that are usually specific to the project, but will always be
 included and will be '00' by default. This function takes an optional
-filter list which can be used to return record based on several
-attributes of the catch including species, or group code but also
+filter list which can be used to return records based on several
+attributes of the catch including species or group code, but also
 attributes of the effort, the sample or the project(s) that the
 catches were made in.
 
