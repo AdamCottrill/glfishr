@@ -7,8 +7,8 @@
 #' TAGDOC, TAGSTAT and TAGID.  This convention is fine as long a
 #' single biological sample only has a one tag. In recent years, it
 #' has been come increasingly common for fish to have multiple tags,
-#' or tag types associated with indiviudal sampling events. FN125Tag
-#' accomodates those events.  This function takes an optional filter
+#' or tag types associated with individudal sampling events. FN125Tag
+#' accommodates those events.  This function takes an optional filter
 #' list which can be used to return records based on several
 #' different attributes of the tag (tag type, colour, placement,
 #' agency, tag stat, and tag number) as well as, attributes of the
