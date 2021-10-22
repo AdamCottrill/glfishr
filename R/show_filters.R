@@ -2,7 +2,7 @@
 #'
 #' Most of the fn_portal API endpoints have a large number of
 #' available filters.  This function takes and api endpoint name and
-#' prints out all of the avaiable filters.  If 'filter_like' is
+#' prints out all of the available filters.  If 'filter_like' is
 #' provided, only those filters that contain the provided string are
 #' printed.
 #'
