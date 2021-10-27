@@ -4,7 +4,7 @@
 \alias{get_FN123}
 \title{Get FN123 - Catch Counts from FN_Portal API}
 \usage{
-get_FN123(filter_list = list(), show_id = FALSE)
+get_FN123(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 }
 \arguments{
 \item{filter_list}{list}
@@ -12,6 +12,11 @@ get_FN123(filter_list = list(), show_id = FALSE)
 \item{show_id}{When 'FALSE', the default, the 'id' and 'slug'
 fields are hidden from the data frame. To return these columns
 as part of the data frame, use 'show_id = TRUE'.}
+
+\item{to_upper}{\itemize{
+\item should the names of the dataframe be converted to
+upper case?
+}}
 }
 \value{
 dataframe

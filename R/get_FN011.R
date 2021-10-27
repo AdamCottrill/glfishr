@@ -19,6 +19,9 @@
 #' fields are hidden from the data frame. To return these columns
 #' as part of the data frame, use 'show_id = TRUE'.
 #'
+#' @param to_upper - should the names of the dataframe be converted to
+#' upper case?
+#'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
 #' @export
@@ -35,7 +38,8 @@
 #'
 #' fn011 <- get_FN011(list(lake = "HU", protocol = "USA"))
 #' fn011 <- get_FN011(list(lake = "HU", protocol = "USA"), show_id = TRUE)
-get_FN011 <- function(filter_list = list(), show_id = FALSE) {
+get_FN011 <- function(filter_list = list(), show_id = FALSE, to_upper=TRUE) {
+
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("fn011", filter_list)
@@ -45,9 +49,7 @@ get_FN011 <- function(filter_list = list(), show_id = FALSE) {
     query_string
   )
   payload <- api_to_dataframe(my_url, recursive = recursive)
+  payload <- prepare_payload(payload, show_id, to_upper)
 
-  if (show_id == FALSE & !is.null(dim(payload))) {
-    payload <- subset(payload, select = -c(id, slug))
-  }
   return(payload)
 }
