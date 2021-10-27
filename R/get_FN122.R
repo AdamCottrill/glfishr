@@ -22,13 +22,16 @@
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'
 #' fields are hidden from the data frame. To return these columns
 #' as part of the data frame, use 'show_id = TRUE'.
+#' @param to_upper - should the names of the dataframe be converted to
+#' upper case?
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
 #' @export
 #' @examples
 #'
-#' fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL", sidep__lte = 15))
+#' fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL",
+#' sidep__lte = 15))
 #' fn122 <- get_FN122(list(
 #'   lake = "ER", protocol = "TWL",
 #'   year__gte = 2010, sidep__lte = 20
@@ -44,7 +47,7 @@
 #'
 #' fn122 <- get_FN122(list(prj_cd = "LHA_IA19_812"))
 #' fn122 <- get_FN122(list(prj_cd = "LHA_IA19_812"), show_id = TRUE)
-get_FN122 <- function(filter_list = list(), show_id = FALSE) {
+get_FN122 <- function(filter_list = list(), show_id = FALSE, to_upper=TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("fn122", filter_list)
@@ -55,9 +58,7 @@ get_FN122 <- function(filter_list = list(), show_id = FALSE) {
   )
 
   payload <- api_to_dataframe(my_url, recursive = recursive)
+  payload <- prepare_payload(payload, show_id, to_upper)
 
-  if (show_id == FALSE & !is.null(dim(payload))) {
-    payload <- subset(payload, select = -c(id, slug))
-  }
   return(payload)
 }

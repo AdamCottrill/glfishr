@@ -4,7 +4,7 @@
 \alias{get_FN122}
 \title{Get FN122 - Effort data from FN_Portal API}
 \usage{
-get_FN122(filter_list = list(), show_id = FALSE)
+get_FN122(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 }
 \arguments{
 \item{filter_list}{list}
@@ -12,6 +12,11 @@ get_FN122(filter_list = list(), show_id = FALSE)
 \item{show_id}{When 'FALSE', the default, the 'id' and 'slug'
 fields are hidden from the data frame. To return these columns
 as part of the data frame, use 'show_id = TRUE'.}
+
+\item{to_upper}{\itemize{
+\item should the names of the dataframe be converted to
+upper case?
+}}
 }
 \value{
 dataframe
@@ -38,7 +43,8 @@ for the full list of available filter keys (query parameters)
 }
 \examples{
 
-fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL", sidep__lte = 15))
+fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL",
+sidep__lte = 15))
 fn122 <- get_FN122(list(
   lake = "ER", protocol = "TWL",
   year__gte = 2010, sidep__lte = 20

@@ -19,7 +19,7 @@
 #' @return dataframe
 
 api_to_dataframe <- function(url, data = NULL, page = 0, recursive = TRUE) {
-  maxPageCount <- 10
+  max_page_count <- 10
   response <- tryCatch(httr::GET(url),
     error = function(err) {
       print("unable to fetch from the server. Is your VPN active?")
@@ -30,11 +30,12 @@ api_to_dataframe <- function(url, data = NULL, page = 0, recursive = TRUE) {
   payload <- jsonlite::fromJSON(json, flatten = TRUE)
   page <- page + 1
 
-  if (page >= maxPageCount) {
+  if (page >= max_page_count) {
     warning(paste0(
-      "The response from the server exceeded the maximum number of api calls and may be incomplete.\n",
-      "Verify your filters and consider refining your selection. If you meant to fetch \n",
-      "a large number of rows, it may be necessary to submit multiple requests with \n",
+      "The response from the server exceeded the maximum number of api \n",
+      "calls and may be incomplete. Verify your filters and consider  \n",
+      "refining your selection. If you meant to fetch a large number of  \n",
+      "rows, it may be necessary to submit  multiple requests with \n",
       "different filters and combine them in R."
     ))
   }
@@ -45,9 +46,8 @@ api_to_dataframe <- function(url, data = NULL, page = 0, recursive = TRUE) {
     } else {
       data <- rbind(data, payload$results)
     }
-
     next_url <- payload$`next`
-    if (!is.null(next_url) && page < maxPageCount && recursive) {
+    if (!is.null(next_url) && page < max_page_count && recursive) {
       data <- api_to_dataframe(next_url, data, page)
     }
     return(data)

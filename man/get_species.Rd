@@ -4,10 +4,15 @@
 \alias{get_species}
 \title{Get Species list data from FN_Portal API}
 \usage{
-get_species(filter_list = list())
+get_species(filter_list = list(), to_upper = TRUE)
 }
 \arguments{
 \item{filter_list}{list}
+
+\item{to_upper}{\itemize{
+\item should the names of the dataframe be converted to
+upper case?
+}}
 }
 \value{
 dataframe

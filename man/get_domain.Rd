@@ -22,7 +22,7 @@ To use a local version of glfishr api during developement, set the
 local environment variable to True:\preformatted{>  Sys.setenv(FN_PORTAL_DEV=TRUE)
 }
 
-By default, it is assumed that the api is being served on #' localhost and\preformatted{ >  Sys.setenv(FN_PORTAL_HOST='<some-ip-address>')
+By default, it is assumed that the api is being served on #' localhost and\preformatted{ > Sys.setenv(FN_PORTAL_HOST='<some-ip-address>')
  > Sys.setenv(FN_PORTAL_PORT=8080)
 }
 }
