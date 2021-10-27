@@ -16,7 +16,7 @@
 # port 8000, but these can be changed by setting the #' environment variables
 # FN_PORTAL_HOST, FN_PORTAL_PORT to the #' appropriate host and port number.
 #'
-#'      >  Sys.setenv(FN_PORTAL_HOST='<some-ip-address>')
+#'      > Sys.setenv(FN_PORTAL_HOST='<some-ip-address>')
 #'      > Sys.setenv(FN_PORTAL_PORT=8080)
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}

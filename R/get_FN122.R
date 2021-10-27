@@ -30,7 +30,8 @@
 #' @export
 #' @examples
 #'
-#' fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL", sidep__lte = 15))
+#' fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL",
+#' sidep__lte = 15))
 #' fn122 <- get_FN122(list(
 #'   lake = "ER", protocol = "TWL",
 #'   year__gte = 2010, sidep__lte = 20
