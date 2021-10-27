@@ -6,7 +6,7 @@
 #' counts by species for each effort in a sample.  For most gill
 #' netting projects this corresponds to catches within a single panel
 #' of a particular mesh size within a net set (gang). Group (GRP) is
-#' occationally included to futher sub-devide the catch into user
+#' occasionally included to further sub-divide the catch into user
 #' defined groups that are usually specific to the project.  This
 #' function takes an optional filter list which can be used to return
 #' record based on several attributes of the catch including species,
