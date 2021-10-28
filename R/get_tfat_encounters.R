@@ -4,7 +4,7 @@
 #' events were tags were either applied or re-captured during OMNR field
 #' projects. (excluding CWTs). The TFAT encounter information contains all of
 #' the information required to analyze  tagging data, but they are not the
-#' definative record for biological samples, and do not contain any informatin
+#' definitive record for biological samples, and do not contain any information
 #' about other fish caught in the same sampling event.  See Project Tracker for
 #' more information about tagging projects and FN_Portal(and other master
 #' databases) to access the complete dataset.

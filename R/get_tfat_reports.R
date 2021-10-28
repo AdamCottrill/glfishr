@@ -2,7 +2,7 @@
 #'
 #' This function accesses the TFAT api endpoint for tag reports - tag reports
 #' are anglers, the general public, or other agencies.  A tag report can have
-#' one or many associated tags (ie. tag recoveries).  Every tag recovery has
+#' one or many associated tags (i.e. tag recoveries).  Every tag recovery has
 #' only one tag report. Tag reports include the reporting date and method, and
 #' whether or not a follow-up letter  was requested.
 #'

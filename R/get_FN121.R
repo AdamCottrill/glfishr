@@ -4,7 +4,7 @@
 #' This function accesses the api endpoint to for FN121
 #' records. FN121 records contain information about net sets or more
 #' generally sampling events in OMNR netting projects.  The FN121
-#' record contain information like set and lift date and time, effort
+#' records contain information like set and lift date and time, effort
 #' duration, gear, site depth and location.  This function takes an
 #' optional filter list which can be used to return record based on
 #' several attributes of the net set including set and lift date and

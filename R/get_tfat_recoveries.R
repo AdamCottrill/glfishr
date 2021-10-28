@@ -3,7 +3,7 @@
 #' This function accesses the TFAT api endpoint to for tag recoveries - tags
 #' reported by anglers, the general public, or other agencies.  Tag Recovery
 #' events include information about the tag, the tagged fish, and where the
-#' recovery occured.
+#' recovery occurred.
 #'
 #' This function takes an optional filter list which can be used to return
 #' records based on several attributes of the tagged fish (species, or size),
