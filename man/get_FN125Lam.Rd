@@ -28,12 +28,12 @@ lamprey wounds observed on a sampled fish.  Historically, lamprey
 wounds were reported as a single field (XLAM) in the FN125 table.
 In the early 2000 the great lakes fishery community agreed to
 capture lamprey wounding data in a more consistent fashion the
-basin, using the conventions described in Ebener etal 2006.  The
+basin, using the conventions described in Ebener et al. 2006.  The
 FN125Lam table captures data from individual lamprey wounds
 collected using those conventions.  A sampled fish with no
 observed wound will have a single record in this table (with
 lamijc value of 0), while fish with lamprey wounds, will have one
-record for every observed wound.    This function takes an optional
+record for every observed wound. This function takes an optional
 filter list which can be used to return records based on several
 different attributes of the wound (wound type, degree of healing,
 and wound size) as well as, attributes of the sampled

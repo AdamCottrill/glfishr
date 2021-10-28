@@ -10,15 +10,15 @@ get_domain()
 string
 }
 \description{
-This funciton is intended to be used by all of the functions that #' call an
+This function is intended to be used by all of the functions that call an
 api endpoint exposed by the great lakes api endpoints.
-Each of the apis. are likely to have slightly differnt urls (tfat/api/v1,
-fn_portal/api/v1, ect), but a common domain. If the api domain changes in
+Each of the apis. are likely to have slightly different urls (tfat/api/v1,
+fn_portal/api/v1, etc), but a common domain. If the api domain changes in
 the future, (ie - the domain name changes or the #' version changes) we just
-need to update the value retruned by this function.
+need to update the value returned by this function.
 }
 \details{
-To use a local version of glfishr api during developement, set the
+To use a local version of glfishr api during development, set the
 local environment variable to True:\preformatted{>  Sys.setenv(FN_PORTAL_DEV=TRUE)
 }
 

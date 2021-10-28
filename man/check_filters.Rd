@@ -20,7 +20,7 @@ endpoint.
 list
 }
 \description{
-This function is used within data fetching funtions to verify that
+This function is used within data fetching functions to verify that
 the list of provided filters are known to exist.  If a filter
 cannot be found, a warning is printed out the screen. If the global
 api filter object does exist, it is populated before proceeding.

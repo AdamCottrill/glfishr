@@ -25,11 +25,11 @@ dataframe
 This function accesses the api endpoint to for FN125
 records. FN125 records contain the biological data collected from
 individual fish sampled in assessment projects such as length,
-weight, sex, and maturity. For convience this end point also
+weight, sex, and maturity. For convenience this end point also
 returns data from child tables such as the 'preferred' age, and
 lamprey wounds.  This function takes an optional
 filter list which can be used to return records based on several
-different biologial attributes (such as size, sex, or maturity),
+different biological attributes (such as size, sex, or maturity),
 but also of the species, or group code, or attributes of
 the effort, the sample, or the project(s) that the
 samples were collected in.

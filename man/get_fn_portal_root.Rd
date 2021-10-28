@@ -10,11 +10,11 @@ get_fn_portal_root()
 string
 }
 \description{
-This funciton is intended to be used by all of the functions that
+This function is intended to be used by all of the functions that
 call an api endpoint exposed by fn_portal. Each of the portals
 (tfat, sc_portal, fn_portal etc.)  all have a slightly different
 access point, and each will have a similar function. If the api
-enpoint for that portal changes in the future, (.i.e.  the version
+endpoint for that portal changes in the future, (i.e.  the version
 changes) we just need to update the value in this file and all of
 the dependent functions will use it.  Note that the url string does
 \emph{NOT} include a trailing slash.

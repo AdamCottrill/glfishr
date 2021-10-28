@@ -23,14 +23,14 @@ dataframe
 }
 \description{
 This function accesses the api endpoint to for FN011
-records. FN011 records contiain the hi-level meta data about an
-OMNR netting project.  The FN011 record contain information like
+records. FN011 records contain the hi-level meta data about an
+OMNR netting project.  The FN011 records contain information like
 project code, project name, projet leader, start and end date,
 protocol, and the lake where the project was conducted.  This
 function takes an optional filter list which can be used to return
 record based on several attributes of the project such as
 project code, or part of the project code, lake, first year, last
-year, protocol, ect.
+year, protocol, etc.
 }
 \details{
 See
