@@ -1,70 +1,89 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+
+
 # glfishr
 
-*glfishr* contains a series of R functions that are intended to make it
-easy to get fisheries assessment data from the fn\_portal api and into R
-for subsequent analysis and reporting. Functions are named semantically
-to reflect the FN-II table they fetch data from (e.g. `get_FN011()` for
-project meta data, `get_FN121()` for net set/sample data and
-`get_FN125()` for biological sample data). Most of the functions take an
-optional filter\_list parameter that can be used to finely control which
-records are returned. Care has been taken to ensure that the available
-filters are consistent with FN-II field names whenever possible, and in
-many cases, filters can be re-used across different tables (e.g. - if a
-filter is passed to the `get_FN121()` function to find a subset of net
-sets, that same filter can be applied to the `get_FN125()` function to
-get the all of the biological samples collected in those net sets).
+*glfishr* contains a series of R functions that are intended to make
+it easy to get fisheries assessment and creel survey data from the
+fn_portal and creel_portal api's and into R for subsequent analysis
+and reporting.  Functions are named semantically to reflect the FN-II
+table they fetch data from.  There are functions that are specific to
+assessment programs such as `get_FN011()` for project meta data,
+`get_FN121()` for net set/sample data and `get_FN125()` for biological
+sample data.  There are analogous functions to fetch data for creels:
+`get_SC011()` for creel survey meta data, `get_SC121()` for creel
+survey interview records and `get_SC125()` for biological data
+collected from fish sampled in creels.  Most of the functions take an
+optional filter_list parameter that can be used to finely control
+which records are returned.  Care has been taken to ensure that the
+available filters are consistent with FN-II field names whenever
+possible, and in many cases, filters can be re-used across different
+tables (e.g. - if a filter is passed to the `get_FN121()` function to
+find a subset of net sets, that same filter can be applied to the
+`get_FN125()` function to get the all of the biological samples
+collected in those net sets).
 
 All of the filters are specified using the following convention:
-`<field_name>__<expression>` - the field name, two underscores, and the
-expression that is to be applied to the field to select the subset of
-records. In most cases, the field name is a lowercase fishnet-II field
-(prj\_cd, tlen, gon, ect.) and will be documented in the Data
-Dictionary. The available expressions are dependent on the type of data
-in the field. In most cases, strings (such as prj\_nm, prj\_cd) can be
-filtered with ‘like’, ‘not\_like’, and ‘endswith’. Fields with a well
-defined number of choices (prj\_cd, spc, gon, sex, tagstat) can be
-selected by passing a comma separated list of choices to include or
-exclude (`gon=10,20` or `gon__not=10,20`), as well as null or not\_null.
-Numeric fields (sidep, flen, rwt etc) typically have the following
-filter expressions available:
+`<field_name>__<expression>` - the field name, two underscores, and
+the expression that is to be applied to the field to select the subset
+of records.  In most cases, the field name is a lowercase fishnet-II
+field (prj_cd, tlen, gon, ect.) and will be documented in the Data Dictionary.
+The available expressions are dependent on the type of data in the field. In
+most cases, strings (such as prj_nm, prj_cd) can be filtered with 'like',
+'not_like', and 'endswith'.  Fields with a well defined number of choices
+(prj_cd, spc, gon, sex, tagstat)  can be selected by passing a
+comma separated list of choices to include or exclude (`gon=10,20` or
+`gon__not=10,20`), as well as null or not_null.  Numeric fields (sidep,
+flen, rwt etc) typically have the following filter expressions available:
 
--   equal: `year=2010`
--   greater than or equal to: `tlen__gte=350`
--   greater than: `tlen__gt=350`
--   less than or equal to: `flen__lte=350`
--   less than: `flen__lt=350`
--   null: `clipc__null`
--   not null: `rwt__not_null`
++ equal: `year=2010`
++ greater than or equal to: `tlen__gte=350`
++ greater than: `tlen__gt=350`
++ less than or equal to: `flen__lte=350`
++ less than: `flen__lt=350`
++ null: `clipc__null`
++ not null: `rwt__not_null`
 
-Many of these filters are illustrated in the following examples. More
-detailed information can be found in the technical documentation for the
-fn\_portal API.
+Many of these filters are illustrated in the following examples, more
+detailed infromation can be found using the `show_filters()` function
+that takes a table name, and optionally, a partial filter name to match
+against.  `show_filters()` will print out all of the filters available for that
+table and, if appropriate, provide additional information on expected
+format (eg. "format: yyyy-mm-dd").
+
 
 ## Load glfishr
 
 All of the functions in glfishr have been bundled up into an R-package
 that can be installed and then loaded as needed:
 
-``` r
+
+```r
 library(glfishr)
 ```
+
 
 ## FN011 - Projects
 
 Project meta data can be accessed using the `get_fn011()` function.
-FN011 records contain the hi-level meta data about an OMNR netting
-project. The FN011 records contain information like project code,
-project name, project leader, start and end date, protocol, and the lake
-where the project was conducted. This function takes an optional filter
-list which can be used to select records based on several attributes of
-the project such as project code, or part of the project code, lake,
-first year (\*\*year\_\_gte**), last year (**year\_\_lte\*\*), protocol,
-etc.
+FN011 records contain the hi-level meta data about an
+OMNR netting project.  The FN011 records contain information like
+project code, project name, project leader, start and end date,
+protocol, and the lake where the project was conducted.  This
+function takes an optional filter list which can be used to select
+records based on several attributes of the project such as
+project code, or part of the project code, lake, first year (**year__gte**), last
+year (**year__lte**), protocol, etc.
 
-``` r
+
+
+```r
+
 fn011 <- get_FN011(list(lake = "ON", year__gte = 2012, year__lte = 2018))
 fn011 <- anonymize(fn011)
 nrow(fn011)
@@ -77,20 +96,13 @@ head(fn011)
 #> 4 2015 LOA_IA15_GL1      2015 Eastern Lake Ontario Community Index Gillnet
 #> 5 2014 LOA_IA14_GL1                2014 E.L.O. Community Index Gillnetting
 #> 6 2013 LOA_IA13_GL1 2013 Eastern Lake Ontario Fish Community Index Gillnet
-#>    PRJ_DATE0  PRJ_DATE1 PROTOCOL   SOURCE COMMENT0 PRJ_LDR.USERNAME
-#> 1 2018-06-18 2018-10-31     OSIA offshore        8          hoyleji
-#> 2 2017-06-19 2017-11-02     OSIA offshore        8          hoyleji
-#> 3 2016-06-20 2016-09-09     OSIA offshore        8          hoyleji
-#> 4 2015-06-05 2015-09-15     OSIA offshore        8          hoyleji
-#> 5 2014-06-09 2014-09-15     OSIA offshore        8          hoyleji
-#> 6 2013-06-24 2013-09-15     OSIA offshore        8          hoyleji
-#>   PRJ_LDR.FIRST_NAME PRJ_LDR.LAST_NAME LAKE.LAKE_NAME LAKE.ABBREV
-#> 1                Jim             Hoyle   Lake Ontario          ON
-#> 2                Jim             Hoyle   Lake Ontario          ON
-#> 3                Jim             Hoyle   Lake Ontario          ON
-#> 4                Jim             Hoyle   Lake Ontario          ON
-#> 5                Jim             Hoyle   Lake Ontario          ON
-#> 6                Jim             Hoyle   Lake Ontario          ON
+#>    PRJ_DATE0  PRJ_DATE1 PROTOCOL   SOURCE COMMENT0 LAKE.LAKE_NAME LAKE.ABBREV
+#> 1 2018-06-18 2018-10-31     OSIA offshore        8   Lake Ontario          ON
+#> 2 2017-06-19 2017-11-02     OSIA offshore        8   Lake Ontario          ON
+#> 3 2016-06-20 2016-09-09     OSIA offshore        8   Lake Ontario          ON
+#> 4 2015-06-05 2015-09-15     OSIA offshore        8   Lake Ontario          ON
+#> 5 2014-06-09 2014-09-15     OSIA offshore        8   Lake Ontario          ON
+#> 6 2013-06-24 2013-09-15     OSIA offshore        8   Lake Ontario          ON
 
 fn011 <- get_FN011(list(lake = "ER", protocol = "TWL"))
 fn011 <- anonymize(fn011)
@@ -104,20 +116,13 @@ head(fn011)
 #> 4 2016 LEA_IF16_001 Lake Erie Index Trawling 2016-08-15 2016-08-24      TWL
 #> 5 2015 LEA_IF15_001 Lake Erie Index Trawling 2015-08-10 2015-08-19      TWL
 #> 6 2014 LEA_IF14_001 Lake Erie Index Trawling 2014-08-11 2014-08-20      TWL
-#>        SOURCE COMMENT0 PRJ_LDR.USERNAME PRJ_LDR.FIRST_NAME PRJ_LDR.LAST_NAME
-#> 1 le_trawl_db                    cookan               Andy              Cook
-#> 2 le_trawl_db                    cookan               Andy              Cook
-#> 3 le_trawl_db                    cookan               Andy              Cook
-#> 4 le_trawl_db                    cookan               Andy              Cook
-#> 5 le_trawl_db                    cookan               Andy              Cook
-#> 6 le_trawl_db                    cookan               Andy              Cook
-#>   LAKE.LAKE_NAME LAKE.ABBREV
-#> 1      Lake Erie          ER
-#> 2      Lake Erie          ER
-#> 3      Lake Erie          ER
-#> 4      Lake Erie          ER
-#> 5      Lake Erie          ER
-#> 6      Lake Erie          ER
+#>        SOURCE COMMENT0 LAKE.LAKE_NAME LAKE.ABBREV
+#> 1 le_trawl_db               Lake Erie          ER
+#> 2 le_trawl_db               Lake Erie          ER
+#> 3 le_trawl_db               Lake Erie          ER
+#> 4 le_trawl_db               Lake Erie          ER
+#> 5 le_trawl_db               Lake Erie          ER
+#> 6 le_trawl_db               Lake Erie          ER
 
 
 filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
@@ -129,12 +134,9 @@ head(fn011)
 #>   YEAR       PRJ_CD                             PRJ_NM  PRJ_DATE0  PRJ_DATE1
 #> 1 2017 LSA_IA17_CIN Lake Superior Fish Community Index 2017-06-06 2017-08-21
 #> 2 2015 LSA_IA15_CIN Lake Superior Fish Community Index 2015-08-02 2015-08-28
-#>   PROTOCOL   SOURCE COMMENT0 PRJ_LDR.USERNAME PRJ_LDR.FIRST_NAME
-#> 1     OSIA offshore       NA       berglunder               Eric
-#> 2     OSIA offshore       NA       berglunder               Eric
-#>   PRJ_LDR.LAST_NAME LAKE.LAKE_NAME LAKE.ABBREV
-#> 1          Berglund  Lake Superior          SU
-#> 2          Berglund  Lake Superior          SU
+#>   PROTOCOL   SOURCE COMMENT0 LAKE.LAKE_NAME LAKE.ABBREV
+#> 1     OSIA offshore       NA  Lake Superior          SU
+#> 2     OSIA offshore       NA  Lake Superior          SU
 
 
 fn011 <- get_FN011(list(lake = "HU", prj_cd__like = "_006"))
@@ -149,34 +151,32 @@ head(fn011)
 #> 4 2016 LHA_IA16_006                   Offshore Index - Grand Bend 2016-06-13
 #> 5 2015 LHA_IA15_006                   Offshore Index - Grand Bend 2015-06-18
 #> 6 2014 LHA_IA14_006        Offshore Index Assessment - Grand Bend 2014-06-19
-#>    PRJ_DATE1 PROTOCOL   SOURCE COMMENT0 PRJ_LDR.USERNAME PRJ_LDR.FIRST_NAME
-#> 1 2019-10-10     OSIA offshore     <NA>         speersje               Jeff
-#> 2 2018-10-03     OSIA offshore     <NA>         speersje               Jeff
-#> 3 2017-10-03     OSIA offshore     <NA>         speersje               Jeff
-#> 4 2016-10-06     OSIA offshore     <NA>         speersje               Jeff
-#> 5 2015-10-07     OSIA offshore     <NA>         speersje               Jeff
-#> 6 2014-10-02     OSIA offshore     <NA>         speersje               Jeff
-#>   PRJ_LDR.LAST_NAME LAKE.LAKE_NAME LAKE.ABBREV
-#> 1            Speers     Lake Huron          HU
-#> 2            Speers     Lake Huron          HU
-#> 3            Speers     Lake Huron          HU
-#> 4            Speers     Lake Huron          HU
-#> 5            Speers     Lake Huron          HU
-#> 6            Speers     Lake Huron          HU
+#>    PRJ_DATE1 PROTOCOL   SOURCE COMMENT0 LAKE.LAKE_NAME LAKE.ABBREV
+#> 1 2019-10-10     OSIA offshore     <NA>     Lake Huron          HU
+#> 2 2018-10-03     OSIA offshore     <NA>     Lake Huron          HU
+#> 3 2017-10-03     OSIA offshore     <NA>     Lake Huron          HU
+#> 4 2016-10-06     OSIA offshore     <NA>     Lake Huron          HU
+#> 5 2015-10-07     OSIA offshore     <NA>     Lake Huron          HU
+#> 6 2014-10-02     OSIA offshore     <NA>     Lake Huron          HU
 ```
+
 
 ## FN121 - Net Sets
 
-Net sets can be retrieved using the `get_FN121()` function. The FN121
+Net sets can be retrieved using the `get_FN121()` function.  The FN121
 records contain information like set and lift date and time, effort
-duration, gear, site depth and location. This function takes an optional
-filter list which can be used to return records based on several
-attributes of the net set including set and lift date and time, effort
-duration, gear, site depth and location as well as attributes of the
-projects they are associated with such as project code or part of the
-project code, lake, first year, last year, protocol, etc.
+duration, gear, site depth and location.  This function takes an
+optional filter list which can be used to return records based on
+several attributes of the net set including set and lift date and
+time, effort duration, gear, site depth and location as well as
+attributes of the projects they are associated with such as project code
+or part of the project code, lake, first year, last year, protocol,
+etc.
 
-``` r
+
+
+```r
+
 fn121 <- get_FN121(list(lake = "ON", year = 2012))
 nrow(fn121)
 #> [1] 178
@@ -291,21 +291,27 @@ head(fn121)
 #> 6                         NORDIC NET     NA
 ```
 
+
 ## FN122 - Sample Efforts
 
-Sample Efforts can be retrieved using the `get_fn122()` function. FN122
-records contain information about efforts within a sample. For most gill
-netting project an effort corresponds to a single panel of a particular
-mesh size within a net set (gang). For trap netting and trawling
-projects, there is usually just a single effort. The FN122 table
-contains information about that particular effort such as gear depth,
-gear temperature at set and lift, and effort distance. This function
-takes an optional filter list which can be used to return records based
-on several attributes of the effort including effort distance and depth
-but also attributes of the projects or nets set they are associated with
-such as project code, lake, first year, last year, protocol, gear etc.
 
-``` r
+Sample Efforts can be retrieved using the `get_fn122()` function. FN122
+records contain information about efforts within a sample.  For most
+gill netting project an effort corresponds to a single panel of a
+particular mesh size within a net set (gang). For trap netting and
+trawling projects, there is usually just a single effort. The FN122
+table contains information about that particular effort such as gear
+depth, gear temperature at set and lift, and effort distance.  This
+function takes an optional filter list which can be used to return
+records based on several attributes of the effort including effort
+distance and depth but also attributes of the projects or nets set
+they are associated with such as project code, lake, first year, last
+year, protocol, gear etc.
+
+
+
+```r
+
 
 fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL", sidep__lte = 15))
 #> Warning in check_filters("fn122", filter_list): Unknown filters provided. These will be ignored:
@@ -373,22 +379,28 @@ head(fn122)
 #> 6 LHA_IA00_007 00706 127     50   6.0   18.2   19.8
 ```
 
+
+
 ## FN123 - Catch Counts
 
+
 Catch counts by effort, species, and group are available using the
-`get_FN123()` function. FN123 records contain information about catch
-counts by species for each effort in a sample. For most gill netting
+`get_FN123()` function.  FN123 records contain information about catch
+counts by species for each effort in a sample.  For most gill netting
 projects this corresponds to catches within a single panel of a
 particular mesh size within a net set (gang). Group (GRP) is
 occasionally included to further sub-divide the catch into user defined
 groups that are usually specific to the project, but will always be
-included and will be ‘00’ by default. This function takes an optional
+included and will be '00' by default. This function takes an optional
 filter list which can be used to return records based on several
 attributes of the catch including species or group code, but also
-attributes of the effort, the sample or the project(s) that the catches
-were made in.
+attributes of the effort, the sample or the project(s) that the
+catches were made in.
 
-``` r
+
+
+```r
+
 
 fn123 <- get_FN123(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 #> Warning in check_filters("fn123", filter_list): Unknown filters provided. These will be ignored:
@@ -446,7 +458,7 @@ head(fn123)
 filters <- list(lake = "HU", spc = "076", grp = "55")
 fn123 <- get_FN123(filters)
 nrow(fn123)
-#> [1] 220
+#> [1] 230
 head(fn123)
 #>         PRJ_CD SAM EFF SPC GRP CATCNT CATWT BIOCNT COMMENT3
 #> 1 LHA_IA03_002 219 064 076  55      2 5.937      2         
@@ -457,25 +469,29 @@ head(fn123)
 #> 6 LHA_IA03_007 711 064 076  55      1 0.315      1
 ```
 
+
+
 ## FN124 - Length Tallies
 
-An api endpoint and associated function for FN124 records has not been
-created yet, but will be coming soon.
+An api endpoint and associated function for FN124 records has not been created yet, but will be coming soon.
+
+
 
 ## FN125 - Biological Data
 
 Biological data is maintained in the FN125 table and can be accessed
 using the `get_FN125` function. FN125 records contain the biological
-data collected from individual fish sampled in assessment projects such
-as length, weight, sex, and maturity. For convenience this end point
-also returns data from child tables such as the ‘preferred’ age, and
-lamprey wounds. This function takes an optional filter list which can be
-used to return records based on several different biological attributes
-(such as size, sex, or maturity), but also of the species, or group
-code, or attributes of the effort, the sample, or the project(s) that
-the samples were collected in.
+data collected from individual fish sampled in assessment projects
+such as length, weight, sex, and maturity. For convenience this end point
+also returns data from child tables such as the 'preferred' age, and
+lamprey wounds.  This function takes an optional filter list which can
+be used to return records based on several different biological
+attributes (such as size, sex, or maturity), but also of the species,
+or group code, or attributes of the effort, the sample, or the
+project(s) that the samples were collected in.
 
-``` r
+
+```r
 fn125 <- get_FN125(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 #> Warning in check_filters("fn125", filter_list): Unknown filters provided. These will be ignored:
 #>  + gear
@@ -555,7 +571,7 @@ head(fn125)
 filters <- list(lake = "HU", spc = "076", grp = "55")
 fn125 <- get_FN125(filters)
 nrow(fn125)
-#> [1] 428
+#> [1] 441
 head(fn125)
 #>         PRJ_CD SAM EFF SPC GRP  FISH FLEN TLEN  RWT GIRTH CLIPC SEX MAT GON
 #> 1 LHA_IA03_002 219 064 076  55 00001  555  583 2640    NA  <NA>   1   2  20
@@ -573,23 +589,28 @@ head(fn125)
 #> 6   NA <NA>     1    K     <NA>
 ```
 
+
 ## FN125Tags - Tags Recovered or Applied
 
-FN125Tags records contain information about the individual tags applied
-to or recovered from on a sampled fish and can be fetched from the api
-using `get_FN125Tags()` function. Historically, tag data was stored in
-three related fields - TAGDOC, TAGSTAT and TAGID. This convention is
-fine as long a single biological sample only has a one tag. In recent
-years, it has been come increasingly common for fish to have multiple
-tags, or tag types associated with individual sampling events. FN125Tag
-accommodates those events. This function takes an optional filter list
-which can be used to return records based on several different
-attributes of the tag (tag type, colour, placement, agency, tag stat,
-and tag number) as well as, attributes of the sampled fish such as the
-species, or group code, or attributes of the effort, the sample, or the
-project(s) that the samples were collected in.
+FN125Tags records contain information about the individual tags
+applied to or recovered from on a sampled fish and can be fetched from
+the api using `get_FN125Tags()` function.  Historically, tag data was
+stored in three related fields - TAGDOC, TAGSTAT and TAGID.  This
+convention is fine as long a single biological sample only has a one
+tag. In recent years, it has been come increasingly common for fish to
+have multiple tags, or tag types associated with individual sampling
+events. FN125Tag accommodates those events.  This function takes an
+optional filter list which can be used to return records based on
+several different attributes of the tag (tag type, colour, placement,
+agency, tag stat, and tag number) as well as, attributes of the
+sampled fish such as the species, or group code, or attributes of the
+effort, the sample, or the project(s) that the samples were collected
+in.
 
-``` r
+
+
+```r
+
 
 fn125_tags <- get_FN125Tags(list(
   lake = "ON",
@@ -641,7 +662,7 @@ head(fn125_tags)
 filters <- list(lake = "HU", spc = "076", grp = "55")
 fn125_tags <- get_FN125Tags(filters)
 nrow(fn125_tags)
-#> [1] 161
+#> [1] 172
 head(fn125_tags)
 #>         PRJ_CD SAM EFF SPC GRP FISH FISH_TAG_ID TAGSTAT TAGID TAGDOC XCWTSEQ
 #> 1 LHA_IA15_F14  10 001 076  55    1           1       A 28816  25012      NA
@@ -659,26 +680,31 @@ head(fn125_tags)
 #> 6        NA       NA          NA
 ```
 
+
 ## FN125Lamprey - Observed Lamprey Wounds
 
-FN125Lam records contain information about the individual lamprey wounds
-observed on a sampled fish and can be fetched using the
-`get_Fn125Lamprey()` function. Historically, lamprey wounds were
-reported as a single field (XLAM) in the FN125 table. In the early 2000
-the Great Lakes fishery community agreed to capture lamprey wounding
-data in a more consistent fashion across the basin using the conventions
-described in Ebener et al 2006. The FN125Lam table captures data from
-individual lamprey wounds collected using those conventions. A sampled
-fish with no observed wound will have a single record in this table
-(with lamijc value of 0), while fish with lamprey wounds, will have one
-record for every observed wound. This function takes an optional filter
-list which can be used to return records based on several different
-attributes of the wound (wound type, degree of healing, and wound size)
-as well as, attributes of the sampled fish such as the species, or group
-code, or attributes of the effort, the sample, or the project(s) that
-the samples were collected in.
 
-``` r
+FN125Lam records contain information about the individual lamprey
+wounds observed on a sampled fish and can be fetched using the
+`get_Fn125Lamprey()` function.  Historically, lamprey wounds were
+reported as a single field (XLAM) in the FN125 table.  In the early
+2000 the Great Lakes fishery community agreed to capture lamprey
+wounding data in a more consistent fashion across the basin using the
+conventions described in Ebener et al 2006.  The FN125Lam table
+captures data from individual lamprey wounds collected using those
+conventions.  A sampled fish with no observed wound will have a single
+record in this table (with lamijc value of 0), while fish with lamprey
+wounds, will have one record for every observed wound.  This function
+takes an optional filter list which can be used to return records
+based on several different attributes of the wound (wound type, degree
+of healing, and wound size) as well as, attributes of the sampled fish
+such as the species, or group code, or attributes of the effort, the
+sample, or the project(s) that the samples were collected in.
+
+
+
+```r
+
 fn125_lam <- get_FN125Lam(list(
   lake = "ON",
   spc = "081",
@@ -777,20 +803,23 @@ head(fn125_lam)
 #> 6          NA
 ```
 
+
 ## Fn126 - Diet Data
 
-The `get_Fn126()` function can be used to access the api endpoint to for
-FN126 records. FN126 records contain the counts of identifiable items in
-found in the stomachs of fish sampled and processed in the field (the
-FN126 table does include more detailed analysis that is often conducted
-in the laboratory). The `get_FN126()` function takes an optional filter
-list which can be used to return records based on several different
-attributes of the diet item (taxon, taxon\_\_like), as well as,
-attributes of the sampled fish such as the species, or group code, or
-attributes of the effort, the sample, or the project(s) that the samples
-were collected in.
+The `get_Fn126()` function can be used to access the api endpoint to
+for FN126 records. FN126 records contain the counts of identifiable
+items in found in the stomachs of fish sampled and processed in the
+field (the FN126 table does include more detailed analysis that is
+often conducted in the laboratory).  The `get_FN126()` function takes
+an optional filter list which can be used to return records based on
+several different attributes of the diet item (taxon, taxon__like), as
+well as, attributes of the sampled fish such as the species, or group
+code, or attributes of the effort, the sample, or the project(s) that
+the samples were collected in.
 
-``` r
+
+```r
+
 fn126 <- get_FN126(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 #> Warning in check_filters("fn126", filter_list): Unknown filters provided. These will be ignored:
 #>  + gear
@@ -834,20 +863,23 @@ head(fn126)
 #> 6 LHA_IA03_002 219 114 076  55 00001    2  F280       1       NA
 ```
 
+
 ## Fn127 - Age Estimates
 
-The `get_fn127()` function can be used to access the api endpoint to for
-FN127 records which contain age estimate/interpretations. This function
-takes an optional filter list which can be used to return records based
-on several different attributes of the age estimate such as the assigned
-age, the aging structure, confidence, number of complete annuli and edge
-code, or whether or not it was identified as the ‘preferred’ age for
-this fish. Additionally, filters can be applied to select age estimates
-based on attributes of the sampled fish such as the species, or group
-code, or attributes of the effort, the sample, or the project(s) that
-the samples were collected in.
+The `get_fn127()` function can be used to access the api endpoint to
+for FN127 records which contain age estimate/interpretations.  This
+function takes an optional filter list which can be used to return
+records based on several different attributes of the age estimate such
+as the assigned age, the aging structure, confidence, number of
+complete annuli and edge code, or whether or not it was identified as
+the 'preferred' age for this fish. Additionally, filters can be
+applied to select age estimates based on attributes of the sampled
+fish such as the species, or group code, or attributes of the effort,
+the sample, or the project(s) that the samples were collected in.
 
-``` r
+
+```r
+
 fn127 <- get_FN127(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 #> Warning in check_filters("fn127", filter_list): Unknown filters provided. These will be ignored:
 #>  + gear
@@ -941,4 +973,308 @@ head(fn127)
 #> 4 <NA>    NA         
 #> 5 <NA>    NA         
 #> 6 <NA>    NA
+```
+
+
+# Creel Data
+
+The creel portal houses data from creel surveys that where collected
+using the FN-II data model and exposes an api that make that data
+available in a format that is very similar (if not identical to FN-II
+tables).  The glfishr contains a number of function to fetch creel
+data that are direct analoges to their fisheries assessment
+counterparts.  Most of examples above will work by just changing the
+function name from get_FN* to get_SC* and ensureing that any project
+codes reference existing creel surveys.
+
+As a simple example, here are several blocks of code that fetch the
+data for a single creel and prints out the first few rows of each
+table.  (Note that the filter is composed once, and used for all
+subsequent functions).
+
+
+##  SC011 - Creel Meta-data
+
+
+```r
+creel_filter <- list(prj_cd="LHA_SC08_033")
+dat <- get_SC011(creel_filter)
+dat <- anonymize(dat)
+nrow(dat)
+#> [1] 1
+head(dat)
+#>           SLUG LAKE  PRJ_DATE0  PRJ_DATE1       PRJ_CD YEAR
+#> 1 lha_sc08_033   HU 2008-06-24 2008-08-31 LHA_SC08_033 2008
+#>                                 PRJ_NM COMMENT0 CONTMETH
+#> 1 PARRY SOUND ROVING BOAT CREEL - 2008       NA       A2
+```
+
+##  SC022 - Season Strata
+
+
+```r
+dat <- get_SC022(creel_filter)
+dat <- dat[with(dat, order(PRJ_CD, SSN)),]
+nrow(dat)
+#> [1] 2
+head(dat)
+#>         PRJ_CD SSN   SSN_DES  SSN_DATE0  SSN_DATE1
+#> 1 LHA_SC08_033  12 JUNE/JULY 2008-06-24 2008-07-31
+#> 2 LHA_SC08_033  13    AUGUST 2008-08-01 2008-08-31
+```
+
+
+##  SC023 - Day Type Strata
+
+
+```r
+dat <- get_SC023(creel_filter)
+dat <- dat[with(dat, order(PRJ_CD, SSN, DTP)),]
+nrow(dat)
+#> [1] 4
+head(dat)
+#>         PRJ_CD SSN DTP   DTP_NM DOW_LST
+#> 1 LHA_SC08_033  12   1 WEEKDAYS   23456
+#> 3 LHA_SC08_033  12   2 WEEKENDS      17
+#> 2 LHA_SC08_033  13   1 WEEKDAYS   23456
+#> 4 LHA_SC08_033  13   2 WEEKENDS      17
+```
+
+##  SC024 - Period Strata
+
+
+```r
+dat <- get_SC024(creel_filter)
+dat <- dat[with(dat, order(PRJ_CD, SSN, DTP, PRD)),]
+nrow(dat)
+#> [1] 8
+head(dat)
+#>         PRJ_CD SSN DTP PRD   PRDTM0   PRDTM1 PRD_DUR
+#> 1 LHA_SC08_033  12   1   1 07:00:00 14:00:00       7
+#> 6 LHA_SC08_033  12   1   2 14:00:00 21:00:00       7
+#> 2 LHA_SC08_033  12   2   1 07:00:00 14:00:00       7
+#> 8 LHA_SC08_033  12   2   2 14:00:00 21:00:00       7
+#> 3 LHA_SC08_033  13   1   1 07:00:00 14:00:00       7
+#> 7 LHA_SC08_033  13   1   2 14:00:00 21:00:00       7
+```
+
+##  SC025 - Exception Dates
+
+
+```r
+dat <- get_SC025(creel_filter)
+nrow(dat)
+#> NULL
+head(dat)
+#> named list()
+```
+
+##  SC026 - Spatial Strata
+
+
+```r
+dat <- get_SC026(creel_filter)
+dat <- dat[with(dat, order(PRJ_CD, SPACE)),]
+nrow(dat)
+#> [1] 8
+head(dat)
+#>         PRJ_CD SPACE               SPACE_DES SPACE_SIZ AREA_CNT AREA_LST
+#> 1 LHA_SC08_033    01             SMALL SOUND        NA        1       01
+#> 2 LHA_SC08_033    02                 HAY BAY        NA        1       02
+#> 3 LHA_SC08_033    03   SE HUCKLEBERRY ISLAND        NA        1       03
+#> 4 LHA_SC08_033    04           DEPOT HARBOUR        NA        1       04
+#> 5 LHA_SC08_033    05   SOUTH OF MOWAT ISLAND        NA        1       05
+#> 6 LHA_SC08_033    07 BLIND,COLLINS,LOON BAYS        NA        1       07
+#>   AREA_WT DDLAT DDLON
+#> 1       0    NA    NA
+#> 2       0    NA    NA
+#> 3       0    NA    NA
+#> 4       0    NA    NA
+#> 5       0    NA    NA
+#> 6       0    NA    NA
+```
+
+##  SC028 - Fishing Modes
+
+
+```r
+dat <- get_SC028(creel_filter)
+dat <- dat[with(dat, order(PRJ_CD, MODE)),]
+nrow(dat)
+#> [1] 1
+head(dat)
+#>         PRJ_CD MODE     MODE_DES ATYUNIT ITVUNIT CHKFLAG
+#> 1 LHA_SC08_033   S1 BOAT ANGLING       1       2       0
+```
+
+
+##  SC111 - Creel Logs
+
+
+```r
+dat <- get_SC111(creel_filter)
+nrow(dat)
+#> [1] 348
+head(dat)
+#>         PRJ_CD SAMA SSN DTP PRD SPACE MODE       DATE   SAMTM0 WEATHER
+#> 1 LHA_SC08_033 1001  12   1   2    05   S1 2008-06-24 14:00:00       1
+#> 2 LHA_SC08_033 1002  12   1   2    07   S1 2008-06-24 14:00:00       0
+#> 3 LHA_SC08_033 1003  12   1   2    08   S1 2008-06-24 14:00:00       0
+#> 4 LHA_SC08_033 1004  12   1   2    09   S1 2008-06-24 14:00:00       0
+#> 5 LHA_SC08_033 1005  12   1   2    03   S1 2008-06-24 14:00:00       1
+#> 6 LHA_SC08_033 1006  12   1   2    01   S1 2008-06-24 14:00:00       0
+#>           COMMENT1
+#> 1 A FEW WHITE CAPS
+#> 2             <NA>
+#> 3             <NA>
+#> 4             <NA>
+#> 5             <NA>
+#> 6             <NA>
+```
+
+##  SC112 - Activity Counts
+
+
+
+```r
+dat <- get_SC112(creel_filter)
+nrow(dat)
+#> [1] 348
+head(dat)
+#>         PRJ_CD SAMA   ATYTM0   ATYTM1 ATYCNT CHKCNT ITVCNT ATYDUR
+#> 1 LHA_SC08_033 1001 15:39:00 16:10:00      0      0      0      0
+#> 2 LHA_SC08_033 1002 16:12:00 16:36:00      0      0      0      0
+#> 3 LHA_SC08_033 1003 16:37:00 17:01:00      1      0      1      0
+#> 4 LHA_SC08_033 1004 17:19:00 17:27:00      0      0      0      0
+#> 5 LHA_SC08_033 1005 17:29:00 17:42:00      0      0      0      0
+#> 6 LHA_SC08_033 1006 17:43:00 17:54:00      0      0      0      0
+```
+
+##  SC121 - Creel Interviews
+
+
+```r
+dat <- get_SC121(creel_filter)
+nrow(dat)
+#> [1] 510
+head(dat)
+#>         PRJ_CD SAMA SSN DTP PRD SPACE MODE   SAM ITVSEQ   ITVTM0       DATE
+#> 1 LHA_SC08_033 1003  12   1   2    08   S1 10001      1 16:39:00 2008-06-24
+#> 2 LHA_SC08_033 1008  12   1   2    04   S1 10002      1 18:40:00 2008-06-24
+#> 3 LHA_SC08_033 1009  12   1   1    08   S1 10003      1 07:15:00 2008-06-25
+#> 4 LHA_SC08_033 1010  12   1   1    09   S1 10004      1 08:07:00 2008-06-25
+#> 5 LHA_SC08_033 1010  12   1   1    09   S1 10005      2 08:15:00 2008-06-25
+#> 6 LHA_SC08_033 1011  12   1   1    03   S1 10006      1 09:02:00 2008-06-25
+#>     EFFTM0   EFFTM1 EFFCMP EFFDUR PERSONS ANGLERS RODS ANGMETH ANGVIS ANGORIG
+#> 1 15:00:00     <NA>  FALSE   1.65       3       2    2       5      1       1
+#> 2 10:00:00 18:45:00   TRUE   8.75       1       1    1       1      3       2
+#> 3 06:00:00     <NA>  FALSE   1.25       2       1    1       5      7       5
+#> 4 08:00:00     <NA>  FALSE   0.12       3       2    2       5      1       1
+#> 5 08:05:00     <NA>  FALSE   0.17       1       1    1       4      1       1
+#> 6 08:32:00     <NA>  FALSE   0.50       3       3    3       5      1       1
+#>   ANGOP1 ANGOP2 ANGOP3
+#> 1   <NA>     NA     NA
+#> 2   <NA>     NA     NA
+#> 3   <NA>     NA     NA
+#> 4   <NA>     NA     NA
+#> 5   <NA>     NA     NA
+#> 6      5     NA     NA
+#>                                                                                                    COMMENT1
+#> 1                                                                                                      <NA>
+#> 2                                                                                                      <NA>
+#> 3                                                                                          GERMANY, COTTAGE
+#> 4                                                                                                      <NA>
+#> 5                                                                                                      <NA>
+#> 6 ONE LOCAL (PARRY SOUND), 2 ONTARIO RESIDENTS (STURGEON FALLS)  RELEASED 1 TOO LARGE, RELEASED 2 TOO SMALL
+```
+
+##  SC123 - Catch Counts
+
+
+```r
+dat <- get_SC123(creel_filter)
+nrow(dat)
+#> [1] 647
+head(dat)
+#>         PRJ_CD   SAM SPC GRP  SEK HVSCNT RLSCNT MESCNT MESWT
+#> 1 LHA_SC08_033 10001 081  00 TRUE      0      0      0    NA
+#> 2 LHA_SC08_033 10002 093  00 TRUE     30      5      0    NA
+#> 3 LHA_SC08_033 10003 081  00 TRUE      0      0      0    NA
+#> 4 LHA_SC08_033 10004 081  00 TRUE      0      0      0    NA
+#> 5 LHA_SC08_033 10005 131  00 TRUE      0      0      0    NA
+#> 6 LHA_SC08_033 10006 081  00 TRUE      0      2      0    NA
+```
+
+##  SC125 - Bioligical Samples
+
+
+```r
+dat <- get_SC125(creel_filter)
+nrow(dat)
+#> [1] 49
+head(dat)
+#>         PRJ_CD   SAM SPC GRP FISH FLEN TLEN  RWT SEX GON MAT AGE AGEST CLIPC
+#> 1 LHA_SC08_033 10008 081  00    1  573  627 1950  NA  NA  NA  NA     1    23
+#> 2 LHA_SC08_033 10027 081  00    1  448  487  940  NA  NA  NA  NA    14     0
+#> 3 LHA_SC08_033 10034 081  00    1  580  630 2460  NA  NA  NA  NA    14     0
+#> 4 LHA_SC08_033 10035 081  00    1  405  442  730  NA  NA  NA  NA    14     0
+#> 5 LHA_SC08_033 10052 081  00    1  464  512 1100  NA  NA  NA  NA    14     0
+#> 6 LHA_SC08_033 10052 081  00    2  515  550 1300  NA  NA  NA  NA    14     0
+#>   FATE
+#> 1   NA
+#> 2   NA
+#> 3   NA
+#> 4   NA
+#> 5   NA
+#> 6   NA
+```
+
+
+##  SC125 Lamprey - Observed Lamprey Wounds
+
+
+```r
+dat <- get_SC125Lam(creel_filter)
+nrow(dat)
+#> [1] 49
+head(dat)
+#>         PRJ_CD   SAM SPC GRP FISH LAMID XLAM LAMIJC LAMIJC_TYPE LAMIJC_SIZE
+#> 1 LHA_SC08_033 10008 081  00    1     1          NA           0          NA
+#> 2 LHA_SC08_033 10027 081  00    1     1          NA           0          NA
+#> 3 LHA_SC08_033 10034 081  00    1     1          NA           0          NA
+#> 4 LHA_SC08_033 10035 081  00    1     1          NA           0          NA
+#> 5 LHA_SC08_033 10052 081  00    1     1          NA           0          NA
+#> 6 LHA_SC08_033 10052 081  00    2     1          NA           0          NA
+#>   COMMENT_LAM
+#> 1          NA
+#> 2          NA
+#> 3          NA
+#> 4          NA
+#> 5          NA
+#> 6          NA
+```
+
+##  SC125 Tags - Applied or Recovered Tags
+
+
+```r
+#note the filter has changed
+dat <- get_SC125Tags(list(year=2000, lake='HU'))
+nrow(dat)
+#> [1] 11
+head(dat)
+#>         PRJ_CD   SAM SPC GRP FISH FISH_TAG_ID TAGSTAT  TAGID TAGDOC XCWTSEQ
+#> 1 LHA_SC00_100 10026 075  00    4           1       C 175953  99999      NA
+#> 2 LHA_SC00_100 10037 081  00    1           1       C 204315  99999      NA
+#> 3 LHA_SC00_100 10101 081  00    2           1       C 204311  99999      NA
+#> 4 LHA_SC00_100 10107 081  00    2           1       C 204335  99999      NA
+#> 5 LHA_SC00_100 10113 081  00    2           1       C 204351  99999      NA
+#> 6 LHA_SC00_100 10209 076  00    2           1       C 175961  99999      NA
+#>   XTAGINCKD XTAG_CHK
+#> 1        NA       NA
+#> 2        NA       NA
+#> 3        NA       NA
+#> 4        NA       NA
+#> 5        NA       NA
+#> 6        NA       NA
 ```

@@ -13,27 +13,34 @@ knitr::opts_chunk$set(
 )
 
 anonymize <- function(df) {
-  drop <- c("prj_ldr.username", "prj_ldr.first_name", "prj_ldr.last_name")
+  drop <- c("PRJ_LDR.USERNAME", "PRJ_LDR.FIRST_NAME",
+    "PRJ_LDR.LAST_NAME","PRJ_LDR")
+  drop <- c(drop, tolower(drop))
   df <- df[, !(names(df) %in% drop)]
 }
 ```
 
 # glfishr
 
-*glfishr* contains a series of R functions that are intended to make it
-easy to get fisheries assessment data from the fn_portal api and into
-R for subsequent analysis and reporting.  Functions are named
-semantically to reflect the FN-II table they fetch data from
-(e.g. `get_FN011()` for project meta data, `get_FN121()` for net
-set/sample data and `get_FN125()` for biological sample data).  Most
-of the functions take an optional filter_list parameter that can be
-used to finely control which records are returned.  Care has been
-taken to ensure that the available filters are consistent with FN-II
-field names whenever possible, and in many cases, filters can be
-re-used across different tables (e.g. - if a filter is passed to the
-`get_FN121()` function to find a subset of net sets, that same filter
-can be applied to the `get_FN125()` function to get the all of the
-biological samples collected in those net sets).
+*glfishr* contains a series of R functions that are intended to make
+it easy to get fisheries assessment and creel survey data from the
+fn_portal and creel_portal api's and into R for subsequent analysis
+and reporting.  Functions are named semantically to reflect the FN-II
+table they fetch data from.  There are functions that are specific to
+assessment programs such as `get_FN011()` for project meta data,
+`get_FN121()` for net set/sample data and `get_FN125()` for biological
+sample data.  There are analogous functions to fetch data for creels:
+`get_SC011()` for creel survey meta data, `get_SC121()` for creel
+survey interview records and `get_SC125()` for biological data
+collected from fish sampled in creels.  Most of the functions take an
+optional filter_list parameter that can be used to finely control
+which records are returned.  Care has been taken to ensure that the
+available filters are consistent with FN-II field names whenever
+possible, and in many cases, filters can be re-used across different
+tables (e.g. - if a filter is passed to the `get_FN121()` function to
+find a subset of net sets, that same filter can be applied to the
+`get_FN125()` function to get the all of the biological samples
+collected in those net sets).
 
 All of the filters are specified using the following convention:
 `<field_name>__<expression>` - the field name, two underscores, and
@@ -56,8 +63,12 @@ flen, rwt etc) typically have the following filter expressions available:
 + null: `clipc__null`
 + not null: `rwt__not_null`
 
-Many of these filters are illustrated in the following examples. More
-detailed information can be found in the technical documentation for the fn_portal API.
+Many of these filters are illustrated in the following examples, more
+detailed infromation can be found using the `show_filters()` function
+that takes a table name, and optionally, a partial filter name to match
+against.  `show_filters()` will print out all of the filters available for that
+table and, if appropriate, provide additional information on expected
+format (eg. "format: yyyy-mm-dd").
 
 
 ## Load glfishr
@@ -499,3 +510,145 @@ fn127 <- get_FN127(filters)
 nrow(fn127)
 head(fn127)
 ```
+
+
+# Creel Data
+
+The creel portal houses data from creel surveys that where collected
+using the FN-II data model and exposes an api that make that data
+available in a format that is very similar (if not identical to FN-II
+tables).  The glfishr contains a number of function to fetch creel
+data that are direct analoges to their fisheries assessment
+counterparts.  Most of examples above will work by just changing the
+function name from get_FN* to get_SC* and ensureing that any project
+codes reference existing creel surveys.
+
+As a simple example, here are several blocks of code that fetch the
+data for a single creel and prints out the first few rows of each
+table.  (Note that the filter is composed once, and used for all
+subsequent functions).
+
+
+##  SC011 - Creel Meta-data
+
+```{r sc011}
+creel_filter <- list(prj_cd="LHA_SC08_033")
+dat <- get_SC011(creel_filter)
+dat <- anonymize(dat)
+nrow(dat)
+head(dat)
+```
+
+##  SC022 - Season Strata
+
+```{r sc022}
+dat <- get_SC022(creel_filter)
+dat <- dat[with(dat, order(PRJ_CD, SSN)),]
+nrow(dat)
+head(dat)
+ ```
+
+
+##  SC023 - Day Type Strata
+
+```{r sc023}
+dat <- get_SC023(creel_filter)
+dat <- dat[with(dat, order(PRJ_CD, SSN, DTP)),]
+nrow(dat)
+head(dat)
+ ```
+
+##  SC024 - Period Strata
+
+```{r sc024}
+dat <- get_SC024(creel_filter)
+dat <- dat[with(dat, order(PRJ_CD, SSN, DTP, PRD)),]
+nrow(dat)
+head(dat)
+ ```
+
+##  SC025 - Exception Dates
+
+```{r sc025}
+dat <- get_SC025(creel_filter)
+nrow(dat)
+head(dat)
+ ```
+
+##  SC026 - Spatial Strata
+
+```{r sc026}
+dat <- get_SC026(creel_filter)
+dat <- dat[with(dat, order(PRJ_CD, SPACE)),]
+nrow(dat)
+head(dat)
+ ```
+
+##  SC028 - Fishing Modes
+
+```{r sc028}
+dat <- get_SC028(creel_filter)
+dat <- dat[with(dat, order(PRJ_CD, MODE)),]
+nrow(dat)
+head(dat)
+ ```
+
+
+##  SC111 - Creel Logs
+
+```{r sc111}
+dat <- get_SC111(creel_filter)
+nrow(dat)
+head(dat)
+ ```
+
+##  SC112 - Activity Counts
+
+
+```{r sc112}
+dat <- get_SC112(creel_filter)
+nrow(dat)
+head(dat)
+ ```
+
+##  SC121 - Creel Interviews
+
+```{r sc121}
+dat <- get_SC121(creel_filter)
+nrow(dat)
+head(dat)
+ ```
+
+##  SC123 - Catch Counts
+
+```{r sc123}
+dat <- get_SC123(creel_filter)
+nrow(dat)
+head(dat)
+ ```
+
+##  SC125 - Bioligical Samples
+
+```{r sc125}
+dat <- get_SC125(creel_filter)
+nrow(dat)
+head(dat)
+ ```
+
+
+##  SC125 Lamprey - Observed Lamprey Wounds
+
+```{r sc125Lam}
+dat <- get_SC125Lam(creel_filter)
+nrow(dat)
+head(dat)
+ ```
+
+##  SC125 Tags - Applied or Recovered Tags
+
+```{r sc125Tag}
+#note the filter has changed
+dat <- get_SC125Tags(list(year=2000, lake='HU'))
+nrow(dat)
+head(dat)
+ ```

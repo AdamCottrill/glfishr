@@ -42,8 +42,8 @@
 #'
 join_fn_fields <- function(parent, child, parent_fields, ...) {
   fn_keys <- c(
-    "prj_cd", "ssn", "space", "mode", "sam", "eff", "spc",
-    "grp", "fish"
+    "prj_cd", "ssn", "space", "mode", "sama", "sam", "eff", "spc",
+    "grp", "fish", "dtp", "prd"
   )
 
   fn_keys <- c(fn_keys, toupper(fn_keys))
