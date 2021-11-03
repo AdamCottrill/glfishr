@@ -4,23 +4,24 @@
 \alias{get_api_filters}
 \title{Create global list of available API filters}
 \usage{
-get_api_filters()
+get_api_filters(api_app = "fn_portal")
+}
+\arguments{
+\item{api_app}{\itemize{
+\item the name of the api application to fetch the
+filters from. Defaults to 'fn_portal'
+}}
 }
 \value{
 list
 }
 \description{
 This function connects to the openapi/swagger endpoint provided by
-fn_portal and fetches all of the available filters for each
-endpoint.  The filters are available in a global list 'api_filters'
-which subsequently used by other functions - check_filters,
-show_filters.  Generally, this function is not intended to be
-called directly by the user.
-}
-\details{
-See
-http://10.167.37.157/fn_portal/redoc/#operation/fn_011_list for the
-full list of available filter keys (query parameters)
+fn_portal and sc_portal api's and fetches all of the available
+filters for each endpoint.  The filters are available in a global
+list 'api_filters' which subsequently used by other functions -
+check_filters, show_filters.  Generally, this function is not
+intended to be called directly by the user.
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

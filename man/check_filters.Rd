@@ -4,7 +4,7 @@
 \alias{check_filters}
 \title{Check the filters against api filters}
 \usage{
-check_filters(endpoint, filters)
+check_filters(endpoint, filters, api_app = "fn_portal")
 }
 \arguments{
 \item{endpoint}{\itemize{
@@ -14,6 +14,11 @@ check_filters(endpoint, filters)
 \item{filters}{\itemize{
 \item list of filter names that are to be applied to the
 endpoint.
+}}
+
+\item{api_app}{\itemize{
+\item the name of the api application to fetch the
+filters from. Defaults to fn_portal.
 }}
 }
 \value{

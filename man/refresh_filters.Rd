@@ -4,11 +4,16 @@
 \alias{refresh_filters}
 \title{Refresh the global api filter list}
 \usage{
-refresh_filters(endpoint)
+refresh_filters(endpoint, api_app = "fn_portal")
 }
 \arguments{
 \item{endpoint}{\itemize{
 \item the name of the api endpoint
+}}
+
+\item{api_app}{\itemize{
+\item the name of the api application to fetch the
+filters from. Defaults to 'fn_portal'
 }}
 }
 \value{

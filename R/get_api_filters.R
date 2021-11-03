@@ -1,21 +1,23 @@
 #' Create global list of available API filters
 #'
 #' This function connects to the openapi/swagger endpoint provided by
-#' fn_portal and fetches all of the available filters for each
-#' endpoint.  The filters are available in a global list 'api_filters'
-#' which subsequently used by other functions - check_filters,
-#' show_filters.  Generally, this function is not intended to be
-#' called directly by the user.
+#' fn_portal and sc_portal api's and fetches all of the available
+#' filters for each endpoint.  The filters are available in a global
+#' list 'api_filters' which subsequently used by other functions -
+#' check_filters, show_filters.  Generally, this function is not
+#' intended to be called directly by the user.
 #'
-#' See
-#' http://10.167.37.157/fn_portal/redoc/#operation/fn_011_list for the
-#' full list of available filter keys (query parameters)
+#'
+#' @param api_app - the name of the api application to fetch the
+#' filters from. Defaults to 'fn_portal'
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return list
-get_api_filters <- function() {
-  # TODO: make url dynamic to accomodate multiple apps.
-  swagger_url <- "http://10.167.37.157/fn_portal/swagger.json"
+get_api_filters <- function(api_app="fn_portal") {
+  # TODO: make url dynamic to accomodate different swagger endpoints
+  # and domains.
+  swagger_url <- sprintf("http://10.167.37.157/%s/swagger.json", api_app)
+
   response <- tryCatch(httr::GET(swagger_url),
     error = function(err) {
       print("unable to fetch from the server. Is your VPN active?")
@@ -24,6 +26,7 @@ get_api_filters <- function() {
 
   json <- httr::content(response, "text", encoding = "UTF-8")
   payload <- jsonlite::fromJSON(json)
+
 
   api_filters <- list()
   for (name in names(payload$paths)) {

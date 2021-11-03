@@ -21,11 +21,14 @@
 #' show_filters("fn125", filter_like = "prj")
 #' show_filters("foo")
 show_filters <- function(endpoint, filter_like = "") {
+
   endpoint <- tolower(endpoint)
-  if (!exists("api_filters")) get_api_filters()
+  api_app <- if(substr(endpoint, 1, 2) == "fn") "fn_portal" else "creels"
+
+  if (!exists("api_filters")) get_api_filters(api_app=api_app)
   filters <- api_filters[[endpoint]]
   if (is.null(filters)) {
-    filters <- refresh_filters(endpoint)
+    filters <- refresh_filters(endpoint, api_app=api_app)
   }
   if (!filter_like == "") {
     print(subset(filters, grepl(filter_like, filters$name)))
