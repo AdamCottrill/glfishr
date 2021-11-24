@@ -22,8 +22,8 @@
 #'
 #' fn013 <- get_FN013(list(lake = "ON", year = 2012))
 #'
-#' fn013 <- get_FN013(list(prj_cd = "LOA_IA17_GL1"))
-#' fn013 <- get_FN013(list(prj_cd = "LHA_IA17_GL1"), show_id = TRUE)
+#' fn013 <- get_FN013(list(prj_cd = "LOA_IA21_054"))
+#' fn013 <- get_FN013(list(prj_cd = "L0A_IA21_054"), show_id = TRUE)
 get_FN013 <- function(filter_list = list(), show_id = FALSE, to_upper=TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
