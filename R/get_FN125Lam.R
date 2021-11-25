@@ -2,7 +2,7 @@
 #'
 #' This function accesses the api endpoint to for FN125Lam
 #' records. FN125Lam records contain information about the individual
-#' lamprey wounds observed on a sampled fish.  Historically, lamprey
+#' lamprey wounds observed on a sampled fish.Historically, lamprey
 #' wounds were reported as a single field (XLAM) in the FN125 table.
 #' In the early 2000 the great lakes fishery community agreed to
 #' capture lamprey wounding data in a more consistent fashion the
