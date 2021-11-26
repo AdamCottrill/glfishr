@@ -54,5 +54,5 @@ fn124 <- get_FN124(filters)
 
 }
 \author{
-Adam Cottrill \email{adam.cottrill@ontario.ca}
+Jeremy Holden \email{jeremy.holden@ontario.ca}
 }

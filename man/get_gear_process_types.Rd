@@ -37,9 +37,9 @@ the full list of available filter keys (query parameters)
 }
 \examples{
 
-ptype <- get_gear_process_types(list(gear="GL10"))
-ptype <- get_gear_process_types(list(gear=c("GL10", "GL21")))
-ptype <- get_gear_process_types(list(gear__like="GL1"))
+ptype <- get_gear_process_types(list(gr="GL10"))
+ptype <- get_gear_process_types(list(gr=c("GL10", "GL21")))
+ptype <- get_gear_process_types(list(gr__like="GL1"))
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

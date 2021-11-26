@@ -15,7 +15,7 @@
 #' @param to_upper - should the names of the dataframe be converted to
 #' upper case?
 #'
-#' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
+#' @author Jeremy Holden \email{jeremy.holden@@ontario.ca}
 #' @return dataframe
 #' @export
 #' @examples
@@ -33,9 +33,9 @@ get_FN013 <- function(filter_list = list(), show_id = FALSE, to_upper=TRUE) {
     get_fn_portal_root(),
     query_string
   )
-  
+
   payload <- api_to_dataframe(my_url, recursive = recursive)
   payload <- prepare_payload(payload, show_id, to_upper)
-  
+
   return(payload)
 }
