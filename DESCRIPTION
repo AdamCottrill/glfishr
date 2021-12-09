@@ -1,6 +1,6 @@
 Package: glfishr
 Title: Fetch fisheries assessment data from the FN Portal
-Version: 0.0.0.6
+Version: 0.0.0.7
 Authors@R:
     person(given = "Adam",
            family = "Cottrill",
@@ -23,7 +23,8 @@ Description: glfishr contains a series of R functions that are
 License: MIT + file LICENSE
 Imports:
         httr,
-        jsonlite
+        jsonlite,
+        openxlsx
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

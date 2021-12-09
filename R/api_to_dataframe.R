@@ -20,6 +20,8 @@
 
 api_to_dataframe <- function(url, data = NULL, page = 0, recursive = TRUE) {
   max_page_count <- 10
+  url <- gsub("\\n", " ", url)
+  url <- utils::URLencode(url)
   response <- tryCatch(httr::GET(url),
     error = function(err) {
       print("unable to fetch from the server. Is your VPN active?")

@@ -56,7 +56,7 @@ join_fn_fields <- function(parent, child, parent_fields, ...) {
   #our parent records, we need to stop - otherwize we end up with a
   #cartesian product.
   check_common_keys <- function(parent_data, flds) {
-    tmp <- aggregate(subset(parent_data, select = flds),
+    tmp <- stats::aggregate(subset(parent_data, select = flds),
       by = subset(parent_data, select = flds),
       FUN = length
     )

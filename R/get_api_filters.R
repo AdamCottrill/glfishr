@@ -14,9 +14,9 @@
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return list
 get_api_filters <- function(api_app="fn_portal") {
-  # TODO: make url dynamic to accomodate different swagger endpoints
-  # and domains.
-  swagger_url <- sprintf("http://10.167.37.157/%s/swagger.json", api_app)
+
+  domain <- get_domain()
+  swagger_url <- sprintf("%s%s/swagger.json", domain, api_app)
 
   response <- tryCatch(httr::GET(swagger_url),
     error = function(err) {
@@ -26,7 +26,6 @@ get_api_filters <- function(api_app="fn_portal") {
 
   json <- httr::content(response, "text", encoding = "UTF-8")
   payload <- jsonlite::fromJSON(json)
-
 
   api_filters <- list()
   for (name in names(payload$paths)) {
