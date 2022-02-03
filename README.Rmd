@@ -20,7 +20,7 @@ anonymize <- function(df) {
 }
 ```
 ## Instalation
-The most up to date version can be installed using: `devtools::install_github("AdamCottrill/glfish")`  
+The most up to date version can be installed using: `devtools::install_github("AdamCottrill/glfishr")`  
 
 # glfishr
 
