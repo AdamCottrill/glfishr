@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-## Instalation
+## Installation
 
 The most up to date version can be installed using:
 `devtools::install_github("AdamCottrill/glfishr")`
