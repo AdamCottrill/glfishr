@@ -19,6 +19,8 @@ anonymize <- function(df) {
   df <- df[, !(names(df) %in% drop)]
 }
 ```
+## Instalation
+The most up to date version can be installed using: `devtools::install_github("AdamCottrill/glfish")`  
 
 # glfishr
 
