@@ -29,7 +29,16 @@ api_to_dataframe <- function(url, data = NULL, page = 0, recursive = TRUE) {
   )
 
   json <- httr::content(response, "text", encoding = "UTF-8")
-  payload <- jsonlite::fromJSON(json, flatten = TRUE)
+
+  payload <- tryCatch(
+    jsonlite::fromJSON(json, flatten = TRUE),
+    error = function(err) {
+      print("unable able to parse the json response from:")
+      print(url)
+      return(list(paths = list()))
+    }
+  )
+
   page <- page + 1
 
   if (page >= max_page_count) {

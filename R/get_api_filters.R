@@ -13,19 +13,26 @@
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return list
-get_api_filters <- function(api_app="fn_portal") {
-
+get_api_filters <- function(api_app = "fn_portal") {
   domain <- get_domain()
   swagger_url <- sprintf("%s%s/swagger.json", domain, api_app)
 
   response <- tryCatch(httr::GET(swagger_url),
     error = function(err) {
-      print("unable to fetch from the server. Is your VPN active?")
+      print("unable to fetch filters from the server. Is your VPN active?")
     }
   )
 
   json <- httr::content(response, "text", encoding = "UTF-8")
-  payload <- jsonlite::fromJSON(json)
+
+  payload <- tryCatch(
+    jsonlite::fromJSON(json, flatten = TRUE),
+    error = function(err) {
+      print("unable able to parse the json response from:")
+      print(swagger_url)
+      return(list(paths = list()))
+    }
+  )
 
   api_filters <- list()
   for (name in names(payload$paths)) {
