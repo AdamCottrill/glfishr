@@ -22,12 +22,11 @@
 #' @export
 #' @seealso [fetch_pt_associated_files()]
 #' @examples
-#'
 #' \dontrun{
 #' filters <- list(lake = "HU", year__gte = 2012, year__lte = 2018)
 #' files <- get_pt_associated_files(filters)
 #'
-#' filters <- list(lake = "HU", year__gte = 2012, prj_cd__like='006')
+#' filters <- list(lake = "HU", year__gte = 2012, prj_cd__like = "006")
 #' files <- get_pt_associated_files(filters)
 #'
 #' files <- get_pt_associated_files(list(lake = "ER"))
@@ -38,18 +37,19 @@
 #' files <- get_pt_associated_files(list(lake = "HU"))
 #' }
 #'
-get_pt_associated_files <- function(filter_list = list(), to_upper=TRUE) {
-
+get_pt_associated_files <- function(filter_list = list(), to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("associated_files", filter_list, api_app="projects_tracker/api")
+  check_filters("associated_files", filter_list,
+    api_app = "projects_tracker/api"
+  )
   my_url <- sprintf(
     "%s/associated_files/%s",
     get_pt_portal_root(),
     query_string
   )
   payload <- api_to_dataframe(my_url, recursive = recursive)
-  payload <- prepare_payload(payload, to_upper=to_upper)
+  payload <- prepare_payload(payload, to_upper = to_upper)
 
   return(payload)
 }

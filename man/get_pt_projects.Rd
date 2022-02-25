@@ -30,11 +30,15 @@ date, and project lead.
 }
 \examples{
 
-projects <- get_pt_projects(list(lake = "ON", year__gte = 2012,
-year__lte = 2018))
+projects <- get_pt_projects(list(
+  lake = "ON", year__gte = 2012,
+  year__lte = 2018
+))
 
-projects <- get_pt_projects(list(lake = "HU", year__gte = 2012,
-prj_cd__like='006', report_type='prtocol'))
+projects <- get_pt_projects(list(
+  lake = "HU", year__gte = 2012,
+  prj_cd__like = "006", report_type = "prtocol"
+))
 
 projects <- get_pt_projects(list(lake = "ER"))
 
@@ -42,7 +46,6 @@ filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
 projects <- get_pt_projects(filters)
 
 projects <- get_pt_projects(list(lake = "HU"))
-
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

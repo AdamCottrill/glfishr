@@ -30,12 +30,11 @@ conjunction with \code{\link[=fetch_pt_associated_files]{fetch_pt_associated_fil
 selected files to a target directory.
 }
 \examples{
-
 \dontrun{
 filters <- list(lake = "HU", year__gte = 2012, year__lte = 2018)
 files <- get_pt_associated_files(filters)
 
-filters <- list(lake = "HU", year__gte = 2012, prj_cd__like='006')
+filters <- list(lake = "HU", year__gte = 2012, prj_cd__like = "006")
 files <- get_pt_associated_files(filters)
 
 files <- get_pt_associated_files(list(lake = "ER"))

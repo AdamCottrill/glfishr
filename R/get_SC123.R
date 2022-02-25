@@ -33,15 +33,15 @@
 #' sc123 <- get_SC123(filters)
 #'
 #'
-#' filters <- list(lake = "HU", spc = "076", sek=TRUE)
+#' filters <- list(lake = "HU", spc = "076", sek = TRUE)
 #' sc123 <- get_SC123(filters)
 #'
 #' sc123 <- get_SC123(list(prj_cd = "LHA_SC09_033"))
 #' sc123 <- get_SC123(list(prj_cd = "LHA_SC09_033"), show_id = TRUE)
-get_SC123 <- function(filter_list = list(), show_id = FALSE, to_upper=TRUE) {
+get_SC123 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("sc123", filter_list, api_app='creels')
+  check_filters("sc123", filter_list, api_app = "creels")
   my_url <- sprintf(
     "%s/sc123/%s",
     get_sc_portal_root(),

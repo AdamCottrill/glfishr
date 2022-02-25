@@ -30,8 +30,10 @@
 #' @export
 #' @examples
 #'
-#' fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL",
-#' sidep__lte = 15))
+#' fn122 <- get_FN122(list(
+#'   lake = "ON", year = 2012, gear = "GL",
+#'   sidep__lte = 15
+#' ))
 #' fn122 <- get_FN122(list(
 #'   lake = "ER", protocol = "TWL",
 #'   year__gte = 2010, sidep__lte = 20
@@ -47,7 +49,7 @@
 #'
 #' fn122 <- get_FN122(list(prj_cd = "LHA_IA19_812"))
 #' fn122 <- get_FN122(list(prj_cd = "LHA_IA19_812"), show_id = TRUE)
-get_FN122 <- function(filter_list = list(), show_id = FALSE, to_upper=TRUE) {
+get_FN122 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("fn122", filter_list)

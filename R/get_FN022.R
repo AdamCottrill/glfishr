@@ -24,7 +24,7 @@
 #'
 #' fn022 <- get_FN022(list(prj_cd = "LHA_IA19_812"))
 #' fn022 <- get_FN022(list(prj_cd = "LHA_IA19_812"), show_id = TRUE)
-get_FN022 <- function(filter_list = list(), show_id = FALSE, to_upper=TRUE) {
+get_FN022 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("fn022", filter_list)

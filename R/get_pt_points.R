@@ -22,30 +22,29 @@
 #' @export
 #' @examples
 #'
-#' points <- get_pt_points(list(lake = "ON", year__gte = 2012,
-#' year__lte = 2018))
+#' points <- get_pt_points(list(
+#'   lake = "ON", year__gte = 2012,
+#'   year__lte = 2018
+#' ))
 #'
-#' points <- get_pt_points(list(lake = "HU", year__gte = 2012,
-#' prj_cd__like='006'))
+#' points <- get_pt_points(list(
+#'   lake = "HU", year__gte = 2012,
+#'   prj_cd__like = "006"
+#' ))
 #'
 #' filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
 #' points <- get_pt_points(filters)
-#'
-#'
-get_pt_points <- function(filter_list = list(), to_upper=TRUE) {
-
+get_pt_points <- function(filter_list = list(), to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("sample_points", filter_list, api_app="project_tracker/api")
+  check_filters("sample_points", filter_list, api_app = "project_tracker/api")
   my_url <- sprintf(
     "%s/sample_points/%s",
-
     get_pt_portal_root(),
     query_string
   )
-
   payload <- api_to_dataframe(my_url, recursive = recursive)
-  payload <- prepare_payload(payload, to_upper=to_upper)
+  payload <- prepare_payload(payload, to_upper = to_upper)
 
   return(payload)
 }

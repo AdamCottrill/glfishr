@@ -18,7 +18,7 @@
 #' check_filters("fn125", c("year", "prj_cd"))
 #' check_filters("fn125", c("year", "prj_cd", "red", "yellow"))
 #' check_filters("foo", c("year", "prj_cd"))
-check_filters <- function(endpoint, filters, api_app="fn_portal") {
+check_filters <- function(endpoint, filters, api_app = "fn_portal") {
   if (!exists("api_filters")) get_api_filters(api_app = api_app)
 
   endpoint <- tolower(endpoint)

@@ -30,16 +30,18 @@ dd_lat and dd_lon.
 }
 \examples{
 
-points <- get_pt_points(list(lake = "ON", year__gte = 2012,
-year__lte = 2018))
+points <- get_pt_points(list(
+  lake = "ON", year__gte = 2012,
+  year__lte = 2018
+))
 
-points <- get_pt_points(list(lake = "HU", year__gte = 2012,
-prj_cd__like='006'))
+points <- get_pt_points(list(
+  lake = "HU", year__gte = 2012,
+  prj_cd__like = "006"
+))
 
 filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
 points <- get_pt_points(filters)
-
-
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

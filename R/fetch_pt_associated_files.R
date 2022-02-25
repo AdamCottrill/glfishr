@@ -35,11 +35,15 @@
 #' @seealso [get_pt_associated_files()]
 #' @examples
 #' \donttest{
-#' reports <- fetch_pt_associated_files(list(lake = "ON", year__gte = 2012,
-#' year__lte = 2018))
+#' reports <- fetch_pt_associated_files(list(
+#'   lake = "ON", year__gte = 2012,
+#'   year__lte = 2018
+#' ))
 #'
-#' reports <- fetch_pt_associated_files(list(lake = "HU", year__gte = 2012,
-#' prj_cd__like='006', report_type='prtocol'))
+#' reports <- fetch_pt_associated_files(list(
+#'   lake = "HU", year__gte = 2012,
+#'   prj_cd__like = "006", report_type = "prtocol"
+#' ))
 #'
 #' reports <- fetch_pt_associated_files(list(lake = "ER", protocol = "TWL"))
 #'
@@ -49,12 +53,13 @@
 #' reports <- fetch_pt_associated_files(list(lake = "HU", protocol = "USA"))
 #' }
 #'
-fetch_pt_associated_files  <- function(filter_list, target_dir, xlsx_toc=TRUE, create_target_dir=TRUE){
-
+fetch_pt_associated_files <- function(filter_list, target_dir,
+                                      xlsx_toc = TRUE,
+                                      create_target_dir = TRUE) {
   files <- get_pt_associated_files(filter_list)
   files <- subset(files,
-    files$CURRENT==TRUE,
-    select=c("PRJ_CD", "FILE_PATH"))
+    files$CURRENT == TRUE,
+    select = c("PRJ_CD", "FILE_PATH")
+  )
   download_pt_files(files, target_dir, xlsx_toc, create_target_dir)
-
 }

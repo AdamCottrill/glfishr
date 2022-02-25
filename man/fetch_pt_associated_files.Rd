@@ -46,11 +46,15 @@ selected reports to a target directory.
 }
 \examples{
 \donttest{
-reports <- fetch_pt_associated_files(list(lake = "ON", year__gte = 2012,
-year__lte = 2018))
+reports <- fetch_pt_associated_files(list(
+  lake = "ON", year__gte = 2012,
+  year__lte = 2018
+))
 
-reports <- fetch_pt_associated_files(list(lake = "HU", year__gte = 2012,
-prj_cd__like='006', report_type='prtocol'))
+reports <- fetch_pt_associated_files(list(
+  lake = "HU", year__gte = 2012,
+  prj_cd__like = "006", report_type = "prtocol"
+))
 
 reports <- fetch_pt_associated_files(list(lake = "ER", protocol = "TWL"))
 

@@ -51,7 +51,6 @@ filters <- list(
   sidep__lte = 40
 )
 fn124 <- get_FN124(filters)
-
 }
 \author{
 Jeremy Holden \email{jeremy.holden@ontario.ca}

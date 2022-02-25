@@ -46,7 +46,7 @@ keys (query parameters)
 }
 \examples{
 
-sc125Lam <- get_SC125Lam(list(lake = "HU", spc = "081", year=2000))
+sc125Lam <- get_SC125Lam(list(lake = "HU", spc = "081", year = 2000))
 
 
 filters <- list(lake = "HU", spc = "076")

@@ -9,7 +9,7 @@
 #' record based on several attributes of the project such as
 #' project code, or part of the project code, lake, first year, last
 #' year, contact, etc.
-#'#'
+#' #'
 #' Use ~show_filters("sc011")~ to see the full list of available filter
 #' keys (query parameters)
 #'
@@ -33,11 +33,10 @@
 #' sc011 <- get_SC011(list(lake = "HU", prj_cd__like = "_001"))
 #'
 #' sc011 <- get_SC011(list(lake = "HU", protocol = "USA"), show_id = TRUE)
-get_SC011 <- function(filter_list = list(), show_id = FALSE, to_upper=TRUE) {
-
+get_SC011 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("sc011", filter_list, api_app="creels")
+  check_filters("sc011", filter_list, api_app = "creels")
   my_url <- sprintf(
     "%s/sc011/%s",
     get_sc_portal_root(),

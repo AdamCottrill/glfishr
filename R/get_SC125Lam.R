@@ -33,16 +33,17 @@
 #' @export
 #' @examples
 #'
-#' sc125Lam <- get_SC125Lam(list(lake = "HU", spc = "081", year=2000))
+#' sc125Lam <- get_SC125Lam(list(lake = "HU", spc = "081", year = 2000))
 #'
 #'
 #' filters <- list(lake = "HU", spc = "076")
 #' sc125Lam <- get_SC125Lam(filters)
 #' sc125Lam <- get_SC125Lam(filters, show_id = TRUE)
-get_SC125Lam <- function(filter_list = list(), show_id = FALSE, to_upper=TRUE) {
+get_SC125Lam <- function(filter_list = list(), show_id = FALSE,
+                         to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("sc125lamprey", filter_list, api_app='creels')
+  check_filters("sc125lamprey", filter_list, api_app = "creels")
   my_url <- sprintf(
     "%s/sc125lamprey/%s",
     get_sc_portal_root(),

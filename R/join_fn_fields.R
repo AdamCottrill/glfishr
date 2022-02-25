@@ -28,18 +28,17 @@
 #'
 #' @examples
 #' prj_cd <- "LHA_IA10_006"
-#' fn121 <- get_FN121(list(prj_cd=prj_cd))
+#' fn121 <- get_FN121(list(prj_cd = prj_cd))
 #' fn123 <- get_FN123(list(prj_cd = prj_cd, spc = "091"))
 #'
-#' #add site depth to each catch count record:
-#' fn123 <- join_fn_fields(fn121, fn123, c('SIDEP'), all.x=TRUE)
+#' # add site depth to each catch count record:
+#' fn123 <- join_fn_fields(fn121, fn123, c("SIDEP"), all.x = TRUE)
 #'
-#' #add gear to the FN121 table:
-#' fn028 <- get_FN028(list(prj_cd=prj_cd))
-#' fn121 <- join_fn_fields(fn028, fn121, c('GEAR'))
+#' # add gear to the FN121 table:
+#' fn028 <- get_FN028(list(prj_cd = prj_cd))
+#' fn121 <- join_fn_fields(fn028, fn121, c("GEAR"))
 #' # then add gear and site depth to each catch count record:
-#' fn123 <- join_fn_fields(fn121, fn123, c('GEAR'))
-#'
+#' fn123 <- join_fn_fields(fn121, fn123, c("GEAR"))
 join_fn_fields <- function(parent, child, parent_fields, ...) {
   fn_keys <- c(
     "prj_cd", "ssn", "space", "mode", "sama", "sam", "eff", "spc",
@@ -52,9 +51,9 @@ join_fn_fields <- function(parent, child, parent_fields, ...) {
   parent_keys <- names(parent)[names(parent) %in% fn_keys]
 
   common_keys <- intersect(child_keys, parent_keys)
-  #check_parent_keys() - if the common keys don't uniquely identify
-  #our parent records, we need to stop - otherwize we end up with a
-  #cartesian product.
+  # check_parent_keys() - if the common keys don't uniquely identify
+  # our parent records, we need to stop - otherwize we end up with a
+  # cartesian product.
   check_common_keys <- function(parent_data, flds) {
     tmp <- stats::aggregate(subset(parent_data, select = flds),
       by = subset(parent_data, select = flds),
@@ -64,8 +63,10 @@ join_fn_fields <- function(parent, child, parent_fields, ...) {
   }
 
   if (!check_common_keys(parent, common_keys)) {
-    stop(paste0("Shared key fields do not uniquely identify parent records. /n",
-      "You may need to add fields through an intermediate table first."))
+    stop(paste0(
+      "Shared key fields do not uniquely identify parent records. /n",
+      "You may need to add fields through an intermediate table first."
+    ))
   }
 
   if (!missing(parent_fields)) {

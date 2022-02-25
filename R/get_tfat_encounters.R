@@ -36,10 +36,12 @@
 #'
 #' # Fish that were sampled in Lake Superior and had yellow OMNR tag applied,
 #' # or had a yellow omnr tag on recapture
-#' encounters <- get_tfat_encounters(list(lake = "SU", tagdoc__endswith = "012"))
+#' filters <- list(lake = "SU", tagdoc__endswith = "012")
+#' encounters <- get_tfat_encounters(filters)
 #'
 #' # recovered walleye or musky
-#' encounters <- get_tfat_encounters(list(spc = c("334", "132"), tagstat = "C"))
+#' filters <- list(spc = c("334", "132"), tagstat = "C")
+#' encounters <- get_tfat_encounters(filters)
 get_tfat_encounters <- function(filter_list = list()) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)

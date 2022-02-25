@@ -30,11 +30,15 @@
 #' @seealso [fetch_pt_reports()]
 #' @examples
 #'
-#' reports <- get_pt_reports(list(lake = "ON", year__gte = 2012,
-#' year__lte = 2018))
+#' reports <- get_pt_reports(list(
+#'   lake = "ON", year__gte = 2012,
+#'   year__lte = 2018
+#' ))
 #'
-#' reports <- get_pt_reports(list(lake = "HU", year__gte = 2012,
-#' prj_cd__like='006', report_type='prtocol'))
+#' reports <- get_pt_reports(list(
+#'   lake = "HU", year__gte = 2012,
+#'   prj_cd__like = "006", report_type = "prtocol"
+#' ))
 #'
 #' reports <- get_pt_reports(list(lake = "ER"))
 #'
@@ -42,12 +46,10 @@
 #' reports <- get_pt_reports(filters)
 #'
 #' reports <- get_pt_reports(list(lake = "HU"))
-#'
-get_pt_reports <- function(filter_list = list(), to_upper=TRUE) {
-
+get_pt_reports <- function(filter_list = list(), to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("reports", filter_list, api_app="project_tracker/api")
+  check_filters("reports", filter_list, api_app = "project_tracker/api")
   my_url <- sprintf(
     "%s/reports/%s",
     get_pt_portal_root(),
@@ -55,7 +57,7 @@ get_pt_reports <- function(filter_list = list(), to_upper=TRUE) {
   )
 
   payload <- api_to_dataframe(my_url, recursive = recursive)
-  payload <- prepare_payload(payload, to_upper=to_upper)
+  payload <- prepare_payload(payload, to_upper = to_upper)
 
   return(payload)
 }

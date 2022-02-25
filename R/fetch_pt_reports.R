@@ -36,11 +36,15 @@
 #' @seealso [fetch_pt_reports()]
 #' @examples
 #' \donttest{
-#' reports <- fetch_pt_reports(list(lake = "ON", year__gte = 2012,
-#' year__lte = 2018))
+#' reports <- fetch_pt_reports(list(
+#'   lake = "ON", year__gte = 2012,
+#'   year__lte = 2018
+#' ))
 #'
-#' reports <- fetch_pt_reports(list(lake = "HU", year__gte = 2012,
-#' prj_cd__like='006', report_type='prtocol'))
+#' reports <- fetch_pt_reports(list(
+#'   lake = "HU", year__gte = 2012,
+#'   prj_cd__like = "006", report_type = "prtocol"
+#' ))
 #'
 #' reports <- fetch_pt_reports(list(lake = "ER", protocol = "TWL"))
 #'
@@ -50,14 +54,14 @@
 #' reports <- fetch_pt_reports(list(lake = "HU", protocol = "USA"))
 #' }
 #'
-fetch_pt_reports  <- function(filter_list, target_dir, xlsx_toc="report_toc.xlsx", create_target_dir=TRUE){
-
+fetch_pt_reports <- function(filter_list, target_dir,
+                             xlsx_toc = "report_toc.xlsx",
+                             create_target_dir = TRUE) {
   reports <- get_pt_reports(filter_list)
   reports <- subset(reports,
-    reports$CURRENT==TRUE,
-    select=c("PRJ_CD", "PRJ_NM", "REPORT_TYPE", "REPORT_PATH"))
+    reports$CURRENT == TRUE,
+    select = c("PRJ_CD", "PRJ_NM", "REPORT_TYPE", "REPORT_PATH")
+  )
 
   download_pt_files(reports, target_dir, xlsx_toc, create_target_dir)
-
-
 }

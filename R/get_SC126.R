@@ -45,7 +45,7 @@
 #' filters <- list(lake = "HU", spc = "076", grp = "55")
 #' sc126 <- get_SC126(filters)
 #' sc126 <- get_SC126(filters, show_id = TRUE)
-get_SC126 <- function(filter_list = list(), show_id = FALSE, to_upper=TRUE) {
+get_SC126 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("sc126", filter_list)

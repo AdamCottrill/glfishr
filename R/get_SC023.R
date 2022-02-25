@@ -26,10 +26,10 @@
 #'
 #' sc023 <- get_SC023(list(prj_cd = "LHA_IA19_812"))
 #' sc023 <- get_SC023(list(prj_cd = "LHA_IA19_812"), show_id = TRUE)
-get_SC023 <- function(filter_list = list(), show_id = FALSE, to_upper=TRUE) {
+get_SC023 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("sc023", filter_list, api_app='creels')
+  check_filters("sc023", filter_list, api_app = "creels")
   my_url <- sprintf(
     "%s/sc023/%s",
     get_sc_portal_root(),

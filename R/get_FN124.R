@@ -39,8 +39,7 @@
 #'   sidep__lte = 40
 #' )
 #' fn124 <- get_FN124(filters)
-#'
-get_FN124 <- function(filter_list = list(), show_id = FALSE, to_upper=TRUE) {
+get_FN124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("fn124", filter_list)

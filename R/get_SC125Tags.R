@@ -30,15 +30,15 @@
 #' @return dataframe
 #' @export
 #' @examples
-#'#'
+#' #'
 #' filters <- list(lake = "HU", spc = "075")
 #' sc125Tags <- get_SC125Tags(filters)
 #' sc125Tags <- get_SC125Tags(filters, show_id = TRUE)
 get_SC125Tags <- function(filter_list = list(), show_id = FALSE,
-                          to_upper=TRUE) {
+                          to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("sc125tags", filter_list, api_app="creels")
+  check_filters("sc125tags", filter_list, api_app = "creels")
   my_url <- sprintf(
     "%s/sc125tags/%s",
     get_sc_portal_root(),

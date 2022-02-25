@@ -24,11 +24,11 @@
 #' @export
 #' @examples
 #'
-#' ptype <- get_gear_process_types(list(gr="GL10"))
-#' ptype <- get_gear_process_types(list(gr=c("GL10", "GL21")))
-#' ptype <- get_gear_process_types(list(gr__like="GL1"))
-
-get_gear_process_types <- function(filter_list = list(), show_id = FALSE, to_upper=TRUE) {
+#' ptype <- get_gear_process_types(list(gr = "GL10"))
+#' ptype <- get_gear_process_types(list(gr = c("GL10", "GL21")))
+#' ptype <- get_gear_process_types(list(gr__like = "GL1"))
+get_gear_process_types <- function(filter_list = list(), show_id = FALSE,
+                                   to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("gear_effort_process_types", filter_list)

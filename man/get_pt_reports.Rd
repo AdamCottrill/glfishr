@@ -37,11 +37,15 @@ target directory.
 }
 \examples{
 
-reports <- get_pt_reports(list(lake = "ON", year__gte = 2012,
-year__lte = 2018))
+reports <- get_pt_reports(list(
+  lake = "ON", year__gte = 2012,
+  year__lte = 2018
+))
 
-reports <- get_pt_reports(list(lake = "HU", year__gte = 2012,
-prj_cd__like='006', report_type='prtocol'))
+reports <- get_pt_reports(list(
+  lake = "HU", year__gte = 2012,
+  prj_cd__like = "006", report_type = "prtocol"
+))
 
 reports <- get_pt_reports(list(lake = "ER"))
 
@@ -49,7 +53,6 @@ filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
 reports <- get_pt_reports(filters)
 
 reports <- get_pt_reports(list(lake = "HU"))
-
 }
 \seealso{
 \code{\link[=fetch_pt_reports]{fetch_pt_reports()}}

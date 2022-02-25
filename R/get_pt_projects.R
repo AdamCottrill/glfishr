@@ -22,11 +22,15 @@
 #' @export
 #' @examples
 #'
-#' projects <- get_pt_projects(list(lake = "ON", year__gte = 2012,
-#' year__lte = 2018))
+#' projects <- get_pt_projects(list(
+#'   lake = "ON", year__gte = 2012,
+#'   year__lte = 2018
+#' ))
 #'
-#' projects <- get_pt_projects(list(lake = "HU", year__gte = 2012,
-#' prj_cd__like='006', report_type='prtocol'))
+#' projects <- get_pt_projects(list(
+#'   lake = "HU", year__gte = 2012,
+#'   prj_cd__like = "006", report_type = "prtocol"
+#' ))
 #'
 #' projects <- get_pt_projects(list(lake = "ER"))
 #'
@@ -34,12 +38,10 @@
 #' projects <- get_pt_projects(filters)
 #'
 #' projects <- get_pt_projects(list(lake = "HU"))
-#'
-get_pt_projects <- function(filter_list = list(), to_upper=TRUE) {
-
+get_pt_projects <- function(filter_list = list(), to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("projects", filter_list, api_app="project_tracker/api")
+  check_filters("projects", filter_list, api_app = "project_tracker/api")
   my_url <- sprintf(
     "%s/projects/%s",
     get_pt_portal_root(),
@@ -47,7 +49,7 @@ get_pt_projects <- function(filter_list = list(), to_upper=TRUE) {
   )
 
   payload <- api_to_dataframe(my_url, recursive = recursive)
-  payload <- prepare_payload(payload, to_upper=to_upper)
+  payload <- prepare_payload(payload, to_upper = to_upper)
 
   return(payload)
 }

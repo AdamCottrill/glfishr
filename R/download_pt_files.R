@@ -33,47 +33,59 @@
 #' @return dataframe
 #'
 #'
-download_pt_files  <- function(file_list, target_dir, xlsx_toc="reports_toc.xlsx", create_target_dir=TRUE){
-
-  if(missing(target_dir)){
+download_pt_files <- function(file_list, target_dir,
+                              xlsx_toc = "reports_toc.xlsx",
+                              create_target_dir = TRUE) {
+  if (missing(target_dir)) {
     stop("a target directory was not provided")
   }
 
-  if (!dir.exists(target_dir)){
-    if(create_target_dir){
+  if (!dir.exists(target_dir)) {
+    if (create_target_dir) {
       dir.create(target_dir, showWarnings = FALSE)
     } else {
-      stop(sprintf("The target directory (%s) does not exist. Would you like to create it?",
-        target_dir))
+      stop(sprintf(
+        paste0(
+          "The target directory (%s) does not exist.",
+          " Would you like to create it?"
+        ),
+        target_dir
+      ))
     }
   }
 
-  for (i in seq(nrow(file_list))){
-    filename <- paste0(get_domain(), 'project_tracker/serve_file/', file_list[,ncol(file_list)][i])
+  for (i in seq(nrow(file_list))) {
+    filename <- paste0(
+      get_domain(),
+      "project_tracker/serve_file/",
+      file_list[, ncol(file_list)][i]
+    )
     print(sprintf("downloading %s", filename))
-    trg = file.path(target_dir, basename(filename))
-    utils::download.file(filename, trg, mode = 'wb')
+    trg <- file.path(target_dir, basename(filename))
+    utils::download.file(filename, trg, mode = "wb")
   }
 
-  if(grepl("\\.xlsx$", xlsx_toc)) {
-
+  if (grepl("\\.xlsx$", xlsx_toc)) {
     link_col <- ncol(file_list)
     link_style <- openxlsx::createStyle(
       fontColour = "blue",
       textDecoration = c("underline")
     )
-    file_list[,ncol(file_list)] <- sprintf('=HYPERLINK("%s","%s")',
-       basename(file_list[,link_col]),
-       basename(file_list[,link_col]))
-    class(file_list[,ncol(file_list)]) <- "formula"
+    file_list[, ncol(file_list)] <- sprintf(
+      '=HYPERLINK("%s","%s")',
+      basename(file_list[, link_col]),
+      basename(file_list[, link_col])
+    )
+    class(file_list[, ncol(file_list)]) <- "formula"
 
     wb <- openxlsx::createWorkbook()
     openxlsx::addWorksheet(wb, "Files")
-    openxlsx::writeData(wb, sheet =1, x = file_list)
-    openxlsx::addStyle(wb, "Files", link_style, rows=2:(1 + nrow(file_list)), cols=link_col)
+    openxlsx::writeData(wb, sheet = 1, x = file_list)
+    openxlsx::addStyle(wb, "Files", link_style,
+      rows = 2:(1 + nrow(file_list)), cols = link_col
+    )
     xlsx_file <- file.path(target_dir, xlsx_toc)
     openxlsx::saveWorkbook(wb, xlsx_file, overwrite = TRUE)
     print(paste0("Done. See:  ", xlsx_file))
   }
-
 }

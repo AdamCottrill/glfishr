@@ -52,7 +52,7 @@
 #'
 #' fn125 <- get_FN125(list(prj_cd = "LHA_IA19_812"))
 #' fn125 <- get_FN125(list(prj_cd = "LHA_IA19_812"), show_id = TRUE)
-get_FN125 <- function(filter_list = list(), show_id = FALSE, to_upper=TRUE) {
+get_FN125 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   check_filters("fn125", filter_list)
   query_string <- build_query_string(filter_list)
