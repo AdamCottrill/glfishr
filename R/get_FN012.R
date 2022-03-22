@@ -1,12 +1,12 @@
 #' Get FN012 - Sampling specs (species and group) from FN_Portal API
 #'
 #' This function accesses the api endpoint for FN012 records.
-#' FN012 records contain a list of anticipated species for a project and the 
+#' FN012 records contain a list of anticipated species for a project and the
 #' likely length and weight ranges for those species. These constraints are used
 #' by ProcVal to check that biodata for fish caught during the project is
-#' reasonable. The FN012 records contain information like minimum and maximum 
-#' TLEN, FLEN, RWT, and K values for each species. This function takes an 
-#' optional filter list which can be used to return records based on several 
+#' reasonable. The FN012 records contain information like minimum and maximum
+#' TLEN, FLEN, RWT, and K values for each species. This function takes an
+#' optional filter list which can be used to return records based on several
 #' attributes of the project such as protocol, lake, project code, and species.
 #'
 #' See
@@ -30,7 +30,6 @@
 #'
 #' filters <- list(lake = "HU", prj_cd = c("LHA_IA21_823", "LHA_IA20_812"))
 #' fn012 <- get_FN012(filters)
-#'
 get_FN012 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
@@ -42,6 +41,6 @@ get_FN012 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   )
   payload <- api_to_dataframe(my_url, recursive = recursive)
   payload <- prepare_payload(payload, show_id, to_upper)
-  
+
   return(payload)
 }
