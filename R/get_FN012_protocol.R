@@ -36,7 +36,7 @@
 get_FN012_protocol <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("fn011", filter_list)
+  check_filters("fn012_protocol", filter_list)
   my_url <- sprintf(
     "%s/fn012_protocol/%s",
     get_fn_portal_root(),
