@@ -67,10 +67,29 @@ flen, rwt etc) typically have the following filter expressions available:
 
 Many of these filters are illustrated in the following examples, more
 detailed infromation can be found using the `show_filters()` function
-that takes a table name, and optionally, a partial filter name to match
-against.  `show_filters()` will print out all of the filters available for that
-table and, if appropriate, provide additional information on expected
-format (eg. "format: yyyy-mm-dd").
+that takes a table name, and optionally, a partial filter name to
+match against.  `show_filters()` will print out all of the filters
+available for that table and, if appropriate, provide additional
+information on expected format (eg. "format: yyyy-mm-dd").  If no
+endpoint or table name is provided, `show_filters()` will display the
+names of the filterable endpoints that are currently available.
+
+Most of the functions accept a list of filters that can be used to
+select the data that is returned from the Great Lakes Stocking
+Database.  The list forms a key-value pair that specified the filter
+to be applied and the value of the filter.
+
+
+```{r show_filters }
+
+show_filters()
+
+show_filters("fn011")
+
+show_filters("fn125", filter_like="tlen")
+
+```
+
 
 
 ## Load glfishr

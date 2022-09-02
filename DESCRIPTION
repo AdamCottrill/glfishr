@@ -1,11 +1,20 @@
 Package: glfishr
 Title: Fetch fisheries assessment data from the FN Portal
-Version: 2022.06.01
+Version: 2022.09.02
 Authors@R:
-    person(given = "Adam",
+    c(person(given = "Adam",
            family = "Cottrill",
            role = c("aut", "cre"),
-           email = "adam.cottrill@ontario.ca")
+           email = "adam.cottrill@ontario.ca"),
+    person(given = "Rachel",
+           family = "Henderson",
+           role = "ctb",
+           email = "rachel.henderson@ontario.ca"),
+    person(given = "Jeremy",
+           family = "Holden",
+           role = "ctb",
+           email = "jeremy.holden@ontario.ca")
+           )
 Description: glfishr contains a series of R functions that are
     intended to make it easy to get fisheries assessment data from the
     fn_portal api and into R for subsequent analysis and reporting.
