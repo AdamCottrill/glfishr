@@ -23,7 +23,7 @@
 #' 
 #' FN122_NA1 <- exceed_limit(get_FN122, FN011$PRJ_CD, list(gr = "NA1"))
 #' 
-#' FN125_NA1 <- exceed_limit(get_FN125, FN011$PRJ_CD, list(gr = "NA1"))
+#' FN125_NA1 <- exceed_limit(get_FN125, FN011$PRJ_CD, list(spc = c(121, 331, 334)))
 exceed_limit <- function(get_fun, prj_cds, extra_filters_as_list = NULL) {
   
   df_list <- lapply(1:length(prj_cds), function(i) {
