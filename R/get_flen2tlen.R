@@ -17,7 +17,7 @@
 #' @examples
 #'
 #' flen2tlen <- get_flen2tlen()
-#' flen2tlen <- get_flen2tlen(list(spc_nmco_like = "trout"))
+#' flen2tlen <- get_flen2tlen(list(spc_nmco__like = "trout"))
 get_flen2tlen <- function(filter_list = list(), to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   # TODO - create swagger endpoint for common api. luckly this function
