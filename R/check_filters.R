@@ -19,11 +19,15 @@
 #' check_filters("fn125", c("year", "prj_cd", "red", "yellow"))
 #' check_filters("foo", c("year", "prj_cd"))
 check_filters <- function(endpoint, filters, api_app = "fn_portal") {
+  
+  common_filters <- data.frame(name = c("mu_type"),
+                               description = c(NA))
+  
   if (!exists("api_filters")) get_api_filters(api_app = api_app)
 
   endpoint <- tolower(endpoint)
 
-  known_filters <- api_filters[[endpoint]]
+  known_filters <- rbind(api_filters[[endpoint]], common_filters)
   if (is.null(known_filters)) {
     known_filters <- refresh_filters(endpoint, api_app = api_app)
   }
