@@ -24,6 +24,10 @@
 #' @param to_upper - should the names of the dataframe be converted to
 #' upper case?
 #'
+#' @param uncount - should the binned data be expanded to represent
+#' indivual measurements.  A FN124 record with sizcnt=5 will be
+#' repeated 5 times in the returned data frame.
+#'
 #' @author Jeremy Holden \email{jeremy.holden@@ontario.ca}
 #' @return dataframe
 #' @export
@@ -40,7 +44,9 @@
 #' )
 #' fn124 <- get_FN124(filters)
 #'
-#' LOA_IA21_TW1 <- get_FN124(list(prj_cd = "LHA_IA21_TW1"), uncount = TRUE)
+#' LOA_IA21_TW1 <- get_FN124(list(prj_cd = "LOA_IA21_TW1"),
+#'     uncount = TRUE)
+#'
 get_FN124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, uncount = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)

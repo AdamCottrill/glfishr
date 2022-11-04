@@ -4,7 +4,7 @@
 \alias{show_filters}
 \title{Show filters available on the provided api endpoint}
 \usage{
-show_filters(endpoint, filter_like = "")
+show_filters(endpoint = "", filter_like = "")
 }
 \arguments{
 \item{endpoint}{\itemize{
@@ -20,7 +20,8 @@ Most of the fn_portal API endpoints have a large number of
 available filters.  This function takes and api endpoint name and
 prints out all of the available filters.  If 'filter_like' is
 provided, only those filters that contain the provided string are
-printed.
+printed. If no endpoint name is provided, a list of available
+endpoints will be displayed.
 }
 \details{
 See

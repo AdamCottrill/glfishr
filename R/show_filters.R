@@ -4,7 +4,8 @@
 #' available filters.  This function takes and api endpoint name and
 #' prints out all of the available filters.  If 'filter_like' is
 #' provided, only those filters that contain the provided string are
-#' printed.
+#' printed. If no endpoint name is provided, a list of available
+#' endpoints will be displayed.
 #'
 #' See
 #' http://10.167.37.157/fn_portal/redoc/#operation/fn_011_list for the
@@ -20,18 +21,25 @@
 #' show_filters("fn125")
 #' show_filters("fn125", filter_like = "prj")
 #' show_filters("foo")
-show_filters <- function(endpoint, filter_like = "") {
-  endpoint <- tolower(endpoint)
-  api_app <- if (substr(endpoint, 1, 2) == "fn") "fn_portal" else "creels"
-
-  if (!exists("api_filters")) get_api_filters(api_app = api_app)
-  filters <- api_filters[[endpoint]]
-  if (is.null(filters)) {
-    filters <- refresh_filters(endpoint, api_app = api_app)
-  }
-  if (!filter_like == "") {
-    print(subset(filters, grepl(filter_like, filters$name)))
+show_filters <- function(endpoint = "", filter_like = "") {
+  if (endpoint == "") {
+    msg <-
+      "An endpoint name needs to be provided. Currently avaliable endpoint names are:\n"
+    cat(msg)
+    print(names(api_filters))
   } else {
-    print(filters)
+    endpoint <- tolower(endpoint)
+    api_app <- if (substr(endpoint, 1, 2) == "fn") "fn_portal" else "creels"
+
+    if (!exists("api_filters")) get_api_filters(api_app = api_app)
+    filters <- api_filters[[endpoint]]
+    if (is.null(filters)) {
+      filters <- refresh_filters(endpoint, api_app = api_app)
+    }
+    if (!filter_like == "") {
+      print(subset(filters, grepl(filter_like, filters$name)))
+    } else {
+      print(filters)
+    }
   }
 }

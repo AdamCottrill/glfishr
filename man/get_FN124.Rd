@@ -4,7 +4,12 @@
 \alias{get_FN124}
 \title{Get FN124 - Length Frequency Counts from FN_Portal API}
 \usage{
-get_FN124(filter_list = list(), show_id = FALSE, to_upper = TRUE)
+get_FN124(
+  filter_list = list(),
+  show_id = FALSE,
+  to_upper = TRUE,
+  uncount = FALSE
+)
 }
 \arguments{
 \item{filter_list}{list}
@@ -17,20 +22,26 @@ as part of the data frame, use 'show_id = TRUE'.}
 \item should the names of the dataframe be converted to
 upper case?
 }}
+
+\item{uncount}{\itemize{
+\item should the binned data be expanded to represent
+indivual measurements.  A FN124 record with sizcnt=5 will be
+repeated 5 times in the returned data frame.
+}}
 }
 \value{
 dataframe
 }
 \description{
-This function accesses the api endpoint to for FN124 records from
+This function accesses the api endpoint for FN124 records from
 the FN_Portal. FN124 records contain information about the length frequency
-by species for each effort in a sample.  For most gill
+by species for each effort in a sample. For most gill
 netting projects this corresponds to catches within a single panel
 of a particular mesh size within a net set (gang). Group (GRP) is
 occasionally included to further sub-divide the catch into user
-defined groups that are usually specific to the project.  This
+defined groups that are usually specific to the project. This
 function takes an optional filter list which can be used to return
-record based on several attributes of the catch including species,
+record based on several attributes of the catch including species
 or group code but also attributes of the effort, the sample or the
 project(s) that the catches were made in.
 }
@@ -41,7 +52,7 @@ for the full list of available filter keys (query parameters)
 }
 \examples{
 
-fn123 <- get_FN124(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
+fn124 <- get_FN124(list(lake = "ON", year = 2021, spc = "334"))
 
 filters <- list(
   lake = "ON",
@@ -51,6 +62,10 @@ filters <- list(
   sidep__lte = 40
 )
 fn124 <- get_FN124(filters)
+
+LOA_IA21_TW1 <- get_FN124(list(prj_cd = "LOA_IA21_TW1"),
+    uncount = TRUE)
+
 }
 \author{
 Jeremy Holden \email{jeremy.holden@ontario.ca}

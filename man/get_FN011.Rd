@@ -49,7 +49,9 @@ fn011 <- get_FN011(filters)
 fn011 <- get_FN011(list(lake = "HU", prj_cd__like = "_006"))
 
 fn011 <- get_FN011(list(lake = "HU", protocol = "USA"))
-fn011 <- get_FN011(list(lake = "HU", protocol = "USA"), show_id = TRUE)
+fn011 <- get_FN011(list(lake = "HU", protocol = "USA"), show_id =
+TRUE)
+
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}
