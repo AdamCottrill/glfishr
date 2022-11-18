@@ -19,12 +19,16 @@ need to update the value returned by this function.
 }
 \details{
 To use a local version of glfishr api during development, set the
-local environment variable to True:\preformatted{>  Sys.setenv(FN_PORTAL_DEV=TRUE)
-}
+local environment variable to True:
 
-By default, it is assumed that the api is being served on #' localhost and\preformatted{ > Sys.setenv(FN_PORTAL_HOST='<some-ip-address>')
+\if{html}{\out{<div class="sourceCode">}}\preformatted{>  Sys.setenv(FN_PORTAL_DEV=TRUE)
+}\if{html}{\out{</div>}}
+
+By default, it is assumed that the api is being served on #' localhost and
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ > Sys.setenv(FN_PORTAL_HOST='<some-ip-address>')
  > Sys.setenv(FN_PORTAL_PORT=8080)
-}
+}\if{html}{\out{</div>}}
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

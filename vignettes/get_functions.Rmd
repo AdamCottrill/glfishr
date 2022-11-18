@@ -1,0 +1,187 @@
+---
+title: "Introduction to glfishr"
+author: "Rachel Henderson"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+lang: "en"
+vignette: >
+  %\VignetteIndexEntry{Introduction to glfishr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The `glfishr` package provides functions for fetching Great Lakes fisheries assessment data from GLIS (Great Lakes Information System). Data is returned in a dataframe similarly to a table or query in Access. `glfishr` functions can be used to fetch a whole table or part of a table based on your request.
+
+## Fetching data with `get_FN*` functions
+
+All project data is fetched using a series of functions with the prefix `get_FN*` (with the exception of creel projects, which use `get_SC*`). The asterisk corresponds with a data table based on the FishNet II format. For example, to fetch FN011 data, use `get_FN011()`.
+
+Note: To keep this vignette compact, only the first 6 rows of the example tables will be shown.
+
+```{r}
+library(glfishr)
+options(width = 300)
+
+# Fetch the FN121 table for project LHA_IA21_823
+FN121_823 <- get_FN121(list(prj_cd = "LHA_IA21_823"))
+head(FN121_823)
+
+```
+
+
+## Creating a list of filters
+
+All `get_FN*` functions take in a *list* of filters. A list in R is a special data type created by listing items separated by commas in the parentheses of the `list()` function. In our case, we will create a list of filters to narrow down the data we fetch from `glfishr`. 
+
+You will always need to filter data by at least one parameter - otherwise you would be fetching every record from every lake! Even if you are just using one filter, you still must use `list()` inside the `get_FN*` function.
+
+
+
+```{r}
+# Get FN121 records for small-mesh (ON2) nets for project LHA_IA21_823
+FN121_823_ON <- get_FN121(list(prj_cd = "LHA_IA21_823", gr = "ON2"))
+head(FN121_823_ON)
+
+```
+
+You can define the list of filters as an object in R. This is particularly handy when you want to use the same filters to fetch data from more than one table:
+
+```{r}
+# Use the same list of filters to fetch the FN121, FN123, and FN125 
+# records from LHA_IA21_823 that correspond with small-mesh gill nets
+
+# Define your list of filters as an object with any name
+my_filters <- list(prj_cd = "LHA_IA21_823", gr = "ON2")
+
+# Use your list of filters in each function to avoid copying and pasting it each time
+FN121_823_ON <- get_FN121(my_filters)
+head(FN121_823_ON)
+
+FN123_823_ON <- get_FN123(my_filters)
+head(FN123_823_ON)
+
+FN125_823_ON <- get_FN125(my_filters)
+head(FN125_823_ON)
+```
+
+The relationship between parent and child tables means that filters can be applied to child tables even if the data corresponding to that filter is not displayed in the child table. In the example above, gear is not explicitly stored in the FN123 or FN125 tables, but we can still filter by gear. 
+
+## Choosing filters
+
+There is a long list of filters to choose from, as filters exist for every column in the database. Use the `show_filters()` function to display a dataframe of possible filters for a table and any notes about how to use that filter. 
+
+```{r}
+# Show filters for the FN125 table:
+show_filters("fn125")
+
+```
+
+To narrow down the list of filters, use `filter_like` to only show a list of filters that contain part of a given string.
+
+```{r}
+# Show filters for the FN125 table that contain `prj`:
+show_filters("fn125", filter_like = "prj")
+
+```
+
+You can also find a list of filters by following this link: http://10.167.37.157/fn_portal/redoc/#operation/
+
+## Efficient filter use
+
+You will likely want to filter not just by multiple criteria (PRJ_CD, gear, year, etc.), but by multiple values for each criteria. For example, you might want to fetch data for several species. To filter for multiple values, put them inside the function `c()`, which stands for 'concatenate'. Any filter with the description 'Multiple values may be separated by commas' can be used with `c()`.  
+
+```{r}
+# Fetch all Smallmouth and Largemouth Bass catch data from 2019 Lake Huron ESTN projects
+
+my_filters <- list(spc = c("316", "317"), year = 2019, protocol = "ESTN", lake = "HU")
+
+estn_19_bass <- get_FN123(my_filters)
+
+head(estn_19_bass)
+
+```
+
+This also works with filters that use the suffix 'not':
+
+```{r}
+# Get all projects that aren't from the Upper Great Lakes
+
+not_uglmu <- get_FN011(list(lake__not = c("HU", "SU")))
+
+head(not_uglmu)
+
+```
+
+## Filter syntax
+
+All filters are in lower case (e.g. prj_cd is correct, not PRJ_CD). The value you supply is also case sensitive:
+
+```{r}
+# This returns no results because the project code is incorrect
+lowercase_value <- get_FN011(list(prj_cd = "lha_ia21_823"))
+head(lowercase_value)
+
+# PRJ_CD is ignored and ALL records are returned
+uppercase_filter <- get_FN011(list(PRJ_CD = "LHA_IA21_823"))
+head(uppercase_filter)
+
+# This is the correct syntax
+correct_syntax <- get_FN011(list(prj_cd = "LHA_IA21_823"))
+head(correct_syntax)
+```
+
+Only an equals sign can be used with the `get_FN*` functions. In lieu of other comparison operators commonly used in R, a suffix is applied following **double** underscores: 
+
+- `gt`: greater than (>)
+- `gte`: greater than or equal to (>=)
+- `lt`: less than (<)
+- `lte`: less than or equal to (<=)
+- `not`: is not (!=)
+
+Underscores in filters that correspond directly to field names are used normally (e.g. prj_cd contains one underscore because it refers to the PRJ_CD field). For filters that use comparison operators ('not', 'gte', 'lte', etc.), that suffix follows *two* underscores. For example, `prj_cd__not` has two underscores between 'prj_cd' and 'not'. 
+
+
+```{r}
+# Fetch all Lake Huron BsM projects between 2019 and 2021:
+
+get_FN011(list(year__gte = 2019, year__lte = 2021, lake = "HU", protocol = "BSM"))
+
+```
+
+
+
+## Filtering by date and time
+
+Filtering by date and time works the same way as filtering by any other parameter. Ensure that you choose the correct filter, as there are several filters for dates and times (e.g. project date, set date, lift date). Dates and times must be entered in quotation marks in the format `yyyy-mm-dd` and `HH:MM`, respectively. Times are given in the 24-hour clock.
+
+```{r}
+# Fetch all projects on Lake Huron in August 2021
+aug_21_hu <- get_FN011(list(prj_date0__gte = "2021-08-01", prj_date0__lte = "2021-08-31", lake = "HU"))
+aug_21_hu
+
+# Fetch nighttime samples for project LHA_IA21_V01 (need to fix this for >20:00)
+night_goby <- get_FN121(list(set_time__lte = "08:00", prj_cd = "LHA_IA21_V01"))
+head(night_goby)
+
+```
+
+## ID and slug fields
+
+Two fields are automatically hidden from data fetched with `glfishr`: `ID` and `slug`. The `ID` field is a numeric ID assigned to each row in the database. The `slug` field is a human-readable identifier composed of FishNet II key fields (e.g. PRJ_CD, SAM, EFF, GRP, FISH). The `slug` field is particularly useful for tying external data back to our records (for example...), but its presence in a dataset can lead to challenges with joining data. 
+
+If you would like to see the `ID` and `slug` fields, include `show_id = TRUE` in the `get_FN*` function. By default `show_id` is set to `FALSE`. 
+
+```{r}
+
+FN125_823_slug <- get_FN125(list(prj_cd = "LHA_IA21_823"), show_id = TRUE)
+head(FN125_823_slug)
+
+```
+
