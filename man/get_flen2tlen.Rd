@@ -29,7 +29,7 @@ use show_filters('species_list') to see available filters.
 \examples{
 
 flen2tlen <- get_flen2tlen()
-flen2tlen <- get_flen2tlen(list(spc_nmco_like = "trout"))
+flen2tlen <- get_flen2tlen(list(spc_nmco__like = "trout"))
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}
