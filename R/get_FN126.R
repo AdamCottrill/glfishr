@@ -25,7 +25,7 @@
 #' @export
 #' @examples
 #'
-#' fn126 <- get_FN126(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
+#' fn126 <- get_FN126(list(lake = "ON", year = 2012, spc = "334", gr = "GL"))
 #'
 #' filters <- list(
 #'   lake = "ER",
