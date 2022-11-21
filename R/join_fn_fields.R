@@ -36,9 +36,9 @@
 #'
 #' # add gear to the FN121 table:
 #' fn028 <- get_FN028(list(prj_cd = prj_cd))
-#' fn121 <- join_fn_fields(fn028, fn121, c("GEAR"))
+#' fn121 <- join_fn_fields(fn028, fn121, c("GR"))
 #' # then add gear and site depth to each catch count record:
-#' fn123 <- join_fn_fields(fn121, fn123, c("GEAR"))
+#' fn123 <- join_fn_fields(fn121, fn123, c("GR"))
 join_fn_fields <- function(parent, child, parent_fields, ...) {
   fn_keys <- c(
     "prj_cd", "ssn", "space", "mode", "sama", "sam", "eff", "spc",

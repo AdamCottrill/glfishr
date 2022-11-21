@@ -34,7 +34,7 @@
 #'
 #' fn125Tags <- get_FN125Tags(list(
 #'   lake = "ON", year = 2019, spc =
-#'     "081", gear = "GL"
+#'     "081", gr = "GL"
 #' ))
 #'
 #'

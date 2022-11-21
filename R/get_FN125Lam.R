@@ -35,7 +35,7 @@
 #' @export
 #' @examples
 #'
-#' fn125Lam <- get_FN125Lam(list(lake = "ON", spc = "081", gear = "GL"))
+#' fn125Lam <- get_FN125Lam(list(lake = "ON", spc = "081", gr = "GL"))
 #'
 #' fn125Lam <- get_FN125Lam(list(
 #'   lake = "SU", spc = "081", year__gte = 2015,
