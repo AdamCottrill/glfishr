@@ -18,6 +18,7 @@ get_mu_list <- function(filter_list = list(), to_upper = TRUE) {
   # TODO - replace with function to get api domain for the common app when it
   # exists
   common_api_url <- "http://10.167.37.157/api/v1/common"
+  check_filters("common_filters", filter_list)
   my_url <- sprintf(
     "%s/management_units/%s",
     common_api_url,
