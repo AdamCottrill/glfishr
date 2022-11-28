@@ -42,7 +42,7 @@ for the full list of available filter keys (query parameters)
 \examples{
 
 
-fn125 <- get_FN125(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
+fn125 <- get_FN125(list(lake = "ON", year = 2012, spc = "334", gr = "GL"))
 
 filters <- list(
   lake = "ER",

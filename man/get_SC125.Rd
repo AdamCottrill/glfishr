@@ -39,7 +39,7 @@ keys (query parameters)
 \examples{
 
 
-sc125 <- get_SC125(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
+sc125 <- get_SC125(list(lake = "ON", year = 2012, spc = "334", gr = "GL"))
 
 filters <- list(
   lake = "ER",
