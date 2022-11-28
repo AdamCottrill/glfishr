@@ -33,6 +33,8 @@ api filter object does exist, it is populated before proceeding.
 \examples{
 check_filters("fn125", c("year", "prj_cd"))
 check_filters("fn125", c("year", "prj_cd", "red", "yellow"))
+check_filters("common_filters", c("mu_type"))
+check_filters("common_filters", c("mu_type", "taxon_name"))
 check_filters("foo", c("year", "prj_cd"))
 }
 \author{

@@ -27,7 +27,7 @@ species based on part of their common or scientific name.
 }
 \details{
 See
-http://10.167.37.157/fn_portal/redoc/#operation/species_list
+http://10.167.37.157/fn_portal/redoc/#operation/species_list_list
 for the full list of available filter keys (query parameters)
 }
 \examples{
