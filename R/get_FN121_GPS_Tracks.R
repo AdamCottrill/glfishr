@@ -42,12 +42,12 @@
 #' fn121_gps <- get_FN121_GPS(filters)
 #' fn121_gps <- get_FN121_GPS(list(lake = "HU", prj_cd__like = "_003"))
 #' fn121_gps <- get_FN121_GPS(list(lake = "HU", prj_cd__like = "_003"), show_id = TRUE)
-get_FN121_GPS <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+get_FN121_GPS_Tracks <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("fn121GpsTracks", filter_list)
   my_url <- sprintf(
-    "%s/fn121GPS/%s",
+    "%s/fn121GpsTracks/%s",
     get_fn_portal_root(),
     query_string
   )
