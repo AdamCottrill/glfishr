@@ -41,20 +41,10 @@ for the full list of available filter keys (query parameters)
 }
 \examples{
 
-TODO: Update with relevant examples when data exists in the portal
+TODO: Update with relevant examples when more data exists in the portal
 
-fn121_gps <- get_FN121_GPS(list(lake = "ON", year = 2012))
-fn121_gps <- get_FN121_GPS(list(
-  lake = "ER", protocol = "TWL",
-  sidep__lte = 20, year__gte = 2010
-))
-filters <- list(
-  lake = "SU",
-  prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN")
-)
-fn121_gps <- get_FN121_GPS(filters)
-fn121_gps <- get_FN121_GPS(list(lake = "HU", prj_cd__like = "_003"))
-fn121_gps <- get_FN121_GPS(list(lake = "HU", prj_cd__like = "_003"), show_id = TRUE)
+fn121_gps <- get_FN121_GPS_Tracks(list(lake = "HU", prj_cd__like = "_306"))
+fn121_gps <- get_FN121_GPS_Tracks(list(lake = "HU", prj_cd__like = "_306"), show_id = TRUE)
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}
