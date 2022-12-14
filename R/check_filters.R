@@ -24,8 +24,8 @@ check_filters <- function(endpoint, filters, api_app = "fn_portal") {
   
   #TODO: remove common_filters when api_app can be equal to "common"
   common_filters <- data.frame(name = c("mu_type", "lake", 'taxon', 'itiscode', 'taxon_name', 'taxon_label',
-                                        'taxonomic_rank', 'vertinvert', 'omnr_provincial_code'),
-                               description = c(NA, NA, NA, NA, NA, NA, NA, NA, NA))
+                                        'taxonomic_rank', 'vertinvert', 'omnr_provincial_code', 'page_size'),
+                               description = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA))
   
   if (!exists("api_filters")) get_api_filters(api_app = api_app)
   
