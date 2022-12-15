@@ -1,8 +1,8 @@
 #' download_pt_files - Download reports or associated files from
 #' project tracker
 #'
-#' THis is a utility function that is used by both fetch_pt_reports()
-#' and fetch_pt_asscoaited_files() to actually download the files they
+#' This is a utility function that is used by both fetch_pt_reports()
+#' and fetch_pt_associated_files() to actually download the files they
 #' return. The download logic is sufficiently similar for both
 #' function that it makes to encapsulate it in a single helper
 #' function.  This funtion takes a dataframe that contains a list of
