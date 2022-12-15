@@ -8,11 +8,11 @@
 #' milestone.  Valid report types are: "Prj Prop", "Prj Prop Pres",
 #' "procvallog", "ProjDescPres", "Prj Desc", "Protocol",
 #' "Field Report", "Prj Comp Rep", "Prj Comp Pres", "Sum Rep", and
-#' "Creel Estimates" . Use 'show_filter("reports")' to see the full list
+#' "Creel Estimates". Use 'show_filters("reports")' to see the full list
 #' of available filters.  This function returns a dataframe containing
 #' attributes of the report, including project code, report type, and
 #' the path to the report on the server. It is often uses in
-#' conjunction with [fetch_pt_associated_files()] to actually download the
+#' conjunction with [get_pt_associated_files()] to actually download the
 #' selected reports to a target directory.
 #'
 #' @param filter_list list - the filters used to select the projects
@@ -42,7 +42,7 @@
 #'
 #' reports <- fetch_pt_associated_files(list(
 #'   lake = "HU", year__gte = 2012,
-#'   prj_cd__like = "006", report_type = "prtocol"
+#'   prj_cd__like = "006", report_type = "Protocol"
 #' ))
 #'
 #' reports <- fetch_pt_associated_files(list(lake = "ER", protocol = "TWL"))
