@@ -1,13 +1,13 @@
 #' get_pt_associated_files - Project Tracker Associated Files
 #'
-#' This function accesses the api endpoint to for associated files that have
+#' This function accesses the api endpoint for associated files that have
 #' been uploaded to project tracker.  This api endpoint accepts a
-#' large number of filters associated with the project or report type.
+#' large number of filters associated with the project.
 #' Project specific filters include project code(s), years, lakes, and
-#' project lead.  Use 'show_filter("associated_file")' to see the full list
+#' project lead.  Use 'show_filters("associated_files")' to see the full list
 #' of available filters.  This function returns a dataframe containing
 #' attributes of the upload files, including project code, and
-#' the path to the report on the server. It is often uses in
+#' the path to the file on the server. It is often used in
 #' conjunction with [fetch_pt_associated_files()] to actually download the
 #' selected files to a target directory.
 #'
