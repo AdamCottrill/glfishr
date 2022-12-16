@@ -32,7 +32,7 @@ check_filters <- function(endpoint, filters, api_app = "fn_portal") {
   api_filters_manual <- api_filters
   api_filters_manual$common_filters <- common_filters
   
-  endpoint <- tolower(endpoint)
+  endpoint <- ifelse(tolower(endpoint)=="fn121gpstracks", "fn121GpsTracks", tolower(endpoint))
 
   known_filters <- api_filters_manual[[endpoint]]
   if (is.null(known_filters)) {
