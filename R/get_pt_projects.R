@@ -5,9 +5,9 @@
 #' associated with the project including spatial filters for buffered
 #' point, or region of interest.  Project specific filters include
 #' project code(s), years, lakes, and project lead.  Use
-#' 'show_filter("projects")' to see the full list of available
+#' 'show_filters("projects")' to see the full list of available
 #' filters.  This function returns a dataframe containing attributes
-#' of project including project code, project name, start and end
+#' of the project including project code, project name, start and end
 #' date, and project lead.
 #'
 #'
@@ -29,7 +29,7 @@
 #'
 #' projects <- get_pt_projects(list(
 #'   lake = "HU", year__gte = 2012,
-#'   prj_cd__like = "006", report_type = "prtocol"
+#'   prj_cd__like = "006"
 #' ))
 #'
 #' projects <- get_pt_projects(list(lake = "ER"))
