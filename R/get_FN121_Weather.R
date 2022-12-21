@@ -30,7 +30,6 @@
 #' TODO: Update with relevant examples when more data exists in the portal
 #'
 #' fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018))
-#' fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018), show_id = TRUE)
 get_FN121_Weather <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)

@@ -1,4 +1,4 @@
-#' Get FN125Lam - Lamprey Wound data from FN_Portal API
+#' Get FN125_Lam - Lamprey Wound data from FN_Portal API
 #'
 #' This function accesses the api endpoint to for FN125Lam
 #' records. FN125Lam records contain information about the individual
@@ -8,7 +8,7 @@
 #' capture lamprey wounding data in a more consistent fashion the
 #' basin, using the conventions described in Ebener et al. 2006.  The
 #' FN125Lam table captures data from individual lamprey wounds
-#' collected using those conventions.  A sampled fish with no
+#' collected using those conventions. A sampled fish with no
 #' observed wound will have a single record in this table (with
 #' lamijc value of 0), while fish with lamprey wounds, will have one
 #' record for every observed wound. This function takes an optional
@@ -35,21 +35,12 @@
 #' @export
 #' @examples
 #'
-#' fn125Lam <- get_FN125Lam(list(lake = "ON", spc = "081", gr = "GL"))
+#' fn125Lam <- get_FN125_Lamprey(list(lake = "ON", spc = "081", grtp = "GL"))
 #'
-#' fn125Lam <- get_FN125Lam(list(
+#' fn125Lam <- get_FN125_Lamprey(list(
 #'   lake = "SU", spc = "081", year__gte = 2015,
 #'   lamijc_type = c("A1", "A2", "A3")
 #' ))
-#'
-#' filters <- list(
-#'   lake = "ER",
-#'   protocol = "TWL",
-#'   spc = c("331", "334"),
-#'   year = 2010,
-#'   sidep__lte = 20
-#' )
-#' fn125Lam <- get_FN125Lam(filters)
 #'
 #' filters <- list(
 #'   lake = "SU",
@@ -57,12 +48,12 @@
 #'   eff = "051",
 #'   spc = "091"
 #' )
-#' fn125Lam <- get_FN125Lam(filters)
+#' fn125Lam <- get_FN125_Lamprey(filters)
 #'
 #' filters <- list(lake = "HU", spc = "076", grp = "55")
-#' fn125Lam <- get_FN125Lam(filters)
-#' fn125Lam <- get_FN125Lam(filters, show_id = TRUE)
-get_FN125Lam <- function(filter_list = list(), show_id = FALSE,
+#' fn125Lam <- get_FN125_Lamprey(filters)
+#' fn125Lam <- get_FN125_Lamprey(filters, show_id = TRUE)
+get_FN125_Lamprey <- function(filter_list = list(), show_id = FALSE,
                          to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
