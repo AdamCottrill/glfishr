@@ -1,4 +1,4 @@
-#' Get FN127 - Diet data from FN_Portal API
+#' Get FN127 - Age data from FN_Portal API
 #'
 #' This function accesses the api endpoint to for FN127 - age
 #' estimate/interpretations.  This function takes an optional filter
