@@ -1,4 +1,4 @@
-#' Get SC125Lam - Lamprey Wound data from Creel_Portal API
+#' Get SC125_Lamprey - Lamprey Wound data from Creel_Portal API
 #'
 #' This function accesses the api endpoint to for SC125 Lamprey
 #' records. SC125 Lam records contain information about the individual
@@ -18,7 +18,7 @@
 #' fish such as the species, or group code, or attributes of the
 #' interview, or the creel(s) that the samples were collected in.
 #'
-#' Use ~show_filters("sc125Lamprey")~ to see the full list of available filter
+#' Use ~show_filters("sc125lamprey")~ to see the full list of available filter
 #' keys (query parameters)
 #'
 #' @param filter_list list
@@ -33,13 +33,13 @@
 #' @export
 #' @examples
 #'
-#' sc125Lam <- get_SC125Lam(list(lake = "HU", spc = "081", year = 2000))
+#' sc125Lam <- get_SC125_Lamprey(list(lake = "HU", spc = "081", year = 2000))
 #'
 #'
 #' filters <- list(lake = "HU", spc = "076")
-#' sc125Lam <- get_SC125Lam(filters)
-#' sc125Lam <- get_SC125Lam(filters, show_id = TRUE)
-get_SC125Lam <- function(filter_list = list(), show_id = FALSE,
+#' sc125Lam <- get_SC125_Lamprey(filters)
+#' sc125Lam <- get_SC125_Lamprey(filters, show_id = TRUE)
+get_SC125_Lamprey <- function(filter_list = list(), show_id = FALSE,
                          to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)

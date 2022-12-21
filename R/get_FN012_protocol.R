@@ -1,4 +1,4 @@
-#' Get FN012_protocol - Sampling specs (species and group) for a
+#' Get FN012_Protocol - Sampling specs (species and group) for a
 #' specific lake and protocol from FN_Portal API
 #'
 #' This function accesses the api endpoint for FN012 Protocol List
@@ -28,12 +28,12 @@
 #' @export
 #' @examples
 #'
-#' fn012_protocol <- get_FN012_protocol(list(lake = "ON", protocol = "TWL"))
+#' fn012_protocol <- get_FN012_Protocol(list(lake = "ON", protocol = "TWL"))
 #'
-#' fn012_protocol <- get_FN012_protocol(list(lake = "HU", protocol = "BSM"))
+#' fn012_protocol <- get_FN012_Protocol(list(lake = "HU", protocol = "BSM"))
 #'
-#' fn012_protocol <- get_FN012_protocol(list(lake = "ER", protocol = "Hydro"))
-get_FN012_protocol <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+#' fn012_protocol <- get_FN012_Protocol(list(lake = "ER", protocol = "Hydro"))
+get_FN012_Protocol <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("fn012_protocol", filter_list)

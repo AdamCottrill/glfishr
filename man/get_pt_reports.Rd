@@ -18,8 +18,8 @@ converted to upper case?
 dataframe
 }
 \description{
-This function accesses the api endpoint to for associated files
-that have been uploaded to project tracker.  This api endpoint
+This function accesses the api endpoint for files associated with core reporting
+requirements that have been uploaded to project tracker.  This api endpoint
 accepts a large number of filters associated with the project or
 report type.  Project specific filters include project code(s),
 years, lakes, and project lead.  Reports can also be filtered by
@@ -28,10 +28,10 @@ their associated milestone.  Valid report types are: "Prj Prop",
 "Protocol", "Field Report", "Prj Comp Rep", "Prj Comp Pres",
 "Sum Rep", and "Creel Estimates" and can be passed in as a single
 string or as charcter vector of one or more report types. Use
-'show_filter("reports")' to see the full list of available filters.
+'show_filters("reports")' to see the full list of available filters.
 This function returns a dataframe containing attributes of the
 report, including project code, report type, and the path to the
-report on the server. It is often uses in conjunction with
+report on the server. It is often used in conjunction with
 \code{\link[=fetch_pt_reports]{fetch_pt_reports()}} to actually download the selected reports to a
 target directory.
 }
@@ -44,7 +44,7 @@ reports <- get_pt_reports(list(
 
 reports <- get_pt_reports(list(
   lake = "HU", year__gte = 2012,
-  prj_cd__like = "006", report_type = "prtocol"
+  prj_cd__like = "006", report_type = "Protocol"
 ))
 
 reports <- get_pt_reports(list(lake = "ER"))

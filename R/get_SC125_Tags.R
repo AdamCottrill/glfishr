@@ -1,4 +1,4 @@
-#' Get SC125Tags - Tagging data from SC_Portal API
+#' Get SC125_Tags - Tagging data from SC_Portal API
 #'
 #' This function accesses the api endpoint to for SC125Tags
 #' records. SC125Tags records contain information about the
@@ -7,7 +7,7 @@
 #' TAGDOC, TAGSTAT and TAGID.  This convention is fine as long a
 #' single biological sample only has a one tag. In recent years, it
 #' has been come increasingly common for fish to have multiple tags,
-#' or tag types associated with individudal sampling events. SC125Tag
+#' or tag types associated with individual sampling events. SC125Tag
 #' accommodates those events.  This function takes an optional filter
 #' list which can be used to return records based on several
 #' different attributes of the tag (tag type, colour, placement,
@@ -16,7 +16,7 @@
 #' the effort, the sample, or the project(s) that the samples were
 #' collected in.
 #'
-#' Use ~show_filters("sc125Tags")~ to see the full list
+#' Use ~show_filters("sc125tags")~ to see the full list
 #' of available filter keys (query parameters)
 #'
 #' @param filter_list list
@@ -32,9 +32,9 @@
 #' @examples
 #' #'
 #' filters <- list(lake = "HU", spc = "075")
-#' sc125Tags <- get_SC125Tags(filters)
-#' sc125Tags <- get_SC125Tags(filters, show_id = TRUE)
-get_SC125Tags <- function(filter_list = list(), show_id = FALSE,
+#' sc125Tags <- get_SC125_Tags(filters)
+#' sc125Tags <- get_SC125_Tags(filters, show_id = TRUE)
+get_SC125_Tags <- function(filter_list = list(), show_id = FALSE,
                           to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
