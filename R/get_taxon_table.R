@@ -31,10 +31,9 @@ get_taxon_table <- function(filter_list = list(), to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   # TODO - add check_filters() when there's a swagger endpoint for common api
   # check_filters("taxon_list", filter_list)
-  # TODO - replace with function to get api domain for the common app when it
-  # exists
+
   # TODO - add examples of new filters if/when they exist (e.g. taxon_label__like)
-  common_api_url <- "http://10.167.37.157/api/v1/common"
+  common_api_url <- get_common_portal_root()
   check_filters("common_filters", filter_list)
   my_url <- sprintf(
     "%s/taxon/%s",
