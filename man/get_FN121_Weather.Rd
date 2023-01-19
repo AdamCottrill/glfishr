@@ -43,7 +43,6 @@ for the full list of available filter keys (query parameters)
 TODO: Update with relevant examples when more data exists in the portal
 
 fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018))
-fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018), show_id = TRUE)
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

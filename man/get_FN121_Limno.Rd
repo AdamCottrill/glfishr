@@ -47,13 +47,13 @@ the full list of available filter keys (query parameters).
 # see the available filters that contain the string 'o2' (oxygen)
 show_filters("fn121limno", "o2")
 
-filter_list <- list(prj_cd = "LHA_IA14_801")
+filter_list <- list(prj_cd = "LEA_TR19_003")
 fn121_limno <- get_FN121_Limno(filter_list)
 
 # pass the same filter to our FN121 to get the associated net sets:
 
 fn121 <- get_FN121(filter_list)
-joined <- join_fn_fields(fn121, fn121limno)
+joined <- join_fn_fields(fn121, fn121_limno)
 # net sets are now associated with their limnological data:
 head(joined)
 }

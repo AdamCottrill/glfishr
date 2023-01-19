@@ -47,18 +47,7 @@ for the full list of available filter keys (query parameters)
 
 TODO: Update with relevant examples when data exists in the portal
 
-fn121_efish <- get_FN121_Electrofishing(list(lake = "ON", year = 2012))
-fn121_efish <- get_FN121_Electrofishing(list(
-  lake = "ER", protocol = "TWL",
-  sidep__lte = 20, year__gte = 2010
-))
-filters <- list(
-  lake = "SU",
-  prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN")
-)
-fn121_efish <- get_FN121_Electrofishing(filters)
-fn121_efish <- get_FN121_Electrofishing(list(lake = "HU", prj_cd__like = "_003"))
-fn121_efish <- get_FN121_Electrofishing(list(lake = "HU", prj_cd__like = "_003"), show_id = TRUE)
+fn121_efish <- get_FN121_Electrofishing(list(lake = "HU"))
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

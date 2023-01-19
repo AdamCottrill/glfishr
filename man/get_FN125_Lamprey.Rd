@@ -48,21 +48,12 @@ for the full list of available filter keys (query parameters)
 }
 \examples{
 
-fn125Lam <- get_FN125_Lamprey(list(lake = "ON", spc = "081", gr = "GL"))
+fn125Lam <- get_FN125_Lamprey(list(lake = "ON", spc = "081", grtp = "GL"))
 
 fn125Lam <- get_FN125_Lamprey(list(
   lake = "SU", spc = "081", year__gte = 2015,
   lamijc_type = c("A1", "A2", "A3")
 ))
-
-filters <- list(
-  lake = "ER",
-  protocol = "TWL",
-  spc = c("331", "334"),
-  year = 2010,
-  sidep__lte = 20
-)
-fn125Lam <- get_FN125_Lamprey(filters)
 
 filters <- list(
   lake = "SU",
