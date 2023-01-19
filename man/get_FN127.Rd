@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_FN127.R
 \name{get_FN127}
 \alias{get_FN127}
-\title{Get FN127 - Diet data from FN_Portal API}
+\title{Get FN127 - Age data from FN_Portal API}
 \usage{
 get_FN127(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 }

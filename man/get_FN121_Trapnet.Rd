@@ -44,7 +44,6 @@ for the full list of available filter keys (query parameters)
 TODO: Update with relevant examples when more data exists in the portal
 
 fn121_trapnet <- get_FN121_Trapnet(list(lake = "ON", year = 2022))
-fn121_trapnet <- get_FN121_Trapnet(list(lake = "ON", year = 2022), show_id = TRUE)
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

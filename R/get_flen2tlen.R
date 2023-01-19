@@ -23,10 +23,7 @@ get_flen2tlen <- function(filter_list = list(), to_upper = TRUE) {
   # TODO - create swagger endpoint for common api. luckly this function
   # shares filters with fn_portal  species_list
   check_filters("species_list", filter_list)
-  # TOD0 - create function to get api domain for the common app.
-  # this is the only function that currently access the common api
-  # directly, but won't be for long.
-  common_api_url <- "http://10.167.37.157/api/v1/common"
+  common_api_url <- get_common_portal_root()
   my_url <- sprintf(
     "%s/flen2tlen/%s",
     common_api_url,
