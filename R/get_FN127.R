@@ -12,7 +12,7 @@
 #' sample, or the project(s) that the samples were collected in.
 #'
 #' See
-#' http://10.167.37.157/fn_portal/redoc/#operation/fn_127_list
+#' http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn_127_list
 #' for the full list of available filter keys (query parameters)
 #'
 #' @param filter_list list
@@ -52,7 +52,7 @@
 get_FN127 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("fn127", filter_list)
+  check_filters("fn127", filter_list, "fn_portal")
   my_url <- sprintf(
     "%s/fn127/%s",
     get_fn_portal_root(),

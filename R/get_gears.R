@@ -1,11 +1,10 @@
-#' Get FN028 - Fishing Modes from FN_Portal API
+#' Get Gear List from the FN_Portal API
 #'
-#' This function accesses the api endpoint to for FN028 records. FN028
-#' records contain information about the fishing modes defined for a
-#' project.  Fishing mode describes the gear, its orientation, and set
-#' type.
-#' #'
-#' See http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn_028_list for
+#'  This function returns basic details about fishing gear(s) from the 
+#'  FN_Prortal api. Use get_gear_process_types() for more detail about
+#'  the corresponding process type
+#'
+#' See http://10.167.37.157/fn_portal/api/v1/redoc/#operation/gear_list for
 #' the full list of available filter keys (query parameters)
 #'
 #' @param filter_list list
@@ -20,16 +19,16 @@
 #' @export
 #' @examples
 #'
-#' fn028 <- get_FN028(list(lake = "ON", year = 2012))
-#'
-#' fn028 <- get_FN028(list(prj_cd = "LHA_IA19_812"))
-#' fn028 <- get_FN028(list(prj_cd = "LHA_IA19_812"), show_id = TRUE)
-get_FN028 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+#' GL10 <- get_gear(list(gr = "GL10"))
+#' GL_n <- get_gear(list(gr = c("GL10", "GL21")))
+#' GL1x <- get_gear(list(gr__like = "GL1"))
+get_gear <- function(filter_list = list(), show_id = FALSE,
+                                   to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("fn028", filter_list, "fn_portal")
+  check_filters("gear", filter_list, "fn_portal")
   my_url <- sprintf(
-    "%s/fn028/%s",
+    "%s/gear/%s",
     get_fn_portal_root(),
     query_string
   )

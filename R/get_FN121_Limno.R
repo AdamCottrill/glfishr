@@ -15,7 +15,7 @@
 #' protocol, etc.  The limnological data can be joined back to the
 #' associated net set in R using the function \code{\link{join_fn_fields}}
 #'
-#' See See \href{http://10.167.37.157/fn_portal/redoc/#operation/fn121limno}{fn121limno}
+#' See See \href{http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn121limno}{fn121limno}
 #' or type \code{\link{show_filters}} to see
 #' the full list of available filter keys (query parameters).
 #'
@@ -46,7 +46,7 @@
 get_FN121_Limno <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("fn121limno", filter_list)
+  check_filters("fn121limno", filter_list, "fn_portal")
   my_url <- sprintf(
     "%s/fn121limno/%s",
     get_fn_portal_root(),

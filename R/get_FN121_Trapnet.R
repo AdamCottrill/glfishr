@@ -13,7 +13,7 @@
 #' the bottom, cover, and vegetation types, and the angle/length of the leader.
 #'
 #' See
-#' http://10.167.37.157/fn_portal/redoc/#operation/fn121trapnet_list
+#' http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn121trapnet_list
 #' for the full list of available filter keys (query parameters)
 #'
 #' @param filter_list list

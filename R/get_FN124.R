@@ -14,7 +14,7 @@
 #' project(s) that the catches were made in.
 #'
 #' See
-#' http://10.167.37.157/fn_portal/redoc/#operation/fn_124_list
+#' http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn_124_list
 #' for the full list of available filter keys (query parameters)
 #'
 #' @param filter_list list
@@ -50,7 +50,7 @@
 get_FN124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, uncount = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("fn124", filter_list)
+  check_filters("fn124", filter_list, "fn_portal")
   my_url <- sprintf(
     "%s/fn124/%s",
     get_fn_portal_root(),

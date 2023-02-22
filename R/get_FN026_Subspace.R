@@ -5,7 +5,7 @@
 #' spatial strata associated with a project.
 #'
 #' See
-#' http://10.167.37.157/fn_portal/redoc/#operation/fn026subspace_list
+#' http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn026subspace_list
 #' for the full list of available filter keys (query parameters)
 #'
 #' @param filter_list list
