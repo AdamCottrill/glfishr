@@ -16,7 +16,7 @@ get_mu_list <- function(filter_list = list(), to_upper = TRUE) {
   # TODO - add check_filters() when there's a swagger endpoint for common api
   # check_filters("species_list", filter_list)
   common_api_url <- get_common_portal_root()
-  check_filters("common_filters", filter_list)
+  check_filters("management_units", filter_list, "common")
   my_url <- sprintf(
     "%s/management_units/%s",
     common_api_url,

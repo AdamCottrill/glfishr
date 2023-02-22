@@ -26,15 +26,13 @@
 #' @examples
 #'
 #' taxa_list <- get_taxon_table()
-#' order_list <- get_taxon_table(list(taxonomic_rank = "Order"))
+#' order_list <- get_taxon_table(list(taxonomic_rank = "order"))
 get_taxon_table <- function(filter_list = list(), to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
-  # TODO - add check_filters() when there's a swagger endpoint for common api
-  # check_filters("taxon_list", filter_list)
 
   # TODO - add examples of new filters if/when they exist (e.g. taxon_label__like)
   common_api_url <- get_common_portal_root()
-  check_filters("common_filters", filter_list)
+  check_filters("taxon", filter_list, "common")
   my_url <- sprintf(
     "%s/taxon/%s",
     common_api_url,

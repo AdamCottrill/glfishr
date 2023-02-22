@@ -21,11 +21,12 @@
 #' @examples
 #'
 #' species <- get_species()
-#' trout <- get_species(list(spc_nmco_like = "trout"))
+#' trout <- get_species(list(spc_nmco__like = "trout"))
 #' goby <- get_species(list(spc=366, detail=TRUE))
 get_species <- function(filter_list = list(), to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
-  check_filters("common_filters", filter_list)
+  check_filters("species", filter_list, "common")
+  # TODO: fix detail = TRUE warning
   my_url <- sprintf(
     "%s/species/%s",
     get_common_portal_root(),
