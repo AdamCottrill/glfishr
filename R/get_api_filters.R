@@ -1,21 +1,21 @@
 #' Create global list of available API filters
 #'
 #' This function connects to the openapi/swagger endpoint provided by
-#' fn_portal and sc_portal api's and fetches all of the available
-#' filters for each endpoint.  The filters are available in a global
+#' fn_portal, creels, and common APIs and fetches all of the available
+#' filters for each endpoint. The filters are available in a global
 #' list 'api_filters' which subsequently used by other functions -
-#' check_filters, show_filters.  Generally, this function is not
+#' check_filters, show_filters. Generally, this function is not
 #' intended to be called directly by the user.
 #'
 #'
 #' @param api_app - the name of the api application to fetch the
-#' filters from. Defaults to 'fn_portal'
+#' filters from. 
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return list
-get_api_filters <- function(api_app = "fn_portal") {
+get_api_filters <- function(api_app, create_list = TRUE) {
   domain <- get_domain()
-  swagger_url <- sprintf("%s%s/swagger.json", domain, api_app)
+  swagger_url <- sprintf("%s%s/api/v1/swagger.json", domain, api_app)
 
   response <- tryCatch(httr::GET(swagger_url),
     error = function(err) {
@@ -44,5 +44,9 @@ get_api_filters <- function(api_app = "fn_portal") {
       api_filters[[endpoint]] <- values
     }
   }
-  assign("api_filters", api_filters, envir = .GlobalEnv)
+  if (create_list == TRUE){
+    assign("api_filters", api_filters, envir = .GlobalEnv)
+  }else{
+    api_filters
+  }
 }
