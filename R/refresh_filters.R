@@ -12,7 +12,7 @@
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return list
-refresh_filters <- function(endpoint, api_app = "fn_portal") {
+refresh_filters <- function(endpoint, api_app) {
   # todo update with appropriate url for endpoint and try again
   get_api_filters(api_app = api_app)
   filters <- api_filters[[endpoint]]
