@@ -13,7 +13,7 @@
 #' samples were collected in.
 #'
 #' See
-#' http://10.167.37.157/fn_portal/redoc/#operation/fn_125_list
+#' http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn_125_list
 #' for the full list of available filter keys (query parameters)
 #'
 #' @param filter_list list
@@ -54,7 +54,7 @@
 #' fn125 <- get_FN125(list(prj_cd = "LHA_IA19_812"), show_id = TRUE)
 get_FN125 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
-  check_filters("fn125", filter_list)
+  check_filters("fn125", filter_list, "fn_portal")
   query_string <- build_query_string(filter_list)
   my_url <- sprintf(
     "%s/fn125/%s",
