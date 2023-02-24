@@ -35,7 +35,7 @@ sample, or the project(s) that the samples were collected in.
 }
 \details{
 See
-http://10.167.37.157/fn_portal/redoc/#operation/fn_127_list
+http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn_127_list
 for the full list of available filter keys (query parameters)
 }
 \examples{

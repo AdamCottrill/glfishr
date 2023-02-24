@@ -35,7 +35,7 @@ for the full list of taxon codes
 \examples{
 
 taxa_list <- get_taxon_table()
-order_list <- get_taxon_table(list(taxonomic_rank = "Order"))
+order_list <- get_taxon_table(list(taxonomic_rank = "order"))
 }
 \author{
 Rachel Henderson \email{rachel.henderson@ontario.ca}

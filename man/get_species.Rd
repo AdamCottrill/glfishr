@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_species.R
 \name{get_species}
 \alias{get_species}
-\title{Get Species list data from FN_Portal API}
+\title{Get Species list data from Common API}
 \usage{
 get_species(filter_list = list(), to_upper = TRUE)
 }
@@ -19,10 +19,9 @@ dataframe
 }
 \description{
 This function accesses the api endpoint to for Species list
-available in Fn_portal. The species list does not contain all of the fields
-in common lookup table, but the fields are limited to spc,
-spc_nmco, and spc_nmsc.  This
-function takes an optional filter list which can be used to return
+available in Common. Only the fields spc, spc_nmco, spc_nmsc
+and species_at_risk are returned unless detail=TRUE is specified
+in the filter_list. The optional filter list can be used to return
 species based on part of their common or scientific name.
 }
 \details{
@@ -33,7 +32,8 @@ for the full list of available filter keys (query parameters)
 \examples{
 
 species <- get_species()
-trout <- get_species(list(spc_nmco_like = "trout"))
+trout <- get_species(list(spc_nmco__like = "trout"))
+goby <- get_species(list(spc=366, detail=TRUE))
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

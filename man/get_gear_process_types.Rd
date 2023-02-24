@@ -32,7 +32,7 @@ ProcessEffortGear table in the template database before submitting
 to Process Validate.
 }
 \details{
-See http://10.167.37.157/fn_portal/redoc/#operation/fn_028_list for
+See http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn_028_list for
 the full list of available filter keys (query parameters)
 }
 \examples{
