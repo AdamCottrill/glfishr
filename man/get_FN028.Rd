@@ -27,7 +27,7 @@ records contain information about the fishing modes defined for a
 project.  Fishing mode describes the gear, its orientation, and set
 type.
 #'
-See http://10.167.37.157/fn_portal/redoc/#operation/fn_028_list for
+See http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn_028_list for
 the full list of available filter keys (query parameters)
 }
 \examples{

@@ -4,7 +4,7 @@
 \alias{refresh_filters}
 \title{Refresh the global api filter list}
 \usage{
-refresh_filters(endpoint, api_app = "fn_portal")
+refresh_filters(endpoint, api_app)
 }
 \arguments{
 \item{endpoint}{\itemize{

@@ -4,7 +4,7 @@
 \alias{check_filters}
 \title{Check the filters against api filters}
 \usage{
-check_filters(endpoint, filters, api_app = "fn_portal")
+check_filters(endpoint, filters, api_app)
 }
 \arguments{
 \item{endpoint}{\itemize{
@@ -18,7 +18,7 @@ endpoint.
 
 \item{api_app}{\itemize{
 \item the name of the api application to fetch the
-filters from. Defaults to fn_portal.
+filters from.
 }}
 }
 \value{

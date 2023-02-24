@@ -16,21 +16,26 @@ show_filters(endpoint = "", filter_like = "")
 }}
 }
 \description{
-Most of the fn_portal API endpoints have a large number of
-available filters.  This function takes and api endpoint name and
-prints out all of the available filters.  If 'filter_like' is
+Most of the API endpoints have a large number of
+available filters. This function takes an API endpoint name and
+prints out all of the available filters. If 'filter_like' is
 provided, only those filters that contain the provided string are
 printed. If no endpoint name is provided, a list of available
 endpoints will be displayed.
 }
 \details{
 See
-http://10.167.37.157/fn_portal/redoc/#operation/fn_011_list for the
-full list of available filter keys (query parameters)
+http://10.167.37.157/fn_portal/api/v1/redoc/,
+http://10.167.37.157/creels/api/v1/redoc/, and
+http://10.167.37.157/common/api/v1/redoc/
+for an alternative way to view the full list of available filter keys (query parameters)
 }
 \examples{
 show_filters("fn125")
 show_filters("fn125", filter_like = "prj")
+show_filters("sc121", "mode")
+show_filters("species")
+show_filters("sc121", "cats")
 show_filters("foo")
 }
 \author{

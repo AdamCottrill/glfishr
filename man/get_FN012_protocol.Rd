@@ -35,7 +35,7 @@ an existing project.
 }
 \details{
 See
-http://10.167.37.157/fn_portal/redoc/#operation/fn012_protocol_list
+http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn012_protocol_list
 for the full list of available filter keys (query parameters)
 }
 \examples{

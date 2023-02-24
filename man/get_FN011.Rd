@@ -34,7 +34,7 @@ year, protocol, etc.
 }
 \details{
 See
-http://10.167.37.157/fn_portal/redoc/#operation/fn_011_list
+http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn_011_list
 for the full list of available filter keys (query parameters)
 }
 \examples{
