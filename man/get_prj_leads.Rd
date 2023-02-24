@@ -25,6 +25,9 @@ or it accepts the filter parameter all=TRUE to return non-active project leads
 too. No other filter parameters are currently available for this endpoint.
 }
 \details{
+Note that currently only usernames, first and last names are fetched. More staff,
+email addresses and active status will be added.
+
 See
 http://10.167.37.157/common/project_leads
 for the full list of project leads
