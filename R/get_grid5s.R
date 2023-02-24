@@ -22,10 +22,10 @@
 #' @export
 #' @examples
 #'
-#' grid5s <- get_5min_grids(list(page_size = 5000))
-#' superior_grid5s <- get_5min_grids(list(lake = "SU"))
-#' grid5_slugs <- get_5min_grids(list(page_size = 5000), show_id = TRUE)
-get_5min_grids <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+#' grid5s <- get_grid5s(list(page_size = 5000))
+#' superior_grid5s <- get_grid5s(list(lake = "SU"))
+#' grid5_slugs <- get_grid5s(list(page_size = 5000), show_id = TRUE)
+get_grid5s <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
   check_filters("grid5s", filter_list, "common")
