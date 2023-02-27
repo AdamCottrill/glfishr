@@ -1,18 +1,20 @@
 #' Get project leads - A list of project leads used in GLIS
 #'
 #' This function accesses the api endpoint for project leads and returns
-#' their names, usernames, email addresses, and whether they're active users
-#' (current staff). It can fetch the entire table of active project leads, 
-#' or it accepts the filter parameter all=TRUE to return non-active project leads
-#' too. No other filter parameters are currently available for this endpoint.
+#' their names and usernames. It can fetch the entire table of active project leads, 
+#' or it accepts the filter parameters to match all or part of a first name,
+#' last name, or username. 
 #' 
-#' Note that currently only usernames, first and last names are fetched. More staff, 
-#' email addresses and active status will be added. 
 #' 
 #'
 #' See
+#' http://10.167.37.157/fn_portal/api/v1/redoc/#tag/prj_ldr
+#' for a full list of available filter parameters. 
+#' 
+#' See
 #' http://10.167.37.157/common/project_leads
-#' for the full list of project leads
+#' for the full list of current and former staff that can be
+#' entered as a project lead.
 #' 
 #'
 #' @param filter_list list
