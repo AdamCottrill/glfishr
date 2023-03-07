@@ -24,7 +24,7 @@ check_filters <- function(endpoint, filters, api_app) {
   
   if (!exists("api_filters")) get_api_filters(api_app = api_app)
   
-  endpoint <- ifelse(tolower(endpoint)=="fn121gpstracks", "fn121GpsTracks", tolower(endpoint))
+  endpoint <- tolower(endpoint)
 
   known_filters <- api_filters[[endpoint]]
   if (is.null(known_filters)) {
