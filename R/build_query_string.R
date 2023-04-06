@@ -10,7 +10,7 @@
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @export
 #' @return
-#' A formated string that matches the url search parameters
+#' A formatted string that matches the url search parameters
 #' @examples
 #' # return "?size=sm"
 #' build_query_string(list(size = "sm"))

@@ -49,7 +49,7 @@
 get_pt_reports <- function(filter_list = list(), to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("reports", filter_list, api_app = "project_tracker/api")
+  check_filters("reports", filter_list, api_app = "project_tracker")
   my_url <- sprintf(
     "%s/reports/%s",
     get_pt_portal_root(),
@@ -61,3 +61,4 @@ get_pt_reports <- function(filter_list = list(), to_upper = TRUE) {
 
   return(payload)
 }
+

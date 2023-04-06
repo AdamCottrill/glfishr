@@ -51,7 +51,7 @@
 #' sc125 <- get_SC125(list(prj_cd = "LHA_IA19_812"), show_id = TRUE)
 get_SC125 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
-  check_filters("sc125", filter_list)
+  check_filters("sc125", filter_list, "creels")
   query_string <- build_query_string(filter_list)
   my_url <- sprintf(
     "%s/sc125/%s",
