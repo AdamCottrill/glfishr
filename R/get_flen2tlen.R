@@ -20,9 +20,8 @@
 #' flen2tlen <- get_flen2tlen(list(spc_nmco__like = "trout"))
 get_flen2tlen <- function(filter_list = list(), to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
-  # TODO - create swagger endpoint for common api. luckly this function
-  # shares filters with fn_portal  species_list
-  check_filters("species_list", filter_list)
+
+  check_filters("species_list", filter_list, "common")
   common_api_url <- get_common_portal_root()
   my_url <- sprintf(
     "%s/flen2tlen/%s",
