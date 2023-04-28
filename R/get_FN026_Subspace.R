@@ -27,7 +27,7 @@
 get_FN026_Subspace <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("fn026subspace", filter_list)
+  check_filters("fn026subspace", filter_list, "fn_portal")
   my_url <- sprintf(
     "%s/fn026subspace/%s",
     get_fn_portal_root(),
