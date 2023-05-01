@@ -13,8 +13,8 @@ get_FN121_Electrofishing(
 \arguments{
 \item{filter_list}{list}
 
-\item{show_id}{When 'FALSE', the default, the 'id' and 'slug'
-fields are hidden from the data frame. To return these columns
+\item{show_id}{When 'FALSE', the default, the 'slug'
+field is hidden from the data frame. To return this field
 as part of the data frame, use 'show_id = TRUE'.}
 
 \item{to_upper}{\itemize{
@@ -45,9 +45,11 @@ for the full list of available filter keys (query parameters)
 }
 \examples{
 
-TODO: Update with relevant examples when data exists in the portal
+show_filters("fn121electrofishing")
 
-fn121_efish <- get_FN121_Electrofishing(list(lake = "HU"))
+fn121_efish_huron <- get_FN121_Electrofishing(list(lake = "HU"))
+
+fn121_efish_500ss <- get_FN121_Electrofishing(list(shock_sec__gte = 500))
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

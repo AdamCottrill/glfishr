@@ -2,7 +2,7 @@
 % Please edit documentation in R/join_fn_fields.R
 \name{join_fn_fields}
 \alias{join_fn_fields}
-\title{Preform transformations to api payload before return data frame}
+\title{Perform transformations to api payload before return data frame}
 \usage{
 join_fn_fields(parent, child, parent_fields, ...)
 }
@@ -16,7 +16,7 @@ columns to.}
 \item{parent_fields}{a vector of field names from the parent data frame
 that will be added to the child dataframe.}
 
-\item{...}{additional arguements that are passed to merge. Normally
+\item{...}{additional arguments that are passed to merge. Normally
 all.x=TRUE or all.y=TRUE}
 }
 \value{

@@ -31,9 +31,10 @@ Description: glfishr contains a series of R functions that are
     biological samples collected in those net sets).
 License: MIT + file LICENSE
 Imports:
-        httr,
-        jsonlite,
-        openxlsx
+    httr,
+    jsonlite,
+    openxlsx,
+    rstudioapi
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_SC011.R
 \name{get_SC011}
 \alias{get_SC011}
-\title{Get SC011 - Creel Project Meta from Creel_Portal API}
+\title{Get SC011 - Creel Project Metadata from Creel Portal API}
 \usage{
 get_SC011(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 }
@@ -22,16 +22,17 @@ upper case?
 dataframe
 }
 \description{
-This function accesses the api endpoint to for SC011
-records. SC011 records contain the hi-level meta data about an
-OMNR Creels.  The SC011 records contain information like
-project code, project name, projet leader, start and end date,
-contact meth, and the lake where the creel was conducted.  This
+This function accesses the api endpoint for SC011
+records. SC011 records contain the high-level meta data about
+OMNR Creels. The SC011 records contain information like
+project code, project name, project leader, start and end date,
+contact method, and the lake where the creel was conducted. This
 function takes an optional filter list which can be used to return
-record based on several attributes of the project such as
+records based on several attributes of the project such as
 project code, or part of the project code, lake, first year, last
 year, contact, etc.
-#'
+}
+\details{
 Use ~show_filters("sc011")~ to see the full list of available filter
 keys (query parameters)
 }

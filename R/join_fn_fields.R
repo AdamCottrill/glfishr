@@ -1,4 +1,4 @@
-#' Preform transformations to api payload before return data frame
+#' Perform transformations to api payload before return data frame
 #'
 #'
 #' The function join_fn_fields() takes a parent data frame, a child
@@ -19,7 +19,7 @@
 #' columns to.
 #' @param parent_fields a vector of field names from the parent data frame
 #' that will be added to the child dataframe.
-#' @param ... additional arguements that are passed to merge. Normally
+#' @param ... additional arguments that are passed to merge. Normally
 #' all.x=TRUE or all.y=TRUE
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
@@ -52,7 +52,7 @@ join_fn_fields <- function(parent, child, parent_fields, ...) {
 
   common_keys <- intersect(child_keys, parent_keys)
   # check_parent_keys() - if the common keys don't uniquely identify
-  # our parent records, we need to stop - otherwize we end up with a
+  # our parent records, we need to stop - otherwise we end up with a
   # cartesian product.
   check_common_keys <- function(parent_data, flds) {
     tmp <- stats::aggregate(subset(parent_data, select = flds),
