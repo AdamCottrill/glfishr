@@ -27,6 +27,14 @@ prepare_payload <- function(payload, show_id = FALSE, to_upper = TRUE) {
   ) {
     payload <- subset(payload, select = -c(id, slug))
   }
+  
+  if (show_id == FALSE &
+      !is.null(dim(payload)) &
+      !"id" %in% names(payload) &
+      "slug" %in% names(payload)
+  ) {
+    payload <- subset(payload, select = -c(slug))
+  }
 
   if (to_upper) {
     names(payload) <- toupper(names(payload))

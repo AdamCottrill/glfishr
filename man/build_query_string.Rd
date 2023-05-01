@@ -10,7 +10,7 @@ build_query_string(filters)
 \item{filters}{list}
 }
 \value{
-A formated string that matches the url search parameters
+A formatted string that matches the url search parameters
 }
 \description{
 Given a list of filters (key-value pairs), this functions returns

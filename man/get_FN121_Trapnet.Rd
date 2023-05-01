@@ -9,8 +9,8 @@ get_FN121_Trapnet(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 \arguments{
 \item{filter_list}{list}
 
-\item{show_id}{When 'FALSE', the default, the 'id' and 'slug'
-fields are hidden from the data frame. To return these columns
+\item{show_id}{When 'FALSE', the default, the 'slug'
+field is hidden from the data frame. To return this field
 as part of the data frame, use 'show_id = TRUE'.}
 
 \item{to_upper}{\itemize{

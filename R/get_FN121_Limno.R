@@ -20,8 +20,8 @@
 #' the full list of available filter keys (query parameters).
 #'
 #' @param filter_list list
-#' @param show_id When 'FALSE', the default, the 'id' and 'slug'
-#' fields are hidden from the data frame. To return these columns
+#' @param show_id When 'FALSE', the default, the 'slug'
+#' field is hidden from the data frame. To return this field
 #' as part of the data frame, use 'show_id = TRUE'.
 #' @param to_upper - should the names of the dataframe be converted to
 #' upper case?  Defaults to TRUE to match the FISHNET-II  convention

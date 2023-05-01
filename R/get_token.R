@@ -5,6 +5,7 @@
 #' (or when the existing token is cleared from the Global Environment).
 #'
 #' @return string
+#' @export
 
 get_token <- function(){
   
