@@ -40,7 +40,7 @@ points <- get_pt_points(list(
   prj_cd__like = "006"
 ))
 
-filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
+filters <- list(lake = "SU", prj_cd__like = "TEL")
 points <- get_pt_points(filters)
 }
 \author{

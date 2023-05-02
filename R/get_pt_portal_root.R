@@ -15,7 +15,7 @@
 #' @return string
 #'
 get_pt_portal_root <- function() {
-  api_url <- "project_tracker/api"
+  api_url <- "project_tracker/api/v1"
 
   domain <- get_domain()
 
