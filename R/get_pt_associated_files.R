@@ -41,7 +41,7 @@ get_pt_associated_files <- function(filter_list = list(), to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("associated_files", filter_list,
-    api_app = "projects_tracker/api"
+    api_app = "projects_tracker"
   )
   my_url <- sprintf(
     "%s/associated_files/%s",
