@@ -1,18 +1,18 @@
 #' download_pt_files - Download reports or associated files from
 #' project tracker
 #'
-#' THis is a utility function that is used by both fetch_pt_reports()
-#' and fetch_pt_asscoaited_files() to actually download the files they
+#' This is a utility function that is used by both fetch_pt_reports()
+#' and fetch_pt_associated_files() to actually download the files they
 #' return. The download logic is sufficiently similar for both
 #' function that it makes to encapsulate it in a single helper
-#' function.  This funtion takes a dataframe that contains a list of
+#' function.  This function takes a dataframe that contains a list of
 #' reports or associated file name/path. The file name must be the
 #' last column in the data frame.  Each report or file listed in the
 #' dataframe is downloaded into the target directory. If
 #' create_target_dir is True, and the target directory does not exist
 #' it will be created. If xlsx_toc is true, an associated xlsx file
 #' will be created in the target directory - the spreadsheet will
-#' contain all of the fields contined in the file list, and a
+#' contain all of the fields contained in the file list, and a
 #' hyperlink to each of the downloaded files.
 #'
 #' @param file_list dataframe - containing the contents to be written
