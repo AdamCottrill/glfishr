@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_mu_list.R
 \name{get_mu_list}
 \alias{get_mu_list}
-\title{Get list of management units from GLIS API}
+\title{Get list of lake management unit types from GLIS API}
 \usage{
 get_mu_list(filter_list = list(), to_upper = TRUE)
 }
@@ -16,7 +16,7 @@ upper case?}
 dataframe
 }
 \description{
-Get list of management units from GLIS API
+Get list of lake management unit types from GLIS API
 }
 \examples{
 get_mu_list()

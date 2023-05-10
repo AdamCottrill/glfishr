@@ -9,7 +9,7 @@
 #'
 #'
 #' @param api_app - the name of the api application to fetch the
-#' filters from. 
+#' filters from.
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return list
@@ -40,13 +40,40 @@ get_api_filters <- function(api_app, create_list = TRUE) {
     parameters <- payload$paths[[name]]$get$parameters
     if (length(parameters) & !grepl("\\{", endpoint)) {
       values <- subset(parameters, select = c("name", "description"))
+
+      if (name == "/fn121/") {
+        values <- rbind(values, data.frame(name = "mu_type", description = "Run get_mu_list() for a list of accepted abbreviations."))
+      }
+
+      if (name == "/gear/") {
+        values <- rbind(values, data.frame(
+          name = c("all", "depreciated", "confirmed"),
+          description = c("Boolean value.", "Boolean value.", "Boolean value.")
+        ))
+      }
+
+      if (name == "/fn012_protocol/") {
+        values <- rbind(values, data.frame(
+          name = c("all", "active", "confirmed"),
+          description = c("Boolean value.", "Boolean value.", "Boolean value.")
+        ))
+      }
+
+      if (name == "/prj_ldr/") {
+        values <- rbind(values, data.frame(name = "all", description = "Boolean value; default is FALSE."))
+      }
+
+      if (name == "/species/") {
+        values <- rbind(values, data.frame(name = "detail", description = "Boolean value; default is FALSE."))
+      }
+
       # api_filters <- c(api_filters, parse(endpoint) = values)
       api_filters[[endpoint]] <- values
     }
   }
-  if (create_list == TRUE){
+  if (create_list == TRUE) {
     assign("api_filters", api_filters, envir = .GlobalEnv)
-  }else{
+  } else {
     api_filters
   }
 }

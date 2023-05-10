@@ -29,16 +29,15 @@
 #'
 #' prj_leads <- get_prj_leads()
 #' all_prj_leads <- get_prj_leads(list(all=TRUE))
+#' all_steves <- get_prj_leads(list(first_name__like = "ste", all=TRUE))
 #' prj_lead_slugs <- get_prj_leads(show_id = TRUE)
 get_prj_leads <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
-  common_api_url <- get_fn_portal_root()
-  #check_filters("tissues", filter_list, "common")
-  #TODO: add a warning about 'all=TRUE' being the only allowed filter
+  check_filters("prj_ldr", filter_list, "fn_portal")
   
   my_url <- sprintf(
     "%s/prj_ldr/%s",
-    common_api_url,
+    get_fn_portal_root(),
     query_string
   )
   payload <- api_to_dataframe(my_url)

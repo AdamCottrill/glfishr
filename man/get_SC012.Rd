@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_SC012.R
 \name{get_SC012}
 \alias{get_SC012}
-\title{Get FN012 - Sampling specs (species and group) from Creel Portal API}
+\title{Get SC012 - Sampling specs (species and group) from Creel Portal API}
 \usage{
 get_SC012(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 }

@@ -1,4 +1,4 @@
-#' Get FN012 - Sampling specs (species and group) from Creel Portal API
+#' Get SC012 - Sampling specs (species and group) from Creel Portal API
 #'
 #' This function accesses the api endpoint for SC012 records.
 #' SC012 records contain a list of anticipated species for a project and the
