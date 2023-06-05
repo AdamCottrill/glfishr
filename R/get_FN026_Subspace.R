@@ -33,9 +33,9 @@ get_FN026_Subspace <- function(filter_list = list(), show_id = FALSE, to_upper =
     get_fn_portal_root(),
     query_string
   )
-  
+
   payload <- api_to_dataframe(my_url, recursive = recursive)
   payload <- prepare_payload(payload, show_id, to_upper)
-  
+
   return(payload)
 }

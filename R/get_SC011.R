@@ -9,7 +9,7 @@
 #' records based on several attributes of the project such as
 #' project code, or part of the project code, lake, first year, last
 #' year, contact, etc.
-#' 
+#'
 #' Use ~show_filters("sc011")~ to see the full list of available filter
 #' keys (query parameters)
 #'

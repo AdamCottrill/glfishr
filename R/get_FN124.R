@@ -45,8 +45,8 @@
 #' fn124 <- get_FN124(filters)
 #'
 #' LOA_IA21_TW1 <- get_FN124(list(prj_cd = "LOA_IA21_TW1"),
-#'     uncount = TRUE)
-#'
+#'   uncount = TRUE
+#' )
 get_FN124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, uncount = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)

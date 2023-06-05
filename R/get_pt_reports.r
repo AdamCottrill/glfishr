@@ -61,4 +61,3 @@ get_pt_reports <- function(filter_list = list(), to_upper = TRUE) {
 
   return(payload)
 }
-

@@ -5,12 +5,12 @@
 #' the entire table of clip codes - no other filter
 #' parameters are currently available for this endpoint. The same list of
 #' clip codes are available for CLIPA and CLIPC.
-#' 
+#'
 #'
 #' See
 #' http://10.167.37.157/common/finclips
 #' for the full list of clip code options
-#' 
+#'
 #'
 #' @param filter_list list
 #'
@@ -27,9 +27,9 @@
 get_clip_codes <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
-  #check_filters("clip_capture", filter_list, "common")
-  #TODO: add a warning about 'all=TRUE' being the only allowed filter
-  
+  # check_filters("clip_capture", filter_list, "common")
+  # TODO: add a warning about 'all=TRUE' being the only allowed filter
+
   my_url <- sprintf(
     "%s/clip_capture/%s",
     common_api_url,

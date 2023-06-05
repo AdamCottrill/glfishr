@@ -20,14 +20,14 @@
 
 
 api_to_dataframe <- function(url, data = NULL, page = 0, recursive = TRUE) {
-  if(!exists("token")) token <- get_token()
+  if (!exists("token")) token <- get_token()
 
-  auth_header = sprintf("Token %s", token) 
-  
+  auth_header <- sprintf("Token %s", token)
+
   max_page_count <- 10
   url <- gsub("\\n", " ", url)
   url <- utils::URLencode(url)
-  #response <- tryCatch(httr::GET(url),
+  # response <- tryCatch(httr::GET(url),
   response <- tryCatch(httr::GET(url, httr::add_headers(authorization = auth_header)),
     error = function(err) {
       print("unable to fetch from the server. Is your VPN active?")
@@ -56,8 +56,8 @@ api_to_dataframe <- function(url, data = NULL, page = 0, recursive = TRUE) {
       "different filters and combine them in R."
     ))
   }
-  
-  if(is.null(token[["token"]])){
+
+  if (is.null(token[["token"]])) {
     warning(paste0(
       "Your token was not retrieved successfully and some data may be hidden. \n",
       "Run get_token() to re-enter your credentials."

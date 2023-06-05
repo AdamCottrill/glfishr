@@ -20,7 +20,7 @@ get_management_units <- function(filter_list = list(), to_upper = TRUE) {
     common_api_url,
     query_string
   )
-  
+
   payload <- api_to_dataframe(my_url)
   payload <- prepare_payload(payload, to_upper = to_upper)
   return(payload)

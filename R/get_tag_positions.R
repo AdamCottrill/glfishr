@@ -5,12 +5,12 @@
 #' the entire table of accepted tag positions - no other filter
 #' parameters are currently available for this endpoint. Tag position is the
 #' second character of TAGDOC.
-#' 
+#'
 #'
 #' See
 #' http://10.167.37.157/common/tag_postisions
 #' for the full list of tag position options
-#' 
+#'
 #'
 #' @param filter_list list
 #'
@@ -27,9 +27,9 @@
 get_tag_positions <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
-  #check_filters("tag_position", filter_list, "common")
-  #TODO: add a warning about 'all=TRUE' being the only allowed filter
-  
+  # check_filters("tag_position", filter_list, "common")
+  # TODO: add a warning about 'all=TRUE' being the only allowed filter
+
   my_url <- sprintf(
     "%s/tag_position/%s",
     common_api_url,

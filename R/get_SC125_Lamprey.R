@@ -40,7 +40,7 @@
 #' sc125Lam <- get_SC125_Lamprey(filters)
 #' sc125Lam <- get_SC125_Lamprey(filters, show_id = TRUE)
 get_SC125_Lamprey <- function(filter_list = list(), show_id = FALSE,
-                         to_upper = TRUE) {
+                              to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("sc125lamprey", filter_list, api_app = "creels")

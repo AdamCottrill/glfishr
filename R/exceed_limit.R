@@ -13,11 +13,15 @@
 #' @export
 #'
 #' @examples
-#' FN011 <- get_FN011(list(protocol = "BSM", lake = "HU",
-#' prj_cd__not = "LHR_IA17_819", prj_cd__not_like = "BM"))
+#' FN011 <- get_FN011(list(
+#'   protocol = "BSM", lake = "HU",
+#'   prj_cd__not = "LHR_IA17_819", prj_cd__not_like = "BM"
+#' ))
 #'
-#' my_projects <- list("LHA_IA19_802", "LHA_IA19_810", "LHA_IA19_811",
-#' "LHA_IA19_812", "LHA_IA19_813", "LHA_IA19_814")
+#' my_projects <- list(
+#'   "LHA_IA19_802", "LHA_IA19_810", "LHA_IA19_811",
+#'   "LHA_IA19_812", "LHA_IA19_813", "LHA_IA19_814"
+#' )
 #'
 #' FN122 <- exceed_limit(get_FN122, FN011$PRJ_CD)
 #'
@@ -25,8 +29,10 @@
 #'
 #' FN122_NA1 <- exceed_limit(get_FN122, FN011$PRJ_CD, list(gr = "NA1"))
 #'
-#' FN125_NA1 <- exceed_limit(get_FN125, FN011$PRJ_CD,
-#' list(spc = c(121, 331, 334)))
+#' FN125_NA1 <- exceed_limit(
+#'   get_FN125, FN011$PRJ_CD,
+#'   list(spc = c(121, 331, 334))
+#' )
 exceed_limit <- function(get_fun, prj_cds, extra_filters_as_list = NULL) {
   df_list <- lapply(1:length(prj_cds), function(i) {
     base_filter <- list(prj_cd = prj_cds[i])

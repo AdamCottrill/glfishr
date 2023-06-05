@@ -40,8 +40,8 @@
 #' sc124 <- get_SC124(filters)
 #'
 #' sc124 <- get_SC124(list(prj_cd = "LOA_SC19_002"),
-#'     uncount = TRUE)
-#'
+#'   uncount = TRUE
+#' )
 get_SC124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, uncount = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
@@ -53,11 +53,11 @@ get_SC124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, un
   )
   payload <- api_to_dataframe(my_url, recursive = recursive)
   payload <- prepare_payload(payload, show_id, to_upper)
-  
+
   if (uncount == TRUE) {
     payload <- uncount_tally(payload, "SIZCNT")
     return(payload)
   }
-  
+
   return(payload)
 }

@@ -49,9 +49,9 @@ get_pt_nr_milestones <- function(filter_list = list(), to_upper = TRUE) {
     get_pt_portal_root(),
     query_string
   )
-  
+
   payload <- api_to_dataframe(my_url, recursive = recursive)
   payload <- prepare_payload(payload, to_upper = to_upper)
-  
+
   return(payload)
 }

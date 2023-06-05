@@ -6,12 +6,12 @@
 #' all=TRUE to return depreciated tag type choices too. No other filter
 #' parameters are currently available for this endpoint. Tag types are
 #' first character of TAGDOC.
-#' 
+#'
 #'
 #' See
 #' http://10.167.37.157/common/tag_types
 #' for the full list of tag types
-#' 
+#'
 #'
 #' @param filter_list list
 #'
@@ -24,14 +24,14 @@
 #' @examples
 #'
 #' tag_types <- get_tag_types()
-#' all_tag_types <- get_tag_types(list(all=TRUE))
+#' all_tag_types <- get_tag_types(list(all = TRUE))
 #' tag_slugs <- get_tag_types(show_id = TRUE)
 get_tag_types <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
-  #check_filters("tag_types", filter_list, "common")
-  #TODO: add a warning about 'all=TRUE' being the only allowed filter
-  
+  # check_filters("tag_types", filter_list, "common")
+  # TODO: add a warning about 'all=TRUE' being the only allowed filter
+
   my_url <- sprintf(
     "%s/tag_type_choice/%s",
     common_api_url,

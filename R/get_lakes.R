@@ -1,15 +1,15 @@
 #' Get lakes - A list of lake names and abbreviations used in GLIS
 #'
 #' This function accesses the api endpoint for lake names and returns
-#' lake names and abbreviations. It is useful for fetching a table of 
-#' all lakes accepted by GLIS, but it also accepts the filter parameter 
-#' 'lake' to specify one or more lakes (by abbreviation) to fetch.  
-#' 
+#' lake names and abbreviations. It is useful for fetching a table of
+#' all lakes accepted by GLIS, but it also accepts the filter parameter
+#' 'lake' to specify one or more lakes (by abbreviation) to fetch.
+#'
 #'
 #' See
 #' http://10.167.37.157/common/lakes
 #' for the full list of lakes
-#' 
+#'
 #'
 #' @param filter_list list
 #'
@@ -22,8 +22,8 @@
 #' @examples
 #'
 #' lake_list <- get_lakes()
-#' erie <- get_lakes(list(lake="ER"))
-#' upper_lakes <- get_lakes(list(lake=c("HU", "SU")))
+#' erie <- get_lakes(list(lake = "ER"))
+#' upper_lakes <- get_lakes(list(lake = c("HU", "SU")))
 get_lakes <- function(filter_list = list(), to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
