@@ -32,7 +32,7 @@ for the full list of tissues
 \examples{
 
 tissues <- get_tissues()
-all_tissues <- get_tissues(list(all=TRUE))
+all_tissues <- get_tissues(list(all = TRUE))
 tissue_slugs <- get_tissues(show_id = TRUE)
 }
 \author{

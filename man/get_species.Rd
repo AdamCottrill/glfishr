@@ -33,7 +33,7 @@ for the full list of available filter keys (query parameters)
 
 species <- get_species()
 trout <- get_species(list(spc_nmco__like = "trout"))
-goby <- get_species(list(spc=366, detail=TRUE))
+goby <- get_species(list(spc = 366, detail = TRUE))
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

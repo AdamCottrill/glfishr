@@ -32,7 +32,7 @@ for the full list of bottom types
 \examples{
 
 bottom_types <- get_bottom_types()
-all_bottom_types <- get_bottom_types(list(all=TRUE))
+all_bottom_types <- get_bottom_types(list(all = TRUE))
 bottom_type_slugs <- get_bottom_types(show_id = TRUE)
 }
 \author{

@@ -32,7 +32,7 @@ for the full list of cover types
 \examples{
 
 cover_types <- get_cover_types()
-all_cover_types <- get_cover_types(list(all=TRUE))
+all_cover_types <- get_cover_types(list(all = TRUE))
 cover_type_slugs <- get_cover_types(show_id = TRUE)
 }
 \author{

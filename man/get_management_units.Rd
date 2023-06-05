@@ -4,7 +4,7 @@
 \alias{get_management_units}
 \title{Get management units from GLIS API}
 \usage{
-get_management_units(filter_list = list(), to_upper = TRUE)
+get_management_units(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 }
 \arguments{
 \item{filter_list}{list}

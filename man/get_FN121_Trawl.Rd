@@ -39,7 +39,7 @@ for the full list of available filter keys (query parameters)
 }
 \examples{
 
-TODO: Update with relevant examples when more data exists in the portal
+# TODO: Update with relevant examples when more data exists in the portal
 
 fn121_trawl <- get_FN121_Trawl(list(lake = "ER", year = 2018))
 }
