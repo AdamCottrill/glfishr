@@ -35,7 +35,7 @@
 #' sc125Tags <- get_SC125_Tags(filters)
 #' sc125Tags <- get_SC125_Tags(filters, show_id = TRUE)
 get_SC125_Tags <- function(filter_list = list(), show_id = FALSE,
-                          to_upper = TRUE) {
+                           to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("sc125tags", filter_list, api_app = "creels")

@@ -9,7 +9,7 @@
 #' See
 #' http://10.167.37.157/fn_portal/redoc/#operation/species_list_list
 #' for the full list of available filter keys (query parameters)
-#' 
+#'
 #'
 #' @param filter_list list
 #' @param to_upper - should the names of the dataframe be converted to
@@ -22,7 +22,7 @@
 #'
 #' species <- get_species()
 #' trout <- get_species(list(spc_nmco__like = "trout"))
-#' goby <- get_species(list(spc=366, detail=TRUE))
+#' goby <- get_species(list(spc = 366, detail = TRUE))
 get_species <- function(filter_list = list(), to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   check_filters("species", filter_list, "common")

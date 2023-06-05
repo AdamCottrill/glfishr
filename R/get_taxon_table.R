@@ -1,19 +1,19 @@
 #' Get taxon table - A list of fish and non-fish species and their ITIS taxon code
 #'
-#' This function accesses the api endpoint for taxon records of fish and 
+#' This function accesses the api endpoint for taxon records of fish and
 #' non-fish species. These records include the ITIS code, common name, scientific
-#' name, taxonomic rank, vert/invert classification, and HHFAU code (if applicable). 
+#' name, taxonomic rank, vert/invert classification, and HHFAU code (if applicable).
 #' Different taxonomic ranks allow selection of a taxon at different levels of
-#' specificity (e.g. 'Turtles/Testudines' vs. 'Eastern painted turtle'). 
-#' 
+#' specificity (e.g. 'Turtles/Testudines' vs. 'Eastern painted turtle').
+#'
 #' Current filter parameters are 'taxon', 'itiscode', 'taxon_name', 'taxon_label',
 #' 'taxonomic_rank', 'vertinvert', and 'omnr_provincial_code'.
-#' 
+#'
 #'
 #' See
 #' http://10.167.37.157/common/taxon
 #' for the full list of taxon codes
-#' 
+#'
 #'
 #' @param filter_list list
 #'

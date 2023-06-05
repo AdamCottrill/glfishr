@@ -1,6 +1,6 @@
 #' Get Gear List from the FN_Portal API
 #'
-#'  This function returns basic details about fishing gear(s) from the 
+#'  This function returns basic details about fishing gear(s) from the
 #'  FN_Prortal api. Use get_gear_process_types() for more detail about
 #'  the corresponding process type
 #'
@@ -23,7 +23,7 @@
 #' GL_n <- get_gear(list(gr = c("GL10", "GL21")))
 #' GL1x <- get_gear(list(gr__like = "GL1"))
 get_gear <- function(filter_list = list(), show_id = FALSE,
-                                   to_upper = TRUE) {
+                     to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("gear", filter_list, "fn_portal")

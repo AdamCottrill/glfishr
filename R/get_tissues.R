@@ -5,12 +5,12 @@
 #' the entire table of accepted tissue codes, or it accepts filter parameter
 #' all=TRUE to return depreciated tissue codes too. No other filter
 #' parameters are currently available for this endpoint.
-#' 
+#'
 #'
 #' See
 #' http://10.167.37.157/common/tissues
 #' for the full list of tissues
-#' 
+#'
 #'
 #' @param filter_list list
 #'
@@ -23,14 +23,14 @@
 #' @examples
 #'
 #' tissues <- get_tissues()
-#' all_tissues <- get_tissues(list(all=TRUE))
+#' all_tissues <- get_tissues(list(all = TRUE))
 #' tissue_slugs <- get_tissues(show_id = TRUE)
 get_tissues <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
-  #check_filters("tissues", filter_list, "common")
-  #TODO: add a warning about 'all=TRUE' being the only allowed filter
-  
+  # check_filters("tissues", filter_list, "common")
+  # TODO: add a warning about 'all=TRUE' being the only allowed filter
+
   my_url <- sprintf(
     "%s/tissue_samples/%s",
     common_api_url,

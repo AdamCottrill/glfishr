@@ -2,12 +2,12 @@
 #'
 #' This function accesses the api endpoint for FN121_GPS_Tracks
 #' records. FN121_GPS_Tracks records contain GPS tracks for projects
-#' where GPS data is recorded (e.g. trawls, electrofishing, etc.), including 
+#' where GPS data is recorded (e.g. trawls, electrofishing, etc.), including
 #' the track ID, coordinates in decimal decrees, the timestamp and site depth.
-#' Other relevant details for each SAM are found in the FN121 table. 
-#' This function takes an optional filter list which can be used to 
+#' Other relevant details for each SAM are found in the FN121 table.
+#' This function takes an optional filter list which can be used to
 #' return records based on attributes of the SAM including site depth, timestamp,
-#' start and end date and time, effort duration, gear, site depth and location 
+#' start and end date and time, effort duration, gear, site depth and location
 #' as well as attributes of the projects they are associated with such project
 #' code, or part of the project code, lake, first year, last year,
 #' protocol, etc.
@@ -28,7 +28,7 @@
 #' @export
 #' @examples
 #'
-#' TODO: Update with relevant examples when more data exists in the portal
+#' # TODO: Update with relevant examples when more data exists in the portal
 #'
 #' fn121_gps <- get_FN121_GPS_Tracks(list(lake = "HU", prj_cd__like = "_306"))
 #' fn121_gps <- get_FN121_GPS_Tracks(list(lake = "HU", prj_cd__like = "_306"), show_id = TRUE)

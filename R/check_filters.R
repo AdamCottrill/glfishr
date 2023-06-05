@@ -9,7 +9,7 @@
 #' @param filters - list of filter names that are to be applied to the
 #'   endpoint.
 #' @param api_app - the name of the api application to fetch the
-#' filters from. 
+#' filters from.
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return list
@@ -21,16 +21,15 @@
 #' check_filters("common_filters", c("mu_type", "taxon_name"))
 #' check_filters("foo", c("year", "prj_cd"))
 check_filters <- function(endpoint, filters, api_app) {
-  
   if (!exists("api_filters")) get_api_filters(api_app = api_app)
-  
+
   endpoint <- tolower(endpoint)
 
   known_filters <- api_filters[[endpoint]]
   if (is.null(known_filters)) {
     known_filters <- refresh_filters(endpoint, api_app = api_app)
   }
-  
+
   diff <- setdiff(names(filters), known_filters$name)
   if (length(diff)) {
     tmp <- paste(diff, collapse = "\n + ")

@@ -5,12 +5,12 @@
 #' the entire table of active vessels, or it accepts filter parameter
 #' all=TRUE to return depreciated vessels too. No other filter
 #' parameters are currently available for this endpoint.
-#' 
+#'
 #'
 #' See
 #' http://10.167.37.157/common/vessels
 #' for the full list of vessels
-#' 
+#'
 #'
 #' @param filter_list list
 #'
@@ -23,13 +23,13 @@
 #' @examples
 #'
 #' vessel_list <- get_vessels()
-#' all_vessels <- get_vessels(list(all=TRUE))
+#' all_vessels <- get_vessels(list(all = TRUE))
 get_vessels <- function(filter_list = list(), to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
-  #check_filters("vessels", filter_list, "common")
-  #TODO: add a warning about 'all=TRUE' being the only allowed filter
-  
+  # check_filters("vessels", filter_list, "common")
+  # TODO: add a warning about 'all=TRUE' being the only allowed filter
+
   my_url <- sprintf(
     "%s/vessels/%s",
     common_api_url,
