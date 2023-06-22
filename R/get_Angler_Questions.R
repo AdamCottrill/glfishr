@@ -24,13 +24,11 @@
 #' @export
 #' @examples
 #'
-#' angler_questions <- get_Angler_Questions(list(lake = "ON", year__gte = 2012, year__lte = 2018))
+#' questions_05_15 <- get_Angler_Questions(list(year__gte = 2005, year__lte = 2015))
 #'
-#' angler_questions <- get_Angler_Questions(list(lake = "ER"))
+#' trout_questions <- get_Angler_Questions(list(question_text__like = "trout"))
 #'
-#' angler_questions <- get_Angler_Questions(list(lake = "HU", prj_cd__like = "_001"))
-#'
-#' angler_questions <- get_Angler_Questions(list(lake = "HU", protocol = "USA"), show_id = TRUE)
+#' questions_saugeen <- get_Angler_Questions(list(lake = "HU", prj_cd__like = "DR"))
 get_Angler_Questions <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)

@@ -28,10 +28,8 @@
 #' @examples
 #'
 #' show_filters("stream_dimensions")
-#'
-#' stream <- get_Stream_Dimensions(list())
-#' 
-#' stream <- get_Stream_Dimensions(list())
+#' # TODO: add more examples when more data is uploaded
+#' stream <- get_Stream_Dimensions(list(lake="ER"))
 get_Stream_Dimensions <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)

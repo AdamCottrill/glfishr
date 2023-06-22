@@ -4,10 +4,19 @@
 \alias{get_FN121_Limno}
 \title{Get FN121_Limno - Net set limnological data from FN_Portal API}
 \usage{
-get_FN121_Limno(filter_list = list(), show_id = FALSE, to_upper = TRUE)
+get_FN121_Limno(
+  filter_list = list(),
+  with_121 = FALSE,
+  show_id = FALSE,
+  to_upper = TRUE
+)
 }
 \arguments{
 \item{filter_list}{list}
+
+\item{with_121}{When 'FALSE', the default, only the limnology fields
+from the FN121 table are returned. To return the whole FN121 table
+(excluding trapnet, weather, and trawl fields), use 'with_121 = TRUE'.}
 
 \item{show_id}{When 'FALSE', the default, the 'slug'
 field is hidden from the data frame. To return this field
@@ -47,15 +56,11 @@ the full list of available filter keys (query parameters).
 # see the available filters that contain the string 'o2' (oxygen)
 show_filters("fn121limno", "o2")
 
-filter_list <- list(prj_cd = "LEA_TR19_003")
-fn121_limno <- get_FN121_Limno(filter_list)
+fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019, o2surf0__not_null = TRUE))
+fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019, o2surf0__not_null = TRUE), with_121 = TRUE)
+fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019, o2surf0__not_null = TRUE, mu_type = "moe"), with_121 = TRUE)
+fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019, o2surf0__not_null = TRUE), show_id = TRUE)
 
-# pass the same filter to our FN121 to get the associated net sets:
-
-fn121 <- get_FN121(filter_list)
-joined <- join_fn_fields(fn121, fn121_limno)
-# net sets are now associated with their limnological data:
-head(joined)
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

@@ -4,10 +4,19 @@
 \alias{get_FN121_Trapnet}
 \title{Get FN121_Trapnet - Trapnet data from FN_Portal API}
 \usage{
-get_FN121_Trapnet(filter_list = list(), show_id = FALSE, to_upper = TRUE)
+get_FN121_Trapnet(
+  filter_list = list(),
+  with_121 = FALSE,
+  show_id = FALSE,
+  to_upper = TRUE
+)
 }
 \arguments{
 \item{filter_list}{list}
+
+\item{with_121}{When 'FALSE', the default, only the trapnet fields
+from the FN121 table are returned. To return the whole FN121 table
+(excluding limnology, weather, and trawl fields), use 'with_121 = TRUE'.}
 
 \item{show_id}{When 'FALSE', the default, the 'slug'
 field is hidden from the data frame. To return this field
@@ -41,9 +50,10 @@ for the full list of available filter keys (query parameters)
 }
 \examples{
 
-TODO: Update with relevant examples when more data exists in the portal
+fn121_trapnet <- get_FN121_Trapnet(list(protocol="NSCIN", bottom_type="GP", year=2022))
+fn121_trapnet <- get_FN121_Trapnet(list(protocol="NSCIN", bottom_type="GP", mu_type="qma"), with_121=TRUE)
+fn121_trapnet <- get_FN121_Trapnet(list(protocol="NSCIN", bottom_type="GP"), show_id=TRUE)
 
-fn121_trapnet <- get_FN121_Trapnet(list(lake = "ON", year = 2022))
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}
