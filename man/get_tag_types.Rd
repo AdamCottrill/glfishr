@@ -33,7 +33,7 @@ for the full list of tag types
 \examples{
 
 tag_types <- get_tag_types()
-all_tag_types <- get_tag_types(list(all=TRUE))
+all_tag_types <- get_tag_types(list(all = TRUE))
 tag_slugs <- get_tag_types(show_id = TRUE)
 }
 \author{

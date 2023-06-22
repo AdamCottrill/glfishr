@@ -4,10 +4,19 @@
 \alias{get_FN121_Trawl}
 \title{Get FN121_Trawl - Trawl data from FN_Portal API}
 \usage{
-get_FN121_Trawl(filter_list = list(), show_id = FALSE, to_upper = TRUE)
+get_FN121_Trawl(
+  filter_list = list(),
+  with_121 = FALSE,
+  show_id = FALSE,
+  to_upper = TRUE
+)
 }
 \arguments{
 \item{filter_list}{list}
+
+\item{with_121}{When 'FALSE', the default, only the trawl fields
+from the FN121 table are returned. To return the whole FN121 table
+(excluding limnology, weather, and trapnet fields), use 'with_121 = TRUE'.}
 
 \item{show_id}{When 'FALSE', the default, the 'slug'
 field is hidden from the data frame. To return this field
@@ -39,9 +48,10 @@ for the full list of available filter keys (query parameters)
 }
 \examples{
 
-TODO: Update with relevant examples when more data exists in the portal
-
 fn121_trawl <- get_FN121_Trawl(list(lake = "ER", year = 2018))
+fn121_trawl <- get_FN121_Trawl(list(lake = "ER", year = 2018), with_121 = TRUE)
+fn121_trawl <- get_FN121_Trawl(list(lake = "ER", year = 2018, mu_type = "qma"), with_121 = TRUE)
+fn121_trawl <- get_FN121_Trawl(list(lake = "ER", year = 2018), show_id = TRUE)
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

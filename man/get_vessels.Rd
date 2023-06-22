@@ -32,7 +32,7 @@ for the full list of vessels
 \examples{
 
 vessel_list <- get_vessels()
-all_vessels <- get_vessels(list(all=TRUE))
+all_vessels <- get_vessels(list(all = TRUE))
 }
 \author{
 Rachel Henderson \email{rachel.henderson@ontario.ca}

@@ -41,7 +41,7 @@ for the full list of available filter keys (query parameters)
 }
 \examples{
 
-TODO: Update with relevant examples when more data exists in the portal
+# TODO: Update with relevant examples when more data exists in the portal
 
 fn121_gps <- get_FN121_GPS_Tracks(list(lake = "HU", prj_cd__like = "_306"))
 fn121_gps <- get_FN121_GPS_Tracks(list(lake = "HU", prj_cd__like = "_306"), show_id = TRUE)

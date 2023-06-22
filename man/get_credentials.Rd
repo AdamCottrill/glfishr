@@ -7,7 +7,11 @@
 get_credentials()
 }
 \description{
-A helper function to prompt a user for their GLIS username and password.
-Using rstudioapi creates a pop-up to enter credentials so that usernames
-and passwords are not saved, and passwords are not visible.
+A helper function to prompt a user for their GLIS username and
+password.  The default function uses the rstudioapi which provides
+pop-up to enter credentials so that usernames and passwords are not
+saved, and passwords are not visible.  If the users is not using
+Rstudio, the default readline interface is used.  Depending on the
+R client, the password characters may not be obscured when the
+readlines function is called.
 }

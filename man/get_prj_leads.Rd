@@ -36,8 +36,8 @@ entered as a project lead.
 \examples{
 
 prj_leads <- get_prj_leads()
-all_prj_leads <- get_prj_leads(list(all=TRUE))
-all_steves <- get_prj_leads(list(first_name__like = "ste", all=TRUE))
+all_prj_leads <- get_prj_leads(list(all = TRUE))
+all_steves <- get_prj_leads(list(first_name__like = "ste", all = TRUE))
 prj_lead_slugs <- get_prj_leads(show_id = TRUE)
 }
 \author{

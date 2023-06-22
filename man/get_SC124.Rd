@@ -60,8 +60,8 @@ filters <- list(
 sc124 <- get_SC124(filters)
 
 sc124 <- get_SC124(list(prj_cd = "LOA_SC19_002"),
-    uncount = TRUE)
-
+  uncount = TRUE
+)
 }
 \author{
 Jeremy Holden \email{jeremy.holden@ontario.ca}

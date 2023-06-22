@@ -31,8 +31,8 @@ for the full list of lakes
 \examples{
 
 lake_list <- get_lakes()
-erie <- get_lakes(list(lake="ER"))
-upper_lakes <- get_lakes(list(lake=c("HU", "SU")))
+erie <- get_lakes(list(lake = "ER"))
+upper_lakes <- get_lakes(list(lake = c("HU", "SU")))
 }
 \author{
 Rachel Henderson \email{rachel.henderson@ontario.ca}

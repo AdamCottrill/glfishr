@@ -43,20 +43,24 @@ a dataframe containing attributes of the upload files.
 \donttest{
 reports <- fetch_pt_associated_files(list(
   lake = "ON", year__gte = 2012,
-  year__lte = 2018),
-  target_dir = '~/Target Folder Name')
+  year__lte = 2018
+),
+target_dir = "~/Target Folder Name"
+)
 
 reports <- fetch_pt_associated_files(list(
   lake = "HU", year__gte = 2012,
-  prj_cd__like = "006"),
-  target_dir = '~/Target Folder Name')
+  prj_cd__like = "006"
+),
+target_dir = "~/Target Folder Name"
+)
 
-reports <- fetch_pt_associated_files(list(lake = "ER", protocol = "TWL"), target_dir = '~/Target Folder Name')
+reports <- fetch_pt_associated_files(list(lake = "ER", protocol = "TWL"), target_dir = "~/Target Folder Name")
 
 filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
-reports <- fetch_pt_associated_files(filters, target_dir = '~/Target Folder Name')
+reports <- fetch_pt_associated_files(filters, target_dir = "~/Target Folder Name")
 
-reports <- fetch_pt_associated_files(list(lake = "HU", protocol = "USA"), target_dir = '~/Target Folder Name')
+reports <- fetch_pt_associated_files(list(lake = "HU", protocol = "USA"), target_dir = "~/Target Folder Name")
 }
 
 }
