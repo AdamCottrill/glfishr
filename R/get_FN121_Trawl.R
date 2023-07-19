@@ -15,6 +15,9 @@
 #' for the full list of available filter keys (query parameters)
 #'
 #' @param filter_list list
+#' @param with_121 When 'FALSE', the default, only the trawl fields
+#' from the FN121 table are returned. To return the whole FN121 table
+#' (excluding limnology, weather, and trapnet fields), use 'with_121 = TRUE'.
 #' @param show_id When 'FALSE', the default, the 'slug'
 #' field is hidden from the data frame. To return this field
 #' as part of the data frame, use 'show_id = TRUE'.
@@ -26,13 +29,17 @@
 #' @export
 #' @examples
 #'
-#' # TODO: Update with relevant examples when more data exists in the portal
-#'
 #' fn121_trawl <- get_FN121_Trawl(list(lake = "ER", year = 2018))
-get_FN121_Trawl <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+#' fn121_trawl <- get_FN121_Trawl(list(lake = "ER", year = 2018), with_121 = TRUE)
+#' fn121_trawl <- get_FN121_Trawl(list(lake = "ER", year = 2018, mu_type = "qma"), with_121 = TRUE)
+#' fn121_trawl <- get_FN121_Trawl(list(lake = "ER", year = 2018), show_id = TRUE)
+get_FN121_Trawl <- function(filter_list = list(), with_121 = FALSE, show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
-  query_string <- build_query_string(filter_list)
-  check_filters("fn121trawl", filter_list, "fn_portal")
+  
+  trawl_filters <- filter_list[names(filter_list) != "mu_type"]
+  
+  query_string <- build_query_string(trawl_filters)
+  check_filters("fn121trawl", trawl_filters, "fn_portal")
   my_url <- sprintf(
     "%s/fn121trawl/%s",
     get_fn_portal_root(),
@@ -40,6 +47,17 @@ get_FN121_Trawl <- function(filter_list = list(), show_id = FALSE, to_upper = TR
   )
   payload <- api_to_dataframe(my_url, recursive = recursive)
   payload <- prepare_payload(payload, show_id, to_upper)
+  
+  if (with_121==TRUE){
+    
+    trawl_filters <- setdiff(names(filter_list), api_filters$fn121$name)
+    new_filters <- filter_list[names(filter_list) %in% trawl_filters == FALSE]
+    
+    FN121 <- get_FN121(new_filters)
+    
+    payload <- merge(FN121, payload)
+    
+  }
 
   return(payload)
 }

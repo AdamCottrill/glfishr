@@ -20,6 +20,9 @@
 #' the full list of available filter keys (query parameters).
 #'
 #' @param filter_list list
+#' @param with_121 When 'FALSE', the default, only the limnology fields
+#' from the FN121 table are returned. To return the whole FN121 table
+#' (excluding trapnet, weather, and trawl fields), use 'with_121 = TRUE'.
 #' @param show_id When 'FALSE', the default, the 'slug'
 #' field is hidden from the data frame. To return this field
 #' as part of the data frame, use 'show_id = TRUE'.
@@ -34,19 +37,18 @@
 #' # see the available filters that contain the string 'o2' (oxygen)
 #' show_filters("fn121limno", "o2")
 #'
-#' filter_list <- list(prj_cd = "LEA_TR19_003")
-#' fn121_limno <- get_FN121_Limno(filter_list)
-#'
-#' # pass the same filter to our FN121 to get the associated net sets:
-#'
-#' fn121 <- get_FN121(filter_list)
-#' joined <- join_fn_fields(fn121, fn121_limno)
-#' # net sets are now associated with their limnological data:
-#' head(joined)
-get_FN121_Limno <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+#' fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019, o2surf0__not_null = TRUE))
+#' fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019, o2surf0__not_null = TRUE), with_121 = TRUE)
+#' fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019, o2surf0__not_null = TRUE, mu_type = "moe"), with_121 = TRUE)
+#' fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019, o2surf0__not_null = TRUE), show_id = TRUE)
+#' 
+get_FN121_Limno <- function(filter_list = list(), with_121 = FALSE, show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
-  query_string <- build_query_string(filter_list)
-  check_filters("fn121limno", filter_list, "fn_portal")
+  
+  limno_filters <- filter_list[names(filter_list) != "mu_type"]
+  
+  query_string <- build_query_string(limno_filters)
+  check_filters("fn121limno", limno_filters, "fn_portal")
   my_url <- sprintf(
     "%s/fn121limno/%s",
     get_fn_portal_root(),
@@ -54,6 +56,17 @@ get_FN121_Limno <- function(filter_list = list(), show_id = FALSE, to_upper = TR
   )
   payload <- api_to_dataframe(my_url, recursive = recursive)
   payload <- prepare_payload(payload, show_id, to_upper)
+  
+  if (with_121==TRUE){
+    
+    limno_filters <- setdiff(names(filter_list), api_filters$fn121$name)
+    new_filters <- filter_list[names(filter_list) %in% limno_filters == FALSE]
+    
+    FN121 <- get_FN121(new_filters)
+    
+    payload <- merge(FN121, payload)
+    
+  }
 
   return(payload)
 }

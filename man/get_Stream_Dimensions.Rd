@@ -41,10 +41,8 @@ for the full list of available filter keys (query parameters)
 \examples{
 
 show_filters("stream_dimensions")
-
-stream <- get_Stream_Dimensions(list())
-
-stream <- get_Stream_Dimensions(list())
+# TODO: add more examples when more data is uploaded
+stream <- get_Stream_Dimensions(list(lake="ER"))
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}
