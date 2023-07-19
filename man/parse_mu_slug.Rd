@@ -17,8 +17,10 @@ is all upper case - use toupper=FALSE for title case (first letter of each word
 capitalized).
 }
 \examples{
-huron_offshore_19 <- get_FN121(list(lake="HU", protocol="OSIA", year=2019, mu_type="basin"))
+huron_offshore_19 <- get_FN121(list(lake = "HU", protocol = "OSIA", year = 2019, mu_type = "basin"))
 huron_offshore_19$MANAGEMENT_UNIT <- parse_mu_slug(huron_offshore_19$MANAGEMENT_UNIT)
 
-
+}
+\author{
+Rachel Henderson \email{rachel.henderson@ontario.ca}
 }

@@ -4,7 +4,12 @@
 \alias{get_FN121_Trapnet}
 \title{Get FN121_Trapnet - Trapnet data from FN_Portal API}
 \usage{
-get_FN121_Trapnet(filter_list = list(), show_id = FALSE, to_upper = TRUE)
+get_FN121_Trapnet(
+  filter_list = list(),
+  with_121 = FALSE,
+  show_id = FALSE,
+  to_upper = TRUE
+)
 }
 \arguments{
 \item{filter_list}{list}
@@ -41,7 +46,7 @@ for the full list of available filter keys (query parameters)
 }
 \examples{
 
-TODO: Update with relevant examples when more data exists in the portal
+# TODO: Update with relevant examples when more data exists in the portal
 
 fn121_trapnet <- get_FN121_Trapnet(list(lake = "ON", year = 2022))
 }

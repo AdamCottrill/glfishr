@@ -1,18 +1,16 @@
 #' Get FN121_Trapnet - Trapnet data from FN_Portal API
 #'
 #' This function accesses the api endpoint for fn121trapnet
-#' records. fn121trapnet records contain details typically collected
-#' as part of the Ontario NSCIN protocol: bottom type, cover type,
-#' vegetation, and the angle, use, and distance offshore of the trap
-#' net leader.  Other relevant details for each SAM are found in the
-#' FN121 table.  This function takes an optional filter list which can
-#' be used to return records based on attributes of the SAM including
-#' site depth, start and end date and time, effort duration, gear, and
-#' location as well as attributes of the projects they are associated
-#' with such as project code, or part of the project code, lake, first
-#' year, last year, protocol, etc. This function can also take filters
-#' related to the bottom, cover, and vegetation types, and the
-#' angle/length of the leader.
+#' records. fn121trapnet records contain details typically collected as part
+#' of the Ontario NSCIN protocol: bottom type, cover type, vegetation,
+#' and the angle, use, and distance offshore of the trap net leader.
+#' Other relevant details for each SAM are found in the FN121 table.
+#' This function takes an optional filter list which can be used to return records
+#' based on attributes of the SAM including site depth, start and end date
+#' and time, effort duration, gear, and location as well as attributes of the projects
+#' they are associated with such as project code, or part of the project code, lake,
+#' first year, last year, protocol, etc. This function can also take filters related to
+#' the bottom, cover, and vegetation types, and the angle/length of the leader.
 #'
 #' See
 #' http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn121trapnet_list
@@ -33,7 +31,7 @@
 #' # TODO: Update with relevant examples when more data exists in the portal
 #'
 #' fn121_trapnet <- get_FN121_Trapnet(list(lake = "ON", year = 2022))
-get_FN121_Trapnet <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+get_FN121_Trapnet <- function(filter_list = list(), with_121 = FALSE, show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("fn121trapnet", filter_list, "fn_portal")
@@ -44,6 +42,16 @@ get_FN121_Trapnet <- function(filter_list = list(), show_id = FALSE, to_upper = 
   )
   payload <- api_to_dataframe(my_url, recursive = recursive)
   payload <- prepare_payload(payload, show_id, to_upper)
+  
+  if (with_121==TRUE){
+    # check if mu_type in list of filters; add to list of filters
+    trapnet_filters <- setdiff(names(filter_list), api_filters$fn121$name)
+    new_filters <- filter_list[names(filter_list) %in% trapnet_filters == FALSE]
+    FN121 <- get_FN121(new_filters)
+    
+    payload <- merge(FN121, payload)
+    
+  }
 
   return(payload)
 }
