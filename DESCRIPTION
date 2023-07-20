@@ -1,6 +1,6 @@
 Package: glfishr
 Title: Fetch fisheries assessment data from the FN Portal
-Version: 2022.09.02
+Version: 2023.07.20
 Authors@R:
     c(person(given = "Adam",
            family = "Cottrill",
