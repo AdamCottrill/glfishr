@@ -17,6 +17,14 @@ get_api_filters <- function(api_app, create_list = TRUE) {
   domain <- get_domain()
   swagger_url <- sprintf("%s%s/api/v1/swagger.json", domain, api_app)
 
+  
+  # need to run GET(swagger_url) twice until Azure login is working
+  redundant_response <- tryCatch(httr::GET(swagger_url),
+                                 error = function(err) {
+                                   print("unable to fetch filters from the server. Is your VPN active?")
+                                 }
+  )
+  
   response <- tryCatch(httr::GET(swagger_url),
     error = function(err) {
       print("unable to fetch filters from the server. Is your VPN active?")
@@ -27,7 +35,7 @@ get_api_filters <- function(api_app, create_list = TRUE) {
 
   payload <- tryCatch(
     jsonlite::fromJSON(json, flatten = TRUE),
-    error = function(err) {
+      error = function(err) {
       print("unable able to parse the json response from:")
       print(swagger_url)
       return(list(paths = list()))

@@ -26,7 +26,7 @@
 get_domain <- function() {
   if (Sys.getenv("FN_PORTAL_DEV") == "") {
     # production
-    domain <- "http://10.167.37.157/"
+    domain <- "https://intra.dev.glis.mnr.gov.on.ca/"
   } else {
     # local development
     if (Sys.getenv("FN_PORTAL_PORT") == "") {
