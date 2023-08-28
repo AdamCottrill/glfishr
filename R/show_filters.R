@@ -31,7 +31,7 @@ show_filters <- function(endpoint = "", filter_like = "") {
   creels_endpoints <- names(get_api_filters("creels", FALSE))
   common_endpoints <- names(get_api_filters("common", FALSE))
   pt_endpoints <- names(get_api_filters("project_tracker", FALSE))
-  all_endpoints <- do.call(c, list(fn_portal_endpoints, creels_endpoints, common_endpoints))
+  all_endpoints <- do.call(c, list(fn_portal_endpoints, creels_endpoints, common_endpoints, pt_endpoints))
 
   if (endpoint == "") {
     msg <-
