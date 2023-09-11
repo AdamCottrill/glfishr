@@ -1,0 +1,7 @@
+*.Rhistory
+.vscode/
+notes.org
+sandbox.R
+sandbox/*
+.#*
+*.Rproj
