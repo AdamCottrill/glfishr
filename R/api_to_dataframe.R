@@ -24,7 +24,7 @@ api_to_dataframe <- function(url, data = NULL, page = 0, recursive = TRUE) {
   
   auth_header <- sprintf("Token %s", token)
   
-  max_page_count <- 10
+  max_page_count <- 100
   url <- gsub("\\n", " ", url)
   url <- utils::URLencode(url)
   # response <- tryCatch(httr::GET(url),
