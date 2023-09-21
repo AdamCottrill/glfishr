@@ -23,7 +23,7 @@ dataframe
 Given a url submit the request and return the results as a
 dataframe. If the response is paginated, the functions is called
 recursively until all of the pages have been loaded ($next is
-null). A maximum of 10 requests are made.  If the maximum number
+null). A maximum of 50 requests are made.  If the maximum number
 of pages is reached, the function returns the data and issues a
 warning that there may be additional data and that the filters
 should be refined and multiple requests made and then combined to
