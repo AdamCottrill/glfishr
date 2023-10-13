@@ -26,9 +26,6 @@ records based on several attributes of the projects such as lake or year they
 were run, attributes of the tagged fish such as species or size, the tag
 attributes such as colour, placement, tag type, or tag status (either tagged
 or recovered).
-
-See http://10.167.37.157/tfat/api/redoc/#project for the full list of
-available filter keys (query parameters)
 }
 \examples{
 

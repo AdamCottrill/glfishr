@@ -13,9 +13,6 @@
 #' requested), or the tag recovery event such as the species or size of fish or
 #' the tag attributes such as colour, placement, or tag type.
 #'
-#' See http://10.167.37.157/tfat/api/redoc/#angler for the full list of
-#' available filter keys (query parameters)
-#'
 #'
 #' @param filter_list list
 #'

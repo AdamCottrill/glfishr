@@ -24,9 +24,6 @@ This function takes an optional filter list which can be used to return
 records based on several attributes of the reporting event (reporting date,
 reporting method, or follow-up requested), the tagged fish such as species or
 size, or the tag attributes such as colour, placement, or tag type.
-
-See http://10.167.37.157/tfat/api/redoc/#report for the full list of
-available filter keys (query parameters)
 }
 \examples{
 
