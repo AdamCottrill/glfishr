@@ -31,11 +31,11 @@
 get_agest <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
-  # check_filters("age_structure", filter_list, "common")
+  # check_filters("aging_structures", filter_list, "common")
   # TODO: add a warning about 'all=TRUE' being the only allowed filter
 
   my_url <- sprintf(
-    "%s/age_structure/%s",
+    "%s/aging_structures/%s",
     common_api_url,
     query_string
   )
