@@ -35,9 +35,9 @@ code, or part of the project code, lake, first year, last year,
 protocol, etc.
 }
 \details{
-See
-http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn_121_list
-for the full list of available filter keys (query parameters)
+Use ~show_filters("fn121")~ to see the full list of available filter
+keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+and filter by "fn121" for additional information.
 }
 \examples{
 

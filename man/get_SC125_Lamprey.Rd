@@ -42,7 +42,8 @@ interview, or the creel(s) that the samples were collected in.
 }
 \details{
 Use ~show_filters("sc125lamprey")~ to see the full list of available filter
-keys (query parameters)
+keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+and filter by "sc125lamprey" for additional information.
 }
 \examples{
 

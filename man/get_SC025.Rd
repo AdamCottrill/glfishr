@@ -28,7 +28,8 @@ like a weekend.
 }
 \details{
 Use ~show_filters("sc025")~ to see the full list of available filter
-keys (query parameters)
+keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+and filter by "sc025" for additional information.
 }
 \examples{
 

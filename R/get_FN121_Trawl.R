@@ -10,9 +10,9 @@
 #' first year, last year, protocol, etc. This function can also take filters related to
 #' the vessel/warp.
 #'
-#' See
-#' http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn121trawl_list
-#' for the full list of available filter keys (query parameters)
+#' Use ~show_filters("fn121trawl")~ to see the full list of available filter
+#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+#' and filter by "fn121trawl" for additional information.
 #'
 #' @param filter_list list
 #' @param with_121 When 'FALSE', the default, only the trawl fields

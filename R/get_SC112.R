@@ -6,8 +6,9 @@
 #' code, or part of the project code, lake, first year, last year,
 #' contact, or any of the strata
 #'
-#' Use ~show_filters("sc112")~ to see the full list
-#' of available filter keys (query parameters)
+#' Use ~show_filters("sc112")~ to see the full list of available filter
+#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+#' and filter by "sc112" for additional information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'

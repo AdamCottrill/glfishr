@@ -8,7 +8,8 @@
 #' treated like a weekend).
 #'
 #' Use ~show_filters("sc023")~ to see the full list of available filter
-#' keys (query parameters)
+#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+#' and filter by "sc023" for additional information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'

@@ -11,9 +11,9 @@
 #' code, or part of the project code, lake, first year, last year,
 #' protocol, etc.
 #'
-#' See
-#' http://10.167.37.157/fn_portal/api/v1/redoc/#operation/stream_dimensions_list
-#' for the full list of available filter keys (query parameters)
+#' Use ~show_filters("stream_dimensions")~ to see the full list of available filter
+#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+#' and filter by "stream_dimensions" for additional information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'slug'

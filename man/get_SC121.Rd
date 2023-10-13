@@ -33,7 +33,8 @@ several attributes of the interview.
 }
 \details{
 Use ~show_filters("sc121")~ to see the full list of available filter
-keys (query parameters)
+keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+and filter by "sc121" for additional information.
 }
 \examples{
 
