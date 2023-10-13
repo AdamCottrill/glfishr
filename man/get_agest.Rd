@@ -29,7 +29,7 @@ Note that aging structures are valid for the AGEST field and the first
 character of the AGEMT field.
 
 See
-http://10.167.37.157/common/aging_structures
+https://intra.glis.mnr.gov.on.ca/common/aging_structures/
 for the full list of aging structure code options
 }
 \examples{

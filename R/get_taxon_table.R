@@ -11,7 +11,11 @@
 #'
 #'
 #' See
-#' http://10.167.37.157/common/taxon
+#' https://intra.glis.mnr.gov.on.ca/common/api/v1/swagger/
+#' and filter by "taxon" for the full list of available filter keys (query parameters)
+#'
+#' See
+#' https://intra.glis.mnr.gov.on.ca/common/taxon/
 #' for the full list of taxon codes
 #'
 #'

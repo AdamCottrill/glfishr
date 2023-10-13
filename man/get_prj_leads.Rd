@@ -25,11 +25,11 @@ last name, or username.
 }
 \details{
 See
-http://10.167.37.157/fn_portal/api/v1/redoc/#tag/prj_ldr
-for a full list of available filter parameters.
+https://intra.glis.mnr.gov.on.ca/common/api/v1/swagger/
+and filter by "project_leads" for a full list of available filter parameters.
 
 See
-http://10.167.37.157/common/project_leads
+https://intra.glis.mnr.gov.on.ca/common/project_leads/
 for the full list of current and former staff that can be
 entered as a project lead.
 }

@@ -8,7 +8,7 @@
 #'
 #'
 #' See
-#' http://10.167.37.157/common/finclips
+#' https://intra.glis.mnr.gov.on.ca/common/finclips/
 #' for the full list of clip code options
 #'
 #'

@@ -26,7 +26,7 @@ parameters are currently available for this endpoint.
 }
 \details{
 See
-http://10.167.37.157/common/bottom_types
+https://intra.glis.mnr.gov.on.ca/common/bottom_types/
 for the full list of bottom types
 }
 \examples{

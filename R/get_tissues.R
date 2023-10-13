@@ -8,7 +8,7 @@
 #'
 #'
 #' See
-#' http://10.167.37.157/common/tissues
+#' https://intra.glis.mnr.gov.on.ca/common/tissues/
 #' for the full list of tissues
 #'
 #'

@@ -7,7 +7,7 @@
 #'
 #'
 #' See
-#' http://10.167.37.157/common/gruse
+#' https://intra.glis.mnr.gov.on.ca/common/gruse/
 #' for the full list of gear use code options
 #'
 #'

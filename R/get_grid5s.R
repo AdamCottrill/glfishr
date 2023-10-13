@@ -8,7 +8,7 @@
 #'
 #'
 #' See
-#' http://10.167.37.157/common/grid5s
+#' https://intra.glis.mnr.gov.on.ca/common/grid5s/
 #' for the full list of 5-minute grids
 #'
 #'
