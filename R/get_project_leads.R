@@ -25,15 +25,14 @@
 #' @export
 #' @examples
 #'
-#' prj_leads <- get_prj_leads()
-#' all_prj_leads <- get_prj_leads(list(all = TRUE))
-#' all_steves <- get_prj_leads(list(first_name__like = "ste", all = TRUE))
-#' prj_lead_slugs <- get_prj_leads(show_id = TRUE)
-get_prj_leads <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
-  .Deprecated("get_project_leads")
+#' project_leads <- get_project_leads()
+#' all_project_leads <- get_project_leads(list(all = TRUE))
+#' all_steves <- get_project_leads(list(first_name__like = "ste", all = TRUE))
+#' project_lead_slugs <- get_project_leads(show_id = TRUE)
+get_project_leads <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   check_filters("prj_ldr", filter_list, "fn_portal")
-
+  
   my_url <- sprintf(
     "%s/prj_ldr/%s",
     get_fn_portal_root(),
@@ -41,6 +40,6 @@ get_prj_leads <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE
   )
   payload <- api_to_dataframe(my_url)
   payload <- prepare_payload(payload, show_id, to_upper)
-
+  
   return(payload)
 }
