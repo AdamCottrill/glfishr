@@ -10,7 +10,7 @@
 #'
 #'
 #' See
-#' http://10.167.37.157/common/ageprep2
+#' https://intra.glis.mnr.gov.on.ca/common/ageprep2/
 #' for the full list of age preparation 2 code options
 #'
 #'

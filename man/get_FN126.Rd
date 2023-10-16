@@ -32,9 +32,9 @@ group code, or attributes of the effort, the sample, or the
 project(s) that the samples were collected in.
 }
 \details{
-See
-http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn_126_list
-for the full list of available filter keys (query parameters)
+Use ~show_filters("fn126")~ to see the full list of available filter
+keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+and filter by "fn126" for additional information.
 }
 \examples{
 

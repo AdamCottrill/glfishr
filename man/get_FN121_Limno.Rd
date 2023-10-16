@@ -47,9 +47,9 @@ protocol, etc.  The limnological data can be joined back to the
 associated net set in R using the function \code{\link{join_fn_fields}}
 }
 \details{
-See \href{http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn121limno}{fn121limno}
-or type \code{\link{show_filters}} to see
-the full list of available filter keys (query parameters).
+Use ~show_filters("fn121limno")~ to see the full list of available filter
+keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+and filter by "fn121limno" for additional information.
 }
 \examples{
 

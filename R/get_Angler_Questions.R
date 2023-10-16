@@ -9,8 +9,9 @@
 #' code, lake, first year, last year, etc.
 #' 
 #' Use ~show_filters("angler_questions")~ to see the full list of available filter
-#' keys (query parameters)
-#'
+#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+#' and filter by "angler_questions" for additional information.
+#' 
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'
 #' fields are hidden from the data frame. To return these columns

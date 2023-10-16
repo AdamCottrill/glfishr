@@ -28,10 +28,6 @@ records based on several attributes of the tagged fish such as species, size,
 sex, or maturity, the tag attributes such as colour, placement, tag type, or
 tag status (either tagged or recovered), or attributes of the projects in
 which the encounters occurred such as lake or year the projects were run.
-
-See http://10.167.37.157/tfat/api/redoc/#encounter for the full list of
-available filter keys (query parameters)
-#'
 }
 \examples{
 

@@ -1,14 +1,15 @@
-#' Get orientation options - A list of orientation codes used in GLIS
+#' Get tagging agency options - A list of tagging agency codes used in GLIS
 #'
-#' This function accesses the api endpoint for orientation choices and returns
+#' This function accesses the api endpoint for tagging agency choices and returns
 #' their labels, descriptions and whether they're in use. It fetches
-#' the entire table of orientation codes - no other filter
+#' the entire table of tagging agency codes - no other filter
 #' parameters are currently available for this endpoint.
+#' Tagging agency is the third and fourth characters of TAGDOC.
 #'
 #'
 #' See
-#' http://10.167.37.157/common/orient
-#' for the full list of orientation code options
+#' https://intra.dev.glis.mnr.gov.on.ca/common/tagging_agencies/
+#' for the full list of tagging agency code options
 #'
 #'
 #' @param filter_list list
@@ -23,19 +24,19 @@
 #'
 #' orientations <- get_orientations()
 #' orientation_slugs <- get_orientations(show_id = TRUE)
-get_orientations <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+get_tag_agencies <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
-  # check_filters("orient", filter_list, "common")
+  # check_filters("tagging_agencies", filter_list, "common")
   # TODO: add a warning about 'all=TRUE' being the only allowed filter
-
+  
   my_url <- sprintf(
-    "%s/orient/%s",
+    "%s/tagging_agencies/%s",
     common_api_url,
     query_string
   )
   payload <- api_to_dataframe(my_url)
   payload <- prepare_payload(payload, show_id, to_upper)
-
+  
   return(payload)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_management_units.R
 \name{get_management_units}
 \alias{get_management_units}
-\title{Get management units from GLIS API}
+\title{Get management units - A list of management units in GLIS}
 \usage{
 get_management_units(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 }
@@ -16,7 +16,15 @@ upper case?}
 dataframe
 }
 \description{
-Get management units from GLIS API
+This function accesses the api endpoint for management units (MUs) and returns
+MU names, types, centroids, envelopes, and associated lakes. It is useful for
+fetching a table of all MUs currently in GLIS, but it also accepts the filter parameters
+'lake' and 'mu_type' to further filter results.
+}
+\details{
+See
+https://intra.glis.mnr.gov.on.ca/common/management_units/
+for the full list of management units
 }
 \examples{
 get_management_units()

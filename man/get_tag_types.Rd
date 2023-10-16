@@ -27,7 +27,7 @@ first character of TAGDOC.
 }
 \details{
 See
-http://10.167.37.157/common/tag_types
+https://intra.glis.mnr.gov.on.ca/common/tag_types/
 for the full list of tag types
 }
 \examples{

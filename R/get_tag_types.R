@@ -9,7 +9,7 @@
 #'
 #'
 #' See
-#' http://10.167.37.157/common/tag_types
+#' https://intra.glis.mnr.gov.on.ca/common/tag_types/
 #' for the full list of tag types
 #'
 #'
@@ -33,7 +33,7 @@ get_tag_types <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE
   # TODO: add a warning about 'all=TRUE' being the only allowed filter
 
   my_url <- sprintf(
-    "%s/tag_type_choice/%s",
+    "%s/tag_types/%s",
     common_api_url,
     query_string
   )

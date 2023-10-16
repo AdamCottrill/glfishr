@@ -34,8 +34,9 @@ as the species, or group code, or attributes of the effort, the
 sample, or the project(s) that the samples were collected in.
 }
 \details{
-Use ~show_filters("sc123")~ to see the full list of available filter
-keys (query parameters)
+Use ~show_filters("sc127")~ to see the full list of available filter
+keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+and filter by "sc127" for additional information.
 }
 \examples{
 

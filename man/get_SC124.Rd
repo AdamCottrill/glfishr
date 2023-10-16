@@ -44,9 +44,9 @@ or group code but also attributes of the effort, the sample or the
 project(s) that the catches were made in.
 }
 \details{
-See
-http://10.167.37.157/creels/api/v1/redoc/#operation/sc124_list
-for the full list of available filter keys (query parameters)
+Use ~show_filters("sc124")~ to see the full list of available filter
+keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+and filter by "sc124" for additional information.
 }
 \examples{
 

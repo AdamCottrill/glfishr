@@ -8,7 +8,7 @@
 #'
 #'
 #' See
-#' http://10.167.37.157/common/cover_types
+#' https://intra.glis.mnr.gov.on.ca/common/cover_types/
 #' for the full list of cover types
 #'
 #'

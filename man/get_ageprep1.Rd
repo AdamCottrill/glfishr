@@ -28,7 +28,7 @@ Note that age preparation 1 codes are valid for the second
 character of the AGEMT field.
 
 See
-http://10.167.37.157/common/agepre1
+https://intra.glis.mnr.gov.on.ca/common/ageprep1/
 for the full list of age preparation 1 code options
 }
 \examples{

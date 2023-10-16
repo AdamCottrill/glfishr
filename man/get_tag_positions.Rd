@@ -26,7 +26,7 @@ second character of TAGDOC.
 }
 \details{
 See
-http://10.167.37.157/common/tag_postisions
+https://intra.glis.mnr.gov.on.ca/common/tag_positions/
 for the full list of tag position options
 }
 \examples{

@@ -8,9 +8,10 @@
 #' endpoints will be displayed.
 #'
 #' See
-#' http://10.167.37.157/fn_portal/api/v1/redoc/,
-#' http://10.167.37.157/creels/api/v1/redoc/, and
-#' http://10.167.37.157/common/api/v1/redoc/
+#' https://intra.glis.mnr.gov.on.ca/project_tracker/api/v1/swagger/,
+#' https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/,
+#' https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/, and
+#' https://intra.glis.mnr.gov.on.ca/common/api/v1/swagger/
 #' for an alternative way to view the full list of available filter keys (query parameters)
 #'
 #' @param endpoint - the name of the api endpoint

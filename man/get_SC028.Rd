@@ -26,11 +26,11 @@ This function accesses the api endpoint to for SC028 records. SC028
 records contain information about the fishing modes included in a
 creel survey.  Fishing mode typically describes the gear, or method
 of fishing.
-#'
 }
 \details{
 Use ~show_filters("sc028")~ to see the full list of available filter
-keys (query parameters)
+keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+and filter by "sc028" for additional information.
 }
 \examples{
 

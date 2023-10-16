@@ -4,9 +4,9 @@
 #' records. FN022 records contain information about the defined season
 #' associated with a project.
 #'
-#' See
-#' http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn_022_list
-#' for the full list of available filter keys (query parameters)
+#' Use ~show_filters("fn022")~ to see the full list of available filter
+#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+#' and filter by "fn022" for additional information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'

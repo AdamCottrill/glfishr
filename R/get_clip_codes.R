@@ -8,7 +8,7 @@
 #'
 #'
 #' See
-#' http://10.167.37.157/common/finclips
+#' https://intra.glis.mnr.gov.on.ca/common/finclips/
 #' for the full list of clip code options
 #'
 #'
@@ -27,11 +27,11 @@
 get_clip_codes <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
-  # check_filters("clip_capture", filter_list, "common")
+  # check_filters("finclips", filter_list, "common")
   # TODO: add a warning about 'all=TRUE' being the only allowed filter
 
   my_url <- sprintf(
-    "%s/clip_capture/%s",
+    "%s/finclips/%s",
     common_api_url,
     query_string
   )

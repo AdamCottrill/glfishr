@@ -10,9 +10,6 @@
 #' the tag attributes (colour, placement, tag type) or the recovery event (lake
 #' or recovery date)
 #'
-#' See http://10.167.37.157/tfat/api/redoc/#recovery for the full list of
-#' available filter keys (query parameters)
-#'
 #' See ~get_tag_attr_values()~ to get a list of values that can be use to filter
 #' results based on tag attributes such as colour or tag type.
 #'
