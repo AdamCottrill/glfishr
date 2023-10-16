@@ -56,10 +56,14 @@ and filter by "fn121limno" for additional information.
 # see the available filters that contain the string 'o2' (oxygen)
 show_filters("fn121limno", "o2")
 
-fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019, o2surf0__not_null = TRUE))
-fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019, o2surf0__not_null = TRUE), with_121 = TRUE)
-fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019, o2surf0__not_null = TRUE, mu_type = "moe"), with_121 = TRUE)
-fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019, o2surf0__not_null = TRUE), show_id = TRUE)
+fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019,
+o2surf0__not_null = TRUE))
+fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019,
+o2surf0__not_null = TRUE), with_121 = TRUE)
+fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019,
+o2surf0__not_null = TRUE, mu_type = "moe"), with_121 = TRUE)
+fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019,
+o2surf0__not_null = TRUE), show_id = TRUE)
 
 }
 \author{

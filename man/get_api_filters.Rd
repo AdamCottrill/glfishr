@@ -11,6 +11,11 @@ get_api_filters(api_app, create_list = TRUE)
 \item the name of the api application to fetch the
 filters from.
 }}
+
+\item{create_list}{\itemize{
+\item create the global list of api_filters if it
+does not exist? Defaults to True.
+}}
 }
 \value{
 list

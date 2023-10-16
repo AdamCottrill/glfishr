@@ -54,7 +54,7 @@ get_SC124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, un
   payload <- api_to_dataframe(my_url, recursive = recursive)
   payload <- prepare_payload(payload, show_id, to_upper)
 
-  if (uncount == TRUE) {
+  if (uncount & length(payload)) {
     payload <- uncount_tally(payload, "SIZCNT")
     return(payload)
   }

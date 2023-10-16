@@ -50,9 +50,14 @@ and filter by "fn121trapnet" for additional information.
 }
 \examples{
 
-fn121_trapnet <- get_FN121_Trapnet(list(protocol="NSCIN", bottom_type="GP", year=2022))
-fn121_trapnet <- get_FN121_Trapnet(list(protocol="NSCIN", bottom_type="GP", mu_type="qma"), with_121=TRUE)
-fn121_trapnet <- get_FN121_Trapnet(list(protocol="NSCIN", bottom_type="GP"), show_id=TRUE)
+fn121_trapnet <- get_FN121_Trapnet(list(protocol="NSCIN",
+bottom_type="GP", year=2022))
+
+fn121_trapnet <- get_FN121_Trapnet(list(protocol="NSCIN",
+bottom_type="GP", mu_type="qma"), with_121=TRUE)
+
+fn121_trapnet <- get_FN121_Trapnet(list(protocol="NSCIN",
+bottom_type="GP"), show_id=TRUE)
 
 }
 \author{

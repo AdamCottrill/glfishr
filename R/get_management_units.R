@@ -1,7 +1,7 @@
 #' Get management units - A list of management units in GLIS
 #'
 #' This function accesses the api endpoint for management units (MUs) and returns
-#' MU names, types, centroids, envelopes, and associated lakes. It is useful for 
+#' MU names, types, centroids, envelopes, and associated lakes. It is useful for
 #' fetching a table of all MUs currently in GLIS, but it also accepts the filter parameters
 #' 'lake' and 'mu_type' to further filter results.
 #'
@@ -11,6 +11,10 @@
 #' for the full list of management units
 #'
 #' @param filter_list list
+#'
+#' @param show_id include the fields the 'id' and 'slug' in the
+#' returned data frame
+#'
 #' @param to_upper should the names of the dataframe be converted to
 #' upper case?
 #'

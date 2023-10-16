@@ -26,7 +26,7 @@
 #' show_filters("sc121", "mode")
 #' show_filters("species")
 #' show_filters("sc121", "cats")
-#' show_filters("foo")
+#' #show_filters("foo")
 show_filters <- function(endpoint = "", filter_like = "") {
   fn_portal_endpoints <- names(get_api_filters("fn_portal", FALSE))
   creels_endpoints <- names(get_api_filters("creels", FALSE))

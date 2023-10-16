@@ -9,6 +9,9 @@ get_orientations(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 \arguments{
 \item{filter_list}{list}
 
+\item{show_id}{include the fields the 'id' and 'slug' in the
+returned data frame}
+
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
 upper case?
@@ -25,7 +28,7 @@ parameters are currently available for this endpoint.
 }
 \details{
 See
-https://intra.dev.glis.mnr.gov.on.ca/common/orient/
+https://intra.glis.mnr.gov.on.ca/common/orient/
 for the full list of orientation code options
 }
 \examples{

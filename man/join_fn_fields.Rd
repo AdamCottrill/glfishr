@@ -42,7 +42,7 @@ fn121 <- get_FN121(list(prj_cd = prj_cd))
 fn123 <- get_FN123(list(prj_cd = prj_cd, spc = "091"))
 
 # add site depth to each catch count record:
-fn123 <- join_fn_fields(fn121, fn123, c("SIDEP"), all.x = TRUE)
+fn123 <- join_fn_fields(fn121, fn123, c("SIDEP0"), all.x = TRUE)
 
 # add gear to the FN121 table:
 fn028 <- get_FN028(list(prj_cd = prj_cd))

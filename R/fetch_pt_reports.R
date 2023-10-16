@@ -49,22 +49,27 @@
 #' target_dir = "~/Target Folder Name"
 #' )
 #'
-#' reports <- fetch_pt_reports(list(lake = "ER", protocol = "TWL"), target_dir = "~/Target Folder Name")
+#' reports <- fetch_pt_reports(list(lake = "ER",
+#' protocol = "TWL"), target_dir = "~/Target Folder Name")
 #'
 #' filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
-#' reports <- fetch_pt_reports(filters, target_dir = "~/Target Folder Name")
+#' reports <- fetch_pt_reports(filters,
+#' target_dir = "~/Target Folder Name")
 #'
-#' reports <- fetch_pt_reports(list(lake = "HU", protocol = "USA"), target_dir = "~/Target Folder Name")
+#' reports <- fetch_pt_reports(list(lake = "HU", protocol = "USA"),
+#' target_dir = "~/Target Folder Name")
 #' }
 #'
 fetch_pt_reports <- function(filter_list, target_dir,
                              xlsx_toc = "report_toc.xlsx",
                              create_target_dir = TRUE) {
   reports <- get_pt_reports(filter_list)
-  reports <- subset(reports,
-    reports$CURRENT == TRUE,
-    select = c("PRJ_CD", "PRJ_NM", "REPORT_TYPE", "REPORT_PATH")
-  )
+  if(length(reports)){
+    reports <- subset(reports,
+      reports$CURRENT == TRUE,
+      select = c("PRJ_CD", "PRJ_NM", "REPORT_TYPE", "REPORT_PATH")
+    )
+    download_pt_files(reports, target_dir, xlsx_toc, create_target_dir)
+  }
 
-  download_pt_files(reports, target_dir, xlsx_toc, create_target_dir)
 }

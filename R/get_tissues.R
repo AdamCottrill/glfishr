@@ -17,6 +17,9 @@
 #' @param to_upper - should the names of the dataframe be converted to
 #' upper case?
 #'
+#' @param show_id include the fields the 'id' and 'slug' in the
+#' returned data frame
+#'
 #' @author Rachel Henderson \email{rachel.henderson@@ontario.ca}
 #' @return dataframe
 #' @export

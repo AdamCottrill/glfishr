@@ -9,6 +9,9 @@ get_tag_agencies(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 \arguments{
 \item{filter_list}{list}
 
+\item{show_id}{include the fields the 'id' and 'slug' in the
+returned data frame}
+
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
 upper case?
@@ -26,7 +29,7 @@ Tagging agency is the third and fourth characters of TAGDOC.
 }
 \details{
 See
-https://intra.dev.glis.mnr.gov.on.ca/common/tagging_agencies/
+https://intra.glis.mnr.gov.on.ca/common/tagging_agencies/
 for the full list of tagging agency code options
 }
 \examples{
