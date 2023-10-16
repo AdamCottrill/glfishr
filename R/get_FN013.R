@@ -4,9 +4,9 @@
 #' records. FN013 records contain information about the defined gear
 #' associated with a project.
 #'
-#' See
-#' http://10.167.37.157/fn_portal/redoc/#operation/fn_013_list
-#' for the full list of available filter keys (query parameters)
+#' Use ~show_filters("fn013")~ to see the full list of available filter
+#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+#' and filter by "fn013" for additional information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'
@@ -27,7 +27,7 @@
 get_FN013 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("fn013", filter_list)
+  check_filters("fn013", filter_list, "fn_portal")
   my_url <- sprintf(
     "%s/fn013/%s",
     get_fn_portal_root(),

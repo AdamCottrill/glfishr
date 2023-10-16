@@ -46,9 +46,9 @@ or group code but also attributes of the effort, the sample or the
 project(s) that the catches were made in.
 }
 \details{
-See
-http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn_124_list
-for the full list of available filter keys (query parameters)
+Use ~show_filters("fn124")~ to see the full list of available filter
+keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+and filter by "fn124" for additional information.
 }
 \examples{
 

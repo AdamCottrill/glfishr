@@ -24,9 +24,15 @@
 #' @return string
 #'
 get_domain <- function() {
+  glis_domain <- Sys.getenv("GLIS_DOMAIN")
+
+  if(glis_domain != ""){
+    return(glis_domain)
+  }
+
   if (Sys.getenv("FN_PORTAL_DEV") == "") {
     # production
-    domain <- "https://intra.dev.glis.mnr.gov.on.ca/"
+    domain <- "https://intra.glis.mnr.gov.on.ca/"
   } else {
     # local development
     if (Sys.getenv("FN_PORTAL_PORT") == "") {

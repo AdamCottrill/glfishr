@@ -13,9 +13,6 @@
 #' attributes such as colour, placement, tag type, or tag status (either tagged
 #' or recovered).
 #'
-#' See http://10.167.37.157/tfat/api/redoc/#project for the full list of
-#' available filter keys (query parameters)
-#'
 #'
 #' @param filter_list list
 #'

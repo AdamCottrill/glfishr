@@ -10,11 +10,14 @@
 #'
 #'
 #' See
-#' http://10.167.37.157/common/agepre1
+#' https://intra.glis.mnr.gov.on.ca/common/ageprep1/
 #' for the full list of age preparation 1 code options
 #'
 #'
 #' @param filter_list list
+#'
+#' @param show_id include the fields the 'id' and 'slug' in the
+#' returned data frame
 #'
 #' @param to_upper - should the names of the dataframe be converted to
 #' upper case?

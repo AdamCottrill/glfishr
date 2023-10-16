@@ -15,9 +15,10 @@
 #' sampled fish such as the species, or group code, or attributes of
 #' the effort, the sample, or the project(s) that the samples were
 #' collected in.
-#'
-#' Use ~show_filters("sc125tags")~ to see the full list
-#' of available filter keys (query parameters)
+#' 
+#' Use ~show_filters("sc125tags")~ to see the full list of available filter
+#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+#' and filter by "sc125tags" for additional information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'

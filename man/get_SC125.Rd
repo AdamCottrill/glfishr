@@ -34,7 +34,8 @@ samples were collected in.
 }
 \details{
 Use ~show_filters("sc125")~ to see the full list of available filter
-keys (query parameters)
+keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+and filter by "sc125" for additional information.
 }
 \examples{
 

@@ -15,9 +15,7 @@
 #' tag status (either tagged or recovered), or attributes of the projects in
 #' which the encounters occurred such as lake or year the projects were run.
 #'
-#' See http://10.167.37.157/tfat/api/redoc/#encounter for the full list of
-#' available filter keys (query parameters)
-#' #'
+#'
 #' @param filter_list list
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}

@@ -1,19 +1,22 @@
 #' Get FN121_Weather - Weather data from FN_Portal API
 #'
 #' This function accesses the api endpoint for fn121weather
-#' records. fn121weather records contain air temperature, precipitation,
-#' wind speed and direction, cloud cover, and wave height data collected
-#' at time/location 0 and/or 1. Other relevant details for each SAM are
-#' found in the FN121 table. This function takes an optional filter list which can
-#' be used to return records based on attributes of the SAM including site
-#' depth, start and end date and time, effort duration, gear, and location
-#' as well as attributes of the projects they are associated with such as project
+#' records. fn121weather records contain air temperature,
+#' precipitation, wind speed and direction, cloud cover, and wave
+#' height data collected at time/location 0 and/or 1. Other relevant
+#' details for each SAM are found in the FN121 table. This function
+#' takes an optional filter list which can be used to return records
+#' based on attributes of the SAM including site depth, start and end
+#' date and time, effort duration, gear, and location as well as
+#' attributes of the projects they are associated with such as project
 #' code, or part of the project code, lake, first year, last year,
-#' protocol, etc. This function can also take filters related to weather.
+#' protocol, etc. This function can also take filters related to
+#' weather.
 #'
-#' See
-#' http://10.167.37.157/fn_portal/api/v1/redoc/#operation/fn121weather_list
-#' for the full list of available filter keys (query parameters)
+#' Use ~show_filters("fn121weather")~ to see the full list of available filter
+#' keys (query parameters). Refer to
+#' https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+#' and filter by "fn121weather" for additional information.
 #'
 #' @param filter_list list
 #' @param with_121 When 'FALSE', the default, only the weather fields
@@ -31,14 +34,20 @@
 #' @examples
 #'
 #' fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018))
-#' fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018), with_121 = TRUE)
-#' fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018, mu_type = "ypmu"), with_121 = TRUE)
-#' fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018), show_id = TRUE)
+#'
+#' fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018),
+#' with_121 = TRUE)
+#'
+#' fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018,
+#' mu_type = "ypmu"), with_121 = TRUE)
+#'
+#' fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018),
+#' show_id = TRUE)
 get_FN121_Weather <- function(filter_list = list(), with_121 = FALSE, show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
-  
+
   weather_filters <- filter_list[names(filter_list) != "mu_type"]
-  
+
   query_string <- build_query_string(weather_filters)
   check_filters("fn121weather", weather_filters, "fn_portal")
   my_url <- sprintf(
@@ -48,16 +57,16 @@ get_FN121_Weather <- function(filter_list = list(), with_121 = FALSE, show_id = 
   )
   payload <- api_to_dataframe(my_url, recursive = recursive)
   payload <- prepare_payload(payload, show_id, to_upper)
-  
+
   if (with_121==TRUE){
-    
+
     weather_filters <- setdiff(names(filter_list), api_filters$fn121$name)
     new_filters <- filter_list[names(filter_list) %in% weather_filters == FALSE]
-    
+
     FN121 <- get_FN121(new_filters)
-    
+
     payload <- merge(FN121, payload)
-    
+
   }
 
   return(payload)

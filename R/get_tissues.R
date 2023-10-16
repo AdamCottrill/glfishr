@@ -8,7 +8,7 @@
 #'
 #'
 #' See
-#' http://10.167.37.157/common/tissues
+#' https://intra.glis.mnr.gov.on.ca/common/tissues/
 #' for the full list of tissues
 #'
 #'
@@ -16,6 +16,9 @@
 #'
 #' @param to_upper - should the names of the dataframe be converted to
 #' upper case?
+#'
+#' @param show_id include the fields the 'id' and 'slug' in the
+#' returned data frame
 #'
 #' @author Rachel Henderson \email{rachel.henderson@@ontario.ca}
 #' @return dataframe
@@ -32,7 +35,7 @@ get_tissues <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) 
   # TODO: add a warning about 'all=TRUE' being the only allowed filter
 
   my_url <- sprintf(
-    "%s/tissue_samples/%s",
+    "%s/tissues/%s",
     common_api_url,
     query_string
   )

@@ -9,11 +9,14 @@
 #'
 #'
 #' See
-#' http://10.167.37.157/common/tag_types
+#' https://intra.glis.mnr.gov.on.ca/common/tag_types/
 #' for the full list of tag types
 #'
 #'
 #' @param filter_list list
+#'
+#' @param show_id include the fields the 'id' and 'slug' in the
+#' returned data frame
 #'
 #' @param to_upper - should the names of the dataframe be converted to
 #' upper case?
@@ -33,7 +36,7 @@ get_tag_types <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE
   # TODO: add a warning about 'all=TRUE' being the only allowed filter
 
   my_url <- sprintf(
-    "%s/tag_type_choice/%s",
+    "%s/tag_types/%s",
     common_api_url,
     query_string
   )

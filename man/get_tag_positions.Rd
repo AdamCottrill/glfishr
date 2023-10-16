@@ -9,6 +9,9 @@ get_tag_positions(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 \arguments{
 \item{filter_list}{list}
 
+\item{show_id}{include the fields the 'id' and 'slug' in the
+returned data frame}
+
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
 upper case?
@@ -26,7 +29,7 @@ second character of TAGDOC.
 }
 \details{
 See
-http://10.167.37.157/common/tag_postisions
+https://intra.glis.mnr.gov.on.ca/common/tag_positions/
 for the full list of tag position options
 }
 \examples{

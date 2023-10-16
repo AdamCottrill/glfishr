@@ -8,11 +8,14 @@
 #'
 #'
 #' See
-#' http://10.167.37.157/common/cover_types
+#' https://intra.glis.mnr.gov.on.ca/common/cover_types/
 #' for the full list of cover types
 #'
 #'
 #' @param filter_list list
+#'
+#' @param show_id include the fields the 'id' and 'slug' in the
+#' returned data frame
 #'
 #' @param to_upper - should the names of the dataframe be converted to
 #' upper case?

@@ -9,6 +9,9 @@ get_ageprep1(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 \arguments{
 \item{filter_list}{list}
 
+\item{show_id}{include the fields the 'id' and 'slug' in the
+returned data frame}
+
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
 upper case?
@@ -28,7 +31,7 @@ Note that age preparation 1 codes are valid for the second
 character of the AGEMT field.
 
 See
-http://10.167.37.157/common/agepre1
+https://intra.glis.mnr.gov.on.ca/common/ageprep1/
 for the full list of age preparation 1 code options
 }
 \examples{

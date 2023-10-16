@@ -7,7 +7,7 @@
 #'
 #'
 #' See
-#' http://10.167.37.157/common/lakes
+#' https://intra.glis.mnr.gov.on.ca/common/lakes/
 #' for the full list of lakes
 #'
 #'

@@ -44,12 +44,15 @@
 #' target_dir = "~/Target Folder Name"
 #' )
 #'
-#' reports <- fetch_pt_associated_files(list(lake = "ER", protocol = "TWL"), target_dir = "~/Target Folder Name")
+#' reports <- fetch_pt_associated_files(list(lake = "ER", protocol =
+#' "TWL"), target_dir = "~/Target Folder Name")
 #'
 #' filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
-#' reports <- fetch_pt_associated_files(filters, target_dir = "~/Target Folder Name")
+#' reports <- fetch_pt_associated_files(filters,
+#' target_dir = "~/Target Folder Name")
 #'
-#' reports <- fetch_pt_associated_files(list(lake = "HU", protocol = "USA"), target_dir = "~/Target Folder Name")
+#' reports <- fetch_pt_associated_files(list(lake = "HU", protocol =
+#' "USA"), target_dir = "~/Target Folder Name")
 #' }
 #'
 fetch_pt_associated_files <- function(filter_list, target_dir,

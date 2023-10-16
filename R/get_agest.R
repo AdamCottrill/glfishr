@@ -11,11 +11,14 @@
 #'
 #'
 #' See
-#' http://10.167.37.157/common/aging_structures
+#' https://intra.glis.mnr.gov.on.ca/common/aging_structures/
 #' for the full list of aging structure code options
 #'
 #'
 #' @param filter_list list
+#'
+#' @param show_id include the fields the 'id' and 'slug' in the
+#' returned data frame
 #'
 #' @param to_upper - should the names of the dataframe be converted to
 #' upper case?
@@ -31,11 +34,11 @@
 get_agest <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
-  # check_filters("age_structure", filter_list, "common")
+  # check_filters("aging_structures", filter_list, "common")
   # TODO: add a warning about 'all=TRUE' being the only allowed filter
 
   my_url <- sprintf(
-    "%s/age_structure/%s",
+    "%s/aging_structures/%s",
     common_api_url,
     query_string
   )

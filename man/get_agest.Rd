@@ -9,6 +9,9 @@ get_agest(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 \arguments{
 \item{filter_list}{list}
 
+\item{show_id}{include the fields the 'id' and 'slug' in the
+returned data frame}
+
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
 upper case?
@@ -29,7 +32,7 @@ Note that aging structures are valid for the AGEST field and the first
 character of the AGEMT field.
 
 See
-http://10.167.37.157/common/aging_structures
+https://intra.glis.mnr.gov.on.ca/common/aging_structures/
 for the full list of aging structure code options
 }
 \examples{

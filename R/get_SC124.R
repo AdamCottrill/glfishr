@@ -10,9 +10,9 @@
 #' or group code but also attributes of the effort, the sample or the
 #' project(s) that the catches were made in.
 #'
-#' See
-#' http://10.167.37.157/creels/api/v1/redoc/#operation/sc124_list
-#' for the full list of available filter keys (query parameters)
+#' Use ~show_filters("sc124")~ to see the full list of available filter
+#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+#' and filter by "sc124" for additional information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'
@@ -54,7 +54,7 @@ get_SC124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, un
   payload <- api_to_dataframe(my_url, recursive = recursive)
   payload <- prepare_payload(payload, show_id, to_upper)
 
-  if (uncount == TRUE) {
+  if (uncount & length(payload)) {
     payload <- uncount_tally(payload, "SIZCNT")
     return(payload)
   }

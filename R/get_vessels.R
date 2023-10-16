@@ -8,7 +8,7 @@
 #'
 #'
 #' See
-#' http://10.167.37.157/common/vessels
+#' https://intra.glis.mnr.gov.on.ca/common/vessels/
 #' for the full list of vessels
 #'
 #'

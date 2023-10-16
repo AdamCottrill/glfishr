@@ -9,6 +9,9 @@ get_grid5s(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 \arguments{
 \item{filter_list}{list}
 
+\item{show_id}{include the fields the 'id' and 'slug' in the
+returned data frame}
+
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
 upper case?
@@ -26,7 +29,7 @@ parameters are currently available for this endpoint.
 }
 \details{
 See
-http://10.167.37.157/common/grid5s
+https://intra.glis.mnr.gov.on.ca/common/grid5s/
 for the full list of 5-minute grids
 }
 \examples{

@@ -9,9 +9,9 @@
 #' This is a useful function for building a template database for a new
 #' creel project or for adding an FN012 table to an existing project.
 #'
-#' See
-#' http://10.167.37.157/creels/api/v1/redoc/#operation/sc012_protocol_list
-#' for the full list of available filter keys (query parameters)
+#' Use ~show_filters("sc012_protocol")~ to see the full list of available filter
+#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+#' and filter by "sc012_protocol" for additional information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'

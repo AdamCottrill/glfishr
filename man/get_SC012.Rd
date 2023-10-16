@@ -32,9 +32,9 @@ optional filter list which can be used to return records based on several
 attributes of the project such as protocol, lake, project code, and species.
 }
 \details{
-See
-http://10.167.37.157/creels/api/v1/redoc/#operation/sc_012_list
-for the full list of available filter keys (query parameters)
+Use ~show_filters("sc012")~ to see the full list of available filter
+keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+and filter by "sc012" for additional information.
 }
 \examples{
 

@@ -8,9 +8,10 @@
 #' endpoints will be displayed.
 #'
 #' See
-#' http://10.167.37.157/fn_portal/api/v1/redoc/,
-#' http://10.167.37.157/creels/api/v1/redoc/, and
-#' http://10.167.37.157/common/api/v1/redoc/
+#' https://intra.glis.mnr.gov.on.ca/project_tracker/api/v1/swagger/,
+#' https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/,
+#' https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/, and
+#' https://intra.glis.mnr.gov.on.ca/common/api/v1/swagger/
 #' for an alternative way to view the full list of available filter keys (query parameters)
 #'
 #' @param endpoint - the name of the api endpoint
@@ -25,7 +26,7 @@
 #' show_filters("sc121", "mode")
 #' show_filters("species")
 #' show_filters("sc121", "cats")
-#' show_filters("foo")
+#' #show_filters("foo")
 show_filters <- function(endpoint = "", filter_like = "") {
   fn_portal_endpoints <- names(get_api_filters("fn_portal", FALSE))
   creels_endpoints <- names(get_api_filters("creels", FALSE))
