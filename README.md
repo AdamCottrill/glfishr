@@ -71,35 +71,35 @@ to be applied and the value of the filter.
 
 show_filters()
 #> An endpoint name needs to be provided. Currently avaliable endpoint names are:
-#>  [1] "fn011"                     "fn012"                    
-#>  [3] "fn012_protocol"            "fn013"                    
-#>  [5] "fn022"                     "fn026"                    
-#>  [7] "fn028"                     "fn121"                    
-#>  [9] "fn121limno"                "fn122"                    
-#> [11] "fn123"                     "fn124"                    
-#> [13] "fn125"                     "fn125lamprey"             
-#> [15] "fn125tags"                 "fn126"                    
-#> [17] "fn127"                     "gear"                     
-#> [19] "gear_effort_process_types" "prj_ldr"                  
+#>  [1] "fn011"                     "fn012"
+#>  [3] "fn012_protocol"            "fn013"
+#>  [5] "fn022"                     "fn026"
+#>  [7] "fn028"                     "fn121"
+#>  [9] "fn121limno"                "fn122"
+#> [11] "fn123"                     "fn124"
+#> [13] "fn125"                     "fn125lamprey"
+#> [15] "fn125tags"                 "fn126"
+#> [17] "fn127"                     "gear"
+#> [19] "gear_effort_process_types" "prj_ldr"
 #> [21] "species_list"
 
 show_filters("fn011")
 #>                    name                                    description
-#> 1                  year                                               
+#> 1                  year
 #> 2                prj_cd    Multiple values may be separated by commas.
-#> 3                prj_nm                                               
-#> 4               prj_ldr                                               
+#> 3                prj_nm
+#> 4               prj_ldr
 #> 5             prj_date0                             format: yyyy-mm-dd
 #> 6             prj_date1                             format: yyyy-mm-dd
 #> 7                  lake    Multiple values may be separated by commas.
-#> 8                source                                               
+#> 8                source
 #> 9                status    Multiple values may be separated by commas.
-#> 10            year__gte                                               
-#> 11            year__lte                                               
-#> 12             year__gt                                               
-#> 13             year__lt                                               
-#> 14           first_year                                               
-#> 15            last_year                                               
+#> 10            year__gte
+#> 11            year__lte
+#> 12             year__gt
+#> 13             year__lt
+#> 14           first_year
+#> 15            last_year
 #> 16       prj_date0__gte                             format: yyyy-mm-dd
 #> 17       prj_date0__lte                             format: yyyy-mm-dd
 #> 18       prj_date1__gte                             format: yyyy-mm-dd
@@ -107,12 +107,12 @@ show_filters("fn011")
 #> 20             protocol    Multiple values may be separated by commas.
 #> 21        protocol__not    Multiple values may be separated by commas.
 #> 22          prj_cd__not    Multiple values may be separated by commas.
-#> 23         prj_cd__like                                               
-#> 24     prj_cd__not_like                                               
-#> 25     prj_cd__endswith                                               
-#> 26 prj_cd__not_endswith                                               
-#> 27         prj_nm__like                                               
-#> 28     prj_nm__not_like                                               
+#> 23         prj_cd__like
+#> 24     prj_cd__not_like
+#> 25     prj_cd__endswith
+#> 26 prj_cd__not_endswith
+#> 27         prj_nm__like
+#> 28     prj_nm__not_like
 #> 29            lake__not    Multiple values may be separated by commas.
 #> 30           spc_caught    Multiple values may be separated by commas.
 #> 31          status__not    Multiple values may be separated by commas.
@@ -121,10 +121,10 @@ show_filters("fn011")
 
 show_filters("fn125", filter_like="tlen")
 #>         name description
-#> 4       tlen            
-#> 15 tlen__gte            
-#> 16 tlen__lte            
-#> 17  tlen__gt            
+#> 4       tlen
+#> 15 tlen__gte
+#> 16 tlen__lte
+#> 17  tlen__gt
 #> 18  tlen__lt
 ```
 
@@ -571,11 +571,11 @@ nrow(fn123)
 #> [1] 107
 head(fn123)
 #>         PRJ_CD SAM EFF SPC GRP CATCNT CATWT BIOCNT SUBCNT SUBWT COMMENT3
-#> 1 LEA_IF10_001 250 001 331  01      4    NA      4     NA    NA         
-#> 2 LEA_IF10_001 250 001 331  03     22    NA     22     NA    NA         
-#> 3 LEA_IF10_001 250 001 334  01      1    NA      1     NA    NA         
-#> 4 LEA_IF10_001 251 001 331  01      2    NA      2     NA    NA         
-#> 5 LEA_IF10_001 251 001 331  03     25    NA     25     NA    NA         
+#> 1 LEA_IF10_001 250 001 331  01      4    NA      4     NA    NA
+#> 2 LEA_IF10_001 250 001 331  03     22    NA     22     NA    NA
+#> 3 LEA_IF10_001 250 001 334  01      1    NA      1     NA    NA
+#> 4 LEA_IF10_001 251 001 331  01      2    NA      2     NA    NA
+#> 5 LEA_IF10_001 251 001 331  03     25    NA     25     NA    NA
 #> 6 LEA_IF10_001 251 001 334  01      1    NA      1     NA    NA
 
 
@@ -604,11 +604,11 @@ nrow(fn123)
 #> [1] 230
 head(fn123)
 #>         PRJ_CD SAM EFF SPC GRP CATCNT CATWT BIOCNT SUBCNT SUBWT COMMENT3
-#> 1 LHA_IA03_002 219 064 076  55      2 5.937      2     NA    NA         
-#> 2 LHA_IA03_002 219 089 076  55      2 3.633      2     NA    NA         
-#> 3 LHA_IA03_002 219 114 076  55      1 3.729      1     NA    NA         
-#> 4 LHA_IA03_007 706 064 076  55      1 0.325      1     NA    NA         
-#> 5 LHA_IA03_007 708 089 076  55      1 0.440      1     NA    NA         
+#> 1 LHA_IA03_002 219 064 076  55      2 5.937      2     NA    NA
+#> 2 LHA_IA03_002 219 089 076  55      2 3.633      2     NA    NA
+#> 3 LHA_IA03_002 219 114 076  55      1 3.729      1     NA    NA
+#> 4 LHA_IA03_007 706 064 076  55      1 0.325      1     NA    NA
+#> 5 LHA_IA03_007 708 089 076  55      1 0.440      1     NA    NA
 #> 6 LHA_IA03_007 711 064 076  55      1 0.315      1     NA    NA
 ```
 
@@ -1063,11 +1063,11 @@ head(fn127)
 #> 5 LEA_IF10_001 250 001 331  03 5828   125    99    99    3      TRUE   NA  NA
 #> 6 LEA_IF10_001 250 001 331  03 5830   125    99    99    3      TRUE   NA  NA
 #>   EDGE AGEST COMMENT7
-#> 1   NA    NA         
-#> 2   NA    NA         
-#> 3   NA    NA         
-#> 4   NA    NA         
-#> 5   NA    NA         
+#> 1   NA    NA
+#> 2   NA    NA
+#> 3   NA    NA
+#> 4   NA    NA
+#> 5   NA    NA
 #> 6   NA    NA
 
 filters <- list(
@@ -1110,11 +1110,11 @@ head(fn127)
 #> 5 LHA_IA03_002 219 114 076  55 00001   125 111WI    21    2      TRUE   NA  NA
 #> 6 LHA_IA03_007 706 064 076  55 00001   125 111WI    21    3      TRUE   NA  NA
 #>   EDGE AGEST COMMENT7
-#> 1 <NA>    NA         
-#> 2 <NA>    NA         
-#> 3 <NA>    NA         
-#> 4 <NA>    NA         
-#> 5 <NA>    NA         
+#> 1 <NA>    NA
+#> 2 <NA>    NA
+#> 3 <NA>    NA
+#> 4 <NA>    NA
+#> 5 <NA>    NA
 #> 6 <NA>    NA
 ```
 
