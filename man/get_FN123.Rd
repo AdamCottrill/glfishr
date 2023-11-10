@@ -48,7 +48,7 @@ filters <- list(
   protocol = "TWL",
   year = 2010,
   spc = c("331", "334"),
-  sidep__lte = 20
+  sidep0__lte = 20
 )
 fn123 <- get_FN123(filters)
 

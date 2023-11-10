@@ -52,20 +52,30 @@ and filter by "fn124" for additional information.
 }
 \examples{
 
+
 fn124 <- get_FN124(list(lake = "ON", year = 2021, spc = "334"))
+print(nrow(fn124))
 
 filters <- list(
   lake = "ON",
   protocol = "TWL",
   year = 2021,
-  spc = c("061", "121"),
-  sidep__lte = 40
+  spc = c("061", "121")
 )
 fn124 <- get_FN124(filters)
+print(nrow(fn124))
 
-LOA_IA21_TW1 <- get_FN124(list(prj_cd = "LOA_IA21_TW1"),
-  uncount = TRUE
-)
+list(prj_cd = "LOA_IA21_TW1", spc = "121")
+fn124 <- get_FN124(filters)
+print(nrow(fn124))
+head(fn124)
+
+# the uncount argument will expand each row by the value of SIZCNT
+# in the original FN124 table:
+fn124 <- get_FN124(filters, uncount = TRUE)
+print(nrow(fn124))
+head(fn124)
+
 }
 \author{
 Jeremy Holden \email{jeremy.holden@ontario.ca}

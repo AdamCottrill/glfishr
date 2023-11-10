@@ -1,4 +1,3 @@
-
 #' Get FN123_NonFish - Catch Counts of Non-Fish species from FN_Portal API
 #'
 #' This function accesses the api endpoint to for FN123_NonFish records from

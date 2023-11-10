@@ -31,9 +31,8 @@
 #'
 #' filters <- list(
 #'   lake = "ER",
-#'   protocol = "TWL",
 #'   spc_in = c("331", "334"),
-#'   sidep__lte = 20
+#'   year__gte = 2014, year__gle = 2016
 #' )
 #' sc125 <- get_SC125(filters)
 #'
@@ -45,7 +44,7 @@
 #' )
 #' sc125 <- get_SC125(filters)
 #'
-#' filters <- list(lake = "HU", spc = "076", grp = "55")
+#' filters <- list(lake = "HU", spc = "076", grp = "55", year__gte = 2016)
 #' sc125 <- get_SC125(filters)
 #'
 #' sc125 <- get_SC125(list(prj_cd = "LHA_IA19_812"))

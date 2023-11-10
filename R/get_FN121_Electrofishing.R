@@ -27,10 +27,11 @@
 #' @return dataframe
 #' @export
 #' @examples
-#'
+#' \dontrun{
 #' show_filters("fn121electrofishing")
+#' }
 #'
-#' fn121_efish_huron <- get_FN121_Electrofishing(list(lake = "HU"))
+#' fn121_efish_huron <- get_FN121_Electrofishing(list(lake = "HU", year = 2018))
 #'
 #' fn121_efish_500ss <- get_FN121_Electrofishing(list(shock_sec__gte = 500))
 get_FN121_Electrofishing <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {

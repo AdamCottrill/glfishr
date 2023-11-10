@@ -34,7 +34,7 @@
 #' sc123 <- get_SC123(filters)
 #'
 #'
-#' filters <- list(lake = "HU", spc = "076", sek = TRUE)
+#' filters <- list(lake = "HU", spc = "076", sek = TRUE, year = 2009)
 #' sc123 <- get_SC123(filters)
 #'
 #' sc123 <- get_SC123(list(prj_cd = "LHA_SC09_033"))

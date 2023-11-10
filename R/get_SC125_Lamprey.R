@@ -37,7 +37,7 @@
 #' sc125Lam <- get_SC125_Lamprey(list(lake = "HU", spc = "081", year = 2000))
 #'
 #'
-#' filters <- list(lake = "HU", spc = "076")
+#' filters <- list(lake = "HU", spc = "076", year__gte = 2018)
 #' sc125Lam <- get_SC125_Lamprey(filters)
 #' sc125Lam <- get_SC125_Lamprey(filters, show_id = TRUE)
 get_SC125_Lamprey <- function(filter_list = list(), show_id = FALSE,

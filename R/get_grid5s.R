@@ -26,7 +26,7 @@
 #' @examples
 #'
 #' grid5s <- get_grid5s(list(page_size = 5000))
-#' superior_grid5s <- get_grid5s(list(lake = "SU"))
+#' erie_grid5s <- get_grid5s(list(lake = "ER"))
 #' grid5_slugs <- get_grid5s(list(page_size = 5000), show_id = TRUE)
 get_grid5s <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   query_string <- build_query_string(filter_list)

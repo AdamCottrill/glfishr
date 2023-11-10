@@ -55,13 +55,17 @@ and filter by "fn121weather" for additional information.
 fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018))
 
 fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018),
-with_121 = TRUE)
+  with_121 = TRUE
+)
 
-fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018,
-mu_type = "ypmu"), with_121 = TRUE)
+fn121_weather <- get_FN121_Weather(list(
+  lake = "ER", year = 2018,
+  mu_type = "ypmu"
+), with_121 = TRUE)
 
 fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018),
-show_id = TRUE)
+  show_id = TRUE
+)
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

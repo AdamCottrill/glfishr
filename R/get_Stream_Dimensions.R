@@ -1,12 +1,12 @@
 #' Get Stream Dimensions data from FN_Portal API
 #'
 #' This function accesses the api endpoint for Stream_Dimensions
-#' records. Stream_Dimensions records contain information about 
+#' records. Stream_Dimensions records contain information about
 #' streams and rivers in which electrofishing transects take place,
-#' including the distance from the start of the transect, the distance 
-#' across the channel, and stream depth, width, and velocity. Other 
-#' relevant details for the SUBSPACE are found in the FN121 table. 
-#' This function takes an optional filter list which can be used to 
+#' including the distance from the start of the transect, the distance
+#' across the channel, and stream depth, width, and velocity. Other
+#' relevant details for the SUBSPACE are found in the FN121 table.
+#' This function takes an optional filter list which can be used to
 #' return records based on attributes of the project including project
 #' code, or part of the project code, lake, first year, last year,
 #' protocol, etc.
@@ -26,10 +26,11 @@
 #' @return dataframe
 #' @export
 #' @examples
-#'
+#' \dontrun{
 #' show_filters("stream_dimensions")
+#' }
 #' # TODO: add more examples when more data is uploaded
-#' stream <- get_Stream_Dimensions(list(lake="ER"))
+#' stream <- get_Stream_Dimensions(list(lake = "ER"))
 get_Stream_Dimensions <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)

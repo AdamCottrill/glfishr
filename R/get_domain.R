@@ -26,7 +26,7 @@
 get_domain <- function() {
   glis_domain <- Sys.getenv("GLIS_DOMAIN")
 
-  if(glis_domain != ""){
+  if (glis_domain != "") {
     return(glis_domain)
   }
 

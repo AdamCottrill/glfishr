@@ -1,4 +1,3 @@
-
 #' Get FN123 - Catch Counts from FN_Portal API
 #'
 #' This function accesses the api endpoint to for FN123 records from
@@ -36,7 +35,7 @@
 #'   protocol = "TWL",
 #'   year = 2010,
 #'   spc = c("331", "334"),
-#'   sidep__lte = 20
+#'   sidep0__lte = 20
 #' )
 #' fn123 <- get_FN123(filters)
 #'

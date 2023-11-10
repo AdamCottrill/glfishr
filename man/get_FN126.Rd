@@ -44,7 +44,7 @@ filters <- list(
   lake = "ER",
   protocol = "TWL",
   spc = c("331", "334"),
-  sidep__lte = 20
+  sidep0__lte = 20
 )
 fn126 <- get_FN126(filters)
 

@@ -5,7 +5,7 @@
 #' coefficients to estimate Total Length from Fork Length.
 #'
 #' This function uses the same filters as the species list, so you can
-#' use show_filters('species_list') to see available filters.
+#' use ~show_filters('species_list')~ to see available filters.
 #'
 #' @param filter_list list
 #' @param to_upper - should the names of the dataframe be converted to
