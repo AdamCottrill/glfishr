@@ -37,7 +37,7 @@ show_filters("fn125", filter_like = "prj")
 show_filters("sc121", "mode")
 show_filters("species")
 show_filters("sc121", "cats")
-show_filters("foo")
+#show_filters("foo")
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}
