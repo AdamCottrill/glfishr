@@ -1,100 +1,3 @@
-##' Populate FN012.SIZSAM based
-##'
-##' This function updates the BIOSAM values in the FN012 table based
-##' on the presence of SPC-GRP records in the associated FN124 and
-##' FN125.
-##'
-##' @param fn012 - dataframe containing FN012 sampling spec. data
-##' @param fn124 - dataframe containing FN124 length tally data
-##' @param fn125 - dataframe containing FN125 biological data
-##' @author Arthur Bonsall \email{arthur.bonsall@@ontario.ca}
-##' @return dataframe
-##' @seealso fill_missing_fn012_limits, populate_fn012
-assign_fn012_sizesam <- function(fn012, fn124, fn125) {
-  #make a unique key for proj-spc-grp
-  key <- paste(fn012$PRJ_CD, fn012$SPC, fn012$GRP, sep = "_")
-
-  # Assigning SIZSAM
-  in_fn124 <- unique(paste(fn124$PRJ_CD, fn124$SPC, fn124$GRP, sep = "_"))
-  in_fn125 <- unique(paste(fn125$PRJ_CD, fn125$SPC, fn125$GRP, sep = "_"))
-
-  fn012$SIZSAM <- ifelse((key %in% in_fn124) &
-      (key %in% in_fn125), 3,
-    ifelse((key %in% in_fn124) & !(key %in% in_fn125), 2,
-      ifelse(!(key %in% in_fn124) & (key %in% in_fn125), 1, 0)
-    )
-  )
-
-  return(fn012)
-}
-
-
-##' Fill missing FN012 size limits
-##'
-##' The FN012 table has several fields that are used to bound
-##' estimates of fish size and flag potential errors.  When new
-##' records are added to the FN012 table, these values are null. This
-##' function connects to the glis api endpoint and fetches the
-##' atttributes for the missing species and updates the corresponding
-##' fields in the newly created fn012 records.
-##' @param fn012 - dataframe containing FN012 sampling spec. data
-##' @author Arthur Bonsall \email{arthur.bonsall@@ontario.ca}
-##' @return dataframe
-##' @seealso populate_fn012, assign_fn012_sizsam
-fill_missing_fn012_limits <- function(fn012) {
-  incomplete <- subset(fn012, is.na(fn012$PROTOCOL))
-  if (nrow(incomplete)) {
-    spc_limits <- get_species(list(
-      spc = unique(incomplete$SPC),
-      detail = TRUE
-    ))
-    # select the columns that the spc_limits has in common with fn012
-    spc_limits <- subset(spc_limits,
-      select = names(spc_limits)[names(spc_limits) %in% names(incomplete)]
-    )
-    # get the columns of fn012 that are not in the spc_limits tables
-    # (except for SPC)
-    fn012_columns <- subset(incomplete,
-      select = c("SPC", names(incomplete)[!names(incomplete) %in%
-                                            names(spc_limits)])
-    )
-    missing <- merge(fn012_columns, spc_limits, by = "SPC")
-    complete <- subset(fn012, !is.na(fn012$PROTOCOL))
-    fn012 <- rbind(complete, missing)
-  }
-
-  return(fn012)
-}
-
-##' Create a Placeholder FN012 table
-##'
-##' This function creates a placeholder FN012 table for project that
-##' don't have one, by merging the unique spc-grp combinations observed
-##' in the FN123 table with the protocol attribute for the given lake
-##' and protocol.  Sampling attributes in the resultant FN012 table are
-##' only placeholders and should be carefully checked and verified
-##' before uploading.  SPC-GRP combination included in the original
-##' protocol are dropped if they were not encountered in the FN123
-##' table.
-##'
-##' @param fn011 - dataframe containing the proejct meta data
-##' @param fn123 - dataframe containing the catch count by species and
-##'   group
-##' @author  Arthur Bonsall \email{arthur.bonsall@@ontario.ca}
-##' @return dataframe
-##' @seealso fill_missing_fn012_limits, assign_fn012_sizsam
-populate_fn012 <- function(fn011, fn123) {
-  spc_caught <- unique(fn123[c("PRJ_CD", "SPC", "GRP")])
-  fn012_protocol <- get_FN012_Protocol(list(protocol = fn011$PROTOCOL,
-                                            lake = fn011$LAKE))
-  project_protocols <- subset(fn011, select = c("PRJ_CD", "PROTOCOL", "LAKE"))
-  fn012 <- merge(project_protocols, fn012_protocol)
-  return(merge(spc_caught, fn012, all.x = TRUE))
-}
-
-
-
-
 ##' Populate target database
 ##'
 ##' given a list containing our data elements and a target database,
@@ -136,8 +39,10 @@ populate_db <- function(target, data, verbose) {
 get_trg_table_names <- function(trg_db, table) {
   conn <- RODBC::odbcConnectAccess2007(trg_db, uid = "", pwd = "")
   stmt <- sprintf("select * from [%s] where FALSE;", table)
-  dat <- RODBC::sqlQuery(conn, stmt, as.is = TRUE, stringsAsFactors =
-                           FALSE, na.strings = "")
+  dat <- RODBC::sqlQuery(conn, stmt,
+    as.is = TRUE, stringsAsFactors =
+      FALSE, na.strings = ""
+  )
   RODBC::odbcClose(conn)
   return(toupper(names(dat)))
 }
@@ -190,7 +95,6 @@ sync_flds <- function(df, targ_db, tablename, drop_cols = TRUE) {
 ##' @param safer - passed to RODBC::sqlSave
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return status of closed RODBC connection.
-##' @seealso
 ##' @export
 append_data <- function(dbase, trg_table, data, verbose = T, append = T, safer =
                           T) {
@@ -210,6 +114,8 @@ append_data <- function(dbase, trg_table, data, verbose = T, append = T, safer =
     }
 
     data <- sync_flds(data, dbase, trg_table)
+
+
     conn <- RODBC::odbcConnectAccess2007(dbase, uid = "", pwd = "")
     RODBC::sqlSave(conn, data,
       tablename = trg_table, rownames = F, fast = TRUE,
@@ -244,4 +150,246 @@ populate_gept <- function(fn028, fn121) {
   fn121_fn028 <- unique(subset(fn121_fn028, select = c("GR", "PROCESS_TYPE")))
   # return the subset of gept that were actually used:
   return(merge(gept, fn121_fn028))
+}
+
+
+##' Populate the FN012-Sampling Specs Table
+##'
+##' This function populates the FN012 table for project selected by
+##' the provided filters.  Attributes of the FN011, FN123, FN124 and
+##' FN125 elements in the data list are used to augment rows and
+##' their attributes in instances where those rows don't already
+##' exist.  If prune_fn012 is TRUE only records with at least one
+##' corresponding record in the FN123 table are returned.
+##' @param filters - list of filters used to select projects
+##' @param data - the named list data fetched from the api
+##' @param prune_fn012 - boolean - should unused FN012 records be
+##' removed from the table?
+##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
+##' @return dataframe
+populate_fn012 <- function(filters, glis_data, prune_fn012) {
+  fn012 <- get_FN012(filters)
+  fn012 <- augment_fn012(glis_data$FN011, fn012, glis_data$FN123, prune_fn012)
+  fn012 <- assign_fn012_sizesam(fn012, glis_data$FN124, glis_data$FN125)
+  fn012 <- fill_missing_fn012_limits(fn012)
+}
+
+##' Augment the FN012 data
+##'
+##' the fn012 data downloaded from the api, may be incomplete, missing
+##' species and groups that that were actually encountered in the
+##' associated  projects. This function add records to the FN012 table
+##' in these instances. If the missing spc-grp combinations can be
+##' found in the FN012 protocols table, those values are used,
+##' otherwise default values for the species are used instead.    If
+##' prune=TRUE SPC-GRP combinations that appear in the FN012 table,
+##' but not in the FN123 table, are dropped from the FN012 before it
+##' is returned.
+##' @param fn011 - dataframe contains fn011 data
+##' @param fn012 - dataframe contains fn012 data fetched from the api
+##' for given filters
+##' @param fn123 - dataframe contains fn123 data fetched from the api
+##' for given filters
+##' @param prune_fn012 - boolean - should unused FN012 records be
+##'   removed from the table?
+##' @param filters - list of filters used to select projects
+##' @param data - the named list data fetched from the api
+##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
+##' @return dataframe
+##' @seealso populate_fn012
+
+augment_fn012 <- function(fn011, fn012, fn123, prune_fn012) {
+  if (is.null(dim(fn012))) {
+    # populate FN012 strictly from the lake and protocols:
+    protocols <- subset(fn011,
+      select = c("PRJ_CD", "LAKE", "PROTOCOL")
+    )
+
+    # fetch the default fn012 data for each lake and protocol we need:
+    fn012_protocols <- fetch_fn012_protocol_data(protocols)
+    fn012 <- subset(fn012_protocols, select = -c(LAKE, PROTOCOL))
+  } else {
+    # if FN012 is empty we need everything in FN123, otherwise just the
+    # missing values
+    in_fn012 <- with(fn012, unique(paste(PRJ_CD, SPC, GRP, sep = "-")))
+    in_fn123 <- with(fn123, unique(paste(PRJ_CD, SPC, GRP, sep = "-")))
+    need <- setdiff(in_fn123, in_fn012)
+
+    needed_prj_cds <- unique(sapply(strsplit(need, "-"), "[[", 1))
+    protocols <- subset(fn011, fn011$PRJ_CD %in% needed_prj_cds,
+      select = c("PRJ_CD", "LAKE", "PROTOCOL")
+    )
+
+    # fetch the defaault fn012 data for each lake and protocol we need:
+    fn012_protocols <- fetch_fn012_protocol_data(protocols)
+    fn012_protocols$key <- with(fn012_protocols, paste(PRJ_CD, SPC, GRP, sep = "-"))
+    fn012 <- rbind(
+      fn012,
+      subset(fn012_protocols, fn012_protocols$key %in% need,
+        select =
+          -c(
+            LAKE,
+            PROTOCOL, key
+          )
+      )
+    )
+  }
+
+  fn012 <- add_missing_fn012(fn012, fn123)
+  if (prune_fn012) {
+    fn012 <- prune_unused_fn012(fn012, fn123)
+  }
+
+  fn012 <- fn012[order(fn012$PRJ_CD, fn012$SPC, fn012$GRP), ]
+
+  return(fn012)
+}
+
+
+##' Remove FN012 records without matching FN123 records
+##'
+##' A helper function used by populate_fn012 to removed any sampling
+##' specification s for species-groups that were not encountered in a
+##' project.
+##' @param fn012
+##' @param fn123
+##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
+##' @return dataframe
+##' @seealso get_or_augment_fn012
+prune_unused_fn012 <- function(fn012, fn123) {
+  fn012$key <- with(fn012, paste(PRJ_CD, SPC, GRP, sep = "-"))
+  in_123 <- unique(with(fn123, paste(PRJ_CD, SPC, GRP, sep = "-")))
+  return(subset(fn012, fn012$key %in% in_123, select = -key))
+}
+
+
+
+##' Populate FN012.SIZSAM based
+##'
+##' This function updates the BIOSAM values in the FN012 table based
+##' on the presence of SPC-GRP records in the associated FN124 and
+##' FN125.
+##'
+##' @param fn012 - dataframe containing FN012 sampling spec. data
+##' @param fn124 - dataframe containing FN124 length tally data
+##' @param fn125 - dataframe containing FN125 biological data
+##' @author Arthur Bonsall \email{arthur.bonsall@@ontario.ca}
+##' @return dataframe
+##' @seealso fill_missing_fn012_limits, populate_fn012
+assign_fn012_sizesam <- function(fn012, fn124, fn125) {
+  # make a unique key for proj-spc-grp
+  key <- paste(fn012$PRJ_CD, fn012$SPC, fn012$GRP, sep = "_")
+
+  # Assigning SIZSAM
+  in_fn124 <- unique(paste(fn124$PRJ_CD, fn124$SPC, fn124$GRP, sep = "_"))
+  in_fn125 <- unique(paste(fn125$PRJ_CD, fn125$SPC, fn125$GRP, sep = "_"))
+
+  fn012$SIZSAM <- ifelse((key %in% in_fn124) &
+    (key %in% in_fn125), 3,
+  ifelse((key %in% in_fn124) & !(key %in% in_fn125), 2,
+    ifelse(!(key %in% in_fn124) & (key %in% in_fn125), 1, 0)
+  )
+  )
+
+  return(fn012)
+}
+
+
+##' Fill missing FN012 size limits
+##'
+##' The FN012 table has several fields that are used to bound
+##' estimates of fish size and flag potential errors.  When new
+##' records are added to the FN012 table, these values are null. This
+##' function connects to the glis api endpoint and fetches the
+##' atttributes for the missing species and updates the corresponding
+##' fields in the newly created fn012 records.
+##' @param fn012 - dataframe containing FN012 sampling spec. data
+##' @author Arthur Bonsall \email{arthur.bonsall@@ontario.ca}
+##' @return dataframe
+##' @seealso populate_fn012, assign_fn012_sizsam
+fill_missing_fn012_limits <- function(fn012) {
+  incomplete <- subset(fn012, is.na(fn012$GRP_DES))
+  if (nrow(incomplete)) {
+    spc_limits <- get_species(list(
+      spc = unique(incomplete$SPC),
+      detail = TRUE
+    ))
+    # select the columns that the spc_limits has in common with fn012
+    spc_limits <- subset(spc_limits,
+      select = names(spc_limits)[names(spc_limits) %in% names(incomplete)]
+    )
+    # get the columns of fn012 that are not in the spc_limits tables
+    # (except for SPC)
+    fn012_columns <- subset(incomplete,
+      select = c("SPC", names(incomplete)[!names(incomplete) %in%
+        names(spc_limits)])
+    )
+    missing <- merge(fn012_columns, spc_limits, by = "SPC")
+    complete <- subset(fn012, !is.na(fn012$GRP_DES))
+    fn012 <- rbind(complete, missing)
+  }
+
+  return(fn012)
+}
+
+
+##' Fetch FN012 data for lake-protocols
+##'
+##' Given a dataframe with columns PRJ_CD, LAKE and PROTOCOL, fetch
+##' the default fish sampling specs (FN012 records) for that protocol
+##' in that lake. This is a helper function that is called by
+##' get_or_augment_fn012.
+##' @param protocols - dataframe with the columns "PRJ_CD", "LAKE",
+##'   "PROTOCOL"
+##' @param fn012 - dataframe containing FN012 sampling spec. data
+##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
+##' @return datarame
+##' @seealso get_or_augment_fn012
+fetch_fn012_protocol_data <- function(protocols) {
+  # protocols is a dataframe with the columns "PRJ_CD", "LAKE", "PROTOCOL"
+  for (i in 1:nrow(protocols)) {
+    payload <- get_FN012_Protocol(list(
+      lake = protocols$LAKE[i],
+      protocol = protocols$PROTOCOL[i]
+    ))
+    payload$PRJ_CD <- protocols$PRJ_CD[i]
+    if (i == 1) {
+      fn012_protocol <- payload
+    } else {
+      fn012_protocol <- rbind(fn012_prtocol, payload)
+    }
+  }
+  return(fn012_protocol)
+}
+
+##' Add FN012 record for missing SPC-GRPs
+##'
+##' This function adds records to the FN012 table for PRJ_CD-SPC-GRP
+##' combinations that exist in the FN123 table (they were caught), but
+##' are not currently in the FN012 (Sampling Spec) table.  This is a
+##' helper function used by \code{\link{populate_fn012}} and is not
+##' intended by called directly by users.
+##'
+##' @param fn012 Dataframe containing FN012 Sampling specs and keys "PRJ_CD", "SPC", "GRP"
+##' @param fn123 Dataframe contaiing catch count data and keys "PRJ_CD", "SPC", "GRP"
+##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
+##' @return dataframe
+##' @seealso populate_fn012
+add_missing_fn012 <- function(fn012, fn123) {
+  # finally check to see if there are any additional species not in the
+  # fn012 or fn012 protocl tables. Add place holder rows for them:
+
+  in_fn012 <- with(fn012, paste(PRJ_CD, SPC, GRP, sep = "-"))
+  fn123$key <- with(fn123, paste(PRJ_CD, SPC, GRP, sep = "-"))
+  in_fn123 <- unique(fn123$key)
+  still_missing <- setdiff(in_fn123, in_fn012)
+  if (length(still_missing)) {
+    keys <- c("PRJ_CD", "SPC", "GRP")
+    missing <- unique(subset(fn123, fn123$key %in% still_missing, select = keys))
+    fn012 <- merge(fn012, missing,
+      by = keys,
+      all = TRUE
+    )
+  }
+  return(fn012)
 }
