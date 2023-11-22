@@ -38,6 +38,7 @@ Imports:
     httr,
     jsonlite,
     openxlsx,
+    RODBC,
     rstudioapi
 Encoding: UTF-8
 LazyData: true
