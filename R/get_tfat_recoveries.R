@@ -25,8 +25,8 @@
 #'
 #' # tags recovered in Lake Huron between 2012 and 2018
 #' recoveries <- get_tfat_recoveries(list(
-#'   lake = "HU", year__gte = 2012, year__lte
-#'   = 2018
+#'   lake = "HU", year__gte = 2012,
+#'   year__lte = 2018
 #' ))
 #'
 #' # yellow or orange tags recovered in Lake Superior

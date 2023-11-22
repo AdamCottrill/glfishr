@@ -1,4 +1,3 @@
-
 #' Get FN124 - Length Frequency Counts from FN_Portal API
 #'
 #' This function accesses the api endpoint for FN124 records from

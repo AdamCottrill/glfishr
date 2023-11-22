@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_domain.R
 \name{get_domain}
 \alias{get_domain}
-\title{Internal func to get the domain great lake portal api's}
+\title{Internal func to get the domain for the GLIS api's}
 \usage{
 get_domain()
 }
@@ -11,23 +11,20 @@ string
 }
 \description{
 This function is intended to be used by all of the functions that call an
-api endpoint exposed by the great lakes api endpoints.
-Each of the apis. are likely to have slightly different urls (tfat/api/v1,
+api endpoint exposed by the GLIS.
+Each of the apis are likely to have slightly different urls (tfat/api/v1,
 fn_portal/api/v1, etc), but a common domain. If the api domain changes in
 the future, (ie - the domain name changes or the #' version changes) we just
 need to update the value returned by this function.
 }
 \details{
-To use a local version of glfishr api during development, set the
-local environment variable to True:
+To use a local version of GLIS api's during development of this
+r-package, set the local environment variable GLIS_DOMAIN to the
+complete base url (including the trailing slash) where the local
+version of GLIS is running before calling any glfishr
+functions. For example:
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{>  Sys.setenv(FN_PORTAL_DEV=TRUE)
-}\if{html}{\out{</div>}}
-
-By default, it is assumed that the api is being served on #' localhost and
-
-\if{html}{\out{<div class="sourceCode">}}\preformatted{ > Sys.setenv(FN_PORTAL_HOST='<some-ip-address>')
- > Sys.setenv(FN_PORTAL_PORT=8080)
+\if{html}{\out{<div class="sourceCode">}}\preformatted{>  Sys.setenv(GLIS_DOMAIN="http://127.0.0.1:8000/")
 }\if{html}{\out{</div>}}
 }
 \author{

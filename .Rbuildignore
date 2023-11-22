@@ -4,3 +4,7 @@
 notes.org
 sandbox.R
 sandbox/*
+#for now:
+R/get_FR712.R
+R/get_FR713.R
+R/get_FR714.R

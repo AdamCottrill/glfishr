@@ -30,29 +30,36 @@
 #' @seealso [get_pt_associated_files()]
 #' @examples
 #' \donttest{
-#' reports <- fetch_pt_associated_files(list(
-#'   lake = "ON", year__gte = 2012,
-#'   year__lte = 2018
-#' ),
-#' target_dir = "~/Target Folder Name"
+#' reports <- fetch_pt_associated_files(
+#'   list(
+#'     lake = "ON", year__gte = 2012,
+#'     year__lte = 2018
+#'   ),
+#'   target_dir = "~/Target Folder Name"
+#' )
+#'
+#' reports <- fetch_pt_associated_files(
+#'   list(
+#'     lake = "HU", year__gte = 2012,
+#'     prj_cd__like = "006"
+#'   ),
+#'   target_dir = "~/Target Folder Name"
 #' )
 #'
 #' reports <- fetch_pt_associated_files(list(
-#'   lake = "HU", year__gte = 2012,
-#'   prj_cd__like = "006"
-#' ),
-#' target_dir = "~/Target Folder Name"
-#' )
-#'
-#' reports <- fetch_pt_associated_files(list(lake = "ER", protocol =
-#' "TWL"), target_dir = "~/Target Folder Name")
+#'   lake = "ER", protocol =
+#'     "TWL"
+#' ), target_dir = "~/Target Folder Name")
 #'
 #' filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
 #' reports <- fetch_pt_associated_files(filters,
-#' target_dir = "~/Target Folder Name")
+#'   target_dir = "~/Target Folder Name"
+#' )
 #'
-#' reports <- fetch_pt_associated_files(list(lake = "HU", protocol =
-#' "USA"), target_dir = "~/Target Folder Name")
+#' reports <- fetch_pt_associated_files(list(
+#'   lake = "HU", protocol =
+#'     "USA"
+#' ), target_dir = "~/Target Folder Name")
 #' }
 #'
 fetch_pt_associated_files <- function(filter_list, target_dir,

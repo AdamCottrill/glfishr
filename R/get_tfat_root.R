@@ -17,7 +17,7 @@ get_tfat_root <- function() {
 
   domain <- get_domain()
 
-  #tfat is still in the dev environment
+  # tfat is still in the dev environment
   domain <- gsub("intra.glis", "intra.dev.glis", domain)
 
   return(paste0(domain, api_url))

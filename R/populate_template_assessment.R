@@ -67,6 +67,13 @@ populate_template_assessment <- function(filters, template_database,
     target <- file.path(getwd(), sprintf("%s.accdb", fname))
   }
 
+
+  if (file.exists(target) && !overwrite) {
+    messageA <- sprintf("The target database: '%s' already exists.", target)
+    messageB <- "Please provide a different target or set overwrite=TRUE."
+    stop(paste(messageA, messageB, sep = "\n"))
+  }
+
   if (!file.exists(template_database)) {
     message <-
       sprintf(

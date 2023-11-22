@@ -4,7 +4,7 @@
 #' been uploaded to project tracker. This api endpoint
 #' accepts a large number of filters associated with the project or
 #' report type. Project specific filters include project code(s),
-#' years, lakes, and project lead. Use 'show_filters("project_abstracts")' 
+#' years, lakes, and project lead. Use 'show_filters("project_abstracts")'
 #' to see the full list of available filters.
 #'
 #'
@@ -23,7 +23,7 @@
 #'   lake = "ON", year__gte = 2012,
 #'   year__lte = 2018
 #' ))
-#' 
+#'
 #' abstracts <- get_pt_abstracts(list(lake = "ER"))
 #'
 #' filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
@@ -39,9 +39,9 @@ get_pt_abstracts <- function(filter_list = list(), to_upper = TRUE) {
     get_pt_portal_root(),
     query_string
   )
-  
+
   payload <- api_to_dataframe(my_url, recursive = recursive)
   payload <- prepare_payload(payload, to_upper = to_upper)
-  
+
   return(payload)
 }

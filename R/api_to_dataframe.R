@@ -21,21 +21,21 @@
 
 api_to_dataframe <- function(url, data = NULL, page = 0, recursive = TRUE) {
   if (!exists("token")) token <- get_token()
-  
+
   auth_header <- sprintf("Token %s", token)
-  
+
   max_page_count <- 50
   url <- gsub("\\n", " ", url)
   url <- utils::URLencode(url)
   # response <- tryCatch(httr::GET(url),
   response <- tryCatch(httr::GET(url, httr::add_headers(authorization = auth_header)),
-                       error = function(err) {
-                         print("unable to fetch from the server. Is your VPN active?")
-                       }
+    error = function(err) {
+      print("unable to fetch from the server. Is your VPN active?")
+    }
   )
-  
+
   json <- httr::content(response, "text", encoding = "UTF-8")
-  
+
   payload <- tryCatch(
     jsonlite::fromJSON(json, flatten = TRUE),
     error = function(err) {
@@ -44,9 +44,9 @@ api_to_dataframe <- function(url, data = NULL, page = 0, recursive = TRUE) {
       return(list(paths = list()))
     }
   )
-  
+
   page <- page + 1
-  
+
   if (page >= max_page_count) {
     warning(paste0(
       "The response from the server exceeded the maximum number of api \n",
@@ -56,14 +56,14 @@ api_to_dataframe <- function(url, data = NULL, page = 0, recursive = TRUE) {
       "different filters and combine them in R."
     ))
   }
-  
+
   if (is.null(token[["token"]])) {
     warning(paste0(
       "Your token was not retrieved successfully and some data may be hidden. \n",
       "Run get_token() to re-enter your credentials."
     ))
   }
-  
+
   if (!is.null(payload[["results"]])) {
     if (is.null(data)) {
       data <- payload$results
@@ -78,7 +78,7 @@ api_to_dataframe <- function(url, data = NULL, page = 0, recursive = TRUE) {
   } else {
     data <- payload
   }
-  
-  
+
+
   return(data)
 }

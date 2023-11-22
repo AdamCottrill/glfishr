@@ -37,19 +37,17 @@ get_credentials <- function() {
   password <- Sys.getenv("GLIS_PASSWORD")
 
 
-  if(username=='' || password==''){
+  if (username == "" || password == "") {
     credentials <- tryCatch(
-    {
-      rstudio_login()
-    },
-    error = function(e) {
-      fallback_login()
-    }
+      {
+        rstudio_login()
+      },
+      error = function(e) {
+        fallback_login()
+      }
     )
   } else {
-    credentials = list(username = username, password = password)
+    credentials <- list(username = username, password = password)
     return(credentials)
   }
-
-
 }

@@ -32,11 +32,10 @@ append_data <- function(dbase, trg_table, data, verbose = T, append = T, safer =
 
     data <- sync_flds(data, dbase, trg_table)
 
-
     conn <- RODBC::odbcConnectAccess2007(dbase, uid = "", pwd = "")
     RODBC::sqlSave(conn, data,
       tablename = trg_table, rownames = F, fast = TRUE,
-      safer = safer, append = append, nastring = NULL
+      safer = safer, append = append
     )
     return(RODBC::odbcClose(conn))
   }
