@@ -4,7 +4,7 @@
 ##' estimates of fish size and flag potential errors.  When new
 ##' records are added to the FN012 table, these values are null. This
 ##' function connects to the glis api endpoint and fetches the
-##' atttributes for the missing species and updates the corresponding
+##' attributes for the missing species and updates the corresponding
 ##' fields in the newly created fn012 records.
 ##' @param fn012 - dataframe containing FN012 sampling spec. data
 ##' @author Arthur Bonsall \email{arthur.bonsall@@ontario.ca}

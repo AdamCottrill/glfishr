@@ -7,7 +7,7 @@
 ##' intended by called directly by users.
 ##'
 ##' @param fn012 Dataframe containing FN012 Sampling specs and keys "PRJ_CD", "SPC", "GRP"
-##' @param fn123 Dataframe contaiing catch count data and keys "PRJ_CD", "SPC", "GRP"
+##' @param fn123 Dataframe containing catch count data and keys "PRJ_CD", "SPC", "GRP"
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return dataframe
 ##' @seealso populate_fn012

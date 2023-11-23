@@ -1,7 +1,7 @@
 ##' Get field names for target table
 ##'
 ##' This function connects to at target database and execute a simple
-##' sql statemetn that will return an empty recordset that contains
+##' sql statement that will return an empty record set that contains
 ##' nothing but the names of the columns in the target table.  This
 ##' list of field names can be used to modify or map existing data
 ##' frames to match the target table so that subsequent append queries
