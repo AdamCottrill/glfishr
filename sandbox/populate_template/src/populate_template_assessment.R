@@ -36,9 +36,7 @@
 #' without any match records in the FN123 (Catch counts) be deleted?
 #' @param verbose - Boolean. Should progress be reported to the console?
 #'
-#'
 #' @author Arthur Bonsall \email{arthur.bonsall@@ontario.ca}
-#' @return
 #' @export
 #' @examples
 #' \dontrun{

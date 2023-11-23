@@ -24,7 +24,7 @@ coefficients to estimate Total Length from Fork Length.
 }
 \details{
 This function uses the same filters as the species list, so you can
-use show_filters('species_list') to see available filters.
+use ~show_filters('species_list')~ to see available filters.
 }
 \examples{
 

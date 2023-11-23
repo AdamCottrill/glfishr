@@ -7,7 +7,7 @@
 ##' the dataframe will remain, if drop_cols=TRUE, extra fields in the
 ##' dataframe will be removed.
 ##' @param df - a dataframe
-##' @param trg_db - path to our target accdb file
+##' @param targ_db - path to our target accdb file
 ##' @param tablename - the table name in the target databae to query against
 ##' @param drop_cols - Boolean, Should extra names in the dataframe be dropped?
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}

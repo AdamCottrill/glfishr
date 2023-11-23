@@ -31,7 +31,7 @@
 #'   lake = "ER",
 #'   protocol = "TWL",
 #'   spc = c("331", "334"),
-#'   sidep__lte = 20
+#'   sidep0__lte = 20
 #' )
 #' sc126 <- get_SC126(filters)
 #'

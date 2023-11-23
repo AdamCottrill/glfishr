@@ -27,8 +27,8 @@
 #'
 #' sc121 <- get_SC121(list(lake = "HU", year = 2009))
 #'
-#' sc121 <- get_SC121(list(lake = "HU", prj_cd__like = "_001"))
-#' sc121 <- get_SC121(list(lake = "HU", prj_cd__like = "_001"), show_id = TRUE)
+#' sc121 <- get_SC121(list(lake = "HU", prj_cd__like = "_001", year = 2009))
+#' sc121 <- get_SC121(list(lake = "HU", prj_cd__like = "_001", year = 2009), show_id = TRUE)
 get_SC121 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)

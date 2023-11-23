@@ -49,7 +49,7 @@ fn122 <- get_FN122(list(
 ))
 fn122 <- get_FN122(list(
   lake = "ER", protocol = "TWL",
-  year__gte = 2010, sidep__lte = 20
+  year__gte = 2010, sidep0__lte = 20
 ))
 filters <- list(
   lake = "SU",

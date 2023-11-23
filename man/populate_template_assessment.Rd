@@ -5,53 +5,81 @@
 \title{Populate an Assessment Portal template using the GLIS API}
 \usage{
 populate_template_assessment(
-  prj_cd,
-  target,
-  alternate_path = NULL,
-  skip_fn012 = FALSE
+  filters,
+  template_database,
+  target = NULL,
+  overwrite = FALSE,
+  prune_fn012 = FALSE,
+  verbose = TRUE
 )
 }
 \arguments{
-\item{prj_cd}{The Project Code of a project in GLIS.}
+\item{filters}{List.  a list of filters used to select the project(s)
+that will be inserted into the target database.}
 
-\item{target}{The name of the target template database file.}
+\item{template_database}{Character string. The path to the template database
+that will be copied and populated with data}
 
-\item{alternate_path}{An alternative file path for the target template database file.}
+\item{target}{The name of the target (output) database file. If no
+target is provide, a name will be built from the filter list.}
 
-\item{skip_fn012}{Optional parameter to identify if the FN012 table has been
-filled-out in the target template database. The default is 'FALSE'.}
+\item{overwrite}{\itemize{
+\item Boolean. If a file with the same name as target,
+should it be overwritten?
+}}
+
+\item{prune_fn012}{\itemize{
+\item Boolean - should records in the FN012 table
+without any match records in the FN123 (Catch counts) be deleted?
+}}
+
+\item{verbose}{\itemize{
+\item Boolean. Should progress be reported to the console?
+}}
 }
 \description{
-This function accesses the API endpoints for the Assessment Portal (FN_Portal)
-tables of a specified project code and imports these records into a specified
-template database file. By default, the file path is assumed to be the user's
-home directory (typically 'Documents'). An alternate file path can be specified
-using the 'alternate_path' option. This function was designed based on the
-Great_Lakes_Assessment_Template_5 format.
+This function accesses the API endpoints for the Assessment Portal
+(FN_Portal) tables of a specified project code and imports these
+records into a specified template database file. By default, the
+file path is assumed to be the user's home directory (typically
+'Documents'). An alternate file path can be specified using the '
+template_database' option (). This function was designed based on
+the Great_Lakes_Assessment_Template_5 format.
 }
 \details{
 There are a few important considerations when running this function:
 \itemize{
 \item The Project Code (prj_cd) must be submitted in quotation marks.
-\item The 'target' parameter must include the file type in the name (e.g., "DATABASE.accdb").
+\item The 'target' parameter must include the file type in the name (e.g., DATABASE.accdb).
 It must also be submitted in quotation marks.
-\item The 'alternate_path' must have all backslashes replaced with forward slashes and
+\item The ' template_database' must have all backslashes replaced with forward slashes and
 exclude the name of the target database (it will be appended based on 'target'). It
 must also be submitted in quotation marks.
-\item The 'skip_fn012' provides an option to specify whether the FN011 and FN012 tables
-were completed in the target template database. Setting this option to 'TRUE' will
-(1) compare the FN012 table in the template against the FN123 table from GLIS and,
-(2) skip the import steps for the FN011 and FN012 tables.
+\item The 'skip_fn012' option assumes that the FN011 and FN012 tables are completed in
+the target template database. Setting this option to 'TRUE' will (1) compare the
+FN012 table in the template against the FN123 table from GLIS and,
+(2) skip the import steps for for the FN011 and FN012 tables.
 }
+
+=====================================================================
 }
 \examples{
+\dontrun{
+populate_template_assessment(
+  list(prj_cd = "LEA_IA17_097"), "Great_Lakes_Assessment_Template_5.accdb"
+)
 
-populate_template_assessment("LEA_IA17_097", "Great_Lakes_Assessment_Template_5.accdb")
+populate_template_assessment(
+  list(prj_cd = "LEA_IA23_SHA"), "Great_Lakes_Assessment_Template_5.accdb",
+  "IBHN_2023_GLAT5.accdb"
+)
 
-populate_template_assessment("LEA_IA23_SHA", "IBHN_2023_GLAT5.accdb",
- "C:/Users/BonsallAr/OneDrive - Government of Ontario/Documents/Research Programs/Inner Bay Hoopnet")
-
-populate_template_assessment("LEA_IA22_093", "LPBTW_093_2023.accdb", skip_fn012 = TRUE)
+populate_template_assessment(
+  list(prj_cd = "LEA_IA22_093"), "Great_Lakes_Assessment_Template_5.accdb",
+  "LPBTW_093_2023.accdb",
+  prune_fn012 = TRUE
+)
+}
 }
 \author{
 Arthur Bonsall \email{arthur.bonsall@ontario.ca}

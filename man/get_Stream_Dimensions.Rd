@@ -39,10 +39,11 @@ keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api
 and filter by "stream_dimensions" for additional information.
 }
 \examples{
-
+\dontrun{
 show_filters("stream_dimensions")
+}
 # TODO: add more examples when more data is uploaded
-stream <- get_Stream_Dimensions(list(lake="ER"))
+stream <- get_Stream_Dimensions(list(lake = "ER"))
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

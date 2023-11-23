@@ -26,8 +26,9 @@
 #' @return dataframe
 #' @export
 #' @examples
-#'
+#' \dontrun{
 #' show_filters("stream_dimensions")
+#' }
 #' # TODO: add more examples when more data is uploaded
 #' stream <- get_Stream_Dimensions(list(lake = "ER"))
 get_Stream_Dimensions <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {

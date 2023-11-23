@@ -47,7 +47,7 @@ filters <- list(
   protocol = "TWL",
   spc = c("331", "334"),
   year = 2010,
-  sidep__lte = 20
+  sidep0__lte = 20
 )
 fn127 <- get_FN127(filters)
 

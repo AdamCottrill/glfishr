@@ -37,37 +37,53 @@ project lead.  Reports can also be filtered by their associated
 milestone.  Valid report types are: "Prj Prop", "Prj Prop Pres",
 "procvallog", "ProjDescPres", "Prj Desc", "Protocol",
 "Field Report", "Prj Comp Rep", "Prj Comp Pres", "Sum Rep", and
-"Creel Estimates". Use 'show_filters("reports")' to see the full list
+"Creel Estimates". Use ~show_filters("reports")~ to see the full list
 of available filters.  This function is used to download selected files
 to a specified target directory.  It is often used in
 conjunction with \code{\link[=get_pt_reports]{get_pt_reports()}} which returns
 a dataframe containing attributes of the upload files.
 }
 \examples{
-\donttest{
-reports <- fetch_pt_reports(list(
-  lake = "ON", year__gte = 2012,
-  year__lte = 2018
-),
-target_dir = "~/Target Folder Name"
+\dontrun{
+reports <- fetch_pt_reports(
+  list(
+    lake = "ON",
+    year__gte = 2018,
+    year__lte = 2019
+  ),
+  target_dir = "~/Target-Folder-Name"
 )
 
-reports <- fetch_pt_reports(list(
-  lake = "HU", year__gte = 2012,
-  prj_cd__like = "006", report_type = "Protocol"
-),
-target_dir = "~/Target Folder Name"
+reports <- fetch_pt_reports(
+  list(
+    lake = "HU",
+    year__gte = 2018,
+    prj_cd__like = "006",
+    report_type = "Protocol"
+  ),
+  target_dir = "~/<Target-Folder-Name>"
 )
 
-reports <- fetch_pt_reports(list(lake = "ER",
-protocol = "TWL"), target_dir = "~/Target Folder Name")
+reports <- fetch_pt_reports(
+  list(
+    lake = "ER",
+    year__gte = 2018,
+    protocol = "TWL"
+  ),
+  target_dir = "~/Target-Folder-Name"
+)
 
 filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
 reports <- fetch_pt_reports(filters,
-target_dir = "~/Target Folder Name")
+  target_dir = "~/Target-Folder-Name"
+)
 
-reports <- fetch_pt_reports(list(lake = "HU", protocol = "USA"),
-target_dir = "~/Target Folder Name")
+reports <- fetch_pt_reports(list(lake = "HU", protocol = "USA"))
+
+reports <- fetch_pt_reports(
+  list(lake = "HU", protocol = "USA", year__gte = 2018),
+  target_dir = "~/<Target-Folder-Name>"
+)
 }
 
 }

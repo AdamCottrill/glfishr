@@ -40,8 +40,8 @@ and filter by "sc121" for additional information.
 
 sc121 <- get_SC121(list(lake = "HU", year = 2009))
 
-sc121 <- get_SC121(list(lake = "HU", prj_cd__like = "_001"))
-sc121 <- get_SC121(list(lake = "HU", prj_cd__like = "_001"), show_id = TRUE)
+sc121 <- get_SC121(list(lake = "HU", prj_cd__like = "_001", year = 2009))
+sc121 <- get_SC121(list(lake = "HU", prj_cd__like = "_001", year = 2009), show_id = TRUE)
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

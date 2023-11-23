@@ -35,7 +35,9 @@
 #' @examples
 #'
 #' # see the available filters that contain the string 'o2' (oxygen)
+#' \dontrun{
 #' show_filters("fn121limno", "o2")
+#' }
 #'
 #' fn121_limno <- get_FN121_Limno(list(
 #'   lake = "ER", year = 2019,

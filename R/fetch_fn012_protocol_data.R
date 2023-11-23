@@ -6,7 +6,6 @@
 ##' get_or_augment_fn012.
 ##' @param protocols - dataframe with the columns "PRJ_CD", "LAKE",
 ##'   "PROTOCOL"
-##' @param fn012 - dataframe containing FN012 sampling spec. data
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return datarame
 ##' @seealso get_or_augment_fn012
@@ -21,7 +20,7 @@ fetch_fn012_protocol_data <- function(protocols) {
     if (i == 1) {
       fn012_protocol <- payload
     } else {
-      fn012_protocol <- rbind(fn012_prtocol, payload)
+      fn012_protocol <- rbind(fn012_protocol, payload)
     }
   }
   return(fn012_protocol)

@@ -39,7 +39,7 @@ populate_template_assessment(filters, template_db)
 
 #one with fn012, one without
 filters <- list(prj_cd=c("LHA_IA16_801", "LHA_IA10_006"))
-populate_template_assessment(filters, template_db)
+populate_template_assessment(filters, template_db, overwrite=TRUE)
 
 filters <- list(lake="HU", year=1985)
 populate_template_assessment(filters, template_db)

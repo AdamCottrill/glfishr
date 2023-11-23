@@ -47,10 +47,11 @@ fn125 <- get_FN125(list(lake = "ON", year = 2012, spc = "334", gr = "GL"))
 filters <- list(
   lake = "ER",
   protocol = "TWL",
-  spc_in = c("331", "334"),
-  sidep__lte = 20
+  spc = c("331", "334"),
+  sidep0__lte = 20
 )
 fn125 <- get_FN125(filters)
+
 
 filters <- list(
   lake = "SU",
@@ -65,6 +66,7 @@ fn125 <- get_FN125(filters)
 
 fn125 <- get_FN125(list(prj_cd = "LHA_IA19_812"))
 fn125 <- get_FN125(list(prj_cd = "LHA_IA19_812"), show_id = TRUE)
+
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

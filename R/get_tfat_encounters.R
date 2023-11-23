@@ -26,19 +26,19 @@
 #'
 #' @examples
 #'
-#' # fish that had tags applied in Lake Huron between 2012 and 2018
+#' # fish that had tags on capture in Lake Huron between 2012 and 2014
 #' encounters <- get_tfat_encounters(list(
 #'   lake = "HU", year__gte = 2012, year__lte =
-#'     2018, tagstat = "A"
+#'     2014, tagstat = "C"
 #' ))
 #'
 #' # Fish that were sampled in Lake Superior and had yellow OMNR tag applied,
-#' # or had a yellow omnr tag on recapture
-#' filters <- list(lake = "SU", tagdoc__endswith = "012")
+#' # or had a yellow omnr tag on applied
+#' filters <- list(lake = "SU", tagdoc__endswith = "012", tag_stat = "A")
 #' encounters <- get_tfat_encounters(filters)
 #'
 #' # recovered walleye or musky
-#' filters <- list(spc = c("334", "132"), tagstat = "C")
+#' filters <- list(spc = c("334", "132"), tagstat = "C", year__gte = 2015, year__lte = 2016)
 #' encounters <- get_tfat_encounters(filters)
 get_tfat_encounters <- function(filter_list = list()) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)

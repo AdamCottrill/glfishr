@@ -25,19 +25,21 @@ endpoints will be displayed.
 }
 \details{
 See
-https://intra.glis.mnr.gov.on.ca/project_tracker/api/v1/swagger/,
-https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/,
-https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/, and
-https://intra.glis.mnr.gov.on.ca/common/api/v1/swagger/
+\href{https://intra.glis.mnr.gov.on.ca/project_tracker/api/v1/swagger/}{https://intra.glis.mnr.gov.on.ca/project_tracker/api/v1/swagger/},
+\href{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/},
+\href{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/}{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/}, and
+\href{https://intra.glis.mnr.gov.on.ca/common/api/v1/swagger/}{https://intra.glis.mnr.gov.on.ca/common/api/v1/swagger/}
 for an alternative way to view the full list of available filter keys (query parameters)
 }
 \examples{
+\dontrun{
 show_filters("fn125")
 show_filters("fn125", filter_like = "prj")
 show_filters("sc121", "mode")
 show_filters("species")
 show_filters("sc121", "cats")
-#show_filters("foo")
+# show_filters("foo")
+}
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

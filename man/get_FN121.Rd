@@ -44,7 +44,7 @@ and filter by "fn121" for additional information.
 fn121 <- get_FN121(list(lake = "ON", year = 2012))
 fn121 <- get_FN121(list(
   lake = "ER", protocol = "TWL",
-  sidep__lte = 20, year__gte = 2010
+  sidep0__lte = 20, year__gte = 2010
 ))
 filters <- list(
   lake = "SU",

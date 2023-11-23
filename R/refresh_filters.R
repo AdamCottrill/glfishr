@@ -4,7 +4,7 @@
 #  This function is called the first time filters are applied or
 #  requested and any time an unknown or new endpoint is specified.
 #  This function is not intended to be called directly by users, but
-#  is called by the show_filters and check_filter functions.
+#  is called by the ~show_filters~ and ~check_filter~ functions.
 #'
 #' @param endpoint - the name of the api endpoint
 #' @param api_app - the name of the api application to fetch the

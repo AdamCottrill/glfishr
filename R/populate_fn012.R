@@ -7,7 +7,7 @@
 ##' exist.  If prune_fn012 is TRUE only records with at least one
 ##' corresponding record in the FN123 table are returned.
 ##' @param filters - list of filters used to select projects
-##' @param data - the named list data fetched from the api
+##' @param glis_data - the named list data fetched from the glis api
 ##' @param prune_fn012 - boolean - should unused FN012 records be
 ##' removed from the table?
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
