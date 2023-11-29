@@ -16,14 +16,15 @@
 #' the effort, the sample, or the project(s) that the samples were
 #' collected in.
 #'
-#' Use ~show_filters("fn125tags")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
-#' and filter by "fn125tags" for additional information.
+#' Use \code{show_filters("fn125tags")} to see the full list of
+#' available filter keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/} and
+#' filter by "fn125tags" for additional information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'
-#' fields are hidden from the data frame. To return these columns
-#' as part of the data frame, use 'show_id = TRUE'.
+#'   fields are hidden from the data frame. To return these columns as
+#'   part of the data frame, use 'show_id = TRUE'.
 #' @param to_upper - should the names of the dataframe be converted to
 #' upper case?
 #'

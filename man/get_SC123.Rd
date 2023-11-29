@@ -27,13 +27,14 @@ the SC_Portal. SC123 records contain information about catch counts
 by species and the target species for each creel interview..  This
 function takes an optional filter list which can be used to return
 record based on several attributes of the catch including species,
-or group code but also attributes of the interview or the
-creel that the catches were made in.
+or group code but also attributes of the interview or the creel
+that the catches were made in.
 }
 \details{
-Use ~show_filters("sc123")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
-and filter by "sc123" for additional information.
+Use \code{show_filters("sc123")} to see the full list of available
+filter keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/} and
+filter by "sc123" for additional information.
 }
 \examples{
 

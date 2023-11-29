@@ -14,8 +14,9 @@
 #' with such project code, lake, first year, last year, protocol,
 #' gear etc.
 #'
-#' Use ~show_filters("fn122")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+#' Use \code{show_filters("fn122")} to see the full list of available
+#' filter keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 #' and filter by "fn122" for additional information.
 #'
 #' @param filter_list list

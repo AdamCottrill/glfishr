@@ -11,8 +11,8 @@
 #' several attributes of the project such as project code,
 #' or part of the project code, lake, first year, last year, etc.
 #'
-#' Use ~show_filters("angler_answers")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+#' Use \code{show_filters("angler_answers")} to see the full list of available filter
+#' keys (query parameters). Refer to \url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/}
 #' and filter by "angler_answers" for additional information.
 #'
 #' @param filter_list list

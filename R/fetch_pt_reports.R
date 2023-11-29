@@ -8,7 +8,7 @@
 #' milestone.  Valid report types are: "Prj Prop", "Prj Prop Pres",
 #' "procvallog", "ProjDescPres", "Prj Desc", "Protocol",
 #' "Field Report", "Prj Comp Rep", "Prj Comp Pres", "Sum Rep", and
-#' "Creel Estimates". Use ~show_filters("reports")~ to see the full list
+#' "Creel Estimates". Use \code{show_filters("reports")} to see the full list
 #' of available filters.  This function is used to download selected files
 #' to a specified target directory.  It is often used in
 #' conjunction with [get_pt_reports()] which returns

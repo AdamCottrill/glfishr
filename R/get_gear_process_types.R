@@ -1,17 +1,19 @@
 #' Get Gear Effort Process Types from the FN_Portal API
 #'
-#'  Process type describes how the catch in a sample is handled -
-#'  either by net, by mesh size, by groups of panels, or individual
-#'  panels.  The available process types are constrained depending on
-#'  the gear type.  This function returns the known gear, effort and
-#'  process type combinations from the FN_Prortal api, which can then
-#'  be used to validee FN122 and FN123 records, or used to populate the
-#'  ProcessEffortGear table in the template database before submitting
-#'  to Process Validate.
+#' Process type describes how the catch in a sample is handled -
+#' either by net, by mesh size, by groups of panels, or individual
+#' panels.  The available process types are constrained depending on
+#' the gear type.  This function returns the known gear, effort and
+#' process type combinations from the FN_Prortal api, which can then
+#' be used to validee FN122 and FN123 records, or used to populate the
+#' ProcessEffortGear table in the template database before submitting
+#' to Process Validate.
 #'
-#' Use ~show_filters("gear_effort_process_types")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
-#' and filter by "gear_effort_process_types" for additional information.
+#' Use \code{show_filters("gear_effort_process_types")} to see the
+#' full list of available filter keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
+#' and filter by "gear_effort_process_types" for additional
+#' information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'

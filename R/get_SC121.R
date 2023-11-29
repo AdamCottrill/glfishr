@@ -1,17 +1,17 @@
 #' Get SC121 - Anlger Interviews from Creel_Portal API
 #'
-#' This function accesses the api endpoint to for SC121
-#' records. SC121 records contain information about interviews with
-#' anglers conducted during a creel survey.  The SC121
-#' records contain information like the number of anglers in there
-#' party, when the started fishing and often answers to creel specific
-#' optional questions. This function takes an
-#' optional filter list which can be used to return record based on
-#' several attributes of the interview.
+#' This function accesses the api endpoint to for SC121 records. SC121
+#' records contain information about interviews with anglers conducted
+#' during a creel survey.  The SC121 records contain information like
+#' the number of anglers in there party, when the started fishing and
+#' often answers to creel specific optional questions. This function
+#' takes an optional filter list which can be used to return record
+#' based on several attributes of the interview.
 #'
-#' Use ~show_filters("sc121")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
-#' and filter by "sc121" for additional information.
+#' Use \code{show_filters("sc121")} to see the full list of available
+#' filter keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/} and
+#' filter by "sc121" for additional information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'

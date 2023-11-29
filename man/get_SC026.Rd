@@ -27,9 +27,10 @@ records contain information about the spatial strata associated
 with a project.
 }
 \details{
-Use ~show_filters("sc026")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
-and filter by "sc026" for additional information.
+Use \code{show_filters("sc026")} to see the full list of available
+filter keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/} and
+filter by "sc026" for additional information.
 }
 \examples{
 

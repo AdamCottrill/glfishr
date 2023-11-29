@@ -44,8 +44,9 @@ first year, last year, protocol, etc. This function can also take filters relate
 the bottom, cover, and vegetation types, and the angle/length of the leader.
 }
 \details{
-Use ~show_filters("fn121trapnet")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+Use \code{show_filters("fn121trapnet")} to see the full list of
+available filter keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 and filter by "fn121trapnet" for additional information.
 }
 \examples{

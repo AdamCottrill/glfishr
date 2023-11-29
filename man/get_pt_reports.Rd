@@ -28,7 +28,7 @@ their associated milestone.  Valid report types are: "Prj Prop",
 "Protocol", "Field Report", "Prj Comp Rep", "Prj Comp Pres",
 "Sum Rep", and "Creel Estimates" and can be passed in as a single
 string or as charcter vector of one or more report types. Use
-~show_filters("reports")~ to see the full list of available filters.
+\code{show_filters("reports")} to see the full list of available filters.
 This function returns a dataframe containing attributes of the
 report, including project code, report type, and the path to the
 report on the server. It is often used in conjunction with

@@ -11,16 +11,17 @@
 #' code, or part of the project code, lake, first year, last year,
 #' protocol, etc.
 #'
-#' Use ~show_filters("stream_dimensions")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+#' Use \code{show_filters("stream_dimensions")} to see the full list
+#' of available filter keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 #' and filter by "stream_dimensions" for additional information.
 #'
 #' @param filter_list list
-#' @param show_id When 'FALSE', the default, the 'slug'
-#' field is hidden from the data frame. To return this field
-#' as part of the data frame, use 'show_id = TRUE'.
+#' @param show_id When 'FALSE', the default, the 'slug' field is
+#'   hidden from the data frame. To return this field as part of the
+#'   data frame, use 'show_id = TRUE'.
 #' @param to_upper - should the names of the dataframe be converted to
-#' upper case?
+#'   upper case?
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe

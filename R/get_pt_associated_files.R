@@ -4,7 +4,7 @@
 #' been uploaded to project tracker.  This api endpoint accepts a
 #' large number of filters associated with the project.
 #' Project specific filters include project code(s), years, lakes, and
-#' project lead.  Use ~show_filters("associated_files")~ to see the full list
+#' project lead.  Use \code{show_filters("associated_files")} to see the full list
 #' of available filters.  This function returns a dataframe containing
 #' attributes of the upload files, including project code, and
 #' the path to the file on the server. It is often used in

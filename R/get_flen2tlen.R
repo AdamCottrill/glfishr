@@ -1,11 +1,11 @@
-#' Get FLEN~TLEn regression coefficients  GLIS API
+#' Get FLEN~TLEN regression coefficients  GLIS API
 #'
 #' This function accesses the api endpoint in the Great Lakes
 #' Information System that returns the species specific regression
 #' coefficients to estimate Total Length from Fork Length.
 #'
 #' This function uses the same filters as the species list, so you can
-#' use ~show_filters('species_list')~ to see available filters.
+#' use \code{show_filters('species_list')} to see available filters.
 #'
 #' @param filter_list list
 #' @param to_upper - should the names of the dataframe be converted to

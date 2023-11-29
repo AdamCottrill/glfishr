@@ -9,9 +9,9 @@ get_Stream_Dimensions(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 \arguments{
 \item{filter_list}{list}
 
-\item{show_id}{When 'FALSE', the default, the 'slug'
-field is hidden from the data frame. To return this field
-as part of the data frame, use 'show_id = TRUE'.}
+\item{show_id}{When 'FALSE', the default, the 'slug' field is
+hidden from the data frame. To return this field as part of the
+data frame, use 'show_id = TRUE'.}
 
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
@@ -34,8 +34,9 @@ code, or part of the project code, lake, first year, last year,
 protocol, etc.
 }
 \details{
-Use ~show_filters("stream_dimensions")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+Use \code{show_filters("stream_dimensions")} to see the full list
+of available filter keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 and filter by "stream_dimensions" for additional information.
 }
 \examples{

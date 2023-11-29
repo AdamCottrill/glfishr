@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_flen2tlen.R
 \name{get_flen2tlen}
 \alias{get_flen2tlen}
-\title{Get FLEN~TLEn regression coefficients  GLIS API}
+\title{Get FLEN~TLEN regression coefficients  GLIS API}
 \usage{
 get_flen2tlen(filter_list = list(), to_upper = TRUE)
 }
@@ -24,7 +24,7 @@ coefficients to estimate Total Length from Fork Length.
 }
 \details{
 This function uses the same filters as the species list, so you can
-use ~show_filters('species_list')~ to see available filters.
+use \code{show_filters('species_list')} to see available filters.
 }
 \examples{
 

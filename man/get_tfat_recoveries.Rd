@@ -13,19 +13,22 @@ get_tfat_recoveries(filter_list = list())
 dataframe
 }
 \description{
-This function accesses the TFAT api endpoint to for tag recoveries - tags
-reported by anglers, the general public, or other agencies.  Tag Recovery
-events include information about the tag, the tagged fish, and where the
-recovery occurred.
+This function accesses the TFAT api endpoint to for tag recoveries
+\itemize{
+\item tags reported by anglers, the general public, or other agencies.
+Tag Recovery events include information about the tag, the tagged
+fish, and where the recovery occurred.
+}
 }
 \details{
-This function takes an optional filter list which can be used to return
-records based on several attributes of the tagged fish (species, or size),
-the tag attributes (colour, placement, tag type) or the recovery event (lake
-or recovery date)
+This function takes an optional filter list which can be used to
+return records based on several attributes of the tagged fish
+(species, or size), the tag attributes (colour, placement, tag
+type) or the recovery event (lake or recovery date)
 
-See ~get_tag_attr_values()~ to get a list of values that can be use to filter
-results based on tag attributes such as colour or tag type.
+See \code{get_tag_attr_values()} to get a list of values that can
+be use to filter results based on tag attributes such as colour or
+tag type.
 }
 \examples{
 

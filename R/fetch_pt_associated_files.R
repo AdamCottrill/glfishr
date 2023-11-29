@@ -4,7 +4,7 @@
 #' been uploaded to project tracker.  This api endpoint accepts a
 #' large number of filters associated with the project.
 #' Project specific filters include project code(s), years, lakes, and
-#' project lead.  Use ~show_filters("associated_files")~ to see the full list
+#' project lead.  Use \code{show_filters("associated_files")} to see the full list
 #' of available filters.  This function is used to download any files in the
 #' associated files section of project tracker to a specified target directory.
 #' It is often used in conjunction with [get_pt_associated_files()] which returns

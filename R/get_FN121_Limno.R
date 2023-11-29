@@ -15,8 +15,9 @@
 #' protocol, etc.  The limnological data can be joined back to the
 #' associated net set in R using the function \code{\link{join_fn_fields}}
 #'
-#' Use ~show_filters("fn121limno")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+#' Use \code{show_filters("fn121limno")} to see the full list of available filter
+#' keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 #' and filter by "fn121limno" for additional information.
 #'
 #' @param filter_list list

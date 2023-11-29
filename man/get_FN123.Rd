@@ -35,8 +35,9 @@ or group code but also attributes of the effort, the sample or the
 project(s) that the catches were made in.
 }
 \details{
-Use ~show_filters("fn123")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+Use \code{show_filters("fn123")} to see the full list of available
+filter keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 and filter by "fn123" for additional information.
 }
 \examples{

@@ -22,19 +22,20 @@ upper case?
 dataframe
 }
 \description{
-This function accesses the api endpoint to for SC126
-records. SC126 records contain the counts of identifiable items in
-found in the stomachs of sampled fish.  This function takes an
-optional filter list which can be used to return records based on
-several different attributes of the diet item (taxon, taxon_like),
-as well as, attributes of the sampled fish such as the species, or
-group code, or attributes of interview, or the
-creel(s) that the samples were collected in.
+This function accesses the api endpoint to for SC126 records. SC126
+records contain the counts of identifiable items in found in the
+stomachs of sampled fish.  This function takes an optional filter
+list which can be used to return records based on several different
+attributes of the diet item (taxon, taxon_like), as well as,
+attributes of the sampled fish such as the species, or group code,
+or attributes of interview, or the creel(s) that the samples were
+collected in.
 }
 \details{
-Use ~show_filters("sc126")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
-and filter by "sc126" for additional information.
+Use \code{show_filters("sc126")} to see the full list of available
+filter keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/} and
+filter by "sc126" for additional information.
 }
 \examples{
 

@@ -10,8 +10,8 @@ get_SC125(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 \item{filter_list}{list}
 
 \item{show_id}{When 'FALSE', the default, the 'id' and 'slug'
-fields are hidden from the data frame. To return these columns
-as part of the data frame, use 'show_id = TRUE'.}
+fields are hidden from the data frame. To return these columns as
+part of the data frame, use 'show_id = TRUE'.}
 
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
@@ -22,20 +22,20 @@ upper case?
 dataframe
 }
 \description{
-This function accesses the api endpoint to for SC125
-records. SC125 records contain the biological data collected from
-individual fish sampled in creel surveys such as length,
-weight, sex, and maturity.  This function takes an optional
-filter list which can be used to return records based on several
-different biological attributes (such as size, sex, or maturity),
-but also of the species, or group code, or attributes of
-the effort, the sample, or the project(s) that the
-samples were collected in.
+This function accesses the api endpoint to for SC125 records. SC125
+records contain the biological data collected from individual fish
+sampled in creel surveys such as length, weight, sex, and maturity.
+This function takes an optional filter list which can be used to
+return records based on several different biological attributes
+(such as size, sex, or maturity), but also of the species, or group
+code, or attributes of the effort, the sample, or the project(s)
+that the samples were collected in.
 }
 \details{
-Use ~show_filters("sc125")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
-and filter by "sc125" for additional information.
+Use \code{show_filters("sc125")} to see the full list of available
+filter keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/} and
+filter by "sc125" for additional information.
 }
 \examples{
 
