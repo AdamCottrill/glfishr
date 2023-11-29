@@ -1,16 +1,18 @@
 #' Get FN012 - Sampling specs (species and group) from FN_Portal API
 #'
-#' This function accesses the api endpoint for FN012 records.
-#' FN012 records contain a list of anticipated species for a project and the
-#' likely length and weight ranges for those species. These constraints are used
-#' by ProcVal to check that biodata for fish caught during the project is
-#' reasonable. The FN012 records contain information like minimum and maximum
-#' TLEN, FLEN, RWT, and K values for each species. This function takes an
-#' optional filter list which can be used to return records based on several
-#' attributes of the project such as protocol, lake, project code, and species.
+#' This function accesses the api endpoint for FN012 records.  FN012
+#' records contain a list of anticipated species for a project and the
+#' likely length and weight ranges for those species. These
+#' constraints are used by ProcVal to check that biodata for fish
+#' caught during the project is reasonable. The FN012 records contain
+#' information like minimum and maximum TLEN, FLEN, RWT, and K values
+#' for each species. This function takes an optional filter list which
+#' can be used to return records based on several attributes of the
+#' project such as protocol, lake, project code, and species.
 #'
-#' Use ~show_filters("fn012")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+#' Use \code{show_filters("fn012")} to see the full list of available filter
+#' keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 #' and filter by "fn012" for additional information.
 #'
 #' @param filter_list list

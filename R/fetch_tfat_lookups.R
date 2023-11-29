@@ -6,7 +6,7 @@
 #' types, tag colours, tagging agency etc.  This function calls that endpoint
 #' and returns the results as a named list - one list for each key-value pair.
 #' This function is not intended to be called directly, but is called by other,
-#' higher-level convenience functions (~get_tag_colours()~).
+#' higher-level convenience functions (\code{get_tag_colours()}).
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #'

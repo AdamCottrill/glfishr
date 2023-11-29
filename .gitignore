@@ -2,6 +2,7 @@
 .vscode/
 notes.org
 sandbox.R
-sandbox/*
+*.accdb
+*.zip
 .#*
 *.Rproj

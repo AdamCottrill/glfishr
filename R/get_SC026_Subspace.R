@@ -1,12 +1,13 @@
 #' Get SC026_Subspace - Spatial Strata Data Creel_Portal API
 #'
 #' This function accesses the api endpoint to for SC026_Subspace
-#' records. SC026_Subspace records contain information about the lower level
-#' spatial strata associated with a project.
+#' records. SC026_Subspace records contain information about the lower
+#' level spatial strata associated with a project.
 #'
-#' Use ~show_filters("sc026subspace")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
-#' and filter by "sc026subspace" for additional information.
+#' Use \code{show_filters("sc026subspace")} to see the full list of
+#' available filter keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/} and
+#' filter by "sc026subspace" for additional information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'

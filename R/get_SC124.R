@@ -1,18 +1,19 @@
 #' Get SC124 - Length Frequency Counts from Creel_Portal API
 #'
-#' This function accesses the api endpoint for SC124 records from
-#' the Creel_Portal. SC124 records contain information about the length frequency
-#' by species associated with an angler interview. Group (GRP) is
-#' occasionally included to further sub-divide the catch into user
-#' defined groups that are usually specific to the project. This
+#' This function accesses the api endpoint for SC124 records from the
+#' Creel_Portal. SC124 records contain information about the length
+#' frequency by species associated with an angler interview. Group
+#' (GRP) is occasionally included to further sub-divide the catch into
+#' user defined groups that are usually specific to the project. This
 #' function takes an optional filter list which can be used to return
 #' record based on several attributes of the catch including species
 #' or group code but also attributes of the effort, the sample or the
 #' project(s) that the catches were made in.
 #'
-#' Use ~show_filters("sc124")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
-#' and filter by "sc124" for additional information.
+#' Use \code{show_filters("sc124")} to see the full list of available
+#' filter keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/} and
+#' filter by "sc124" for additional information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'

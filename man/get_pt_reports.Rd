@@ -28,7 +28,7 @@ their associated milestone.  Valid report types are: "Prj Prop",
 "Protocol", "Field Report", "Prj Comp Rep", "Prj Comp Pres",
 "Sum Rep", and "Creel Estimates" and can be passed in as a single
 string or as charcter vector of one or more report types. Use
-'show_filters("reports")' to see the full list of available filters.
+\code{show_filters("reports")} to see the full list of available filters.
 This function returns a dataframe containing attributes of the
 report, including project code, report type, and the path to the
 report on the server. It is often used in conjunction with
@@ -38,21 +38,21 @@ target directory.
 \examples{
 
 reports <- get_pt_reports(list(
-  lake = "ON", year__gte = 2012,
+  lake = "ON", year__gte = 2017,
   year__lte = 2018
 ))
 
 reports <- get_pt_reports(list(
-  lake = "HU", year__gte = 2012,
+  lake = "HU", year__gte = 2018,
   prj_cd__like = "006", report_type = "Protocol"
 ))
 
-reports <- get_pt_reports(list(lake = "ER"))
+reports <- get_pt_reports(list(lake = "ER", year__gte = 2018))
 
 filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
 reports <- get_pt_reports(filters)
 
-reports <- get_pt_reports(list(lake = "HU"))
+reports <- get_pt_reports(list(lake = "HU", year = 2018))
 }
 \seealso{
 \code{\link[=fetch_pt_reports]{fetch_pt_reports()}}

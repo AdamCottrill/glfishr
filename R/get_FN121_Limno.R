@@ -15,8 +15,9 @@
 #' protocol, etc.  The limnological data can be joined back to the
 #' associated net set in R using the function \code{\link{join_fn_fields}}
 #'
-#' Use ~show_filters("fn121limno")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+#' Use \code{show_filters("fn121limno")} to see the full list of available filter
+#' keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 #' and filter by "fn121limno" for additional information.
 #'
 #' @param filter_list list
@@ -35,16 +36,26 @@
 #' @examples
 #'
 #' # see the available filters that contain the string 'o2' (oxygen)
+#' \dontrun{
 #' show_filters("fn121limno", "o2")
+#' }
 #'
-#' fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019,
-#' o2surf0__not_null = TRUE))
-#' fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019,
-#' o2surf0__not_null = TRUE), with_121 = TRUE)
-#' fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019,
-#' o2surf0__not_null = TRUE, mu_type = "moe"), with_121 = TRUE)
-#' fn121_limno <- get_FN121_Limno(list(lake = "ER", year = 2019,
-#' o2surf0__not_null = TRUE), show_id = TRUE)
+#' fn121_limno <- get_FN121_Limno(list(
+#'   lake = "ER", year = 2019,
+#'   o2surf0__not_null = TRUE
+#' ))
+#' fn121_limno <- get_FN121_Limno(list(
+#'   lake = "ER", year = 2019,
+#'   o2surf0__not_null = TRUE
+#' ), with_121 = TRUE)
+#' fn121_limno <- get_FN121_Limno(list(
+#'   lake = "ER", year = 2019,
+#'   o2surf0__not_null = TRUE, mu_type = "moe"
+#' ), with_121 = TRUE)
+#' fn121_limno <- get_FN121_Limno(list(
+#'   lake = "ER", year = 2019,
+#'   o2surf0__not_null = TRUE
+#' ), show_id = TRUE)
 #'
 get_FN121_Limno <- function(filter_list = list(), with_121 = FALSE, show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
@@ -61,15 +72,13 @@ get_FN121_Limno <- function(filter_list = list(), with_121 = FALSE, show_id = FA
   payload <- api_to_dataframe(my_url, recursive = recursive)
   payload <- prepare_payload(payload, show_id, to_upper)
 
-  if (with_121==TRUE){
-
+  if (with_121 == TRUE) {
     limno_filters <- setdiff(names(filter_list), api_filters$fn121$name)
     new_filters <- filter_list[names(filter_list) %in% limno_filters == FALSE]
 
     FN121 <- get_FN121(new_filters)
 
     payload <- merge(FN121, payload)
-
   }
 
   return(payload)

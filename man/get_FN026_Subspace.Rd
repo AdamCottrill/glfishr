@@ -27,8 +27,9 @@ records. FN026_Subspace records contain information about the lower level
 spatial strata associated with a project.
 }
 \details{
-Use ~show_filters("fn026subspace")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+Use \code{show_filters("fn026subspace")} to see the full list of available filter
+keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 and filter by "fn026subspace" for additional information.
 }
 \examples{

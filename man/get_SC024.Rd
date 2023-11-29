@@ -28,9 +28,10 @@ survey. Often the fishing day is split into morning and afternoon,
 and in some instances the periods change between seasons.
 }
 \details{
-Use ~show_filters("sc024")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
-and filter by "sc024" for additional information.
+Use \code{show_filters("sc024")} to see the full list of available
+filter keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/} and
+filter by "sc024" for additional information.
 }
 \examples{
 

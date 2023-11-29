@@ -5,9 +5,10 @@
 #' creel survey.  Fishing mode typically describes the gear, or method
 #' of fishing.
 #'
-#' Use ~show_filters("sc028")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
-#' and filter by "sc028" for additional information.
+#' Use \code{show_filters("sc028")} to see the full list of available
+#' filter keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/} and
+#' filter by "sc028" for additional information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'

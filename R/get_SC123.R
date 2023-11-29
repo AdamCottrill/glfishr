@@ -5,12 +5,13 @@
 #' by species and the target species for each creel interview..  This
 #' function takes an optional filter list which can be used to return
 #' record based on several attributes of the catch including species,
-#' or group code but also attributes of the interview or the
-#' creel that the catches were made in.
+#' or group code but also attributes of the interview or the creel
+#' that the catches were made in.
 #'
-#' Use ~show_filters("sc123")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
-#' and filter by "sc123" for additional information.
+#' Use \code{show_filters("sc123")} to see the full list of available
+#' filter keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/} and
+#' filter by "sc123" for additional information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'
@@ -34,7 +35,7 @@
 #' sc123 <- get_SC123(filters)
 #'
 #'
-#' filters <- list(lake = "HU", spc = "076", sek = TRUE)
+#' filters <- list(lake = "HU", spc = "076", sek = TRUE, year = 2009)
 #' sc123 <- get_SC123(filters)
 #'
 #' sc123 <- get_SC123(list(prj_cd = "LHA_SC09_033"))

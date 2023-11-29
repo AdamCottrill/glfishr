@@ -35,8 +35,9 @@ or group code but also attributes of the effort, the sample or the
 project(s) that the catches were made in.
 }
 \details{
-Use ~show_filters("fn123")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+Use \code{show_filters("fn123")} to see the full list of available
+filter keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 and filter by "fn123" for additional information.
 }
 \examples{
@@ -48,7 +49,7 @@ filters <- list(
   protocol = "TWL",
   year = 2010,
   spc = c("331", "334"),
-  sidep__lte = 20
+  sidep0__lte = 20
 )
 fn123 <- get_FN123(filters)
 

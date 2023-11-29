@@ -26,7 +26,7 @@ can also be filtered by their name.  Valid milestone types are: "Submitted",
 "Approved", "Field Work Conducted", "Data Scrubbed", "Aging Complete",
 "Data Merged", "Sign off", and "Cancelled" and can be passed in as a single
 string or as charcter vector of one or more milestone types. Use
-'show_filters("project_nr_milestones")' to see the full list of available
+\code{show_filters("project_nr_milestones")} to see the full list of available
 filters. This function returns a dataframe containing attributes of the
 report, including project code, project name, and the time at which a
 milestone was completed.

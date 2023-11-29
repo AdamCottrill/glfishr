@@ -2,25 +2,26 @@
 #'
 #' This function accesses the api endpoint to for SC127 - age
 #' estimate/interpretations.  This function takes an optional filter
-#' list which can be used to return records based on several
-#' different attributes of the age estimate such as the assigned age,
-#' the aging structure, confidence, number of complete annuli and
-#' edge code, or whether or not it was identified as the 'preferred'
-#' age for this fish. Additionally, filters can be applied to
-#' select age estimates based on attributes of the sampled fish such
-#' as the species, or group code, or attributes of the effort, the
-#' sample, or the project(s) that the samples were collected in.
+#' list which can be used to return records based on several different
+#' attributes of the age estimate such as the assigned age, the aging
+#' structure, confidence, number of complete annuli and edge code, or
+#' whether or not it was identified as the 'preferred' age for this
+#' fish. Additionally, filters can be applied to select age estimates
+#' based on attributes of the sampled fish such as the species, or
+#' group code, or attributes of the effort, the sample, or the
+#' project(s) that the samples were collected in.
 #'
-#' Use ~show_filters("sc127")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+#' Use \code{show_filters("sc127")} to see the full list of available filter
+#' keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/}
 #' and filter by "sc127" for additional information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'
-#' fields are hidden from the data frame. To return these columns
-#' as part of the data frame, use 'show_id = TRUE'.
+#'   fields are hidden from the data frame. To return these columns as
+#'   part of the data frame, use 'show_id = TRUE'.
 #' @param to_upper - should the names of the dataframe be converted to
-#' upper case?
+#'   upper case?
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe

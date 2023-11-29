@@ -31,8 +31,8 @@ attributes of the project such as project code, or part of the project
 code, lake, first year, last year, etc.
 }
 \details{
-Use ~show_filters("angler_questions")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+Use \code{show_filters("angler_questions")} to see the full list of available filter
+keys (query parameters). Refer to \url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/}
 and filter by "angler_questions" for additional information.
 }
 \examples{

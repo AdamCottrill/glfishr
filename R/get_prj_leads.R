@@ -27,11 +27,12 @@
 #' @return dataframe
 #' @export
 #' @examples
-#'
+#' \dontrun{
 #' prj_leads <- get_prj_leads()
 #' all_prj_leads <- get_prj_leads(list(all = TRUE))
 #' all_steves <- get_prj_leads(list(first_name__like = "ste", all = TRUE))
 #' prj_lead_slugs <- get_prj_leads(show_id = TRUE)
+#' }
 get_prj_leads <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   .Deprecated("get_project_leads")
   query_string <- build_query_string(filter_list)

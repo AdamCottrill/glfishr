@@ -5,7 +5,14 @@
 \title{Given a url submit the request and return the results as a
 dataframe.}
 \usage{
-api_to_dataframe(url, data = NULL, page = 0, recursive = TRUE)
+api_to_dataframe(
+  url,
+  data = NULL,
+  page = 0,
+  recursive = TRUE,
+  request_type = "GET",
+  request_body = NULL
+)
 }
 \arguments{
 \item{url}{string}
@@ -15,6 +22,10 @@ api_to_dataframe(url, data = NULL, page = 0, recursive = TRUE)
 \item{page}{number}
 
 \item{recursive}{boolean}
+
+\item{request_type}{string - http request type "GET"" or "POST"}
+
+\item{request_body}{list, dataframe, or character string to be sent to the server as the body of the POST request.  Not used in GET requests.}
 }
 \value{
 dataframe
@@ -23,11 +34,15 @@ dataframe
 Given a url submit the request and return the results as a
 dataframe. If the response is paginated, the functions is called
 recursively until all of the pages have been loaded ($next is
-null). A maximum of 50 requests are made.  If the maximum number
-of pages is reached, the function returns the data and issues a
+null). A maximum of 20 requests are made.  If the maximum number of
+pages is reached, the function returns the data and issues a
 warning that there may be additional data and that the filters
 should be refined and multiple requests made and then combined to
 ensure that all of the records selected by the filter are returned.
+It is generally considered best practice to only request the data
+needed for your particular analysis by applying appropriate filters
+to the request than fetch everything and filtering on the client
+(e.g. R).
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

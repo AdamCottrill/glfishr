@@ -34,8 +34,9 @@ a template database for a new project or for adding an FN012 table to
 an existing project.
 }
 \details{
-Use ~show_filters("fn012_protocol")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+Use \code{show_filters("fn012_protocol")} to see the full list of available filter
+keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 and filter by "fn012_protocol" for additional information.
 }
 \examples{

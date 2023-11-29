@@ -33,7 +33,7 @@ This function accesses the api endpoint for associated files that have
 been uploaded to project tracker.  This api endpoint accepts a
 large number of filters associated with the project.
 Project specific filters include project code(s), years, lakes, and
-project lead.  Use 'show_filters("associated_files")' to see the full list
+project lead.  Use \code{show_filters("associated_files")} to see the full list
 of available filters.  This function is used to download any files in the
 associated files section of project tracker to a specified target directory.
 It is often used in conjunction with \code{\link[=get_pt_associated_files]{get_pt_associated_files()}} which returns
@@ -41,29 +41,36 @@ a dataframe containing attributes of the upload files.
 }
 \examples{
 \donttest{
-reports <- fetch_pt_associated_files(list(
-  lake = "ON", year__gte = 2012,
-  year__lte = 2018
-),
-target_dir = "~/Target Folder Name"
+reports <- fetch_pt_associated_files(
+  list(
+    lake = "ON", year__gte = 2012,
+    year__lte = 2018
+  ),
+  target_dir = "~/Target Folder Name"
+)
+
+reports <- fetch_pt_associated_files(
+  list(
+    lake = "HU", year__gte = 2012,
+    prj_cd__like = "006"
+  ),
+  target_dir = "~/Target Folder Name"
 )
 
 reports <- fetch_pt_associated_files(list(
-  lake = "HU", year__gte = 2012,
-  prj_cd__like = "006"
-),
-target_dir = "~/Target Folder Name"
-)
-
-reports <- fetch_pt_associated_files(list(lake = "ER", protocol =
-"TWL"), target_dir = "~/Target Folder Name")
+  lake = "ER", protocol =
+    "TWL"
+), target_dir = "~/Target Folder Name")
 
 filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
 reports <- fetch_pt_associated_files(filters,
-target_dir = "~/Target Folder Name")
+  target_dir = "~/Target Folder Name"
+)
 
-reports <- fetch_pt_associated_files(list(lake = "HU", protocol =
-"USA"), target_dir = "~/Target Folder Name")
+reports <- fetch_pt_associated_files(list(
+  lake = "HU", protocol =
+    "USA"
+), target_dir = "~/Target Folder Name")
 }
 
 }
