@@ -27,8 +27,9 @@ FN_Prortal api. Use get_gear_process_types() for more detail about
 the corresponding process type
 }
 \details{
-Use ~show_filters("gear")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+Use \code{show_filters("gear")} to see the full list of available
+filter keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 and filter by "gear" for additional information.
 }
 \examples{

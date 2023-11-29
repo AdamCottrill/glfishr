@@ -5,7 +5,7 @@
 #' associated with the project including spatial filters for buffered
 #' point, or region of interest.  Project specific filters include
 #' project code(s), years, lakes, and project lead.  Use
-#' 'show_filters("projects")' to see the full list of available
+#' \code{show_filters("projects")} to see the full list of available
 #' filters.  This function returns a dataframe containing attributes
 #' of the project including project code, project name, start and end
 #' date, and project lead.
@@ -23,21 +23,21 @@
 #' @examples
 #'
 #' projects <- get_pt_projects(list(
-#'   lake = "ON", year__gte = 2012,
+#'   lake = "ON", year__gte = 2016,
 #'   year__lte = 2018
 #' ))
 #'
 #' projects <- get_pt_projects(list(
-#'   lake = "HU", year__gte = 2012,
+#'   lake = "HU", year__gte = 2018,
 #'   prj_cd__like = "006"
 #' ))
 #'
-#' projects <- get_pt_projects(list(lake = "ER"))
+#' projects <- get_pt_projects(list(lake = "ER", year__gte = 2018))
 #'
 #' filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
 #' projects <- get_pt_projects(filters)
 #'
-#' projects <- get_pt_projects(list(lake = "HU"))
+#' projects <- get_pt_projects(list(lake = "HU", year__gte = 2018))
 get_pt_projects <- function(filter_list = list(), to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)

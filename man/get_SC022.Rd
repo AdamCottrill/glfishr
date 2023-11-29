@@ -27,9 +27,10 @@ records. SC022 records contain information about the defined season
 associated with a creel.
 }
 \details{
-Use ~show_filters("sc022")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
-and filter by "sc022" for additional information.
+Use \code{show_filters("sc022")} to see the full list of available
+filter keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/} and
+filter by "sc022" for additional information.
 }
 \examples{
 

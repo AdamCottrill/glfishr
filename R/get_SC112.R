@@ -1,14 +1,15 @@
 #' Get SC112 - Creel Activity Counts from Creel_Portal API
 #'
-#' This function accesses the api endpoint to for SC112 records.  This
+#'This function accesses the api endpoint to for SC112 records.  This
 #' function takes an optional filter list which can be used to return
 #' records based on several attributes of the creel such as project
 #' code, or part of the project code, lake, first year, last year,
 #' contact, or any of the strata
 #'
-#' Use ~show_filters("sc112")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
-#' and filter by "sc112" for additional information.
+#' Use \code{show_filters("sc112")} to see the full list of available
+#' filter keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/} and
+#' filter by "sc112" for additional information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'

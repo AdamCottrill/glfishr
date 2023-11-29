@@ -10,8 +10,9 @@
 #' first year, last year, protocol, etc. This function can also take filters related to
 #' the vessel/warp.
 #'
-#' Use ~show_filters("fn121trawl")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+#' Use \code{show_filters("fn121trawl")} to see the full list of
+#' available filter keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 #' and filter by "fn121trawl" for additional information.
 #'
 #' @param filter_list list
@@ -35,9 +36,9 @@
 #' fn121_trawl <- get_FN121_Trawl(list(lake = "ER", year = 2018), show_id = TRUE)
 get_FN121_Trawl <- function(filter_list = list(), with_121 = FALSE, show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
-  
+
   trawl_filters <- filter_list[names(filter_list) != "mu_type"]
-  
+
   query_string <- build_query_string(trawl_filters)
   check_filters("fn121trawl", trawl_filters, "fn_portal")
   my_url <- sprintf(
@@ -47,16 +48,14 @@ get_FN121_Trawl <- function(filter_list = list(), with_121 = FALSE, show_id = FA
   )
   payload <- api_to_dataframe(my_url, recursive = recursive)
   payload <- prepare_payload(payload, show_id, to_upper)
-  
-  if (with_121==TRUE){
-    
+
+  if (with_121 == TRUE) {
     trawl_filters <- setdiff(names(filter_list), api_filters$fn121$name)
     new_filters <- filter_list[names(filter_list) %in% trawl_filters == FALSE]
-    
+
     FN121 <- get_FN121(new_filters)
-    
+
     payload <- merge(FN121, payload)
-    
   }
 
   return(payload)

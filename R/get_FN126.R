@@ -9,8 +9,9 @@
 #' group code, or attributes of the effort, the sample, or the
 #' project(s) that the samples were collected in.
 #'
-#' Use ~show_filters("fn126")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+#' Use \code{show_filters("fn126")} to see the full list of available
+#' filter keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 #' and filter by "fn126" for additional information.
 #'
 #' @param filter_list list
@@ -31,7 +32,7 @@
 #'   lake = "ER",
 #'   protocol = "TWL",
 #'   spc = c("331", "334"),
-#'   sidep__lte = 20
+#'   sidep0__lte = 20
 #' )
 #' fn126 <- get_FN126(filters)
 #'

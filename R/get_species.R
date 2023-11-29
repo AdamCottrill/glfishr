@@ -10,7 +10,7 @@
 #' See
 #' https://intra.glis.mnr.gov.on.ca/common/api/v1/swagger/
 #' and filter by "species" for the full list of available filter keys (query parameters)
-#' 
+#'
 #' See
 #' https://intra.glis.mnr.gov.on.ca/common/species/
 #' for the full list of fish species

@@ -11,8 +11,9 @@
 #' as the species, or group code, or attributes of the effort, the
 #' sample, or the project(s) that the samples were collected in.
 #'
-#' Use ~show_filters("fn127")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+#' Use \code{show_filters("fn127")} to see the full list of available
+#' filter keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 #' and filter by "fn127" for additional information.
 #'
 #' @param filter_list list
@@ -34,7 +35,7 @@
 #'   protocol = "TWL",
 #'   spc = c("331", "334"),
 #'   year = 2010,
-#'   sidep__lte = 20
+#'   sidep0__lte = 20
 #' )
 #' fn127 <- get_FN127(filters)
 #'

@@ -22,7 +22,7 @@ This function accesses the api endpoint for abstracts that have
 been uploaded to project tracker. This api endpoint
 accepts a large number of filters associated with the project or
 report type. Project specific filters include project code(s),
-years, lakes, and project lead. Use 'show_filters("project_abstracts")'
+years, lakes, and project lead. Use \code{show_filters("project_abstracts")}
 to see the full list of available filters.
 }
 \examples{
@@ -32,12 +32,12 @@ abstracts <- get_pt_abstracts(list(
   year__lte = 2018
 ))
 
-abstracts <- get_pt_abstracts(list(lake = "ER"))
+abstracts <- get_pt_abstracts(list(lake = "ER", year__gte = 2018))
 
 filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
 abstracts <- get_pt_abstracts(filters)
 
-abstracts <- get_pt_abstracts(list(lake = "HU"))
+abstracts <- get_pt_abstracts(list(lake = "HU", year__gte = 2018))
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

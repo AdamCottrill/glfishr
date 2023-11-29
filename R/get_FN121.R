@@ -12,8 +12,9 @@
 #' code, or part of the project code, lake, first year, last year,
 #' protocol, etc.
 #'
-#' Use ~show_filters("fn121")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+#' Use \code{show_filters1("fn121")} to see the full list of available filter
+#' keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 #' and filter by "fn121" for additional information.
 #'
 #' @param filter_list list
@@ -31,7 +32,7 @@
 #' fn121 <- get_FN121(list(lake = "ON", year = 2012))
 #' fn121 <- get_FN121(list(
 #'   lake = "ER", protocol = "TWL",
-#'   sidep__lte = 20, year__gte = 2010
+#'   sidep0__lte = 20, year__gte = 2010
 #' ))
 #' filters <- list(
 #'   lake = "SU",

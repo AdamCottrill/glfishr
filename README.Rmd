@@ -13,8 +13,10 @@ knitr::opts_chunk$set(
 )
 
 anonymize <- function(df) {
-  drop <- c("PRJ_LDR.USERNAME", "PRJ_LDR.FIRST_NAME",
-    "PRJ_LDR.LAST_NAME","PRJ_LDR")
+  drop <- c(
+    "PRJ_LDR.USERNAME", "PRJ_LDR.FIRST_NAME",
+    "PRJ_LDR.LAST_NAME", "PRJ_LDR"
+  )
   drop <- c(drop, tolower(drop))
   df <- df[, !(names(df) %in% drop)]
 }
@@ -81,13 +83,11 @@ to be applied and the value of the filter.
 
 
 ```{r show_filters }
-
 show_filters()
 
 show_filters("fn011")
 
-show_filters("fn125", filter_like="tlen")
-
+show_filters("fn125", filter_like = "tlen")
 ```
 
 
@@ -99,7 +99,6 @@ that can be installed and then loaded as needed:
 
 ```{r load_library}
 library(glfishr)
-
 ```
 
 
@@ -117,7 +116,6 @@ year (**year__lte**), protocol, etc.
 
 
 ```{r fn011}
-
 fn011 <- get_FN011(list(lake = "ON", year__gte = 2012, year__lte = 2018))
 fn011 <- anonymize(fn011)
 nrow(fn011)
@@ -157,7 +155,6 @@ etc.
 
 
 ```{r fn121}
-
 fn121 <- get_FN121(list(lake = "ON", year = 2012))
 nrow(fn121)
 head(fn121)
@@ -203,8 +200,6 @@ year, protocol, gear etc.
 
 
 ```{r fn122}
-
-
 fn122 <- get_FN122(list(lake = "ON", year = 2012, gear = "GL", sidep__lte = 15))
 nrow(fn122)
 head(fn122)
@@ -257,8 +252,6 @@ catches were made in.
 
 
 ```{r fn123}
-
-
 fn123 <- get_FN123(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 nrow(fn123)
 head(fn123)
@@ -367,8 +360,6 @@ in.
 
 
 ```{r fn125Tags}
-
-
 fn125_tags <- get_FN125Tags(list(
   lake = "ON",
   year = 2019,
@@ -413,7 +404,6 @@ sample, or the project(s) that the samples were collected in.
 
 
 ```{r fn125_lamprey}
-
 fn125_lam <- get_FN125Lam(list(
   lake = "ON",
   spc = "081",
@@ -465,7 +455,6 @@ code, or attributes of the effort, the sample, or the project(s) that
 the samples were collected in.
 
 ```{r fn126}
-
 fn126 <- get_FN126(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 nrow(fn126)
 head(fn126)
@@ -498,7 +487,6 @@ fish such as the species, or group code, or attributes of the effort,
 the sample, or the project(s) that the samples were collected in.
 
 ```{r fn127}
-
 fn127 <- get_FN127(list(lake = "ON", year = 2012, spc = "334", gear = "GL"))
 nrow(fn127)
 head(fn127)
@@ -553,7 +541,7 @@ subsequent functions).
 ##  SC011 - Creel Meta-data
 
 ```{r sc011}
-creel_filter <- list(prj_cd="LHA_SC08_033")
+creel_filter <- list(prj_cd = "LHA_SC08_033")
 dat <- get_SC011(creel_filter)
 dat <- anonymize(dat)
 nrow(dat)
@@ -564,7 +552,7 @@ head(dat)
 
 ```{r sc022}
 dat <- get_SC022(creel_filter)
-dat <- dat[with(dat, order(PRJ_CD, SSN)),]
+dat <- dat[with(dat, order(PRJ_CD, SSN)), ]
 nrow(dat)
 head(dat)
  ```
@@ -574,7 +562,7 @@ head(dat)
 
 ```{r sc023}
 dat <- get_SC023(creel_filter)
-dat <- dat[with(dat, order(PRJ_CD, SSN, DTP)),]
+dat <- dat[with(dat, order(PRJ_CD, SSN, DTP)), ]
 nrow(dat)
 head(dat)
  ```
@@ -583,7 +571,7 @@ head(dat)
 
 ```{r sc024}
 dat <- get_SC024(creel_filter)
-dat <- dat[with(dat, order(PRJ_CD, SSN, DTP, PRD)),]
+dat <- dat[with(dat, order(PRJ_CD, SSN, DTP, PRD)), ]
 nrow(dat)
 head(dat)
  ```
@@ -600,7 +588,7 @@ head(dat)
 
 ```{r sc026}
 dat <- get_SC026(creel_filter)
-dat <- dat[with(dat, order(PRJ_CD, SPACE)),]
+dat <- dat[with(dat, order(PRJ_CD, SPACE)), ]
 nrow(dat)
 head(dat)
  ```
@@ -609,7 +597,7 @@ head(dat)
 
 ```{r sc028}
 dat <- get_SC028(creel_filter)
-dat <- dat[with(dat, order(PRJ_CD, MODE)),]
+dat <- dat[with(dat, order(PRJ_CD, MODE)), ]
 nrow(dat)
 head(dat)
  ```
@@ -668,8 +656,8 @@ head(dat)
 ##  SC125 Tags - Applied or Recovered Tags
 
 ```{r sc125Tag}
-#note the filter has changed
-dat <- get_SC125Tags(list(year=2000, lake='HU'))
+# note the filter has changed
+dat <- get_SC125Tags(list(year = 2000, lake = "HU"))
 nrow(dat)
 head(dat)
  ```

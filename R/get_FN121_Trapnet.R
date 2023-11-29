@@ -12,8 +12,9 @@
 #' first year, last year, protocol, etc. This function can also take filters related to
 #' the bottom, cover, and vegetation types, and the angle/length of the leader.
 #'
-#' Use ~show_filters("fn121trapnet")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+#' Use \code{show_filters("fn121trapnet")} to see the full list of
+#' available filter keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 #' and filter by "fn121trapnet" for additional information.
 #'
 #' @param filter_list list
@@ -31,14 +32,20 @@
 #' @export
 #' @examples
 #'
-#' fn121_trapnet <- get_FN121_Trapnet(list(protocol="NSCIN",
-#' bottom_type="GP", year=2022))
+#' fn121_trapnet <- get_FN121_Trapnet(list(
+#'   protocol = "NSCIN",
+#'   bottom_type = "GP", year = 2022
+#' ))
 #'
-#' fn121_trapnet <- get_FN121_Trapnet(list(protocol="NSCIN",
-#' bottom_type="GP", mu_type="qma"), with_121=TRUE)
+#' fn121_trapnet <- get_FN121_Trapnet(list(
+#'   protocol = "NSCIN",
+#'   bottom_type = "GP", mu_type = "qma"
+#' ), with_121 = TRUE)
 #'
-#' fn121_trapnet <- get_FN121_Trapnet(list(protocol="NSCIN",
-#' bottom_type="GP"), show_id=TRUE)
+#' fn121_trapnet <- get_FN121_Trapnet(list(
+#'   protocol = "NSCIN",
+#'   bottom_type = "GP"
+#' ), show_id = TRUE)
 #'
 get_FN121_Trapnet <- function(filter_list = list(), with_121 = FALSE, show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
@@ -55,15 +62,13 @@ get_FN121_Trapnet <- function(filter_list = list(), with_121 = FALSE, show_id = 
   payload <- api_to_dataframe(my_url, recursive = recursive)
   payload <- prepare_payload(payload, show_id, to_upper)
 
-  if (with_121==TRUE){
-
+  if (with_121 == TRUE) {
     trapnet_filters <- setdiff(names(filter_list), api_filters$fn121$name)
     new_filters <- filter_list[names(filter_list) %in% trapnet_filters == FALSE]
 
     FN121 <- get_FN121(new_filters)
 
     payload <- merge(FN121, payload)
-
   }
 
   return(payload)

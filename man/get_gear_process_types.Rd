@@ -32,9 +32,11 @@ ProcessEffortGear table in the template database before submitting
 to Process Validate.
 }
 \details{
-Use ~show_filters("gear_effort_process_types")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
-and filter by "gear_effort_process_types" for additional information.
+Use \code{show_filters("gear_effort_process_types")} to see the
+full list of available filter keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
+and filter by "gear_effort_process_types" for additional
+information.
 }
 \examples{
 

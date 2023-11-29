@@ -1,6 +1,6 @@
 Package: glfishr
 Title: Fetch fisheries assessment data from the FN Portal
-Version: 2023.10.16
+Version: 2023.11.29
 Authors@R:
     c(person(given = "Adam",
            family = "Cottrill",
@@ -38,6 +38,7 @@ Imports:
     httr,
     jsonlite,
     openxlsx,
+    RODBC,
     rstudioapi
 Encoding: UTF-8
 LazyData: true

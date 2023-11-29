@@ -39,15 +39,17 @@ code, or part of the project code, lake, first year, last year,
 protocol, etc.
 }
 \details{
-Use ~show_filters("fn121electrofishing")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+Use \code{show_filters("fn121electrofishing")} to see the full list
+of available filter keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 and filter by "fn121electrofishing" for additional information.
 }
 \examples{
-
+\dontrun{
 show_filters("fn121electrofishing")
+}
 
-fn121_efish_huron <- get_FN121_Electrofishing(list(lake = "HU"))
+fn121_efish_huron <- get_FN121_Electrofishing(list(lake = "HU", year = 2018))
 
 fn121_efish_500ss <- get_FN121_Electrofishing(list(shock_sec__gte = 500))
 }

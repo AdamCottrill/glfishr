@@ -1,17 +1,19 @@
 #' Get SC012 - Sampling specs (species and group) from Creel Portal API
 #'
-#' This function accesses the api endpoint for SC012 records.
-#' SC012 records contain a list of anticipated species for a project and the
-#' likely length and weight ranges for those species. These constraints are used
-#' by ProcVal to check that biodata for fish caught during the project is
-#' reasonable. The SC012 records contain information like minimum and maximum
-#' TLEN, FLEN, RWT, and K values for each species. This function takes an
-#' optional filter list which can be used to return records based on several
-#' attributes of the project such as protocol, lake, project code, and species.
+#' This function accesses the api endpoint for SC012 records.  SC012
+#' records contain a list of anticipated species for a project and the
+#' likely length and weight ranges for those species. These
+#' constraints are used by ProcVal to check that biodata for fish
+#' caught during the project is reasonable. The SC012 records contain
+#' information like minimum and maximum TLEN, FLEN, RWT, and K values
+#' for each species. This function takes an optional filter list which
+#' can be used to return records based on several attributes of the
+#' project such as protocol, lake, project code, and species.
 #'
-#' Use ~show_filters("sc012")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
-#' and filter by "sc012" for additional information.
+#' Use \code{show_filters("sc012")} to see the full list of available
+#' filter keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/} and
+#' filter by "sc012" for additional information.
 #'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'

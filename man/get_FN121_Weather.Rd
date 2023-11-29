@@ -45,9 +45,9 @@ protocol, etc. This function can also take filters related to
 weather.
 }
 \details{
-Use ~show_filters("fn121weather")~ to see the full list of available filter
-keys (query parameters). Refer to
-https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+Use \code{show_filters("fn121weather")} to see the full list of
+available filter keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 and filter by "fn121weather" for additional information.
 }
 \examples{
@@ -55,13 +55,17 @@ and filter by "fn121weather" for additional information.
 fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018))
 
 fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018),
-with_121 = TRUE)
+  with_121 = TRUE
+)
 
-fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018,
-mu_type = "ypmu"), with_121 = TRUE)
+fn121_weather <- get_FN121_Weather(list(
+  lake = "ER", year = 2018,
+  mu_type = "ypmu"
+), with_121 = TRUE)
 
 fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018),
-show_id = TRUE)
+  show_id = TRUE
+)
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

@@ -35,8 +35,9 @@ code, or part of the project code, lake, first year, last year,
 protocol, etc.
 }
 \details{
-Use ~show_filters("fn121_gps_tracks")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+Use \code{show_filters("fn121_gps_tracks")} to see the full list of
+available filter keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 and filter by "fn121_gps_tracks" for additional information.
 }
 \examples{

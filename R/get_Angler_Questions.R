@@ -1,17 +1,17 @@
 #' Get Angler Questions from Creel Portal API
 #'
-#' This function accesses the api endpoint for Angler Questions. Angler 
+#' This function accesses the api endpoint for Angler Questions. Angler
 #' Question records contain the extra questions that were asked during
 #' creels. The question number corresponds with the ANGOP# fields in the
-#' FN121 table. This function takes an optional filter list which can be 
-#' used to return records based on the question text, number, and several 
-#' attributes of the project such as project code, or part of the project 
+#' FN121 table. This function takes an optional filter list which can be
+#' used to return records based on the question text, number, and several
+#' attributes of the project such as project code, or part of the project
 #' code, lake, first year, last year, etc.
-#' 
-#' Use ~show_filters("angler_questions")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
+#'
+#' Use \code{show_filters("angler_questions")} to see the full list of available filter
+#' keys (query parameters). Refer to \url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/}
 #' and filter by "angler_questions" for additional information.
-#' 
+#'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'
 #' fields are hidden from the data frame. To return these columns

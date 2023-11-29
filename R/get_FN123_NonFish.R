@@ -1,4 +1,3 @@
-
 #' Get FN123_NonFish - Catch Counts of Non-Fish species from FN_Portal API
 #'
 #' This function accesses the api endpoint to for FN123_NonFish records from
@@ -9,8 +8,9 @@
 #' but also attributes of the effort, the sample or the
 #' project(s) that the catches were made in.
 #'
-#' Use ~show_filters("fn123nonfish")~ to see the full list of available filter
-#' keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+#' Use \code{show_filters("fn123nonfish")} to see the full list of
+#' available filter keys (query parameters). Refer to
+#' \url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 #' and filter by "fn123nonfish" for additional information.
 #'
 #' @param filter_list list

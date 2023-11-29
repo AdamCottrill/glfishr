@@ -10,8 +10,8 @@ get_SC125_Tags(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 \item{filter_list}{list}
 
 \item{show_id}{When 'FALSE', the default, the 'id' and 'slug'
-fields are hidden from the data frame. To return these columns
-as part of the data frame, use 'show_id = TRUE'.}
+fields are hidden from the data frame. To return these columns as
+part of the data frame, use 'show_id = TRUE'.}
 
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
@@ -23,25 +23,25 @@ dataframe
 }
 \description{
 This function accesses the api endpoint to for SC125Tags
-records. SC125Tags records contain information about the
-individual tags applied to or recovered from on a sampled fish.
-Historically, tag data was stored in three related fields -
-TAGDOC, TAGSTAT and TAGID.  This convention is fine as long a
-single biological sample only has a one tag. In recent years, it
-has been come increasingly common for fish to have multiple tags,
-or tag types associated with individual sampling events. SC125Tag
-accommodates those events.  This function takes an optional filter
-list which can be used to return records based on several
-different attributes of the tag (tag type, colour, placement,
-agency, tag stat, and tag number) as well as, attributes of the
-sampled fish such as the species, or group code, or attributes of
-the effort, the sample, or the project(s) that the samples were
-collected in.
+records. SC125Tags records contain information about the individual
+tags applied to or recovered from on a sampled fish.  Historically,
+tag data was stored in three related fields - TAGDOC, TAGSTAT and
+TAGID.  This convention is fine as long a single biological sample
+only has a one tag. In recent years, it has been come increasingly
+common for fish to have multiple tags, or tag types associated with
+individual sampling events. SC125Tag accommodates those events.
+This function takes an optional filter list which can be used to
+return records based on several different attributes of the tag
+(tag type, colour, placement, agency, tag stat, and tag number) as
+well as, attributes of the sampled fish such as the species, or
+group code, or attributes of the effort, the sample, or the
+project(s) that the samples were collected in.
 }
 \details{
-Use ~show_filters("sc125tags")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/
-and filter by "sc125tags" for additional information.
+Use \code{show_filters("sc125tags")} to see the full list of
+available filter keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/creels/api/v1/swagger/} and
+filter by "sc125tags" for additional information.
 }
 \examples{
 #'

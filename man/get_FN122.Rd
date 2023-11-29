@@ -37,8 +37,9 @@ with such project code, lake, first year, last year, protocol,
 gear etc.
 }
 \details{
-Use ~show_filters("fn122")~ to see the full list of available filter
-keys (query parameters). Refer to https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/
+Use \code{show_filters("fn122")} to see the full list of available
+filter keys (query parameters). Refer to
+\url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 and filter by "fn122" for additional information.
 }
 \examples{
@@ -49,7 +50,7 @@ fn122 <- get_FN122(list(
 ))
 fn122 <- get_FN122(list(
   lake = "ER", protocol = "TWL",
-  year__gte = 2010, sidep__lte = 20
+  year__gte = 2010, sidep0__lte = 20
 ))
 filters <- list(
   lake = "SU",
