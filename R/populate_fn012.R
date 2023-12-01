@@ -2,19 +2,28 @@
 ##'
 ##' This function populates the FN012 table for project selected by
 ##' the provided filters.  Attributes of the FN011, FN123, FN124 and
-##' FN125 elements in the data list are used to augment rows and
-##' their attributes in instances where those rows don't already
-##' exist.  If prune_fn012 is TRUE only records with at least one
+##' FN125 elements in the data list are used to augment rows and their
+##' attributes in instances where those rows don't already exist.  If
+##' \code{\link{prune_fn012}} is TRUE only records with at least one
 ##' corresponding record in the FN123 table are returned.
+##'
 ##' @param filters - list of filters used to select projects
 ##' @param glis_data - the named list data fetched from the glis api
 ##' @param prune_fn012 - boolean - should unused FN012 records be
-##' removed from the table?
+##'   removed from the table?
+##'
+##' @param source - 'assessment' or 'creel'
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return dataframe
-populate_fn012 <- function(filters, glis_data, prune_fn012) {
-  fn012 <- get_FN012(filters)
-  fn012 <- augment_fn012(glis_data$FN011, fn012, glis_data$FN123, prune_fn012)
+populate_fn012 <- function(filters, glis_data, prune_fn012,
+                           source = c("assessment", "creel")) {
+  source <- match.arg(source)
+  if (source == "assessment") {
+    fn012 <- get_FN012(filters)
+  } else {
+    fn012 <- get_SC012(filters)
+  }
+  fn012 <- augment_fn012(glis_data$FN011, fn012, glis_data$FN123, prune_fn012, source)
   fn012 <- assign_fn012_sizesam(fn012, glis_data$FN124, glis_data$FN125)
   fn012 <- fill_missing_fn012_limits(fn012)
 }

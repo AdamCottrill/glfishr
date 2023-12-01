@@ -15,6 +15,12 @@ add_missing_fn012 <- function(fn012, fn123) {
   # finally check to see if there are any additional species not in the
   # fn012 or fn012 protocl tables. Add place holder rows for them:
 
+  # there might not be any catch data yet - if so, just return the
+  # fn012 as it was recieved.
+  if (is.null(dim(fn123))) {
+    return(fn012)
+  }
+
   in_fn012 <- with(fn012, paste(PRJ_CD, SPC, GRP, sep = "-"))
   fn123$key <- with(fn123, paste(PRJ_CD, SPC, GRP, sep = "-"))
   in_fn123 <- unique(fn123$key)

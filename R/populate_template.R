@@ -45,12 +45,15 @@
 #' )
 #' }
 populate_template <- function(filters, template_database,
-                                         target = NULL,
-                                         overwrite = FALSE,
-                                         prune_fn012 = FALSE,
-                                         verbose = TRUE) {
+                              target = NULL,
+                              source = c("assessment", "creel"),
+                              overwrite = FALSE,
+                              prune_fn012 = FALSE,
+                              verbose = TRUE) {
+  source <- match.arg(source)
+
+  fname <- paste(sapply(filters, paste), collapse = "-")
   if (is.null(target)) {
-    fname <- paste(sapply(filters, paste), collapse = "-")
     target <- file.path(getwd(), sprintf("%s.accdb", fname))
   }
 
@@ -82,107 +85,190 @@ populate_template <- function(filters, template_database,
   # we will use a list to gather our data - the names of the list
   # elements must match the names of their corresponding table in the
   # template database.
+
   glis_data <- list()
 
-  report("FN011")
-  glis_data$FN011 <- get_FN011(filters)
-  if (is.null(dim(glis_data$FN011))) {
-    message <-
-      sprintf("No Projects could not be found in FN_PORTAL using supplied filters")
-    stop(message)
+  if (source == "assessment") {
+    report("FN011")
+    glis_data$FN011 <- get_FN011(filters)
+    if (is.null(dim(glis_data$FN011))) {
+      message <- paste0(
+        sprintf("No Projects could not be found in *FN_PORTAL* using supplied filters:\n"),
+        paste(names(filters), filters, sep = " = ", collapse = ", ")
+      )
+      stop(message)
+    }
+
+
+    # Import the data for all of other tables
+    report("FN022")
+    glis_data$FN022 <- get_FN022(filters)
+    report("FN026")
+    glis_data$FN026 <- get_FN026(filters)
+    report("FN026_subspace")
+    glis_data$FN026_Subspace <- get_FN026_Subspace(filters)
+    report("FN028")
+    glis_data$FN028 <- get_FN028(filters)
+    report("FN121")
+    glis_data$FN121 <- get_FN121(filters)
+    report("FN121_Limno")
+    fn121_limno <- get_FN121_Limno(filters)
+    report("FN121_Trapnet")
+    fn121_trapnet <- get_FN121_Trapnet(filters)
+    report("FN121_Trawl")
+    fn121_trawl <- get_FN121_Trawl(filters)
+    report("FN121_Weather")
+    fn121_weather <- get_FN121_Weather(filters)
+    report("FN121_Electrofishing")
+    glis_data$FN121_Electrofishing <- get_FN121_Electrofishing(filters)
+    report("FN122")
+    glis_data$FN122 <- get_FN122(filters)
+    report("FN123")
+    glis_data$FN123 <- get_FN123(filters)
+    report("FN123_NonFish")
+    glis_data$FN123_NonFish <- get_FN123_NonFish(filters)
+    report("FN124")
+    glis_data$FN124 <- get_FN124(filters)
+    report("FN125")
+    glis_data$FN125 <- get_FN125(filters)
+    report("FN125_Lamprey")
+    glis_data$FN125_lamprey <- get_FN125_Lamprey(filters)
+    report("FN125_Tags")
+    glis_data$FN125_tags <- get_FN125_Tags(filters)
+    report("FN126")
+    glis_data$FN126 <- get_FN126(filters)
+    report("FN127")
+    glis_data$FN127 <- get_FN127(filters)
+    report("Stream Dimensions")
+    glis_data$Stream_Dimensions <- get_Stream_Dimensions(filters)
+
+    # report("FN121_GPS_Tracks")
+    # glis_data$FN121_GPS_Tracks <- get_FN121_GPS_Tracks(filters)
+
+
+    glis_data$FN011$LAKE <- glis_data$FN011$LAKE.ABBREV
+    report("FN012")
+    glis_data$FN012 <- populate_fn012(filters, glis_data, prune_fn012)
+
+    print("Building Gear_Effort_Process_Types...")
+    glis_data$Gear_Effort_Process_Types <- populate_gept(glis_data$FN028, glis_data$FN121)
+
+    #-------------------------------------------------------------------------
+    # Table Adjustments
+
+    # this will break when the proejct lead api is cleanded up
+    glis_data$FN011$PRJ_LDR <- paste(
+      glis_data$FN011$PRJ_LDR.FIRST_NAME,
+      glis_data$FN011$PRJ_LDR.LAST_NAME
+    )
+
+    # Minor fixes
+    glis_data$FN121$COVER <- glis_data$FN121$COVER_TYPE
+    glis_data$FN121$BOTTOM <- glis_data$FN121$BOTTOM_TYPE
+
+    if (!is.null(dim(fn121_limno))) {
+      glis_data$FN121 <- merge(glis_data$FN121, fn121_limno, all.x = TRUE)
+    }
+    if (!is.null(dim(fn121_trapnet))) {
+      glis_data$FN121 <- merge(glis_data$FN121, fn121_trapnet, all.x = TRUE)
+    }
+    if (!is.null(dim(fn121_trawl))) {
+      glis_data$FN121 <- merge(glis_data$FN121, fn121_trawl, all.x = TRUE)
+    }
+    if (!is.null(dim(fn121_weather))) {
+      glis_data$FN121 <- merge(glis_data$FN121, fn121_weather, all.x = TRUE)
+    }
+  } else {
+    report("SC011")
+    glis_data$FN011 <- get_SC011(filters)
+    if (is.null(dim(glis_data$FN011))) {
+      message <- paste0(
+        sprintf("No Projects could not be found in *CREEL_PORTAL* using supplied filters:\n"),
+        paste(names(filters), filters, sep = " = ", collapse = ", ")
+      )
+
+      stop(message)
+    }
+
+    # Import the data for all of other tables
+    report("SC022")
+    glis_data$FN022 <- get_SC022(filters)
+    report("SC023")
+    glis_data$FN023 <- get_SC023(filters)
+    report("SC024")
+    glis_data$FN024 <- get_SC024(filters)
+    report("SC025")
+    glis_data$FN025 <- get_SC025(filters)
+    report("SC026")
+    glis_data$FN026 <- get_SC026(filters)
+    report("SC026_subspace")
+    glis_data$FN026_Subspace <- get_SC026_Subspace(filters)
+    report("SC028")
+    glis_data$FN028 <- get_SC028(filters)
+    report("SC111")
+    glis_data$FN111 <- get_SC111(filters)
+    report("SC112")
+    glis_data$FN112 <- get_SC112(filters)
+    report("SC121")
+    glis_data$FN121 <- get_SC121(filters)
+
+    report("SC123")
+    FN123 <- get_SC123(filters)
+    FN123$EFF <- "001"
+    glis_data$FN123 <- FN123
+
+
+    report("SC124")
+    FN124 <- get_SC124(filters)
+    FN124$EFF <- "001"
+    glis_data$FN124 <- FN124
+
+
+    report("SC125")
+    FN125 <- get_SC125(filters)
+    FN125$EFF <- "001"
+    glis_data$FN125 <- FN125
+
+    report("SC125_Lamprey")
+    FN125_lamprey <- get_SC125_Lamprey(filters)
+    FN125_lamprey$EFF <- "001"
+    glis_data$FN125_Lamprey <- FN125_lamprey
+
+    report("SC125_Tags")
+    FN125_tags <- get_SC125_Tags(filters)
+    FN125_tags$EFF <- "001"
+    glis_data$FN125_Tags <- FN125_tags
+
+    report("SC126")
+    FN126 <- get_SC126(filters)
+    FN126$EFF <- "001"
+    glis_data$FN126 <- FN126
+
+    report("SC127")
+    FN127 <- get_SC127(filters)
+    FN127$EFF <- "001"
+    glis_data$FN127 <- FN127
+
+    report("SC012")
+
+    glis_data$FN012 <- populate_fn012(
+      filters, glis_data, prune_fn012,
+      source
+    )
   }
 
-  # Import the data for all of other tables
-  report("FN022")
-  glis_data$FN022 <- get_FN022(filters)
-  report("FN026")
-  glis_data$FN026 <- get_FN026(filters)
-  report("FN026_subspace")
-  glis_data$FN026_Subspace <- get_FN026_Subspace(filters)
-  report("FN028")
-  glis_data$FN028 <- get_FN028(filters)
-  report("FN121")
-  glis_data$FN121 <- get_FN121(filters)
-  report("FN121_Limno")
-  fn121_limno <- get_FN121_Limno(filters)
-  report("FN121_Trapnet")
-  fn121_trapnet <- get_FN121_Trapnet(filters)
-  report("FN121_Trawl")
-  fn121_trawl <- get_FN121_Trawl(filters)
-  report("FN121_Weather")
-  fn121_weather <- get_FN121_Weather(filters)
-  report("FN121_Electrofishing")
-  glis_data$FN121_Electrofishing <- get_FN121_Electrofishing(filters)
-  report("FN122")
-  glis_data$FN122 <- get_FN122(filters)
-  report("FN123")
-  glis_data$FN123 <- get_FN123(filters)
-  report("FN123_NonFish")
-  glis_data$FN123_NonFish <- get_FN123_NonFish(filters)
-  report("FN124")
-  glis_data$FN124 <- get_FN124(filters)
-  report("FN125")
-  glis_data$FN125 <- get_FN125(filters)
-  report("FN125_Lamprey")
-  glis_data$FN125_lamprey <- get_FN125_Lamprey(filters)
-  report("FN125_Tags")
-  glis_data$FN125_tags <- get_FN125_Tags(filters)
-  report("FN126")
-  glis_data$FN126 <- get_FN126(filters)
-  report("FN127")
-  glis_data$FN127 <- get_FN127(filters)
-  report("Stream Dimensions")
-  glis_data$Stream_Dimensions <- get_Stream_Dimensions(filters)
-
-  # report("FN121_GPS_Tracks")
-  # glis_data$FN121_GPS_Tracks <- get_FN121_GPS_Tracks(filters)
-
-
-  glis_data$FN011$LAKE <- glis_data$FN011$LAKE.ABBREV
-  report("FN012")
-  glis_data$FN012 <- populate_fn012(filters, glis_data, prune_fn012)
-
-  print("Building Gear_Effort_Process_Types...")
-  glis_data$Gear_Effort_Process_Types <- populate_gept(glis_data$FN028, glis_data$FN121)
-
-  #-------------------------------------------------------------------------
-  # Table Adjustments
-
-  # this will break when the proejct lead api is cleanded up
-  glis_data$FN011$PRJ_LDR <- paste(
-    glis_data$FN011$PRJ_LDR.FIRST_NAME,
-    glis_data$FN011$PRJ_LDR.LAST_NAME
-  )
-
-  # Minor fixes
-  glis_data$FN121$COVER <- glis_data$FN121$COVER_TYPE
-  glis_data$FN121$BOTTOM <- glis_data$FN121$BOTTOM_TYPE
-
-  if (!is.null(dim(fn121_limno))) {
-    glis_data$FN121 <- merge(glis_data$FN121, fn121_limno, all.x = TRUE)
-  }
-  if (!is.null(dim(fn121_trapnet))) {
-    glis_data$FN121 <- merge(glis_data$FN121, fn121_trapnet, all.x = TRUE)
-  }
-  if (!is.null(dim(fn121_trawl))) {
-    glis_data$FN121 <- merge(glis_data$FN121, fn121_trawl, all.x = TRUE)
-  }
-  if (!is.null(dim(fn121_weather))) {
-    glis_data$FN121 <- merge(glis_data$FN121, fn121_weather, all.x = TRUE)
-  }
-
-
-  #-------------------------------------------------------------------------
   # Table Relationship Validation
 
-  # Are all SPC values in glis_data$FN123 also in glis_data$FN012?
-  SPC_ALIGN <- subset(glis_data$FN123, select = c("PRJ_CD", "SPC", "GRP"))
-  SPC_ALIGN <- unique(SPC_ALIGN)
-  SPC_ALIGN <- merge(SPC_ALIGN, glis_data$FN012, all.x = TRUE)
-  if (any(is.na(SPC_ALIGN$SIZSAM))) {
-    stop("A record in the FN123 table has a SPC/GRP combination that is not included in the FN012 table. An FN012 record will need to be added for this SPC/GRP before continuing.")
+  #put this in a vadator function:
+  ## Are all SPC values in glis_data$FN123 also in glis_data$FN012?
+  if(!is.null(dim(glis_data$FN123))){
+      in_fn012 <- with(fn012, unique(paste(PRJ_CD, SPC, GRP, sep = "-")))
+      in_fn123 <- with(fn123, unique(paste(PRJ_CD, SPC, GRP, sep = "-")))
+      extra  <- setdiff(in_fn123, in_fn012)
+      if (length(extra)) {
+          stop("A record in the FN123 table has a SPC/GRP combination that is not included in the FN012 table. An FN012 record will need to be added for this SPC/GRP before continuing.")
+      }
   }
-
   # Are all SUBSPACE values associated with a known SPACE?
   SPACE_CHECK <- as.vector(unique(glis_data$FN026_Subspace$SPACE))
   if (any(!(SPACE_CHECK %in% glis_data$FN026$SPACE))) {
@@ -200,6 +286,7 @@ populate_template <- function(filters, template_database,
   if (any(!(SD_SUBSPACE_CHECK %in% glis_data$FN026_Subspace$SUBSPACE))) {
     stop("There is a SUBSPACE value in the Stream_Dimensions table that does not exist in the FN026_Subspace table.")
   }
+
 
   # Append the data
   populate_db(target, glis_data, verbose)
