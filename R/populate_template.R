@@ -9,7 +9,12 @@
 #' will be stopped if the template cannot be found or the target
 #' (output) database already exists (unless overwrite=TRUE).
 #'
-#'
+#' \bold{*NOTE*} this functionality is provided to facilitate
+#' updating, correcting and augmenting projects in GLIS.  Changes made
+#' to the downloaded data should be uploaded back into GLIS as soon as
+#' possible. Downloaded data is not intended for long-term storage or
+#' subsequent data analysis. Data analysis and reporting should always
+#' be completed using data fetched directly from the API.
 #'
 #'
 #' @param filters a named list of filters used to select the project(s)
