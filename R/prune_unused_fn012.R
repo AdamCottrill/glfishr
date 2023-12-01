@@ -19,7 +19,7 @@ prune_unused_fn012 <- function(fn012, fn123) {
 
   fn012$key <- with(fn012, paste(PRJ_CD, SPC, GRP, sep = "-"))
   in_fn123 <- with(fn123, unique(paste(PRJ_CD, SPC, GRP, sep = "-")))
-  extra <- setdiff(in_fn012, in_fn123)
+  extra <- setdiff(fn012$key, in_fn123)
 
   # fn012 <- subset(fn012, fn012$key %in% in_123, select = -"key"))
   fn012 <- fn012[

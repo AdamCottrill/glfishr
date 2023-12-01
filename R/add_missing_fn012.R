@@ -27,11 +27,13 @@ add_missing_fn012 <- function(fn012, fn123) {
   still_missing <- setdiff(in_fn123, in_fn012)
   if (length(still_missing)) {
     keys <- c("PRJ_CD", "SPC", "GRP")
-    missing <- unique(subset(fn123, fn123$key %in% still_missing, select = keys))
+    missing <- unique(fn123[fn123$key %in% still_missing, names(fn123) %in% keys])
     fn012 <- merge(fn012, missing,
       by = keys,
       all = TRUE
     )
   }
+
+
   return(fn012)
 }
