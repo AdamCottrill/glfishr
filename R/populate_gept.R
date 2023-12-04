@@ -7,6 +7,7 @@
 ##' table by fetching all of the known process types for a given gear
 ##' and then filter those results to include only those used in the
 ##' provided dataframe.
+##'
 ##' @param fn028 - FN028-mode dataframe with coulmn 'GR'
 ##' @param fn121 - FN121 - net set dataframe with column 'PROCESS_TYPE'
 ##' @author Arthur Bonsall \email{arthur.bonsall@@ontario.ca}
@@ -16,9 +17,10 @@ populate_gept <- function(fn028, fn121) {
   # lsted in FN028 table
   gears <- unique(fn028$GR)
   gept <- get_gear_process_types(list(gr = gears))
-  fn121_fn028 <- merge(fn121, fn028, all.x = TRUE)
-  # get the unique combinations of gear and process types reported in FN121
-  fn121_fn028 <- unique(subset(fn121_fn028, select = c("GR", "PROCESS_TYPE")))
-  # return the subset of gept that were actually used:
-  return(merge(gept, fn121_fn028))
+  fn028 <- unique(fn028[c("PRJ_CD", "MODE", "GR")])
+  fn121 <- unique(fn121[c("PRJ_CD", "MODE", "PROCESS_TYPE")])
+  mode_gear_proc_type <- merge(fn121, fn028, all = T)
+  gr_proc_type <- unique(mode_gear_proc_type[c("GR", "PROCESS_TYPE")])
+  return(merge(gr_proc_type, gept))
+
 }

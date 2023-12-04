@@ -13,6 +13,15 @@ test_that("prepare payload removes slug and returns uppercase by default", {
 })
 
 
+test_that("prepare payload handles empty payload", {
+  payload <- list()
+  observed <- prepare_payload(payload)
+  expect_equal(observed, payload)
+})
+
+
+
+
 test_that("prepare payload return column names unchanged if to_upper=False", {
   observed <- prepare_payload(payload, to_upper = F)
   expected <- payload[, c(1, 2)]

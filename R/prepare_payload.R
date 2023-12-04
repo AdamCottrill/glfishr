@@ -20,6 +20,9 @@
 #' @export
 #'
 prepare_payload <- function(payload, show_id = FALSE, to_upper = TRUE) {
+  if (is.null(dim(payload))) {
+    return(payload)
+  }
 
   if (to_upper) {
     names(payload) <- toupper(names(payload))
