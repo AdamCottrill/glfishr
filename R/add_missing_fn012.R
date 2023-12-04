@@ -6,14 +6,16 @@
 ##' helper function used by \code{\link{populate_fn012}} and is not
 ##' intended by called directly by users.
 ##'
-##' @param fn012 Dataframe containing FN012 Sampling specs and keys "PRJ_CD", "SPC", "GRP"
-##' @param fn123 Dataframe containing catch count data and keys "PRJ_CD", "SPC", "GRP"
+##' @param fn012 Dataframe containing FN012 Sampling specs and keys
+##'   "PRJ_CD", "SPC", "GRP"
+##' @param fn123 Dataframe containing catch count data and keys
+##'   "PRJ_CD", "SPC", "GRP"
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return dataframe
 ##' @seealso populate_fn012
 add_missing_fn012 <- function(fn012, fn123) {
-  # finally check to see if there are any additional species not in the
-  # fn012 or fn012 protocl tables. Add place holder rows for them:
+  # finally check to see if there are any additional species not in
+  # the fn012 or fn012 protocl tables. Add place holder rows for them:
 
   # there might not be any catch data yet - if so, just return the
   # fn012 as it was recieved.
@@ -27,7 +29,10 @@ add_missing_fn012 <- function(fn012, fn123) {
   still_missing <- setdiff(in_fn123, in_fn012)
   if (length(still_missing)) {
     keys <- c("PRJ_CD", "SPC", "GRP")
-    missing <- unique(fn123[fn123$key %in% still_missing, names(fn123) %in% keys])
+    missing <- unique(fn123[
+      fn123$key %in% still_missing,
+      names(fn123) %in% keys
+    ])
     fn012 <- merge(fn012, missing,
       by = keys,
       all = TRUE

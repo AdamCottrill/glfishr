@@ -264,15 +264,15 @@ populate_template <- function(filters, template_database,
 
   # Table Relationship Validation
 
-  #put this in a vadator function:
+  # put this in a vadator function:
   ## Are all SPC values in glis_data$FN123 also in glis_data$FN012?
-  if(!is.null(dim(glis_data$FN123))){
-      in_fn012 <- with(fn012, unique(paste(PRJ_CD, SPC, GRP, sep = "-")))
-      in_fn123 <- with(fn123, unique(paste(PRJ_CD, SPC, GRP, sep = "-")))
-      extra  <- setdiff(in_fn123, in_fn012)
-      if (length(extra)) {
-          stop("A record in the FN123 table has a SPC/GRP combination that is not included in the FN012 table. An FN012 record will need to be added for this SPC/GRP before continuing.")
-      }
+  if (!is.null(dim(glis_data$FN123))) {
+    in_fn012 <- with(fn012, unique(paste(PRJ_CD, SPC, GRP, sep = "-")))
+    in_fn123 <- with(fn123, unique(paste(PRJ_CD, SPC, GRP, sep = "-")))
+    extra <- setdiff(in_fn123, in_fn012)
+    if (length(extra)) {
+      stop("A record in the FN123 table has a SPC/GRP combination that is not included in the FN012 table. An FN012 record will need to be added for this SPC/GRP before continuing.")
+    }
   }
   # Are all SUBSPACE values associated with a known SPACE?
   SPACE_CHECK <- as.vector(unique(glis_data$FN026_Subspace$SPACE))

@@ -1,4 +1,3 @@
-
 prj_cds <- c(
   "LEM_SC18_SCR",
   "LEM_SC18_SCR",
@@ -26,8 +25,8 @@ grps <- c(
   "00"
 )
 
-fn012_in <- data.frame(PRJ_CD=prj_cds, GRP=grps, SPC=spcs)
-fn123 <- data.frame(PRJ_CD=prj_cds, GRP=grps, SPC=spcs)
+fn012_in <- data.frame(PRJ_CD = prj_cds, GRP = grps, SPC = spcs)
+fn123 <- data.frame(PRJ_CD = prj_cds, GRP = grps, SPC = spcs)
 
 
 test_that("no change when fn012 and fn123 are equal", {
@@ -44,8 +43,8 @@ test_that("no change when fn123 is empty", {
 
 
 test_that("extra rows removed from fn012", {
-  #randomly drop two rows from out fn123:
-  fn123 <- fn123[-c(1,3),]
+  # randomly drop two rows from out fn123:
+  fn123 <- fn123[-c(1, 3), ]
   fn012_out <- prune_unused_fn012(fn012_in, fn123)
   expect_equal(fn012_out, fn123)
 })
