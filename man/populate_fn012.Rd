@@ -4,7 +4,12 @@
 \alias{populate_fn012}
 \title{Populate the FN012-Sampling Specs Table}
 \usage{
-populate_fn012(filters, glis_data, prune_fn012)
+populate_fn012(
+  filters,
+  glis_data,
+  prune_fn012,
+  source = c("assessment", "creel")
+)
 }
 \arguments{
 \item{filters}{\itemize{
@@ -19,6 +24,10 @@ populate_fn012(filters, glis_data, prune_fn012)
 \item boolean - should unused FN012 records be
 removed from the table?
 }}
+
+\item{source}{\itemize{
+\item 'assessment' or 'creel'
+}}
 }
 \value{
 dataframe
@@ -26,9 +35,9 @@ dataframe
 \description{
 This function populates the FN012 table for project selected by
 the provided filters.  Attributes of the FN011, FN123, FN124 and
-FN125 elements in the data list are used to augment rows and
-their attributes in instances where those rows don't already
-exist.  If prune_fn012 is TRUE only records with at least one
+FN125 elements in the data list are used to augment rows and their
+attributes in instances where those rows don't already exist.  If
+\code{\link{prune_fn012}} is TRUE only records with at least one
 corresponding record in the FN123 table are returned.
 }
 \author{

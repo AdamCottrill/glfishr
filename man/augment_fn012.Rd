@@ -4,7 +4,7 @@
 \alias{augment_fn012}
 \title{Augment the FN012 data}
 \usage{
-augment_fn012(fn011, fn012, fn123, prune_fn012)
+augment_fn012(fn011, fn012, fn123, prune_fn012, source)
 }
 \arguments{
 \item{fn011}{\itemize{
@@ -32,7 +32,7 @@ dataframe
 \description{
 the fn012 data downloaded from the api, may be incomplete, missing
 species and groups that that were actually encountered in the
-associated  projects. This function add records to the FN012 table
+associated  projects. This function adds records to the FN012 table
 in these instances. If the missing spc-grp combinations can be
 found in the FN012 protocols table, those values are used,
 otherwise default values for the species are used instead.    If

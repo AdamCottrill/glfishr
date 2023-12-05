@@ -7,9 +7,11 @@
 add_missing_fn012(fn012, fn123)
 }
 \arguments{
-\item{fn012}{Dataframe containing FN012 Sampling specs and keys "PRJ_CD", "SPC", "GRP"}
+\item{fn012}{Dataframe containing FN012 Sampling specs and keys
+"PRJ_CD", "SPC", "GRP"}
 
-\item{fn123}{Dataframe containing catch count data and keys "PRJ_CD", "SPC", "GRP"}
+\item{fn123}{Dataframe containing catch count data and keys
+"PRJ_CD", "SPC", "GRP"}
 }
 \value{
 dataframe

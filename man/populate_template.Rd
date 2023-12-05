@@ -8,6 +8,7 @@ populate_template(
   filters,
   template_database,
   target = NULL,
+  source = c("assessment", "creel"),
   overwrite = FALSE,
   prune_fn012 = FALSE,
   verbose = TRUE
@@ -46,6 +47,14 @@ values of the filter.  Alternatively, the name of the target
 database can be provided by the user.  Execution of the function
 will be stopped if the template cannot be found or the target
 (output) database already exists (unless overwrite=TRUE).
+}
+\details{
+\bold{\emph{NOTE}} this functionality is provided to facilitate
+updating, correcting and augmenting projects in GLIS.  Changes made
+to the downloaded data should be uploaded back into GLIS as soon as
+possible. Downloaded data is not intended for long-term storage or
+subsequent data analysis. Data analysis and reporting should always
+be completed using data fetched directly from the API.
 }
 \examples{
 \dontrun{
