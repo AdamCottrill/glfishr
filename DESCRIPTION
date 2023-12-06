@@ -1,7 +1,7 @@
 Package: glfishr
 Title: Fetch fisheries assessment data from the FN Portal
-Version: 2023.12.05
-Authors@R: 
+Version: 2023.12.06
+Authors@R:
     c(person(given = "Adam",
            family = "Cottrill",
            role = c("aut", "cre"),
@@ -34,7 +34,7 @@ Description: glfishr contains a series of R functions that are
     can be applied to the get_FN125() function to get the all of the
     biological samples collected in those net sets).
 License: MIT + file LICENSE
-Imports: 
+Imports:
     httr,
     jsonlite,
     openxlsx,
@@ -44,7 +44,7 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
-Suggests: 
+Suggests:
     httptest,
     knitr,
     mockery,

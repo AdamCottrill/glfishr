@@ -94,9 +94,17 @@ populate_template <- function(filters, template_database,
     glis_data <- get_creel_data(filters, prune_fn012, verbose)
   }
 
-  validate_glis_data(glis_data)
+  glis_data <- validate_glis_data(glis_data)
   # Append the data
-  populate_db(target, glis_data, verbose)
+
+
+  try_insert <- try( populate_db(target, glis_data, verbose))
+  if(inherits(try_insert, "try-error")){
+    return(glis_data)
+  } else {
+    return(1)
+  }
+
 }
 
 
@@ -114,8 +122,8 @@ validate_glis_data <- function(glis_data) {
   # put this in a vadator function:
   ## Are all SPC values in glis_data$FN123 also in glis_data$FN012?
   if (!is.null(dim(glis_data$FN123))) {
-    in_fn012 <- with(glis_data$fn012, unique(paste(PRJ_CD, SPC, GRP, sep = "-")))
-    in_fn123 <- with(glis_data$fn123, unique(paste(PRJ_CD, SPC, GRP, sep = "-")))
+    in_fn012 <- with(glis_data$FN012, unique(paste(PRJ_CD, SPC, GRP, sep = "-")))
+    in_fn123 <- with(glis_data$FN123, unique(paste(PRJ_CD, SPC, GRP, sep = "-")))
     extra <- setdiff(in_fn123, in_fn012)
     if (length(extra)) {
       stop(paste0(
@@ -249,6 +257,7 @@ get_assessment_data <- function(filters, prune_fn012, verbose) {
   glis_data$FN011$LAKE <- glis_data$FN011$LAKE.ABBREV
   fetching_report("FN012", verbose)
   glis_data$FN012 <- populate_fn012(filters, glis_data, prune_fn012)
+
 
   print("Building Gear_Effort_Process_Types...")
   glis_data$Gear_Effort_Process_Types <- populate_gept(glis_data$FN028, glis_data$FN121)
@@ -455,6 +464,7 @@ append_data <- function(dbase, trg_table, data, verbose = T, append = T, safer =
         trg_table
       ))
     }
+
 
     data <- sync_flds(data, dbase, trg_table)
 

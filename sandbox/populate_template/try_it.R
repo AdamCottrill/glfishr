@@ -1,6 +1,6 @@
 
 
-
+library(glfishr)
 
 Sys.setenv(GLIS_DOMAIN="https://intra.stage.glis.mnr.gov.on.ca/")
 
@@ -35,10 +35,6 @@ template_db <- file.path(
   trg_dir,
   "Great_Lakes_Assessment_Template_5.accdb"
 )
-trg_db <- file.path(
-  trg_dir,
-  "CapeRich_2009.accdb"
-)
 
 
 
@@ -47,6 +43,9 @@ projects <- get_FN011()
 
 filters <- list(prj_cd=projects$PRJ_CD[sample(nrow(projects),2)])
 populate_template(filters, template_db,  overwrite = T)
+
+
+
 
 
 
