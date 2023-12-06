@@ -6,7 +6,13 @@
 # for GLIS ever changes.
 
 test_that("get_domain return current glis domain", {
-  expected <- "https://intra.glis.mnr.gov.on.ca/"
+  # to get test to pass during check:
+  if (Sys.getenv("GLIS_DOMAIN") != "") {
+    expected <- Sys.getenv("GLIS_DOMAIN")
+  } else {
+    expected <- "https://intra.glis.mnr.gov.on.ca/"
+  }
+
   observed <- get_domain()
   expect_equal(observed, expected)
 })

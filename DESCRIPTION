@@ -1,6 +1,6 @@
 Package: glfishr
 Title: Fetch fisheries assessment data from the FN Portal
-Version: 2023.11.29
+Version: 2023.12.05
 Authors@R:
     c(person(given = "Adam",
            family = "Cottrill",
@@ -47,6 +47,8 @@ RoxygenNote: 7.2.1
 Suggests:
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    mockery,
+    withr
 VignetteBuilder: knitr
 Config/testthat/edition: 3

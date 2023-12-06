@@ -15,14 +15,18 @@ populate_template(
 )
 }
 \arguments{
-\item{filters}{a named list of filters used to select the project(s)
-that will be inserted into the target database.}
+\item{filters}{a named list of filters used to select the
+project(s) that will be inserted into the target database.}
 
-\item{template_database}{Character string. The path to the template database
-that will be copied and populated with data from GLIS.}
+\item{template_database}{Character string. The path to the template
+database that will be copied and populated with data from GLIS.}
 
 \item{target}{The name of the target (output) database file. If no
 target is provide, a name will be built from the filter list.}
+
+\item{source}{\itemize{
+\item string  either 'assessment' or 'creel'
+}}
 
 \item{overwrite}{\itemize{
 \item Boolean. If a file with the same name as target,
@@ -31,7 +35,8 @@ should it be overwritten?
 
 \item{prune_fn012}{\itemize{
 \item Boolean - should records in the FN012 table
-without any matching records in the FN123 (Catch counts) be deleted?
+without any matching records in the FN123 (Catch counts) be
+deleted?
 }}
 
 \item{verbose}{\itemize{

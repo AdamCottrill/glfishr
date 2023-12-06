@@ -22,5 +22,4 @@ populate_gept <- function(fn028, fn121) {
   mode_gear_proc_type <- merge(fn121, fn028, all = T)
   gr_proc_type <- unique(mode_gear_proc_type[c("GR", "PROCESS_TYPE")])
   return(merge(gr_proc_type, gept))
-
 }

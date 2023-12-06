@@ -39,7 +39,6 @@ test_that("fn012_protocol has filters added for 'all', 'active', confirmed", {
 
 
 test_that("prj_ldr has filter added for 'all'", {
-
   observed <- add_special_filters("prj_ldr", filters)
   expect_equal(nrow(observed), 1)
   expect_equal(observed$name, c("all"))

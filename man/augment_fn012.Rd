@@ -25,6 +25,10 @@ for given filters
 \item boolean - should unused FN012 records be
 removed from the table?
 }}
+
+\item{source}{\itemize{
+\item string. Either "assessment" or "creel"
+}}
 }
 \value{
 dataframe

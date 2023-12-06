@@ -4,8 +4,8 @@
 ##' the provided filters.  Attributes of the FN011, FN123, FN124 and
 ##' FN125 elements in the data list are used to augment rows and their
 ##' attributes in instances where those rows don't already exist.  If
-##' \code{\link{prune_fn012}} is TRUE only records with at least one
-##' corresponding record in the FN123 table are returned.
+##' \code{prune_fn012} is TRUE only records that do not have any
+##' corresponding entries in the FN123 table are dropped.
 ##'
 ##' @param filters - list of filters used to select projects
 ##' @param glis_data - the named list data fetched from the glis api
@@ -23,7 +23,10 @@ populate_fn012 <- function(filters, glis_data, prune_fn012,
   } else {
     fn012 <- get_SC012(filters)
   }
-  fn012 <- augment_fn012(glis_data$FN011, fn012, glis_data$FN123, prune_fn012, source)
+  fn012 <- augment_fn012(
+    glis_data$FN011, fn012, glis_data$FN123,
+    prune_fn012, source
+  )
   fn012 <- assign_fn012_sizesam(fn012, glis_data$FN124, glis_data$FN125)
   fn012 <- fill_missing_fn012_limits(fn012)
 }

@@ -62,7 +62,7 @@ test_that("prepare payload works if id is missing in payload and show_ids=T", {
 test_that("prepare payload works if slug is missing in payload", {
   payload$slug <- NULL
   observed <- prepare_payload(payload)
-    expected <- payload[, c(1, 2)]
+  expected <- payload[, c(1, 2)]
   names(expected) <- toupper(names(expected))
   expect_equal(observed, expected)
 })
@@ -80,9 +80,8 @@ test_that("prepare payload works if slug is missing in payload and show_ids=T", 
 
 
 
-test_that("prepare payload return includes ID and SLUG if show_id=True",
-{
-  #works if field names are upper case too:
+test_that("prepare payload return includes ID and SLUG if show_id=True", {
+  # works if field names are upper case too:
   names(payload) <- toupper(names(payload))
   observed <- prepare_payload(payload, show_id = T)
   expected <- payload
@@ -95,9 +94,8 @@ test_that("prepare payload return includes ID and SLUG if show_id=True",
 
 # return data frame without an ID field as is
 test_that("prepare payload works if ID is missing in payload", {
-
   payload$id <- NULL
-  #works if field names are upper case too:
+  # works if field names are upper case too:
   names(payload) <- toupper(names(payload))
   observed <- prepare_payload(payload)
   expected <- payload[, c(1, 2)]
@@ -108,7 +106,7 @@ test_that("prepare payload works if ID is missing in payload", {
 
 test_that("prepare payload works if ID is missing in payload and show_ids=T", {
   payload$id <- NULL
-  #works if field names are upper case too:
+  # works if field names are upper case too:
   names(payload) <- toupper(names(payload))
   observed <- prepare_payload(payload, show_id = T)
   expected <- payload
@@ -120,10 +118,10 @@ test_that("prepare payload works if ID is missing in payload and show_ids=T", {
 # return data frame without an SLUG field as is
 test_that("prepare payload works if SLUG is missing in payload", {
   payload$slug <- NULL
-  #works if field names are upper case too:
+  # works if field names are upper case too:
   names(payload) <- toupper(names(payload))
   observed <- prepare_payload(payload)
-    expected <- payload[, c(1, 2)]
+  expected <- payload[, c(1, 2)]
   names(expected) <- toupper(names(expected))
   expect_equal(observed, expected)
 })
@@ -131,7 +129,7 @@ test_that("prepare payload works if SLUG is missing in payload", {
 
 test_that("prepare payload works if SLUG is missing in payload and show_ids=T", {
   payload$slug <- NULL
-  #works if field names are upper case too:
+  # works if field names are upper case too:
   names(payload) <- toupper(names(payload))
   observed <- prepare_payload(payload, show_id = T)
   expected <- payload

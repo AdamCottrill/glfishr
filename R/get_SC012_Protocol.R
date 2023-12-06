@@ -35,7 +35,7 @@
 get_SC012_Protocol <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("sc012_protocol", filter_list, "creel_portal")
+  check_filters("sc012_protocol", filter_list, "creels")
   my_url <- sprintf(
     "%s/sc012_protocol/%s",
     get_sc_portal_root(),

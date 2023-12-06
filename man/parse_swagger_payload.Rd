@@ -7,7 +7,9 @@
 parse_swagger_payload(payload)
 }
 \arguments{
-\item{payload}{}
+\item{payload}{\itemize{
+\item list parsed from swagger api response
+}}
 }
 \value{
 list

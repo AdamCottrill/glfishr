@@ -16,10 +16,10 @@
 ##' for given filters
 ##' @param prune_fn012 - boolean - should unused FN012 records be
 ##'   removed from the table?
+##' @param source - string. Either "assessment" or "creel"
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return dataframe
 ##' @seealso populate_fn012
-
 augment_fn012 <- function(fn011, fn012, fn123, prune_fn012, source) {
   if (source == "assessment") {
     fn011_flds <- c("PRJ_CD", "LAKE", "PROTOCOL")

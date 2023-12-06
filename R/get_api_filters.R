@@ -62,6 +62,13 @@ get_swagger_url <- function(api_app = c(
                             )) {
   api_app <- match.arg(api_app)
   domain <- get_domain()
+
+  # HACK!!
+  if (api_app == "tfat") {
+    # tfat is still in the dev environment
+    domain <- gsub("intra.glis", "intra.dev.glis", domain)
+  }
+
   swagger_url <- sprintf("%s%s/api/v1/swagger.json", domain, api_app)
   return(swagger_url)
 }
@@ -77,7 +84,7 @@ get_swagger_url <- function(api_app = c(
 ##' Given the complexity of the payload, this function is not
 ##' currently tested
 ##'
-##' @param payload
+##' @param payload - list parsed from swagger api response
 ##'
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return  list

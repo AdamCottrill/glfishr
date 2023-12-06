@@ -37,8 +37,8 @@ This function populates the FN012 table for project selected by
 the provided filters.  Attributes of the FN011, FN123, FN124 and
 FN125 elements in the data list are used to augment rows and their
 attributes in instances where those rows don't already exist.  If
-\code{\link{prune_fn012}} is TRUE only records with at least one
-corresponding record in the FN123 table are returned.
+\code{prune_fn012} is TRUE only records that do not have any
+corresponding entries in the FN123 table are dropped.
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

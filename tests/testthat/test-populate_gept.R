@@ -95,8 +95,7 @@ test_that("unused process types will be ignored", {
 
 
 test_that("unknown process types in fn121 also be ignored", {
-
-  new_fn121 <- fn121[1,]
+  new_fn121 <- fn121[1, ]
   new_fn121$PROCESS_TYPE <- 7
   fn121 <- rbind(fn121, new_fn121)
 
@@ -117,8 +116,7 @@ test_that("unknown process types in fn121 also be ignored", {
 
 
 test_that("unknown gear codes in the fn028 table are ignored.", {
-
-  new_fn028 <- fn028[1,]
+  new_fn028 <- fn028[1, ]
   new_fn028$GR <- "GL99"
   fn028 <- rbind(fn028, new_fn028)
 
