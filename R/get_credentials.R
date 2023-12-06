@@ -38,6 +38,14 @@ get_credentials <- function() {
 
 
   if (username == "" || password == "") {
+    msg <-
+      paste0(
+        "Consider defining environment variables 'GLIS_USERNAME' and  ",
+        "'GLIS_PASSWORD'\n to automaically authenticate to GLIS.\n"
+      )
+
+    message(msg)
+
     credentials <- tryCatch(
       {
         rstudio_login()

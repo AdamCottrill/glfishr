@@ -10,10 +10,15 @@
 get_token <- function() {
   body <- get_credentials()
   domain <- get_domain()
+
   r <- httr::POST(sprintf("%sapi-auth/token/", domain), body = body)
   token <- httr::content(r)
 
-  assign("token", token, envir = .GlobalEnv)
-
-  print(token)
+  if (is.null(token$non_field_errors)) {
+    assign("token", token, envir = .GlobalEnv)
+    message("You have been successfully authenticated on the GLIS server.")
+  } else {
+    assign("token", NULL, envir = .GlobalEnv)
+    warning(token$non_field_errors)
+  }
 }
