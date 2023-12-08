@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_api_filters.R
 \name{add_special_filters}
 \alias{add_special_filters}
-\title{Add special fitler options to seelected endpoints}
+\title{Add special filter options to selected endpoints}
 \usage{
 add_special_filters(endpoint_name, values)
 }
@@ -12,7 +12,7 @@ add_special_filters(endpoint_name, values)
 }}
 
 \item{values}{\itemize{
-\item dataframe with existing filter attributes
+\item data-frame with existing filter attributes
 }}
 }
 \value{
@@ -20,7 +20,7 @@ list
 }
 \description{
 Some of the the api endpoints accept filter arguments that are not
-captured in the automatically generated swagger docus.  These need
+captured in the automatically generated swagger documentation.  These need
 to be added so they can be presented to glfishr users.
 }
 \author{

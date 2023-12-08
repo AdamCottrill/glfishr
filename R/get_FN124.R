@@ -21,11 +21,11 @@
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'
 #' fields are hidden from the data frame. To return these columns
 #' as part of the data frame, use 'show_id = TRUE'.
-#' @param to_upper - should the names of the dataframe be converted to
+#' @param to_upper - should the names of the data-frame be converted to
 #' upper case?
 #'
 #' @param uncount - should the binned data be expanded to represent
-#' indivual measurements.  A FN124 record with sizcnt=5 will be
+#' individual measurements.  A FN124 record with sizcnt=5 will be
 #' repeated 5 times in the returned data frame.
 #'
 #' @author Jeremy Holden \email{jeremy.holden@@ontario.ca}

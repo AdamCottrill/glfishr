@@ -2,7 +2,7 @@
 % Please edit documentation in R/populate_template.R
 \name{append_data}
 \alias{append_data}
-\title{Append dataframe to Access table}
+\title{Append data-frame to Access table}
 \usage{
 append_data(dbase, trg_table, data, verbose = T, append = T, safer = T)
 }
@@ -16,7 +16,7 @@ append_data(dbase, trg_table, data, verbose = T, append = T, safer = T)
 }}
 
 \item{data}{\itemize{
-\item dataframe to append in the target table
+\item data-frame to append in the target table
 }}
 
 \item{verbose}{\itemize{
@@ -35,7 +35,7 @@ append_data(dbase, trg_table, data, verbose = T, append = T, safer = T)
 status of closed RODBC connection.
 }
 \description{
-This function will attempt to append data contianed in a dataframe
+This function will attempt to append data contained in a data-frame
 to a table in the target database.  If verbose=TRUE, a statement
 including the number of records effected will be reported to the
 console.

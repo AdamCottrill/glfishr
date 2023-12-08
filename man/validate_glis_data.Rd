@@ -13,8 +13,8 @@ validate_glis_data(glis_data)
 named list
 }
 \description{
-This function runs a number of checks againts the glis data list
-returned from teh api before it is inserted into the target
+This function runs a number of checks against the glis data list
+returned from the api before it is inserted into the target
 database.  If an error is found, the function is stopped and an
 error message is presented to the user.
 }

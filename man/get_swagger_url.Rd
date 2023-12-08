@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_api_filters.R
 \name{get_swagger_url}
 \alias{get_swagger_url}
-\title{Build the url to fetch teh swagger data for a give app}
+\title{Build the url to fetch the swagger data for a give app}
 \usage{
 get_swagger_url(
   api_app = c("common", "project_tracker", "fn_portal", "creels", "tfat")

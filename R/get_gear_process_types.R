@@ -4,8 +4,8 @@
 #' either by net, by mesh size, by groups of panels, or individual
 #' panels.  The available process types are constrained depending on
 #' the gear type.  This function returns the known gear, effort and
-#' process type combinations from the FN_Prortal api, which can then
-#' be used to validee FN122 and FN123 records, or used to populate the
+#' process type combinations from the FN_Portal api, which can then
+#' be used to validate FN122 and FN123 records, or used to populate the
 #' ProcessEffortGear table in the template database before submitting
 #' to Process Validate.
 #'

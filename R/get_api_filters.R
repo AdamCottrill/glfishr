@@ -47,7 +47,7 @@ get_api_filters <- function(api_app, create_list = TRUE) {
 }
 
 
-##' Build the url to fetch teh swagger data for a give app
+##' Build the url to fetch the swagger data for a give app
 ##'
 ##' An internal  helper function that combines the applicaiton name
 ##' with the current domain to build the url for the swagger
@@ -75,7 +75,7 @@ get_swagger_url <- function(api_app = c(
 
 ##' Convert swagger response into named list
 ##'
-##' the response from the swagger enpoint include a large number of
+##' the response from the swagger endpoint include a large number of
 ##' attributes and details that are not need for glfishr. this
 ##' function takes the named list created from the json response and
 ##' extracts the name and description of each GET parameter that can
@@ -104,13 +104,13 @@ parse_swagger_payload <- function(payload) {
 }
 
 
-##' Add special fitler options to seelected endpoints
+##' Add special filter options to selected endpoints
 ##'
 ##' Some of the the api endpoints accept filter arguments that are not
-##' captured in the automatically generated swagger docus.  These need
+##' captured in the automatically generated swagger documentation.  These need
 ##' to be added so they can be presented to glfishr users.
 ##' @param endpoint_name - the name of api endpoint
-##' @param values - dataframe with existing filter attributes
+##' @param values - data-frame with existing filter attributes
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return list
 add_special_filters <- function(endpoint_name, values) {

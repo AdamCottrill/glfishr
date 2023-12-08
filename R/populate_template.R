@@ -65,16 +65,17 @@ populate_template <- function(filters, template_database,
   }
 
   if (file.exists(target) && !overwrite) {
-    messageA <- sprintf("The target database: '%s' already exists.", target)
-    messageB <- "Please provide a different target or set overwrite=TRUE."
-    stop(paste(messageA, messageB, sep = "\n"))
+    message_a <- sprintf("The target database: '%s' already exists.", target)
+    message_b <- "Please provide a different target or set overwrite=TRUE."
+    stop(paste(message_a, message_b, sep = "\n"))
   }
 
   if (!file.exists(template_database)) {
     message <-
       sprintf(
-        "Could not find the template database '%s'. Make sure it exists and try again",
-        template_database
+          paste0("Could not find the template database '%s'. ",
+                 "Make sure it exists and try again"),
+          template_database
       )
     stop(message)
   } else {
@@ -110,8 +111,8 @@ populate_template <- function(filters, template_database,
 
 ##' Check data returned from api before inserting into template
 ##'
-##' This function runs a number of checks againts the glis data list
-##' returned from teh api before it is inserted into the target
+##' This function runs a number of checks against the glis data list
+##' returned from the api before it is inserted into the target
 ##' database.  If an error is found, the function is stopped and an
 ##' error message is presented to the user.
 ##'
@@ -122,14 +123,16 @@ validate_glis_data <- function(glis_data) {
   # put this in a vadator function:
   ## Are all SPC values in glis_data$FN123 also in glis_data$FN012?
   if (!is.null(dim(glis_data$FN123))) {
-    in_fn012 <- with(glis_data$FN012, unique(paste(PRJ_CD, SPC, GRP, sep = "-")))
-    in_fn123 <- with(glis_data$FN123, unique(paste(PRJ_CD, SPC, GRP, sep = "-")))
+      in_fn012 <- with(glis_data$FN012,
+                       unique(paste(PRJ_CD, SPC, GRP, sep = "-")))
+      in_fn123 <- with(glis_data$FN123,
+                       unique(paste(PRJ_CD, SPC, GRP, sep = "-")))
     extra <- setdiff(in_fn123, in_fn012)
     if (length(extra)) {
       stop(paste0(
         "A record in the FN123 table has a PRJ_CD-SPC-GRP combination ",
-        "that is not included in the FN012 table. An FN012 record will need to be ",
-        "added for this PRJ_CD-SPC-GRP before continuing."
+        "that is not included in the FN012 table. An FN012 record will need ",
+        "to be added for this PRJ_CD-SPC-GRP before continuing."
       ))
     }
   }
@@ -167,12 +170,12 @@ validate_glis_data <- function(glis_data) {
 
 ##' Report fetching activity to the console
 ##'
-##' A little helper funciton used by populate template to provide some
-##' feedback ot the user and report progress.  This function is not
+##' A little helper function used by populate template to provide some
+##' feedback to the user and report progress.  This function is not
 ##' intended to be called anywhere  other than from within
 ##' populate_template functions.
 ##'
-##' @param table_name - stirng. The name of the table to report on
+##' @param table_name - string. The name of the table to report on
 ##' @param verbose - boolean. should the message be printed?
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##'
@@ -193,7 +196,7 @@ fetching_report <- function(table_name, verbose) {
 ##' @param filters - list of filters passed to glis api endpoints
 ##' @param prune_fn012 - boolean. Should records in the FN012 table
 ##' without records in the FN123 be dropped?
-##' @param verbose - boolean.  Should progress be reproted in the console?
+##' @param verbose - boolean.  Should progress be reported in the console?
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return named list
 get_assessment_data <- function(filters, prune_fn012, verbose) {
@@ -302,7 +305,7 @@ get_assessment_data <- function(filters, prune_fn012, verbose) {
 ##' @param filters - list of filters passed to glis api endpoints
 ##' @param prune_fn012 - boolean. Should records in the FN012 table
 ##'   without records in the FN123 be dropped?
-##' @param verbose - boolean.  Should progress be reproted in the
+##' @param verbose - boolean.  Should progress be reported in the
 ##'   console?
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return named list
@@ -433,15 +436,15 @@ add_missing_fn012 <- function(fn012, fn123) {
 }
 
 
-##' Append dataframe to Access table
+##' Append data-frame to Access table
 ##'
-##' This function will attempt to append data contianed in a dataframe
+##' This function will attempt to append data contained in a data-frame
 ##' to a table in the target database.  If verbose=TRUE, a statement
 ##' including the number of records effected will be reported to the
 ##' console.
 ##' @param dbase - path to our target database
 ##' @param trg_table - the table in the target data to insert data into
-##' @param data - dataframe to append in the target table
+##' @param data - data-frame to append in the target table
 ##' @param verbose - should the number of records and table be printed?
 ##' @param append - append to and existing table, or drop and create it?
 ##' @param safer - passed to RODBC::sqlSave
@@ -648,7 +651,7 @@ fill_missing_fn012_limits <- function(fn012) {
 ##' @param protocols - dataframe with the columns "PRJ_CD", "LAKE",
 ##'   "PROTOCOL"
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
-##' @return datarame
+##' @return dataframe
 ##' @seealso get_or_augment_fn012
 fetch_fn012_protocol_data <- function(protocols) {
   # protocols is a dataframe with the columns "PRJ_CD", "LAKE", "PROTOCOL"
@@ -677,7 +680,7 @@ fetch_fn012_protocol_data <- function(protocols) {
 ##' @param protocols - dataframe with the columns "PRJ_CD", "LAKE",
 ##'
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
-##' @return datarame
+##' @return dataframe
 ##' @seealso get_or_augment_fn012
 fetch_sc012_protocol_data <- function(protocols) {
   # protocols is a dataframe with the columns "PRJ_CD", "LAKE"
@@ -706,7 +709,7 @@ fetch_sc012_protocol_data <- function(protocols) {
 ##' frames to match the target table so that subsequent append queries
 ##' have matching schema.
 ##' @param trg_db - path to our target accdb file
-##' @param table - the table name in the target databae to query against
+##' @param table - the table name in the target database to query against
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return character vector
 ##' @seealso sync_fields
@@ -780,7 +783,7 @@ populate_fn012 <- function(filters, glis_data, prune_fn012,
 
 
 
-##' Populate Gear-Effort-Proecss-Type from FN028 and FN121 tables
+##' Populate Gear-Effort-Process-Type from FN028 and FN121 tables
 ##'
 ##' The Gear-Effort-Process-Type table in the GLIS assessment table is
 ##' used to constrain the efforts that can appear in the FN122 table,
@@ -788,12 +791,12 @@ populate_fn012 <- function(filters, glis_data, prune_fn012,
 ##' associated gear type.  This function creates the records in that
 ##' table by fetching all of the known process types for a given gear
 ##' and then filter those results to include only those used in the
-##' provided dataframe.
+##' provided data-frame.
 ##'
-##' @param fn028 - FN028-mode dataframe with coulmn 'GR'
-##' @param fn121 - FN121 - net set dataframe with column 'PROCESS_TYPE'
+##' @param fn028 - FN028-mode data-frame with column 'GR'
+##' @param fn121 - FN121 - net set data-frame with column 'PROCESS_TYPE'
 ##' @author Arthur Bonsall \email{arthur.bonsall@@ontario.ca}
-##' @return dataframe
+##' @return data-frame
 populate_gept <- function(fn028, fn121) {
   # get the known gear-effort-process-types for the unique gears
   # lsted in FN028 table
@@ -809,12 +812,12 @@ populate_gept <- function(fn028, fn121) {
 
 ##' Perform transformations to api payload before return data frame
 ##'
-##' This function takes the dataframe returned from the api call and
+##' This function takes the data-frame returned from the api call and
 ##' preforms any required transformations before returning it.
-##' Currently the fuction optionally removes is and slug from the data
-##' frame (if they exist), and transforms all ofhte field names to
+##' Currently the function optionally removes is and slug from the data
+##' frame (if they exist), and transforms all of the field names to
 ##' uppercase so that they match names that have been traditionally
-##' used in FISHNET-2.  Other transfomations or modifications could be
+##' used in FISHNET-2.  Other transformations or modifications could be
 ##' added in the future.
 ##'
 ##' @param payload dataframe
@@ -878,7 +881,7 @@ prune_unused_fn012 <- function(fn012, fn123) {
 
 ##' Synchornize fields in dataframe to match a database table
 ##'
-##' This function accepts a dataframe, a databae name and a table name
+##' This function accepts a dataframe, a database name and a table name
 ##' and adds and optionally removes fields from the dataframe to match
 ##' the names in the target table.  If drop_col=FALSE, extra fields in
 ##'
@@ -886,7 +889,7 @@ prune_unused_fn012 <- function(fn012, fn123) {
 ##' dataframe will be removed.
 ##' @param df - a dataframe
 ##' @param targ_db - path to our target accdb file
-##' @param tablename - the table name in the target databae to query against
+##' @param tablename - the table name in the target database to query against
 ##' @param drop_cols - Boolean, Should extra names in the dataframe be dropped?
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return dataframe

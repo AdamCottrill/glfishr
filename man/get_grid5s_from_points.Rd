@@ -20,12 +20,12 @@ dataframe
 \description{
 This function accesses the api endpoint that accepts an array of
 points and returns the unique identifier of the associated 5-minute
-grids. The request_body argument must be a dataframe with the
+grids. The request_body argument must be a data-frame with the
 columns 'slug', 'dd_lat', and 'dd_lon'. All three fields must be
-populated. If the request is successfule, the funciton will return
-an dataframe with the fields 'slug', 'dd_lat', 'dd_lon' and
+populated. If the request is successful, the function will return
+an data-frame with the fields 'slug', 'dd_lat', 'dd_lon' and
 'grid5_slug'. grid5_slug will identify the grid that the point
-defined by dd_lat and dd_lon ais contianed within, If the
+defined by dd_lat and dd_lon is contained within. If the
 coordinates are outside the bounds of any known grid, the
 grid5_slug value will be NA.
 }

@@ -12,7 +12,7 @@ fetch_sc012_protocol_data(protocols)
 }}
 }
 \value{
-datarame
+dataframe
 }
 \description{
 Given a dataframe with columns PRJ_CD, and LAKE , fetch

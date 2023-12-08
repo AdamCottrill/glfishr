@@ -12,7 +12,7 @@ get_trg_table_names(trg_db, table)
 }}
 
 \item{table}{\itemize{
-\item the table name in the target databae to query against
+\item the table name in the target database to query against
 }}
 }
 \value{

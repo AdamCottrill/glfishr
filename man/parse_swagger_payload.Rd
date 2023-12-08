@@ -15,7 +15,7 @@ parse_swagger_payload(payload)
 list
 }
 \description{
-the response from the swagger enpoint include a large number of
+the response from the swagger endpoint include a large number of
 attributes and details that are not need for glfishr. this
 function takes the named list created from the json response and
 extracts the name and description of each GET parameter that can

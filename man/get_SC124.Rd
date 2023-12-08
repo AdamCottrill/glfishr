@@ -19,13 +19,13 @@ fields are hidden from the data frame. To return these columns
 as part of the data frame, use 'show_id = TRUE'.}
 
 \item{to_upper}{\itemize{
-\item should the names of the dataframe be converted to
+\item should the names of the data-frame be converted to
 upper case?
 }}
 
 \item{uncount}{\itemize{
 \item should the binned data be expanded to represent
-indivual measurements.  A SC124 record with sizcnt=5 will be
+individual measurements.  A SC124 record with sizcnt=5 will be
 repeated 5 times in the returned data frame.
 }}
 }

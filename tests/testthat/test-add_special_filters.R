@@ -1,7 +1,7 @@
-##' the add_special_filters special fitler options to seelected endpoints
+##' the add_special_filters special filter options to selected endpoints
 ##'
 ##' Some of the the api endpoints accept filter arguments that are not
-##' captured in the automatically generated swagger docus.  These need
+##' captured in the automatically generated swagger doc's.  These need
 ##' to be added so they can be presented to glfishr users.
 ##'
 ##' If new filters are added in the future, test cases should be add

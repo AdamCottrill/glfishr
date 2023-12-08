@@ -16,7 +16,7 @@ sync_flds(df, targ_db, tablename, drop_cols = TRUE)
 }}
 
 \item{tablename}{\itemize{
-\item the table name in the target databae to query against
+\item the table name in the target database to query against
 }}
 
 \item{drop_cols}{\itemize{
@@ -27,7 +27,7 @@ sync_flds(df, targ_db, tablename, drop_cols = TRUE)
 dataframe
 }
 \description{
-This function accepts a dataframe, a databae name and a table name
+This function accepts a dataframe, a database name and a table name
 and adds and optionally removes fields from the dataframe to match
 the names in the target table.  If drop_col=FALSE, extra fields in
 }

@@ -22,12 +22,12 @@ upper case?
 dataframe
 }
 \description{
-This function takes the dataframe returned from the api call and
+This function takes the data-frame returned from the api call and
 preforms any required transformations before returning it.
-Currently the fuction optionally removes is and slug from the data
-frame (if they exist), and transforms all ofhte field names to
+Currently the function optionally removes is and slug from the data
+frame (if they exist), and transforms all of the field names to
 uppercase so that they match names that have been traditionally
-used in FISHNET-2.  Other transfomations or modifications could be
+used in FISHNET-2.  Other transformations or modifications could be
 added in the future.
 }
 \author{

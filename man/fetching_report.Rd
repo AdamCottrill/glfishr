@@ -8,7 +8,7 @@ fetching_report(table_name, verbose)
 }
 \arguments{
 \item{table_name}{\itemize{
-\item stirng. The name of the table to report on
+\item string. The name of the table to report on
 }}
 
 \item{verbose}{\itemize{
@@ -16,8 +16,8 @@ fetching_report(table_name, verbose)
 }}
 }
 \description{
-A little helper funciton used by populate template to provide some
-feedback ot the user and report progress.  This function is not
+A little helper function used by populate template to provide some
+feedback to the user and report progress.  This function is not
 intended to be called anywhere  other than from within
 populate_template functions.
 }

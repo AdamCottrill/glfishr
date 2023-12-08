@@ -1,4 +1,4 @@
-#' Get SC121 - Anlger Interviews from Creel_Portal API
+#' Get SC121 - Angler Interviews from Creel_Portal API
 #'
 #' This function accesses the api endpoint to for SC121 records. SC121
 #' records contain information about interviews with anglers conducted

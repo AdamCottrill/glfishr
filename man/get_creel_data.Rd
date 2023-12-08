@@ -17,7 +17,7 @@ without records in the FN123 be dropped?
 }}
 
 \item{verbose}{\itemize{
-\item boolean.  Should progress be reproted in the
+\item boolean.  Should progress be reported in the
 console?
 }}
 }
