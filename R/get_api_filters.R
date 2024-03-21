@@ -1,3 +1,41 @@
+
+#' Connect to the api endpoint and return swagger documentation
+#'
+#' This function connects to the openapi/swagger endpoint specified by
+#' the api_api argument and convertes the json response into an r list
+#' (payload) that can be parsed by other functions to extract
+#' information about the available filters or data fields contained in
+#' the response from each endpoint.
+#'
+#'
+#' @param api_app - the name of the api application to fetch the
+#' filters from.
+#'
+#' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
+#' @return list
+
+get_swagger_payload <- function(api_app) {
+  swagger_url <- get_swagger_url(api_app)
+
+  response <- tryCatch(httr::GET(swagger_url),
+    error = function(err) {
+      stop("unable to fetch filters from the server. Is your VPN active?")
+    }
+  )
+
+  json <- httr::content(response, "text", encoding = "UTF-8")
+
+  payload <- tryCatch(
+    jsonlite::fromJSON(json, flatten = TRUE),
+    error = function(err) {
+      print("unable able to parse the json response from:")
+      print(swagger_url)
+      return(list(paths = list()))
+    }
+  )
+}
+
+
 #' Create global list of available API filters
 #'
 #' This function connects to the openapi/swagger endpoint provided by
@@ -18,24 +56,8 @@
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return list
 get_api_filters <- function(api_app, create_list = TRUE) {
-  swagger_url <- get_swagger_url(api_app)
 
-  response <- tryCatch(httr::GET(swagger_url),
-    error = function(err) {
-      stop("unable to fetch filters from the server. Is your VPN active?")
-    }
-  )
-
-  json <- httr::content(response, "text", encoding = "UTF-8")
-
-  payload <- tryCatch(
-    jsonlite::fromJSON(json, flatten = TRUE),
-    error = function(err) {
-      print("unable able to parse the json response from:")
-      print(swagger_url)
-      return(list(paths = list()))
-    }
-  )
+  payload <- get_swagger_payload(api_app)
 
   api_filters <- parse_swagger_payload(payload)
 
@@ -83,6 +105,9 @@ get_swagger_url <- function(api_app = c(
 ##'
 ##' Given the complexity of the payload, this function is not
 ##' currently tested
+##'
+##' TODO: add option to parse schemas from payload
+##'
 ##'
 ##' @param payload - list parsed from swagger api response
 ##'
@@ -148,6 +173,14 @@ add_special_filters <- function(endpoint_name, values) {
       description = "Boolean value; default is FALSE."
     ))
   }
+
+  if (endpoint_name == "fn126") {
+    values <- rbind(values, data.frame(
+      name = "itiscode",
+      description = "Boolean value; default is FALSE."
+    ))
+  }
+
 
   return(values)
 }
