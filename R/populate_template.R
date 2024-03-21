@@ -30,7 +30,10 @@
 #'   without any matching records in the FN123 (Catch counts) be
 #'   deleted?
 #' @param verbose - Boolean. Should progress be reported to the console?
-#'
+#' @param verbose_sqlsave - Boolean. Default=FALSE. This value is
+#'     passed through to RODBC::sqlsave.  Set to True to see all of
+#'     the sql statements passed to target database.  Useful for
+#'     debugging.
 #' @author Arthur Bonsall \email{arthur.bonsall@@ontario.ca}
 #'
 #' @export
@@ -56,7 +59,8 @@ populate_template <- function(filters, template_database,
                               source = c("assessment", "creel"),
                               overwrite = FALSE,
                               prune_fn012 = FALSE,
-                              verbose = TRUE) {
+                              verbose = TRUE,
+                              verbose_sqlsave=FALSE) {
   source <- match.arg(source)
 
   fname <- paste(sapply(filters, paste), collapse = "-")
@@ -98,12 +102,11 @@ populate_template <- function(filters, template_database,
   glis_data <- validate_glis_data(glis_data)
   # Append the data
 
-
-  try_insert <- try( populate_db(target, glis_data, verbose))
+  try_insert <- try( populate_db(target, glis_data, verbose, verbose_sqlsave))
   if(inherits(try_insert, "try-error")){
     return(glis_data)
   } else {
-    return(1)
+    return("Success!")
   }
 
 }
@@ -448,11 +451,15 @@ add_missing_fn012 <- function(fn012, fn123) {
 ##' @param verbose - should the number of records and table be printed?
 ##' @param append - append to and existing table, or drop and create it?
 ##' @param safer - passed to RODBC::sqlSave
+##' @param verbose_sqlsave - Boolean. Default=FALSE. This value is
+#'     passed through to RODBC::sqlsave.  Set to True to see all of
+#'     the sql statements passed to target database.  Useful for
+#'     debugging.
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return status of closed RODBC connection.
 ##' @export
-append_data <- function(dbase, trg_table, data, verbose = T, append = T, safer =
-                          T) {
+append_data <- function(dbase, trg_table, data, verbose = T, verbose_sqlsave=F, append = T, safer =
+                          T ) {
   if (!is.null(dim(data))) {
     if (verbose) {
       record_count <- nrow(data)
@@ -468,13 +475,12 @@ append_data <- function(dbase, trg_table, data, verbose = T, append = T, safer =
       ))
     }
 
-
     data <- sync_flds(data, dbase, trg_table)
 
     conn <- RODBC::odbcConnectAccess2007(dbase, uid = "", pwd = "")
     RODBC::sqlSave(conn, data,
       tablename = trg_table, rownames = F, fast = TRUE,
-      safer = safer, append = append
+      safer = safer, append = append, verbose=verbose_sqlsave
     )
     return(RODBC::odbcClose(conn))
   }
@@ -738,12 +744,16 @@ get_trg_table_names <- function(trg_db, table) {
 ##' @param data - a named list containing the data to insert the
 ##' target db
 ##' @param verbose - should the table and record count be reported
+##' @param verbose_sqlsave - Boolean. Default=FALSE. This value is
+#'     passed through to RODBC::sqlsave.  Set to True to see all of
+#'     the sql statements passed to target database.  Useful for
+#'     debugging.
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return NULL
 ##' @seealso append_data, populate_template_assessment
-populate_db <- function(target, data, verbose) {
+populate_db <- function(target, data, verbose, verbose_sqlsave) {
   for (tbl in sort(names(data))) {
-    append_data(target, tbl, data[[tbl]], verbose)
+    append_data(target, tbl, data[[tbl]], verbose, verbose_sqlsave)
   }
 }
 
@@ -800,8 +810,9 @@ populate_fn012 <- function(filters, glis_data, prune_fn012,
 populate_gept <- function(fn028, fn121) {
   # get the known gear-effort-process-types for the unique gears
   # lsted in FN028 table
-  gears <- unique(fn028$GR)
-  gept <- get_gear_process_types(list(gr = gears))
+    gears <- unique(fn028$GR)
+    # include all=T to get depreciated and unconfirmed gears too
+    gept <- suppressWarnings(get_gear_process_types(list(gr = gears, all = TRUE)))
   fn028 <- unique(fn028[c("PRJ_CD", "MODE", "GR")])
   fn121 <- unique(fn121[c("PRJ_CD", "MODE", "PROCESS_TYPE")])
   mode_gear_proc_type <- merge(fn121, fn028, all = T)
