@@ -1,17 +1,18 @@
 #' get_pt_nr_milestones - Project Tracker Non-report Milestones
 #'
 #' This function accesses the api endpoint for non-report milestones
-#' in project tracker.  This api endpoint accepts a large number of filters
-#' associated with the project or milestone type.  Project specific filters
-#' include project code(s), years, lakes, and project lead.  Milestones
-#' can also be filtered by their name.  Valid milestone types are: "Submitted",
-#' "Approved", "Field Work Conducted", "Data Scrubbed", "Aging Complete",
-#' "Data Merged", "Sign off", and "Cancelled" and can be passed in as a single
-#' string or as charcter vector of one or more milestone types. Use
-#' \code{show_filters("project_nr_milestones")} to see the full list of available
-#' filters. This function returns a dataframe containing attributes of the
-#' report, including project code, project name, and the time at which a
-#' milestone was completed.
+#' in project tracker.  This api endpoint accepts a large number of
+#' filters associated with the project or milestone type.  Project
+#' specific filters include project code(s), years, lakes, and project
+#' lead.  Milestones can also be filtered by their name.  Valid
+#' milestone types are: "Submitted", "Approved",
+#' "Field Work Conducted", "Data Scrubbed", "Aging Complete",
+#' "Data Merged", "Sign off", and "Canceled" and can be passed in as a
+#' single string or as character vector of one or more milestone
+#' types. Use \code{show_filters("project_nr_milestones")} to see the
+#' full list of available filters. This function returns a data-frame
+#' containing attributes of the report, including project code,
+#' project name, and the time at which a milestone was completed.
 #'
 #'
 #' @param filter_list list

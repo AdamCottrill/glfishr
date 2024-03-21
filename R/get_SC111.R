@@ -1,4 +1,4 @@
-#' Get SC111 - Creel Invervew Logs from Creel_Portal API
+#' Get SC111 - Creel Interview Logs from Creel_Portal API
 #'
 #' This function accesses the api endpoint to for SC111 records.  This
 #' function takes an optional filter list which can be used to return

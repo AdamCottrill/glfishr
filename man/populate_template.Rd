@@ -8,20 +8,26 @@ populate_template(
   filters,
   template_database,
   target = NULL,
+  source = c("assessment", "creel"),
   overwrite = FALSE,
   prune_fn012 = FALSE,
-  verbose = TRUE
+  verbose = TRUE,
+  verbose_sqlsave = FALSE
 )
 }
 \arguments{
-\item{filters}{a named list of filters used to select the project(s)
-that will be inserted into the target database.}
+\item{filters}{a named list of filters used to select the
+project(s) that will be inserted into the target database.}
 
-\item{template_database}{Character string. The path to the template database
-that will be copied and populated with data from GLIS.}
+\item{template_database}{Character string. The path to the template
+database that will be copied and populated with data from GLIS.}
 
 \item{target}{The name of the target (output) database file. If no
 target is provide, a name will be built from the filter list.}
+
+\item{source}{\itemize{
+\item string  either 'assessment' or 'creel'
+}}
 
 \item{overwrite}{\itemize{
 \item Boolean. If a file with the same name as target,
@@ -30,11 +36,19 @@ should it be overwritten?
 
 \item{prune_fn012}{\itemize{
 \item Boolean - should records in the FN012 table
-without any matching records in the FN123 (Catch counts) be deleted?
+without any matching records in the FN123 (Catch counts) be
+deleted?
 }}
 
 \item{verbose}{\itemize{
 \item Boolean. Should progress be reported to the console?
+}}
+
+\item{verbose_sqlsave}{\itemize{
+\item Boolean. Default=FALSE. This value is
+passed through to RODBC::sqlsave.  Set to True to see all of
+the sql statements passed to target database.  Useful for
+debugging.
 }}
 }
 \description{
@@ -46,6 +60,14 @@ values of the filter.  Alternatively, the name of the target
 database can be provided by the user.  Execution of the function
 will be stopped if the template cannot be found or the target
 (output) database already exists (unless overwrite=TRUE).
+}
+\details{
+\bold{\emph{NOTE}} this functionality is provided to facilitate
+updating, correcting and augmenting projects in GLIS.  Changes made
+to the downloaded data should be uploaded back into GLIS as soon as
+possible. Downloaded data is not intended for long-term storage or
+subsequent data analysis. Data analysis and reporting should always
+be completed using data fetched directly from the API.
 }
 \examples{
 \dontrun{

@@ -21,9 +21,6 @@ anonymize <- function(df) {
   df <- df[, !(names(df) %in% drop)]
 }
 ```
-## Installation
-The most up to date version can be installed using: `devtools::install_github("AdamCottrill/glfishr")`
-
 # glfishr
 
 *glfishr* contains a series of R functions that are intended to make
@@ -527,9 +524,9 @@ The creel portal houses data from creel surveys that where collected
 using the FN-II data model and exposes an api that make that data
 available in a format that is very similar (if not identical to FN-II
 tables).  The glfishr contains a number of function to fetch creel
-data that are direct analoges to their fisheries assessment
+data that are direct analogs to their fisheries assessment
 counterparts.  Most of examples above will work by just changing the
-function name from get_FN* to get_SC* and ensureing that any project
+function name from get_FN* to get_SC* and ensuring that any project
 codes reference existing creel surveys.
 
 As a simple example, here are several blocks of code that fetch the
@@ -636,7 +633,7 @@ nrow(dat)
 head(dat)
  ```
 
-##  SC125 - Bioligical Samples
+##  SC125 - Biological Samples
 
 ```{r sc125}
 dat <- get_SC125(creel_filter)

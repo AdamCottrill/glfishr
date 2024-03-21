@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_SC111.R
 \name{get_SC111}
 \alias{get_SC111}
-\title{Get SC111 - Creel Invervew Logs from Creel_Portal API}
+\title{Get SC111 - Creel Interview Logs from Creel_Portal API}
 \usage{
 get_SC111(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 }

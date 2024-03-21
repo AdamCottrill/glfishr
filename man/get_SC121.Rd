@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_SC121.R
 \name{get_SC121}
 \alias{get_SC121}
-\title{Get SC121 - Anlger Interviews from Creel_Portal API}
+\title{Get SC121 - Angler Interviews from Creel_Portal API}
 \usage{
 get_SC121(filter_list = list(), show_id = FALSE, to_upper = TRUE)
 }

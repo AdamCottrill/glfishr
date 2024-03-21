@@ -14,6 +14,12 @@
 #' \url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 #' and filter by "fn126" for additional information.
 #'
+#' The TAXON field in the FN126 table returns HHFAU (Haliburton
+#' Hastings Fishery Assessment Unit) codes by default if they
+#' exist. To return only ITIS (Integrated Taxonomic Information
+#' System) values, specify 'itiscode=TRUE' in the list of filters
+#' passed into the get_FN126 function.
+#'
 #' @param filter_list list
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'
 #' fields are hidden from the data frame. To return these columns
@@ -47,6 +53,10 @@
 #' filters <- list(lake = "HU", spc = "076", grp = "55")
 #' fn126 <- get_FN126(filters)
 #' fn126 <- get_FN126(filters, show_id = TRUE)
+#'
+#' # TAXON will contain ITIS values rather than HHFAU codes:
+#' filters <- list(lake = "HU", spc = "076", grp = "55", itiscode=TRUE)
+#' fn126 <- get_FN126(filters)
 get_FN126 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)

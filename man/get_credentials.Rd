@@ -6,6 +6,9 @@
 \usage{
 get_credentials()
 }
+\value{
+named list
+}
 \description{
 A helper function to prompt a user for their GLIS username and
 password, if the global variables GLIS_USER and GLIS_PASSWORD are
@@ -17,7 +20,10 @@ R client, the password characters may not be obscured when the
 readlines function is called.
 }
 \details{
-Users can by-pass the prompts by setting up global vairable for
+Users can by-pass the prompts by setting up global variable for
 their account. These values will be used preferentially if they
 exists.
+}
+\author{
+Adam Cottrill \email{adam.cottrill@ontario.ca}
 }

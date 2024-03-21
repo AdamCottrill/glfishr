@@ -36,6 +36,12 @@ Use \code{show_filters("fn126")} to see the full list of available
 filter keys (query parameters). Refer to
 \url{https://intra.glis.mnr.gov.on.ca/fn_portal/api/v1/swagger/}
 and filter by "fn126" for additional information.
+
+The TAXON field in the FN126 table returns HHFAU (Haliburton
+Hastings Fishery Assessment Unit) codes by default if they
+exist. To return only ITIS (Integrated Taxonomic Information
+System) values, specify 'itiscode=TRUE' in the list of filters
+passed into the get_FN126 function.
 }
 \examples{
 
@@ -60,6 +66,10 @@ fn126 <- get_FN126(filters)
 filters <- list(lake = "HU", spc = "076", grp = "55")
 fn126 <- get_FN126(filters)
 fn126 <- get_FN126(filters, show_id = TRUE)
+
+# TAXON will contain ITIS values rather than HHFAU codes:
+filters <- list(lake = "HU", spc = "076", grp = "55", itiscode=TRUE)
+fn126 <- get_FN126(filters)
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

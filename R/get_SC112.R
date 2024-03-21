@@ -1,6 +1,6 @@
 #' Get SC112 - Creel Activity Counts from Creel_Portal API
 #'
-#'This function accesses the api endpoint to for SC112 records.  This
+#' This function accesses the api endpoint to for SC112 records.  This
 #' function takes an optional filter list which can be used to return
 #' records based on several attributes of the creel such as project
 #' code, or part of the project code, lake, first year, last year,
