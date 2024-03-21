@@ -24,3 +24,19 @@ test_that("get_domain returns value of environ variable if set", {
   observed <- get_domain()
   expect_equal(observed, expected)
 })
+
+
+test_that("get_domain() raises an error if domain is not valid", {
+    values <- c("http://127.0.0.1:8000", "foobar", "127.0.0.1:8000", "127.0.0.1:8000")
+    for (value in values) {
+        withr::local_envvar(c("GLIS_DOMAIN" = value))
+        message <- sprintf(
+            "GLIS_DOMAIN:'%s' is not a valid domain. API calls will not work.",
+            value
+        )
+
+        expect_error(get_domain(), message)
+    }
+
+
+})

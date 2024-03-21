@@ -11,8 +11,8 @@ get_token <- function() {
   body <- get_credentials()
   domain <- get_domain()
 
-  r <- httr::POST(sprintf("%sapi-auth/token/", domain), body = body)
-  token <- httr::content(r)
+  resp <- httr::POST(sprintf("%sapi-auth/token/", domain), body = body)
+  token <- httr::content(resp)
 
   if (is.null(token$non_field_errors)) {
     assign("token", token, envir = .GlobalEnv)

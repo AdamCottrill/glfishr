@@ -28,9 +28,9 @@
 
 api_to_dataframe <- function(url, data = NULL, page = 0,
                              recursive = TRUE, request_type = "GET", request_body = NULL) {
-  if (!exists("token")) token <- get_token()
+  if (!exists("token")) get_token()
 
-  if (is.null(token[["token"]])) {
+  if (is.null(token)) {
     warning(paste0(
       "Your token was not retrieved successfully and some data may be hidden. \n",
       "Run get_token() to re-enter your credentials."
