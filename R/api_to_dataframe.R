@@ -37,7 +37,6 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
     ))
   }
 
-
   auth_header <- sprintf("Token %s", token)
 
   max_page_count <- 20

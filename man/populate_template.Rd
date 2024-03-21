@@ -11,7 +11,8 @@ populate_template(
   source = c("assessment", "creel"),
   overwrite = FALSE,
   prune_fn012 = FALSE,
-  verbose = TRUE
+  verbose = TRUE,
+  verbose_sqlsave = FALSE
 )
 }
 \arguments{
@@ -41,6 +42,13 @@ deleted?
 
 \item{verbose}{\itemize{
 \item Boolean. Should progress be reported to the console?
+}}
+
+\item{verbose_sqlsave}{\itemize{
+\item Boolean. Default=FALSE. This value is
+passed through to RODBC::sqlsave.  Set to True to see all of
+the sql statements passed to target database.  Useful for
+debugging.
 }}
 }
 \description{

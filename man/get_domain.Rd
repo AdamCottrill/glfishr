@@ -11,7 +11,7 @@ string
 }
 \description{
 This function is intended to be used by all of the functions that call an
-api endpoint exposed by the GLIS.
+api endpoint exposed by GLIS.
 Each of the apis are likely to have slightly different urls (tfat/api/v1,
 fn_portal/api/v1, etc), but a common domain. If the api domain changes in
 the future, (ie - the domain name changes or the #' version changes) we just

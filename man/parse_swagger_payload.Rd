@@ -24,6 +24,8 @@ be used as filters.
 \details{
 Given the complexity of the payload, this function is not
 currently tested
+
+TODO: add option to parse schemas from payload
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

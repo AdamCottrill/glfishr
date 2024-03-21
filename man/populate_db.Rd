@@ -4,7 +4,7 @@
 \alias{populate_db}
 \title{Populate target database}
 \usage{
-populate_db(target, data, verbose)
+populate_db(target, data, verbose, verbose_sqlsave)
 }
 \arguments{
 \item{target}{\itemize{
@@ -18,6 +18,13 @@ target db
 
 \item{verbose}{\itemize{
 \item should the table and record count be reported
+}}
+
+\item{verbose_sqlsave}{\itemize{
+\item Boolean. Default=FALSE. This value is
+passed through to RODBC::sqlsave.  Set to True to see all of
+the sql statements passed to target database.  Useful for
+debugging.
 }}
 }
 \description{

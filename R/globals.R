@@ -1,1 +1,1 @@
-utils::globalVariables(c("api_filters", "id", "slug"))
+utils::globalVariables(c("api_filters", "id", "slug", "token"))

@@ -4,7 +4,15 @@
 \alias{append_data}
 \title{Append data-frame to Access table}
 \usage{
-append_data(dbase, trg_table, data, verbose = T, append = T, safer = T)
+append_data(
+  dbase,
+  trg_table,
+  data,
+  verbose = T,
+  verbose_sqlsave = F,
+  append = T,
+  safer = T
+)
 }
 \arguments{
 \item{dbase}{\itemize{
@@ -21,6 +29,13 @@ append_data(dbase, trg_table, data, verbose = T, append = T, safer = T)
 
 \item{verbose}{\itemize{
 \item should the number of records and table be printed?
+}}
+
+\item{verbose_sqlsave}{\itemize{
+\item Boolean. Default=FALSE. This value is
+passed through to RODBC::sqlsave.  Set to True to see all of
+the sql statements passed to target database.  Useful for
+debugging.
 }}
 
 \item{append}{\itemize{
