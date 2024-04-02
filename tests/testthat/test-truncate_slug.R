@@ -14,8 +14,16 @@ test_that("fn126 slug is trimmed to fn125", {
 })
 
 
-test_that("fn125 slug can trimmed to fn123 with levels", {
-  slug_in = "lha_ia10_006-111-1-091-00-1"
+test_that("fn126 slug is trimmed to fn125 with levels", {
+  slug_in = "lha_ia10_006-111-1-091-00-1-6"
   slug_out = "lha_ia10_006-111-1-091-00-1"
+  expect_equal(truncate_slug(slug_in, 1), slug_out)
+})
+
+
+
+test_that("fn125 slug can trimmed to fn122 with levels argument", {
+  slug_in = "lha_ia10_006-111-051-091-00-1"
+  slug_out = "lha_ia10_006-111-051"
   expect_equal(truncate_slug(slug_in, 3), slug_out)
 })

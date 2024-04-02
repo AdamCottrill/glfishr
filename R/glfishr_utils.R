@@ -147,9 +147,10 @@ uncount_tally <- function(df, tally_col) {
 ##'   number of slug components (dash and string elements) to remove
 ##'   from the input
 ##' @return string
+##' @export
 ##' @author R. Adam Cottrill
 truncate_slug <- function(slug, levels=1) {
-  regex <- sprintf("\\-[0-9a-z]{%d}$", levels)
+  regex <- sprintf("(\\-[0-9a-z]+){%d}$", levels)
   x <- gsub(regex, "", slug)
   return(x)
 }
@@ -168,6 +169,7 @@ truncate_slug <- function(slug, levels=1) {
 ##' @title Get FN121 Sam Slug
 ##' @param slug - string.  Often a human readable, unique idnetifier
 ##' @return string
+##' @export
 ##' @author R. Adam Cottrill
 sam_slug <- function(slug) {
   fn121_slug <- gsub("^([a-z0-9_]{12}-[a-z0-9]+)-.*", "\\1", slug)
