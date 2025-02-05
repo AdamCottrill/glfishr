@@ -54,10 +54,15 @@ download_pt_files <- function(file_list, target_dir,
     }
   }
 
+  # root url of azure blob storage created by LRC.  If it ever
+  # changes, this path have to be updated accordingly
+  BLOB_ROOT <- "https://glis0000prd0420ggt3.blob.core.windows.net/media/"
+
   for (i in seq(nrow(file_list))) {
     filename <- paste0(
-      get_domain(),
-      "project_tracker/serve_file/",
+      #get_domain(),
+      #"project_tracker/serve_file/",
+      BLOB_ROOT,
       file_list[, ncol(file_list)][i]
     )
     print(sprintf("downloading %s", filename))
