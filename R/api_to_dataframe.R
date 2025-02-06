@@ -27,7 +27,8 @@
 
 
 api_to_dataframe <- function(url, data = NULL, page = 0,
-                             recursive = TRUE, request_type = "GET", request_body = NULL) {
+                             recursive = TRUE, request_type = "GET", request_body = NULL,
+                             record_count = FALSE) {
   if (!exists("token")) get_token()
 
   if (is.null(token)) {
@@ -77,6 +78,18 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
     }
   )
 
+  # if the response is paginaged, it will contain a count property,
+  # otherwise we have to count the number of objects ourselves
+  if (record_count) {
+    if (!is.null(payload[["count"]])) {
+      return(payload[["count"]])
+    } else {
+      return(nrow(payload))
+    }
+  }
+
+
+
   page <- page + 1
 
   if (page >= max_page_count) {
@@ -88,6 +101,8 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
       "different filters and combine them in R."
     ))
   }
+
+
 
   if (!is.null(payload[["results"]])) {
     if (is.null(data)) {

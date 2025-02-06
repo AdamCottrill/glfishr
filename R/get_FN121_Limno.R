@@ -30,6 +30,9 @@
 #' @param to_upper - should the names of the dataframe be converted to
 #' upper case?  Defaults to TRUE to match the FISHNET-II  convention
 #'
+#' @param record_count - should data be returned, or just the number
+#'   of records that would be returned given the current filters.
+#'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
 #' @export
@@ -57,7 +60,7 @@
 #'   o2surf0__not_null = TRUE
 #' ), show_id = TRUE)
 #'
-get_FN121_Limno <- function(filter_list = list(), with_121 = FALSE, show_id = FALSE, to_upper = TRUE) {
+get_FN121_Limno <- function(filter_list = list(), with_121 = FALSE, show_id = FALSE, to_upper = TRUE, record_count = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
 
   limno_filters <- filter_list[names(filter_list) != "mu_type"]
@@ -69,7 +72,7 @@ get_FN121_Limno <- function(filter_list = list(), with_121 = FALSE, show_id = FA
     get_fn_portal_root(),
     query_string
   )
-  payload <- api_to_dataframe(my_url, recursive = recursive)
+  payload <- api_to_dataframe(my_url, recursive = recursive, record_count = record_count)
   payload <- prepare_payload(payload, show_id, to_upper)
 
   if (with_121 == TRUE) {
