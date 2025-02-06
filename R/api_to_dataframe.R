@@ -72,7 +72,7 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
         config = httr::add_headers(authorization = auth_header)
       ),
       error = function(err) {
-        print("unable to fetch from the server. Is your VPN active?")
+        print("Something is wrong. Unable to fetch the data from the server.")
       }
     )
   }
@@ -88,15 +88,29 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
     }
   )
 
-  # if the response is paginaged, it will contain a count property,
-  # otherwise we have to count the number of objects ourselves
-  if (record_count) {
-    if (!is.null(payload[["count"]])) {
-      return(payload[["count"]])
-    } else {
-      return(nrow(payload))
-    }
+  # if the response is paginaged, the number of records will be
+  # contained a count property, otherwise we have to count the number
+  # of objects ourselves
+  if (!is.null(payload[["count"]])) {
+    num_records <- payload[["count"]]
+  } else {
+    num_records <- nrow(payload)
   }
+
+
+  if (record_count) {
+    return(num_records)
+  }
+
+  if (page == 1) {
+    s <- if (num_records == 1) "" else "s"
+    msg <- sprintf(
+      "Fetching %s record%s....",
+      format(num_records, big.mark = ",", scientific = FALSE), s
+    )
+    message(msg)
+  }
+
 
   page <- page + 1
 
