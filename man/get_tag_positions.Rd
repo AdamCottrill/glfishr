@@ -4,7 +4,12 @@
 \alias{get_tag_positions}
 \title{Get tag position options - A list of tag position codes used in GLIS}
 \usage{
-get_tag_positions(filter_list = list(), show_id = FALSE, to_upper = TRUE)
+get_tag_positions(
+  filter_list = list(),
+  show_id = FALSE,
+  to_upper = TRUE,
+  record_count = FALSE
+)
 }
 \arguments{
 \item{filter_list}{list}
@@ -15,6 +20,11 @@ returned data frame}
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
 upper case?
+}}
+
+\item{record_count}{\itemize{
+\item should data be returned, or just the number
+of records that would be returned given the current filters.
 }}
 }
 \value{

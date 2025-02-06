@@ -32,6 +32,7 @@
 #' @seealso [fetch_pt_reports()]
 #' @examples
 #'
+#'
 #' reports <- get_pt_reports(list(
 #'   lake = "ON", year__gte = 2017,
 #'   year__lte = 2018
@@ -48,6 +49,7 @@
 #' reports <- get_pt_reports(filters)
 #'
 #' reports <- get_pt_reports(list(lake = "HU", year = 2018))
+#'
 get_pt_reports <- function(filter_list = list(), to_upper = TRUE, record_count = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)

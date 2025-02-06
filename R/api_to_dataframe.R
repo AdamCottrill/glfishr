@@ -16,11 +16,21 @@
 #'
 #'
 #' @param url string
+#'
 #' @param data dataframe
+#'
 #' @param page number
+#'
 #' @param recursive boolean
+#'
 #' @param request_type string - http request type "GET"" or "POST"
-#' @param request_body list, dataframe, or character string to be sent to the server as the body of the POST request.  Not used in GET requests.
+#'
+#' @param request_body list, dataframe, or character string to be sent
+#'   to the server as the body of the POST request.  Not used in GET
+#'   requests.
+#'
+#' @param record_count - should data be returned, or just the number
+#'   of records that would be returned given the current filters.
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
@@ -88,8 +98,6 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
     }
   }
 
-
-
   page <- page + 1
 
   if (page >= max_page_count) {
@@ -102,8 +110,6 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
     ))
   }
 
-
-
   if (!is.null(payload[["results"]])) {
     if (is.null(data)) {
       data <- payload$results
@@ -112,7 +118,7 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
     }
     next_url <- payload$`next`
     if (!is.null(next_url) && page < max_page_count && recursive) {
-      data <- api_to_dataframe(next_url, data, page)
+      data <- api_to_dataframe(next_url, data, page, record_count = record_count)
     }
     return(data)
   } else {

@@ -8,7 +8,8 @@ get_FN121_Trapnet(
   filter_list = list(),
   with_121 = FALSE,
   show_id = FALSE,
-  to_upper = TRUE
+  to_upper = TRUE,
+  record_count = FALSE
 )
 }
 \arguments{
@@ -25,6 +26,11 @@ as part of the data frame, use 'show_id = TRUE'.}
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
 upper case?
+}}
+
+\item{record_count}{\itemize{
+\item should data be returned, or just the number
+of records that would be returned given the current filters.
 }}
 }
 \value{

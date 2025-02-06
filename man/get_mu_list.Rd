@@ -2,21 +2,26 @@
 % Please edit documentation in R/get_mu_list.R
 \name{get_mu_list}
 \alias{get_mu_list}
-\title{Get list of lake management unit types from GLIS API}
+\title{Get list of lake management unit TYPES from GLIS API}
 \usage{
-get_mu_list(filter_list = list(), to_upper = TRUE)
+get_mu_list(filter_list = list(), to_upper = TRUE, record_count = FALSE)
 }
 \arguments{
 \item{filter_list}{list}
 
 \item{to_upper}{should the names of the dataframe be converted to
 upper case?}
+
+\item{record_count}{\itemize{
+\item should data be returned, or just the number
+of records that would be returned given the current filters.
+}}
 }
 \value{
 dataframe
 }
 \description{
-Get list of lake management unit types from GLIS API
+Get list of lake management unit TYPES from GLIS API
 }
 \examples{
 get_mu_list()

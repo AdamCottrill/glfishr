@@ -48,7 +48,9 @@
 #' fn121_weather <- get_FN121_Weather(list(lake = "ER", year = 2018),
 #'   show_id = TRUE
 #' )
-get_FN121_Weather <- function(filter_list = list(), with_121 = FALSE, show_id = FALSE, to_upper = TRUE, record_count = record_count) {
+get_FN121_Weather <- function(filter_list = list(), with_121 = FALSE,
+                              show_id = FALSE, to_upper = TRUE,
+                              record_count = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
 
   weather_filters <- filter_list[names(filter_list) != "mu_type"]
