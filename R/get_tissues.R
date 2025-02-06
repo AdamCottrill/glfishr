@@ -20,6 +20,9 @@
 #' @param show_id include the fields the 'id' and 'slug' in the
 #' returned data frame
 #'
+#' @param record_count - should data be returned, or just the number
+#'   of records that would be returned given the current filters.
+#'
 #' @author Rachel Henderson \email{rachel.henderson@@ontario.ca}
 #' @return dataframe
 #' @export
@@ -28,7 +31,7 @@
 #' tissues <- get_tissues()
 #' all_tissues <- get_tissues(list(all = TRUE))
 #' tissue_slugs <- get_tissues(show_id = TRUE)
-get_tissues <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+get_tissues <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, record_count = FALSE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
   # check_filters("tissues", filter_list, "common")
@@ -39,7 +42,7 @@ get_tissues <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) 
     common_api_url,
     query_string
   )
-  payload <- api_to_dataframe(my_url)
+  payload <- api_to_dataframe(my_url, record_count = record_count)
   payload <- prepare_payload(payload, show_id, to_upper)
 
   return(payload)

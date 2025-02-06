@@ -4,10 +4,15 @@
 \alias{get_tfat_reports}
 \title{Get TFAT Tag Recovery Reports}
 \usage{
-get_tfat_reports(filter_list = list())
+get_tfat_reports(filter_list = list(), record_count = FALSE)
 }
 \arguments{
 \item{filter_list}{list}
+
+\item{record_count}{\itemize{
+\item should data be returned, or just the number
+of records that would be returned given the current filters.
+}}
 }
 \value{
 dataframe

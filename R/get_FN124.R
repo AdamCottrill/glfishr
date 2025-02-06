@@ -28,6 +28,9 @@
 #' individual measurements.  A FN124 record with sizcnt=5 will be
 #' repeated 5 times in the returned data frame.
 #'
+#' @param record_count - should data be returned, or just the number
+#'   of records that would be returned given the current filters.
+#'
 #' @author Jeremy Holden \email{jeremy.holden@@ontario.ca}
 #' @return dataframe
 #' @export
@@ -57,7 +60,7 @@
 #' print(nrow(fn124))
 #' head(fn124)
 #'
-get_FN124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, uncount = FALSE) {
+get_FN124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, uncount = FALSE, record_count = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("fn124", filter_list, "fn_portal")
@@ -66,7 +69,7 @@ get_FN124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, un
     get_fn_portal_root(),
     query_string
   )
-  payload <- api_to_dataframe(my_url, recursive = recursive)
+  payload <- api_to_dataframe(my_url, recursive = recursive, record_count = record_count)
   payload <- prepare_payload(payload, show_id, to_upper)
 
   if (uncount == TRUE) {

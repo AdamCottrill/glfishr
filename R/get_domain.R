@@ -24,10 +24,12 @@ get_domain <- function() {
   if (domain == "") {
     domain <- "https://intra.glis.mnr.gov.on.ca/"
   }
-  if (!grepl('^https?://.*/$', domain)) {
-      msg <- sprintf("GLIS_DOMAIN:'%s' is not a valid domain. API calls will not work.",
-                    domain)
-      stop(msg)
+  if (!grepl("^https?://.*/$", domain)) {
+    msg <- sprintf(
+      "GLIS_DOMAIN:'%s' is not a valid domain. API calls will not work.",
+      domain
+    )
+    stop(msg)
   }
   return(domain)
 }

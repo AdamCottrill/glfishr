@@ -5,7 +5,12 @@
 \title{Get SC012_Protocol - Creel Sampling specs (species and group) for a
 specific lake and from the Creel_Portal API}
 \usage{
-get_SC012_Protocol(filter_list = list(), show_id = FALSE, to_upper = TRUE)
+get_SC012_Protocol(
+  filter_list = list(),
+  show_id = FALSE,
+  to_upper = TRUE,
+  record_count = FALSE
+)
 }
 \arguments{
 \item{filter_list}{list}
@@ -17,6 +22,11 @@ as part of the data frame, use 'show_id = TRUE'.}
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
 upper case?
+}}
+
+\item{record_count}{\itemize{
+\item should data be returned, or just the number
+of records that would be returned given the current filters.
 }}
 }
 \value{

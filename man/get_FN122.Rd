@@ -4,7 +4,12 @@
 \alias{get_FN122}
 \title{Get FN122 - Effort data from FN_Portal API}
 \usage{
-get_FN122(filter_list = list(), show_id = FALSE, to_upper = TRUE)
+get_FN122(
+  filter_list = list(),
+  show_id = FALSE,
+  to_upper = TRUE,
+  record_count = FALSE
+)
 }
 \arguments{
 \item{filter_list}{list}
@@ -16,6 +21,11 @@ as part of the data frame, use 'show_id = TRUE'.}
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
 upper case?
+}}
+
+\item{record_count}{\itemize{
+\item should data be returned, or just the number
+of records that would be returned given the current filters.
 }}
 }
 \value{

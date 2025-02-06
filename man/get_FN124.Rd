@@ -8,7 +8,8 @@ get_FN124(
   filter_list = list(),
   show_id = FALSE,
   to_upper = TRUE,
-  uncount = FALSE
+  uncount = FALSE,
+  record_count = FALSE
 )
 }
 \arguments{
@@ -27,6 +28,11 @@ upper case?
 \item should the binned data be expanded to represent
 individual measurements.  A FN124 record with sizcnt=5 will be
 repeated 5 times in the returned data frame.
+}}
+
+\item{record_count}{\itemize{
+\item should data be returned, or just the number
+of records that would be returned given the current filters.
 }}
 }
 \value{
