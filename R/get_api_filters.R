@@ -1,4 +1,3 @@
-
 #' Connect to the api endpoint and return swagger documentation
 #'
 #' This function connects to the openapi/swagger endpoint specified by
@@ -56,7 +55,6 @@ get_swagger_payload <- function(api_app) {
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return list
 get_api_filters <- function(api_app, create_list = TRUE) {
-
   payload <- get_swagger_payload(api_app)
 
   api_filters <- parse_swagger_payload(payload)

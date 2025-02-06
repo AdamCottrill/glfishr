@@ -22,6 +22,9 @@
 #' @param to_upper - should the names of the dataframe be converted to
 #' upper case?
 #'
+#' @param record_count - should data be returned, or just the number
+#'   of records that would be returned given the current filters.
+#'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
 #' @export
@@ -31,7 +34,7 @@
 #' ptype <- get_gear_process_types(list(gr = c("GL10", "GL21")))
 #' ptype <- get_gear_process_types(list(gr__like = "GL1"))
 get_gear_process_types <- function(filter_list = list(), show_id = FALSE,
-                                   to_upper = TRUE) {
+                                   to_upper = TRUE, record_count = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("gear_effort_process_types", filter_list, "fn_portal")
@@ -41,7 +44,7 @@ get_gear_process_types <- function(filter_list = list(), show_id = FALSE,
     query_string
   )
 
-  payload <- api_to_dataframe(my_url, recursive = recursive)
+  payload <- api_to_dataframe(my_url, recursive = recursive, record_count = record_count)
   payload <- prepare_payload(payload, show_id, to_upper)
 
   return(payload)

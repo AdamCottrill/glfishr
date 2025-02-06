@@ -3,7 +3,7 @@ test_that("get_swagger_url works for known apps", {
     "common", "project_tracker", "fn_portal", "creels"
   )
 
-    domain <- get_domain()
+  domain <- get_domain()
 
   for (app in known_apps) {
     expected <- sprintf("%s%s/api/v1/swagger.json", domain, app)

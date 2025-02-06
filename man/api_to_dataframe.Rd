@@ -11,7 +11,8 @@ api_to_dataframe(
   page = 0,
   recursive = TRUE,
   request_type = "GET",
-  request_body = NULL
+  request_body = NULL,
+  record_count = FALSE
 )
 }
 \arguments{
@@ -25,7 +26,14 @@ api_to_dataframe(
 
 \item{request_type}{string - http request type "GET"" or "POST"}
 
-\item{request_body}{list, dataframe, or character string to be sent to the server as the body of the POST request.  Not used in GET requests.}
+\item{request_body}{list, dataframe, or character string to be sent
+to the server as the body of the POST request.  Not used in GET
+requests.}
+
+\item{record_count}{\itemize{
+\item should data be returned, or just the number
+of records that would be returned given the current filters.
+}}
 }
 \value{
 dataframe

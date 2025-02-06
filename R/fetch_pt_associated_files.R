@@ -29,7 +29,7 @@
 #' @export
 #' @seealso [get_pt_associated_files()]
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' reports <- fetch_pt_associated_files(
 #'   list(
 #'     lake = "ON", year__gte = 2012,

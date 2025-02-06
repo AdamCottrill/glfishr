@@ -16,18 +16,29 @@
 #'
 #'
 #' @param url string
+#'
 #' @param data dataframe
+#'
 #' @param page number
+#'
 #' @param recursive boolean
+#'
 #' @param request_type string - http request type "GET"" or "POST"
-#' @param request_body list, dataframe, or character string to be sent to the server as the body of the POST request.  Not used in GET requests.
+#'
+#' @param request_body list, dataframe, or character string to be sent
+#'   to the server as the body of the POST request.  Not used in GET
+#'   requests.
+#'
+#' @param record_count - should data be returned, or just the number
+#'   of records that would be returned given the current filters.
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
 
 
 api_to_dataframe <- function(url, data = NULL, page = 0,
-                             recursive = TRUE, request_type = "GET", request_body = NULL) {
+                             recursive = TRUE, request_type = "GET", request_body = NULL,
+                             record_count = FALSE) {
   if (!exists("token")) get_token()
 
   if (is.null(token)) {
@@ -61,7 +72,7 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
         config = httr::add_headers(authorization = auth_header)
       ),
       error = function(err) {
-        print("unable to fetch from the server. Is your VPN active?")
+        print("Something is wrong. Unable to fetch the data from the server.")
       }
     )
   }
@@ -76,6 +87,30 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
       return(list(paths = list()))
     }
   )
+
+  # if the response is paginaged, the number of records will be
+  # contained a count property, otherwise we have to count the number
+  # of objects ourselves
+  if (!is.null(payload[["count"]])) {
+    num_records <- payload[["count"]]
+  } else {
+    num_records <- nrow(payload)
+  }
+
+
+  if (record_count) {
+    return(num_records)
+  }
+
+  if (page == 1) {
+    s <- if (num_records == 1) "" else "s"
+    msg <- sprintf(
+      "Fetching %s record%s....",
+      format(num_records, big.mark = ",", scientific = FALSE), s
+    )
+    message(msg)
+  }
+
 
   page <- page + 1
 
@@ -97,7 +132,7 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
     }
     next_url <- payload$`next`
     if (!is.null(next_url) && page < max_page_count && recursive) {
-      data <- api_to_dataframe(next_url, data, page)
+      data <- api_to_dataframe(next_url, data, page, record_count = record_count)
     }
     return(data)
   } else {

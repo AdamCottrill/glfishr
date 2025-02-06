@@ -4,7 +4,12 @@
 \alias{get_FN126}
 \title{Get FN126 - Diet data from FN_Portal API}
 \usage{
-get_FN126(filter_list = list(), show_id = FALSE, to_upper = TRUE)
+get_FN126(
+  filter_list = list(),
+  show_id = FALSE,
+  to_upper = TRUE,
+  record_count = FALSE
+)
 }
 \arguments{
 \item{filter_list}{list}
@@ -16,6 +21,11 @@ as part of the data frame, use 'show_id = TRUE'.}
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
 upper case?
+}}
+
+\item{record_count}{\itemize{
+\item should data be returned, or just the number
+of records that would be returned given the current filters.
 }}
 }
 \value{
@@ -68,7 +78,7 @@ fn126 <- get_FN126(filters)
 fn126 <- get_FN126(filters, show_id = TRUE)
 
 # TAXON will contain ITIS values rather than HHFAU codes:
-filters <- list(lake = "HU", spc = "076", grp = "55", itiscode=TRUE)
+filters <- list(lake = "HU", spc = "076", grp = "55", itiscode = TRUE)
 fn126 <- get_FN126(filters)
 }
 \author{

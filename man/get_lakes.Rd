@@ -4,7 +4,7 @@
 \alias{get_lakes}
 \title{Get lakes - A list of lake names and abbreviations used in GLIS}
 \usage{
-get_lakes(filter_list = list(), to_upper = TRUE)
+get_lakes(filter_list = list(), to_upper = TRUE, record_count = FALSE)
 }
 \arguments{
 \item{filter_list}{list}
@@ -12,6 +12,11 @@ get_lakes(filter_list = list(), to_upper = TRUE)
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
 upper case?
+}}
+
+\item{record_count}{\itemize{
+\item should data be returned, or just the number
+of records that would be returned given the current filters.
 }}
 }
 \value{

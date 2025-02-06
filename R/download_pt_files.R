@@ -60,8 +60,8 @@ download_pt_files <- function(file_list, target_dir,
 
   for (i in seq(nrow(file_list))) {
     filename <- paste0(
-      #get_domain(),
-      #"project_tracker/serve_file/",
+      # get_domain(),
+      # "project_tracker/serve_file/",
       BLOB_ROOT,
       file_list[, ncol(file_list)][i]
     )

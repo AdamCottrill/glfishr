@@ -16,8 +16,7 @@ with_mock_api({
 })
 
 with_mock_api({
-  test_that("warning message is returned if a token could not be retreived",
-  {
+  test_that("warning message is returned if a token could not be retreived", {
     # set the GLIS domain so the real url is used (and intercepted by httptest)
     withr::local_envvar(c(
       "GLIS_DOMAIN" = "",
