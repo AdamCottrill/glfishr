@@ -240,6 +240,8 @@ get_assessment_data <- function(filters, prune_fn012, verbose) {
   fn121_weather <- get_FN121_Weather(filters)
   fetching_report("FN121_Electrofishing", verbose)
   glis_data$FN121_Electrofishing <- get_FN121_Electrofishing(filters)
+  fetching_report("FN121_GPS_Tracks", verbose)
+  glis_data$FN121_GPS_Tracks <- get_FN121_GPS_Tracks(filters)
   fetching_report("FN122", verbose)
   glis_data$FN122 <- get_FN122(filters)
   fetching_report("FN123", verbose)
@@ -758,9 +760,78 @@ get_trg_table_names <- function(trg_db, table) {
 ##' @seealso append_data, populate_template_assessment
 populate_db <- function(target, data, verbose, verbose_sqlsave) {
   for (tbl in sort(names(data))) {
-    append_data(target, tbl, data[[tbl]], verbose, verbose_sqlsave)
+    rows <- data[[tbl]]
+    # hack! see insert_gps_tracks:
+    if (toupper(tbl) == "FN121_GPS_TRACKS") {
+      insert_gps_tracks(target, rows)
+    } else {
+      append_data(target, tbl, rows, verbose, verbose_sqlsave)
+    }
   }
 }
+
+
+##' Insert data into the FN121_GPS_Tracks Table
+##'
+##' The gps tracks table contains the field "TIMESTAMP" which is a key
+##' word in MS access but is not being escaped properly by the query
+##' constructed by the RODBC packages. This hack, inserts the gps data
+##' into a temporary table with an alternative field name
+##' "TIME_STAMP".  this temporary table is then inserted into
+##' FN121_GPS_Tracks using a correctly formated sql statement, and
+##' then deletes the tempoary table from the database.
+##'
+##' The odbc package appears to work in this case, but would require a
+##' rewrite of both glfishr and glisDbTools to ensure consistent dependenies.
+##'
+##' @title Insert FN121_GPS_Tracks
+##' @param dbase - the absolute path to the target template database
+##' @param data the data to be inserted into the FN121_GPS_tracks table
+##' @return the status of the rodbc connection
+##' @author R. Adam Cottrill
+insert_gps_tracks <- function(dbase, data) {
+  names(data)[which(names(data) == "TIMESTAMP")] <- "TIME_STAMP"
+
+  conn <- RODBC::odbcConnectAccess2007(dbase, uid = "", pwd = "")
+
+  RODBC::sqlSave(conn, data,
+    tablename = "glis_tmp_table", rownames = F, fast = TRUE,
+    safer = FALSE, append = FALSE,
+  )
+
+  # append the data from our tmp table to our target table, using the original field name
+  stmt <- "INSERT
+	INTO
+	FN121_GPS_Tracks ( PRJ_CD,
+	SAM,
+	TRACKID,
+	SIDEP,
+	[Timestamp],
+	DD_LAT,
+	DD_LON )
+SELECT
+	glis_tmp_table.PRJ_CD,
+	glis_tmp_table.SAM,
+	glis_tmp_table.TRACKID,
+	glis_tmp_table.SIDEP,
+	glis_tmp_table.TIME_STAMP,
+	glis_tmp_table.DD_LAT,
+	glis_tmp_table.DD_LON
+FROM
+	glis_tmp_table;
+"
+
+  RODBC::sqlQuery(conn, stmt)
+
+  stmt <- "DROP [glis_tmp_table];"
+
+  RODBC::sqlQuery(conn, stmt)
+
+  return(RODBC::odbcClose(conn))
+}
+
+
+
 
 
 ##' Populate the FN012-Sampling Specs Table
