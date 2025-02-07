@@ -102,7 +102,7 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
     return(num_records)
   }
 
-  if (page == 1) {
+  if (page == 0) {
     s <- if (num_records == 1) "" else "s"
     msg <- sprintf(
       "Fetching %s record%s....",
