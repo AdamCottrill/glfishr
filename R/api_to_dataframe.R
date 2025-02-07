@@ -101,17 +101,20 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
     }
   }
 
-
   if (record_count) {
     return(num_records)
   }
 
   if (page == 0) {
-    s <- if (num_records == 1) "" else "s"
-    msg <- sprintf(
-      "Fetching %s record%s....",
-      format(num_records, big.mark = ",", scientific = FALSE), s
-    )
+    if (num_records == 0) {
+      msg <- "No records were retrieved."
+    } else {
+      s <- if (num_records == 1) "" else "s"
+      msg <- sprintf(
+        "Fetching %s record%s...",
+        format(num_records, big.mark = ",", scientific = FALSE), s
+      )
+    }
     message(msg)
   }
 
