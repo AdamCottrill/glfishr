@@ -94,7 +94,11 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
   if (!is.null(payload[["count"]])) {
     num_records <- payload[["count"]]
   } else {
-    num_records <- nrow(payload)
+    if (length(payload) == 0) {
+      num_records <- 0
+    } else {
+      num_records <- nrow(payload)
+    }
   }
 
 

@@ -149,7 +149,7 @@ uncount_tally <- function(df, tally_col) {
 ##' @return string
 ##' @export
 ##' @author R. Adam Cottrill
-truncate_slug <- function(slug, levels=1) {
+truncate_slug <- function(slug, levels = 1) {
   regex <- sprintf("(\\-[0-9a-z]+){%d}$", levels)
   x <- gsub(regex, "", slug)
   return(x)
