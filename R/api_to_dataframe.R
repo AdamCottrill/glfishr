@@ -94,20 +94,27 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
   if (!is.null(payload[["count"]])) {
     num_records <- payload[["count"]]
   } else {
-    num_records <- nrow(payload)
+    if (length(payload) == 0) {
+      num_records <- 0
+    } else {
+      num_records <- nrow(payload)
+    }
   }
-
 
   if (record_count) {
     return(num_records)
   }
 
-  if (page == 1) {
-    s <- if (num_records == 1) "" else "s"
-    msg <- sprintf(
-      "Fetching %s record%s....",
-      format(num_records, big.mark = ",", scientific = FALSE), s
-    )
+  if (page == 0) {
+    if (num_records == 0) {
+      msg <- "No records were retrieved."
+    } else {
+      s <- if (num_records == 1) "" else "s"
+      msg <- sprintf(
+        "Fetching %s record%s...",
+        format(num_records, big.mark = ",", scientific = FALSE), s
+      )
+    }
     message(msg)
   }
 
