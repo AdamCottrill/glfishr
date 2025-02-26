@@ -762,7 +762,7 @@ populate_db <- function(target, data, verbose, verbose_sqlsave) {
   for (tbl in sort(names(data))) {
     rows <- data[[tbl]]
     # hack! see insert_gps_tracks:
-    if (toupper(tbl) == "FN121_GPS_TRACKS") {
+    if (toupper(tbl) == "FN121_GPS_TRACKS" && !is.null(dim(rows))) {
       insert_gps_tracks(target, rows)
     } else {
       append_data(target, tbl, rows, verbose, verbose_sqlsave)
