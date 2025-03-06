@@ -897,41 +897,6 @@ populate_gept <- function(fn028, fn121) {
 }
 
 
-##' Perform transformations to api payload before return data frame
-##'
-##' This function takes the data-frame returned from the api call and
-##' preforms any required transformations before returning it.
-##' Currently the function optionally removes is and slug from the data
-##' frame (if they exist), and transforms all of the field names to
-##' uppercase so that they match names that have been traditionally
-##' used in FISHNET-2.  Other transformations or modifications could be
-##' added in the future.
-##'
-##' @param payload dataframe
-##' @param show_id When 'FALSE', the default, the 'id' and 'slug'
-##' fields are hidden from the data frame. To return these columns
-##' as part of the data frame, use 'show_id = TRUE'.
-##' @param to_upper - should the names of the dataframe be converted to
-##' upper case?
-##'
-##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
-##' @return dataframe
-prepare_payload <- function(payload, show_id = FALSE, to_upper = TRUE) {
-  if (is.null(dim(payload))) {
-    return(payload)
-  }
-
-  if (to_upper) {
-    names(payload) <- toupper(names(payload))
-  }
-  if (!show_id) {
-    payload <- payload[, !toupper(names(payload)) %in% c("ID", "SLUG")]
-  }
-
-  return(payload)
-}
-
-
 ##' Remove FN012 records without matching FN123 records
 ##'
 ##' A helper function used by populate_fn012 to removed any sampling
@@ -960,7 +925,6 @@ prune_unused_fn012 <- function(fn012, fn123) {
     !fn012$key %in% extra,
     names(fn012) != "key"
   ]
-
 
   return(fn012)
 }

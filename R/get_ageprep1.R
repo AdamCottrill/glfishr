@@ -17,10 +17,14 @@
 #' @param filter_list list
 #'
 #' @param show_id include the fields the 'id' and 'slug' in the
-#' returned data frame
+#'   returned data frame
 #'
 #' @param to_upper - should the names of the dataframe be converted to
-#' upper case?
+#'   upper case?
+#'
+#' @param add_year_col - should a 'year' column be added to the
+#'   returned dataframe?  This argument is ignored if the data frame
+#'   does not contain a 'prj_cd' column or already has a 'year' column
 #'
 #' @author Rachel Henderson \email{rachel.henderson@@ontario.ca}
 #' @return dataframe
@@ -29,7 +33,7 @@
 #'
 #' ageprep1 <- get_ageprep1()
 #' ageprep1_slugs <- get_ageprep1(show_id = TRUE)
-get_ageprep1 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+get_ageprep1 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, add_year_col=FAlSE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
   # check_filters("ageprep1", filter_list, "common")
@@ -41,7 +45,7 @@ get_ageprep1 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE)
     query_string
   )
   payload <- api_to_dataframe(my_url)
-  payload <- prepare_payload(payload, show_id, to_upper)
+  payload <- prepare_payload(payload, show_id, to_upper, add_year_col)
 
   return(payload)
 }
