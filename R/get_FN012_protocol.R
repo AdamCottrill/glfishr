@@ -27,6 +27,7 @@
 #' @param record_count - should data be returned, or just the number
 #'   of records that would be returned given the current filters.
 #'
+#'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
 #' @export

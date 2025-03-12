@@ -23,14 +23,14 @@
 ##'
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return dataframe
-prepare_payload <- function(payload, show_id = FALSE, to_upper = TRUE, add_year_col=FALSE) {
+prepare_payload <- function(payload, show_id = FALSE, to_upper = TRUE, add_year_col = FALSE) {
   if (is.null(dim(payload))) {
     return(payload)
   }
 
 
   if (add_year_col) {
-    payload <- add_year_col(payload, silent=TRUE)
+    payload <- add_year_col(payload, silent = TRUE)
   }
 
   if (to_upper) {

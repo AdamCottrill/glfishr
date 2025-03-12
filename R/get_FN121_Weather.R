@@ -29,6 +29,10 @@
 #' upper case?
 #' @param record_count - should data be returned, or just the number
 #'   of records that would be returned given the current filters.
+#' @param add_year_col - should a 'year' column be added to the
+#'   returned dataframe?  This argument is ignored if the data frame
+#'   does not contain a 'prj_cd' column.
+#'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
 #' @export
@@ -50,7 +54,7 @@
 #' )
 get_FN121_Weather <- function(filter_list = list(), with_121 = FALSE,
                               show_id = FALSE, to_upper = TRUE,
-                              record_count = FALSE) {
+                              record_count = FALSE, add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
 
   weather_filters <- filter_list[names(filter_list) != "mu_type"]
@@ -73,6 +77,8 @@ get_FN121_Weather <- function(filter_list = list(), with_121 = FALSE,
 
     payload <- merge(FN121, payload)
   }
+
+  if (add_year_col) payload <- add_year_col(payload)
 
   return(payload)
 }

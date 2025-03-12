@@ -48,7 +48,7 @@
 #' fn121 <- get_FN121(filters)
 #' fn121 <- get_FN121(list(lake = "HU", prj_cd__like = "_003"))
 #' fn121 <- get_FN121(list(lake = "HU", prj_cd__like = "_003"), show_id = TRUE)
-get_FN121 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, record_count = FALSE, add_year_col=FALSE) {
+get_FN121 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, record_count = FALSE, add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("fn121", filter_list, "fn_portal")

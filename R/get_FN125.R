@@ -18,13 +18,20 @@
 #' and filter by "fn125" for additional information.
 #'
 #' @param filter_list list
+#'
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'
 #' fields are hidden from the data frame. To return these columns
 #' as part of the data frame, use 'show_id = TRUE'.
+#'
 #' @param to_upper - should the names of the dataframe be converted to
 #' upper case?
+#'
 #' @param record_count - should data be returned, or just the number
 #'   of records that would be returned given the current filters.
+#'
+#' @param add_year_col - should a 'year' column be added to the
+#'   returned dataframe?  This argument is ignored if the data frame
+#'   does not contain a 'prj_cd' column.
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
@@ -57,7 +64,8 @@
 #' fn125 <- get_FN125(list(prj_cd = "LHA_IA19_812"))
 #' fn125 <- get_FN125(list(prj_cd = "LHA_IA19_812"), show_id = TRUE)
 #'
-get_FN125 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, record_count = FALSE) {
+get_FN125 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE,
+                      record_count = FALSE, add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   check_filters("fn125", filter_list, "fn_portal")
   query_string <- build_query_string(filter_list)
@@ -68,6 +76,6 @@ get_FN125 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, re
   )
 
   payload <- api_to_dataframe(my_url, recursive = recursive, record_count = record_count)
-  payload <- prepare_payload(payload, show_id, to_upper)
+  payload <- prepare_payload(payload, show_id, to_upper, add_year_col = add_year_col)
   return(payload)
 }

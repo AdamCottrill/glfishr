@@ -21,17 +21,24 @@
 #' and filter by "fn121limno" for additional information.
 #'
 #' @param filter_list list
+#'
 #' @param with_121 When 'FALSE', the default, only the limnology fields
 #' from the FN121 table are returned. To return the whole FN121 table
 #' (excluding trapnet, weather, and trawl fields), use 'with_121 = TRUE'.
+#'
 #' @param show_id When 'FALSE', the default, the 'slug'
 #' field is hidden from the data frame. To return this field
 #' as part of the data frame, use 'show_id = TRUE'.
+#'
 #' @param to_upper - should the names of the dataframe be converted to
 #' upper case?  Defaults to TRUE to match the FISHNET-II  convention
 #'
 #' @param record_count - should data be returned, or just the number
 #'   of records that would be returned given the current filters.
+#'
+#' @param add_year_col - should a 'year' column be added to the
+#'   returned dataframe?  This argument is ignored if the data frame
+#'   does not contain a 'prj_cd' column.
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
@@ -60,7 +67,8 @@
 #'   o2surf0__not_null = TRUE
 #' ), show_id = TRUE)
 #'
-get_FN121_Limno <- function(filter_list = list(), with_121 = FALSE, show_id = FALSE, to_upper = TRUE, record_count = FALSE) {
+get_FN121_Limno <- function(filter_list = list(), with_121 = FALSE, show_id = FALSE, to_upper = TRUE, record_count = FALSE,
+                            add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
 
   limno_filters <- filter_list[names(filter_list) != "mu_type"]
@@ -83,6 +91,8 @@ get_FN121_Limno <- function(filter_list = list(), with_121 = FALSE, show_id = FA
 
     payload <- merge(FN121, payload)
   }
+
+  if (add_year_col) payload <- add_year_col(payload)
 
   return(payload)
 }

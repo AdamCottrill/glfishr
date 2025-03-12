@@ -29,7 +29,7 @@
 #' @param add_year_col - should a 'year' column be added to the
 #'   returned dataframe?  This argument is ignored if the data frame
 #'   does not contain a 'prj_cd' column.
-#'#'
+#' #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
 #' @export
@@ -49,7 +49,7 @@
 #'   show_id =
 #'     TRUE
 #' )
-get_FN011 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, record_count = FALSE, add_year_col=FALSE) {
+get_FN011 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, record_count = FALSE, add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("fn011", filter_list, "fn_portal")
