@@ -56,7 +56,7 @@ sc011 <- get_SC011(list(lake = "ER"))
 
 sc011 <- get_SC011(list(lake = "HU", prj_cd__like = "_001"))
 
-sc011 <- get_SC011(list(lake = "HU", protocol = "USA"), show_id = TRUE)
+sc011 <- get_SC011(list(lake = "HU"), show_id = TRUE)
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

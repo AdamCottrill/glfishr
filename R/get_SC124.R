@@ -31,6 +31,10 @@
 #' @param record_count - should data be returned, or just the number
 #'   of records that would be returned given the current filters.
 #'
+#' @param add_year_col - should a 'year' column be added to the
+#'   returned dataframe?  This argument is ignored if the data frame
+#'   does not contain a 'prj_cd' column.
+#'
 #' @author Jeremy Holden \email{jeremy.holden@@ontario.ca}
 #' @return dataframe
 #' @export
@@ -48,7 +52,8 @@
 #' sc124 <- get_SC124(list(prj_cd = "LOA_SC19_002"),
 #'   uncount = TRUE
 #' )
-get_SC124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, uncount = FALSE, record_count = FALSE) {
+get_SC124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, uncount = FALSE,
+                      record_count = FALSE, add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("sc124", filter_list, api_app = "creels")
@@ -62,8 +67,9 @@ get_SC124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, un
 
   if (uncount & length(payload)) {
     payload <- uncount_tally(payload, "SIZCNT")
-    return(payload)
   }
+
+  if (add_year_col) payload <- add_year_col(payload)
 
   return(payload)
 }

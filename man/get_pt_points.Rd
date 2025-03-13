@@ -4,7 +4,12 @@
 \alias{get_pt_points}
 \title{get_pt_points - Project Tracker Points}
 \usage{
-get_pt_points(filter_list = list(), to_upper = TRUE, record_count = FALSE)
+get_pt_points(
+  filter_list = list(),
+  to_upper = TRUE,
+  record_count = FALSE,
+  add_year_col = FALSE
+)
 }
 \arguments{
 \item{filter_list}{list}
@@ -17,6 +22,12 @@ converted to upper case?
 \item{record_count}{\itemize{
 \item should data be returned, or just the number
 of records that would be returned given the current filters.
+}}
+
+\item{add_year_col}{\itemize{
+\item should a 'year' column be added to the
+returned dataframe?  This argument is ignored if the data frame
+does not contain a 'prj_cd' column.
 }}
 }
 \value{

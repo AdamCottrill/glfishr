@@ -8,7 +8,8 @@ get_Stream_Dimensions(
   filter_list = list(),
   show_id = FALSE,
   to_upper = TRUE,
-  record_count = FALSE
+  record_count = FALSE,
+  add_year_col = FALSE
 )
 }
 \arguments{
@@ -26,6 +27,12 @@ upper case?
 \item{record_count}{\itemize{
 \item should data be returned, or just the number
 of records that would be returned given the current filters.
+}}
+
+\item{add_year_col}{\itemize{
+\item should a 'year' column be added to the
+returned dataframe?  This argument is ignored if the data frame
+does not contain a 'prj_cd' column.
 }}
 }
 \value{
@@ -54,7 +61,7 @@ and filter by "stream_dimensions" for additional information.
 show_filters("stream_dimensions")
 }
 # TODO: add more examples when more data is uploaded
-stream <- get_Stream_Dimensions(list(lake = "ER"))
+stream <- get_Stream_Dimensions(list(lake = "SU", year = "2015"))
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

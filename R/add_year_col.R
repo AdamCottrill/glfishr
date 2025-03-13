@@ -1,8 +1,15 @@
-##' .. content for \description{} (no empty lines) ..
+##' The add_year_col is used by many of the functions glfishr but can
+##' also be used independently to add a year column to a "FishNet-2"
+##' like dataframe that contains a PRJ_CD column.  If the data frame
+##' does not contain column "PRJ_CD" or "prj_cd" an error will be
+##' thrown. If the data frame already contains a Year column, it will
+##' be returned unchanged.
 ##'
 ##' Add year to fishnet-like dataframe
 ##' @title Add year to fishnet-like dataframe
-##' @param fn_dat - data frame with the column 'prj_cd'
+##' @param fn_data - data frame with the column 'prj_cd'
+##' @param silent - should the warnings be suppressed
+##'
 ##' @return data frame
 ##' @export
 ##' @author R. Adam Cottrill
@@ -16,7 +23,7 @@ add_year_col <- function(fn_data, silent = FALSE) {
     if (silent) {
       return(fn_data)
     } else {
-      msg <- "Dataaframe must contain a column named 'PRJ_CD' or 'prj_cd'"
+      msg <- "Dataframe must contain a column named 'PRJ_CD' or 'prj_cd'"
       stop(msg)
     }
   }

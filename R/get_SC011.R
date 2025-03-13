@@ -37,8 +37,9 @@
 #'
 #' sc011 <- get_SC011(list(lake = "HU", prj_cd__like = "_001"))
 #'
-#' sc011 <- get_SC011(list(lake = "HU", protocol = "USA"), show_id = TRUE)
-get_SC011 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, record_count = FALSE) {
+#' sc011 <- get_SC011(list(lake = "HU"), show_id = TRUE)
+get_SC011 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE,
+                      record_count = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("sc011", filter_list, api_app = "creels")

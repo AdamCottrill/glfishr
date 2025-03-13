@@ -25,6 +25,9 @@
 #' @param record_count - should data be returned, or just the number
 #'   of records that would be returned given the current filters.
 #'
+#' @param add_year_col - should a 'year' column be added to the
+#'   returned dataframe?  This argument is ignored if the data frame
+#'   does not contain a 'prj_cd' column.
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
@@ -50,7 +53,8 @@
 #'
 #' reports <- get_pt_reports(list(lake = "HU", year = 2018))
 #'
-get_pt_reports <- function(filter_list = list(), to_upper = TRUE, record_count = FALSE) {
+get_pt_reports <- function(filter_list = list(), to_upper = TRUE,
+                           record_count = FALSE, add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("reports", filter_list, api_app = "project_tracker")
@@ -61,7 +65,7 @@ get_pt_reports <- function(filter_list = list(), to_upper = TRUE, record_count =
   )
 
   payload <- api_to_dataframe(my_url, recursive = recursive, record_count = record_count)
-  payload <- prepare_payload(payload, to_upper = to_upper)
+  payload <- prepare_payload(payload, to_upper = to_upper, add_year_col = add_year_col)
 
   return(payload)
 }
