@@ -34,7 +34,10 @@
 #'
 #' taxa_list <- get_taxon_table()
 #' order_list <- get_taxon_table(list(taxonomic_rank = "order"))
-get_taxon_table <- function(filter_list = list(), to_upper = TRUE, record_count = FALSE) {
+get_taxon_table <- function(
+    filter_list = list(),
+    to_upper = TRUE,
+    record_count = FALSE) {
   query_string <- build_query_string(filter_list)
 
   # TODO - add examples of new filters if/when they exist (e.g. taxon_label__like)

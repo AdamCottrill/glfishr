@@ -28,7 +28,10 @@
 #' bottom_types <- get_bottom_types()
 #' all_bottom_types <- get_bottom_types(list(all = TRUE))
 #' bottom_type_slugs <- get_bottom_types(show_id = TRUE)
-get_bottom_types <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+get_bottom_types <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
   # check_filters("bottom_types", filter_list, "common")

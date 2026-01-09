@@ -41,8 +41,18 @@
 #' fn123 <- join_fn_fields(fn121, fn123, c("GR"))
 join_fn_fields <- function(parent, child, parent_fields, ...) {
   fn_keys <- c(
-    "prj_cd", "ssn", "space", "mode", "sama", "sam", "eff", "spc",
-    "grp", "fish", "dtp", "prd"
+    "prj_cd",
+    "ssn",
+    "space",
+    "mode",
+    "sama",
+    "sam",
+    "eff",
+    "spc",
+    "grp",
+    "fish",
+    "dtp",
+    "prd"
   )
 
   fn_keys <- c(fn_keys, toupper(fn_keys))
@@ -55,7 +65,8 @@ join_fn_fields <- function(parent, child, parent_fields, ...) {
   # our parent records, we need to stop - otherwise we end up with a
   # cartesian product.
   check_common_keys <- function(parent_data, flds) {
-    tmp <- stats::aggregate(subset(parent_data, select = flds),
+    tmp <- stats::aggregate(
+      subset(parent_data, select = flds),
       by = subset(parent_data, select = flds),
       FUN = length
     )
@@ -77,7 +88,6 @@ join_fn_fields <- function(parent, child, parent_fields, ...) {
 
   return(merged)
 }
-
 
 
 #' Pluck a data-frame from a named list of key-value pairs
@@ -123,14 +133,12 @@ pluck_dataframe <- function(payload, what = "tag_type") {
 #' LOA_IA21_TW1 <- get_FN124(list(prj_cd = "LOA_IA21_TW1"))
 #' LOA_IA21_TW1_long <- uncount_tally(LOA_IA21_TW1, "SIZCNT")
 uncount_tally <- function(df, tally_col) {
-  long_df <- df[rep(seq(nrow(df)), df[[tally_col]]), names(df) != tally_col]
+  long_df <- df[rep(seq_len(nrow(df)), df[[tally_col]]), names(df) != tally_col]
 
   rownames(long_df) <- NULL
 
   return(long_df)
 }
-
-
 
 
 ##' Truncate the last element from glis slug

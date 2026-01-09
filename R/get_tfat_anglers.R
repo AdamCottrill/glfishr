@@ -34,5 +34,9 @@ get_tfat_reporters <- function(filter_list = list(), record_count = FALSE) {
     get_tfat_root(),
     query_string
   )
-  return(api_to_dataframe(my_url, recursive = recursive, record_count = record_count))
+  return(api_to_dataframe(
+    my_url,
+    recursive = recursive,
+    record_count = record_count
+  ))
 }

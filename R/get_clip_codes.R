@@ -28,7 +28,10 @@
 #'
 #' clip_codes <- get_clip_codes()
 #' clip_code_slugs <- get_clip_codes(show_id = TRUE)
-get_clip_codes <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+get_clip_codes <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
   # check_filters("finclips", filter_list, "common")

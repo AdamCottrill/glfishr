@@ -32,7 +32,11 @@
 #' tag_types <- get_tag_types()
 #' all_tag_types <- get_tag_types(list(all = TRUE))
 #' tag_slugs <- get_tag_types(show_id = TRUE)
-get_tag_types <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, record_count = FALSE) {
+get_tag_types <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE,
+    record_count = FALSE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
   # check_filters("tag_types", filter_list, "common")

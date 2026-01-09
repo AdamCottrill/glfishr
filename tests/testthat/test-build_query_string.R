@@ -2,13 +2,11 @@
 # to be used to filter an api endpoint. Thhese tests confirm that the
 # function works as expected.
 
-
 test_that("empty list return empty query string", {
   filters <- list()
   expected <- ""
   expect_equal(build_query_string(filters), expected)
 })
-
 
 
 test_that("single value returned as key-value pair", {

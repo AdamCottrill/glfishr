@@ -13,7 +13,9 @@
 #' it will be created. If xlsx_toc is true, an associated xlsx file
 #' will be created in the target directory - the spreadsheet will
 #' contain all of the fields contained in the file list, and a
-#' hyperlink to each of the downloaded files.
+#' hyperlink to each of the downloaded files.  If a file or report is
+#' identified more than once, only the first instance is downloaded,
+#' but every instance is still reported in the TOC file.
 #'
 #' @param file_list dataframe - containing the contents to be written
 #' into the toc. The last column of which is expected to be the path
@@ -33,9 +35,12 @@
 #' @return dataframe
 #'
 #'
-download_pt_files <- function(file_list, target_dir,
-                              xlsx_toc = "reports_toc.xlsx",
-                              create_target_dir = TRUE) {
+download_pt_files <- function(
+  file_list,
+  target_dir,
+  xlsx_toc = "reports_toc.xlsx",
+  create_target_dir = TRUE
+) {
   if (missing(target_dir)) {
     stop("a target directory was not provided")
   }
@@ -58,16 +63,23 @@ download_pt_files <- function(file_list, target_dir,
   # changes, this path have to be updated accordingly
   BLOB_ROOT <- "https://glis0000prd0420ggt3.blob.core.windows.net/media/"
 
-  for (i in seq(nrow(file_list))) {
-    filename <- paste0(
-      # get_domain(),
-      # "project_tracker/serve_file/",
-      BLOB_ROOT,
-      file_list[, ncol(file_list)][i]
-    )
-    print(sprintf("downloading %s", filename))
-    trg <- file.path(target_dir, basename(filename))
-    utils::download.file(filename, trg, mode = "wb")
+  download_cache <- c()
+
+  for (i in seq_len(nrow(file_list))) {
+    fname <- file_list[, ncol(file_list)][i]
+    # only download a file if it hasn't been downloaded already
+    if (fname %in% download_cache) {
+      print(sprintf("skipping %s. Already downloaded.", fname))
+    } else {
+      download_cache <- append(download_cache, fname)
+      filename <- paste0(
+        BLOB_ROOT,
+        fname
+      )
+      print(sprintf("downloading %s", fname))
+      trg <- file.path(target_dir, basename(filename))
+      utils::download.file(filename, trg, mode = "wb")
+    }
   }
 
   if (grepl("\\.xlsx$", xlsx_toc)) {
@@ -86,8 +98,12 @@ download_pt_files <- function(file_list, target_dir,
     wb <- openxlsx::createWorkbook()
     openxlsx::addWorksheet(wb, "Files")
     openxlsx::writeData(wb, sheet = 1, x = file_list)
-    openxlsx::addStyle(wb, "Files", link_style,
-      rows = 2:(1 + nrow(file_list)), cols = link_col
+    openxlsx::addStyle(
+      wb,
+      "Files",
+      link_style,
+      rows = 2:(1 + nrow(file_list)),
+      cols = link_col
     )
     xlsx_file <- file.path(target_dir, xlsx_toc)
     openxlsx::saveWorkbook(wb, xlsx_file, overwrite = TRUE)

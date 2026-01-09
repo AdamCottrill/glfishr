@@ -8,3 +8,5 @@ sandbox/*
 R/get_FR712.R
 R/get_FR713.R
 R/get_FR714.R
+^.*\.Rproj$
+^\.Rproj\.user$

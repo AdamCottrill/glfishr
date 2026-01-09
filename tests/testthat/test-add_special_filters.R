@@ -7,7 +7,6 @@
 ##' If new filters are added in the future, test cases should be add
 ##' here too.
 
-
 filters <- data.frame(name = character(), description = character())
 
 

@@ -11,7 +11,6 @@ stub_swagger <- function(endpoint_names) {
     required = c(FALSE, FALSE)
   )
 
-
   stub <- list()
   for (endpoint in endpoint_names) {
     stub$paths[[endpoint]]$get$parameters <- parameters

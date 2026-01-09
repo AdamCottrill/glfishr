@@ -45,7 +45,11 @@
 #'   show_id =
 #'     TRUE
 #' )
-get_FN011 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, record_count = FALSE) {
+get_FN011 <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE,
+    record_count = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("fn011", filter_list, "fn_portal")
@@ -54,7 +58,11 @@ get_FN011 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, re
     get_fn_portal_root(),
     query_string
   )
-  payload <- api_to_dataframe(my_url, recursive = recursive, record_count = record_count)
+  payload <- api_to_dataframe(
+    my_url,
+    recursive = recursive,
+    record_count = record_count
+  )
   payload <- prepare_payload(payload, show_id, to_upper)
 
   return(payload)

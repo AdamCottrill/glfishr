@@ -31,7 +31,11 @@
 #' grid5s <- get_grid5s(list(page_size = 5000))
 #' erie_grid5s <- get_grid5s(list(lake = "ER"))
 #' grid5_slugs <- get_grid5s(list(page_size = 5000), show_id = TRUE)
-get_grid5s <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, record_count = FALSE) {
+get_grid5s <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE,
+    record_count = FALSE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
   check_filters("grid5s", filter_list, "common")

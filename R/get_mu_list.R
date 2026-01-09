@@ -14,7 +14,10 @@
 #' get_mu_list()
 #' get_mu_list(list(lake = "HU"))
 #' get_mu_list(list(lake = "HU", mu_type = "basin"))
-get_mu_list <- function(filter_list = list(), to_upper = TRUE, record_count = FALSE) {
+get_mu_list <- function(
+    filter_list = list(),
+    to_upper = TRUE,
+    record_count = FALSE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
   check_filters("lake_management_unit_types", filter_list, "common")

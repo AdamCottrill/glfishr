@@ -67,8 +67,13 @@
 #' print(nrow(fn124))
 #' head(fn124)
 #'
-get_FN124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, uncount = FALSE,
-                      record_count = FALSE, add_year_col = FALSE) {
+get_FN124 <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE,
+    uncount = FALSE,
+    record_count = FALSE,
+    add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("fn124", filter_list, "fn_portal")
@@ -77,8 +82,17 @@ get_FN124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, un
     get_fn_portal_root(),
     query_string
   )
-  payload <- api_to_dataframe(my_url, recursive = recursive, record_count = record_count)
-  payload <- prepare_payload(payload, show_id, to_upper, add_year_col = add_year_col)
+  payload <- api_to_dataframe(
+    my_url,
+    recursive = recursive,
+    record_count = record_count
+  )
+  payload <- prepare_payload(
+    payload,
+    show_id,
+    to_upper,
+    add_year_col = add_year_col
+  )
 
   if (uncount == TRUE) {
     payload <- uncount_tally(payload, "SIZCNT")

@@ -35,7 +35,11 @@
 #' all_project_leads <- get_project_leads(list(all = TRUE))
 #' all_steves <- get_project_leads(list(first_name__like = "ste", all = TRUE))
 #' project_lead_slugs <- get_project_leads(show_id = TRUE)
-get_project_leads <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, record_count = FALSE) {
+get_project_leads <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE,
+    record_count = FALSE) {
   query_string <- build_query_string(filter_list)
   check_filters("prj_ldr", filter_list, "fn_portal")
 

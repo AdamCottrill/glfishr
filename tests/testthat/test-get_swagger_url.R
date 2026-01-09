@@ -1,6 +1,9 @@
 test_that("get_swagger_url works for known apps", {
   known_apps <- c(
-    "common", "project_tracker", "fn_portal", "creels"
+    "common",
+    "project_tracker",
+    "fn_portal",
+    "creels"
   )
 
   domain <- get_domain()

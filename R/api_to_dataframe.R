@@ -35,10 +35,14 @@
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
 
-
-api_to_dataframe <- function(url, data = NULL, page = 0,
-                             recursive = TRUE, request_type = "GET", request_body = NULL,
-                             record_count = FALSE) {
+api_to_dataframe <- function(
+    url,
+    data = NULL,
+    page = 0,
+    recursive = TRUE,
+    request_type = "GET",
+    request_body = NULL,
+    record_count = FALSE) {
   if (!exists("token")) get_token()
 
   if (is.null(token)) {
@@ -56,21 +60,19 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
 
   if (request_type == "POST") {
     response <- tryCatch(
-      httr::POST(url,
+      httr::POST(
+        url,
         config = httr::add_headers(authorization = auth_header),
         body = request_body,
         encode = "json"
       ),
-      error =
-        function(err) {
-          print("unable to POST to the server. Is your VPN active?")
-        }
+      error = function(err) {
+        print("unable to POST to the server. Is your VPN active?")
+      }
     )
   } else {
     response <- tryCatch(
-      httr::GET(url,
-        config = httr::add_headers(authorization = auth_header)
-      ),
+      httr::GET(url, config = httr::add_headers(authorization = auth_header)),
       error = function(err) {
         print("Something is wrong. Unable to fetch the data from the server.")
       }
@@ -112,12 +114,12 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
       s <- if (num_records == 1) "" else "s"
       msg <- sprintf(
         "Fetching %s record%s...",
-        format(num_records, big.mark = ",", scientific = FALSE), s
+        format(num_records, big.mark = ",", scientific = FALSE),
+        s
       )
     }
     message(msg)
   }
-
 
   page <- page + 1
 
@@ -139,13 +141,17 @@ api_to_dataframe <- function(url, data = NULL, page = 0,
     }
     next_url <- payload$`next`
     if (!is.null(next_url) && page < max_page_count && recursive) {
-      data <- api_to_dataframe(next_url, data, page, record_count = record_count)
+      data <- api_to_dataframe(
+        next_url,
+        data,
+        page,
+        record_count = record_count
+      )
     }
     return(data)
   } else {
     data <- payload
   }
-
 
   return(data)
 }

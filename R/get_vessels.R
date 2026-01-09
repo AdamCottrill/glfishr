@@ -27,7 +27,10 @@
 #'
 #' vessel_list <- get_vessels()
 #' all_vessels <- get_vessels(list(all = TRUE))
-get_vessels <- function(filter_list = list(), to_upper = TRUE, record_count = FALSE) {
+get_vessels <- function(
+    filter_list = list(),
+    to_upper = TRUE,
+    record_count = FALSE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
   # check_filters("vessels", filter_list, "common")

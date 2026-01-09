@@ -29,7 +29,10 @@
 #'
 #' ageprep2 <- get_ageprep2()
 #' ageprep2_slugs <- get_ageprep2(show_id = TRUE)
-get_ageprep2 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+get_ageprep2 <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
   # check_filters("ageprep2", filter_list, "common")

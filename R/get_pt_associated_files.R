@@ -44,19 +44,29 @@
 #' files <- get_pt_associated_files(list(lake = "HU"))
 #' }
 #'
-get_pt_associated_files <- function(filter_list = list(), to_upper = TRUE, record_count = FALSE, add_year_col = FALSE) {
+get_pt_associated_files <- function(
+    filter_list = list(),
+    to_upper = TRUE,
+    record_count = FALSE,
+    add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("associated_files", filter_list,
-    api_app = "project_tracker"
-  )
+  check_filters("associated_files", filter_list, api_app = "project_tracker")
   my_url <- sprintf(
     "%s/associated_files/%s",
     get_pt_portal_root(),
     query_string
   )
-  payload <- api_to_dataframe(my_url, recursive = recursive, record_count = record_count)
-  payload <- prepare_payload(payload, to_upper = to_upper, add_year_col = add_year_col)
+  payload <- api_to_dataframe(
+    my_url,
+    recursive = recursive,
+    record_count = record_count
+  )
+  payload <- prepare_payload(
+    payload,
+    to_upper = to_upper,
+    add_year_col = add_year_col
+  )
 
   return(payload)
 }

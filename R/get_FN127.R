@@ -59,8 +59,12 @@
 #' filters <- list(lake = "HU", spc = "076", grp = "55")
 #' fn127 <- get_FN127(filters)
 #' fn127 <- get_FN127(filters, show_id = TRUE)
-get_FN127 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE,
-                      record_count = FALSE, add_year_col = FALSE) {
+get_FN127 <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE,
+    record_count = FALSE,
+    add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("fn127", filter_list, "fn_portal")
@@ -69,8 +73,17 @@ get_FN127 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE,
     get_fn_portal_root(),
     query_string
   )
-  payload <- api_to_dataframe(my_url, recursive = recursive, record_count = record_count)
-  payload <- prepare_payload(payload, show_id, to_upper, add_year_col = add_year_col)
+  payload <- api_to_dataframe(
+    my_url,
+    recursive = recursive,
+    record_count = record_count
+  )
+  payload <- prepare_payload(
+    payload,
+    show_id,
+    to_upper,
+    add_year_col = add_year_col
+  )
 
   return(payload)
 }

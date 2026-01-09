@@ -13,7 +13,7 @@
 ##' @return data frame
 ##' @export
 ##' @author R. Adam Cottrill
-add_year_col <- function(fn_data, silent = FALSE) {
+add_year_column <- function(fn_data, silent = FALSE) {
   if ("year" %in% tolower(names(fn_data))) {
     return(fn_data)
   }
@@ -28,7 +28,8 @@ add_year_col <- function(fn_data, silent = FALSE) {
     }
   }
   year <- substr(fn_data[, prj_cd_idx], 7, 8)
-  year <- ifelse(as.numeric(year) <= 50,
+  year <- ifelse(
+    as.numeric(year) <= 50,
     as.numeric(paste0("20", year)),
     as.numeric(paste0("19", year))
   )

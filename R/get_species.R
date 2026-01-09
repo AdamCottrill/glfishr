@@ -32,7 +32,10 @@
 #' species <- get_species()
 #' trout <- get_species(list(spc_nmco__like = "trout"))
 #' goby <- get_species(list(spc = 366, detail = TRUE))
-get_species <- function(filter_list = list(), to_upper = TRUE, record_count = FALSE) {
+get_species <- function(
+    filter_list = list(),
+    to_upper = TRUE,
+    record_count = FALSE) {
   query_string <- build_query_string(filter_list)
   check_filters("species", filter_list, "common")
   # TODO: fix detail = TRUE warning

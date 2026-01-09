@@ -33,7 +33,10 @@
 #' abstracts <- get_pt_abstracts(filters)
 #'
 #' abstracts <- get_pt_abstracts(list(lake = "HU", year__gte = 2018))
-get_pt_abstracts <- function(filter_list = list(), to_upper = TRUE, record_count = FALSE) {
+get_pt_abstracts <- function(
+    filter_list = list(),
+    to_upper = TRUE,
+    record_count = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("project_abstracts", filter_list, api_app = "project_tracker")
@@ -43,7 +46,11 @@ get_pt_abstracts <- function(filter_list = list(), to_upper = TRUE, record_count
     query_string
   )
 
-  payload <- api_to_dataframe(my_url, recursive = recursive, record_count = record_count)
+  payload <- api_to_dataframe(
+    my_url,
+    recursive = recursive,
+    record_count = record_count
+  )
   payload <- prepare_payload(payload, to_upper = to_upper)
 
   return(payload)

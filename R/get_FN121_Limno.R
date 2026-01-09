@@ -67,8 +67,13 @@
 #'   o2surf0__not_null = TRUE
 #' ), show_id = TRUE)
 #'
-get_FN121_Limno <- function(filter_list = list(), with_121 = FALSE, show_id = FALSE, to_upper = TRUE, record_count = FALSE,
-                            add_year_col = FALSE) {
+get_FN121_Limno <- function(
+    filter_list = list(),
+    with_121 = FALSE,
+    show_id = FALSE,
+    to_upper = TRUE,
+    record_count = FALSE,
+    add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
 
   limno_filters <- filter_list[names(filter_list) != "mu_type"]
@@ -80,19 +85,23 @@ get_FN121_Limno <- function(filter_list = list(), with_121 = FALSE, show_id = FA
     get_fn_portal_root(),
     query_string
   )
-  payload <- api_to_dataframe(my_url, recursive = recursive, record_count = record_count)
+  payload <- api_to_dataframe(
+    my_url,
+    recursive = recursive,
+    record_count = record_count
+  )
   payload <- prepare_payload(payload, show_id, to_upper)
 
   if (with_121 == TRUE) {
     limno_filters <- setdiff(names(filter_list), api_filters$fn121$name)
     new_filters <- filter_list[names(filter_list) %in% limno_filters == FALSE]
 
-    FN121 <- get_FN121(new_filters)
+    fn121 <- get_FN121(new_filters)
 
-    payload <- merge(FN121, payload)
+    payload <- merge(fn121, payload)
   }
 
-  if (add_year_col) payload <- add_year_col(payload)
+  if (add_year_col) payload <- add_year_column(payload)
 
   return(payload)
 }

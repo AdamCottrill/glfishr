@@ -50,7 +50,6 @@ test_that("extra rows removed from fn012", {
 })
 
 
-
 test_that("extra columns in fn123 ignored", {
   fn123$EXTRA <- "FOO"
   fn012_out <- prune_unused_fn012(fn012_in, fn123)

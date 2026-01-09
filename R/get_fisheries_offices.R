@@ -27,7 +27,10 @@
 #'
 #' fisheries_offices <- get_fisheries_offices()
 #' fisheries_office_slugs <- get_fisheries_offices(show_id = TRUE)
-get_fisheries_offices <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+get_fisheries_offices <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
   # check_filters("fisheries_offices", filter_list, "common")

@@ -29,7 +29,11 @@
 #'
 #' orientations <- get_orientations()
 #' orientation_slugs <- get_orientations(show_id = TRUE)
-get_orientations <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, record_count = FALSE) {
+get_orientations <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE,
+    record_count = FALSE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
   # check_filters("orient", filter_list, "common")

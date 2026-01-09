@@ -31,7 +31,11 @@
 #'
 #' fn013 <- get_FN013(list(prj_cd = "LOA_IA21_054"))
 #' fn013 <- get_FN013(list(prj_cd = "L0A_IA21_054"), show_id = TRUE)
-get_FN013 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, add_year_col = FALSE) {
+get_FN013 <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE,
+    add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("fn013", filter_list, "fn_portal")
@@ -42,7 +46,12 @@ get_FN013 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, ad
   )
 
   payload <- api_to_dataframe(my_url, recursive = recursive)
-  payload <- prepare_payload(payload, show_id, to_upper, add_year_col = add_year_col)
+  payload <- prepare_payload(
+    payload,
+    show_id,
+    to_upper,
+    add_year_col = add_year_col
+  )
 
   return(payload)
 }

@@ -31,7 +31,11 @@
 #' tissues <- get_tissues()
 #' all_tissues <- get_tissues(list(all = TRUE))
 #' tissue_slugs <- get_tissues(show_id = TRUE)
-get_tissues <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, record_count = FALSE) {
+get_tissues <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE,
+    record_count = FALSE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
   # check_filters("tissues", filter_list, "common")

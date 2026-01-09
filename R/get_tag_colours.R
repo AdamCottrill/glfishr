@@ -31,7 +31,11 @@
 #'
 #' tag_colours <- get_tag_colours()
 #' tag_colour_slugs <- get_tag_colours(show_id = TRUE)
-get_tag_colours <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, record_count = FALSE) {
+get_tag_colours <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE,
+    record_count = FALSE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
   # check_filters("tag_colours", filter_list, "common")

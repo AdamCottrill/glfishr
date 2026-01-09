@@ -22,8 +22,11 @@ build_query_string <- function(filters) {
   if (length(filters) == 0) {
     return("")
   } else {
-    qs <- paste(names(filters), sapply(filters, paste, collapse = ","),
-      sep = "=", collapse = "&"
+    qs <- paste(
+      names(filters),
+      sapply(filters, paste, collapse = ","),
+      sep = "=",
+      collapse = "&"
     )
   }
   return(sprintf("?%s", qs))

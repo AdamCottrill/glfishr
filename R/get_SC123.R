@@ -49,8 +49,12 @@
 #'
 #' sc123 <- get_SC123(list(prj_cd = "LHA_SC09_033"))
 #' sc123 <- get_SC123(list(prj_cd = "LHA_SC09_033"), show_id = TRUE)
-get_SC123 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE,
-                      record_count = FALSE, add_year_col = FALSE) {
+get_SC123 <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE,
+    record_count = FALSE,
+    add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("sc123", filter_list, api_app = "creels")
@@ -59,8 +63,17 @@ get_SC123 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE,
     get_sc_portal_root(),
     query_string
   )
-  payload <- api_to_dataframe(my_url, recursive = recursive, record_count = record_count)
-  payload <- prepare_payload(payload, show_id, to_upper, add_year_col = add_year_col)
+  payload <- api_to_dataframe(
+    my_url,
+    recursive = recursive,
+    record_count = record_count
+  )
+  payload <- prepare_payload(
+    payload,
+    show_id,
+    to_upper,
+    add_year_col = add_year_col
+  )
 
   return(payload)
 }

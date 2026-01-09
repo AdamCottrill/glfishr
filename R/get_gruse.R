@@ -29,7 +29,11 @@
 #'
 #' gruse <- get_gruse()
 #' gruse_slugs <- get_gruse(show_id = TRUE)
-get_gruse <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, record_count = FALSE) {
+get_gruse <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE,
+    record_count = FALSE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
   # check_filters("gruse", filter_list, "common")

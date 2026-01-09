@@ -50,8 +50,12 @@
 #' filters <- list(lake = "HU", spc = "076", year__gte = 2018)
 #' sc125Lam <- get_SC125_Lamprey(filters)
 #' sc125Lam <- get_SC125_Lamprey(filters, show_id = TRUE)
-get_SC125_Lamprey <- function(filter_list = list(), show_id = FALSE,
-                              to_upper = TRUE, record_count = FALSE, add_year_col = FALSE) {
+get_SC125_Lamprey <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE,
+    record_count = FALSE,
+    add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("sc125lamprey", filter_list, api_app = "creels")
@@ -60,8 +64,17 @@ get_SC125_Lamprey <- function(filter_list = list(), show_id = FALSE,
     get_sc_portal_root(),
     query_string
   )
-  payload <- api_to_dataframe(my_url, recursive = recursive, record_count = record_count)
-  payload <- prepare_payload(payload, show_id, to_upper, add_year_col = add_year_col)
+  payload <- api_to_dataframe(
+    my_url,
+    recursive = recursive,
+    record_count = record_count
+  )
+  payload <- prepare_payload(
+    payload,
+    show_id,
+    to_upper,
+    add_year_col = add_year_col
+  )
 
   return(payload)
 }

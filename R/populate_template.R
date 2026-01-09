@@ -54,13 +54,15 @@
 #'   prune_fn012 = TRUE
 #' )
 #' }
-populate_template <- function(filters, template_database,
-                              target = NULL,
-                              source = c("assessment", "creel"),
-                              overwrite = FALSE,
-                              prune_fn012 = FALSE,
-                              verbose = TRUE,
-                              verbose_sqlsave = FALSE) {
+populate_template <- function(
+    filters,
+    template_database,
+    target = NULL,
+    source = c("assessment", "creel"),
+    overwrite = FALSE,
+    prune_fn012 = FALSE,
+    verbose = TRUE,
+    verbose_sqlsave = FALSE) {
   source <- match.arg(source)
 
   fname <- paste(sapply(filters, paste), collapse = "-")
@@ -87,7 +89,6 @@ populate_template <- function(filters, template_database,
   } else {
     file.copy(template_database, target, overwrite = overwrite)
   }
-
 
   # we will use a list to gather our data - the names of the list
   # elements must match the names of their corresponding table in the
@@ -155,7 +156,11 @@ validate_glis_data <- function(glis_data) {
 
   # Do all FN121 records have a valid SUBSPACE?
   fn121_subspace_check <- as.vector(unique(glis_data$FN121$SUBSPACE))
-  if (any(!(glis_data$FN121_SUBspace_check %in% glis_data$FN026_Subspace$SUBSPACE))) {
+  if (
+    any(
+      !(glis_data$FN121_SUBspace_check %in% glis_data$FN026_Subspace$SUBSPACE)
+    )
+  ) {
     stop(paste0(
       "There is a SUBSPACE value in the FN121 table that does not exist in",
       " the FN026_Subspace table."
@@ -173,7 +178,6 @@ validate_glis_data <- function(glis_data) {
 
   glis_data
 }
-
 
 
 ##' Report fetching activity to the console
@@ -213,7 +217,9 @@ get_assessment_data <- function(filters, prune_fn012, verbose) {
   glis_data$FN011 <- get_FN011(filters)
   if (is.null(dim(glis_data$FN011))) {
     message <- paste0(
-      sprintf("No Projects could not be found in *FN_PORTAL* using supplied filters:\n"),
+      sprintf(
+        "No Projects could not be found in *FN_PORTAL* using supplied filters:\n"
+      ),
       paste(names(filters), filters, sep = " = ", collapse = ", ")
     )
     stop(message)
@@ -266,14 +272,15 @@ get_assessment_data <- function(filters, prune_fn012, verbose) {
   # fetching_report("FN121_GPS_Tracks")
   # glis_data$FN121_GPS_Tracks <- get_FN121_GPS_Tracks(filters)
 
-
   glis_data$FN011$LAKE <- glis_data$FN011$LAKE.ABBREV
   fetching_report("FN012", verbose)
   glis_data$FN012 <- populate_fn012(filters, glis_data, prune_fn012)
 
-
   print("Building Gear_Effort_Process_Types...")
-  glis_data$Gear_Effort_Process_Types <- populate_gept(glis_data$FN028, glis_data$FN121)
+  glis_data$Gear_Effort_Process_Types <- populate_gept(
+    glis_data$FN028,
+    glis_data$FN121
+  )
 
   #-------------------------------------------------------------------------
   # Table Adjustments
@@ -304,7 +311,6 @@ get_assessment_data <- function(filters, prune_fn012, verbose) {
 }
 
 
-
 ##' connect the api and get data from the creel portal
 ##'
 ##' This is one of the workhorse functions used by populate_template.
@@ -326,7 +332,9 @@ get_creel_data <- function(filters, prune_fn012, verbose) {
   glis_data$FN011 <- get_SC011(filters)
   if (is.null(dim(glis_data$FN011))) {
     message <- paste0(
-      sprintf("No Projects could not be found in *CREEL_PORTAL* using supplied filters:\n"),
+      sprintf(
+        "No Projects could not be found in *CREEL_PORTAL* using supplied filters:\n"
+      ),
       paste(names(filters), filters, sep = " = ", collapse = ", ")
     )
     stop(message)
@@ -392,7 +400,9 @@ get_creel_data <- function(filters, prune_fn012, verbose) {
   fetching_report("SC012", verbose)
 
   glis_data$FN012 <- populate_fn012(
-    filters, glis_data, prune_fn012,
+    filters,
+    glis_data,
+    prune_fn012,
     source = "creel"
   )
 
@@ -435,12 +445,8 @@ add_missing_fn012 <- function(fn012, fn123) {
       fn123$key %in% still_missing,
       names(fn123) %in% keys
     ])
-    fn012 <- merge(fn012, missing,
-      by = keys,
-      all = TRUE
-    )
+    fn012 <- merge(fn012, missing, by = keys, all = TRUE)
   }
-
 
   return(fn012)
 }
@@ -465,8 +471,14 @@ add_missing_fn012 <- function(fn012, fn123) {
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return status of closed RODBC connection.
 ##' @export
-append_data <- function(dbase, trg_table, data, verbose = T, verbose_sqlsave = F, append = T, safer =
-                          T) {
+append_data <- function(
+    dbase,
+    trg_table,
+    data,
+    verbose = T,
+    verbose_sqlsave = F,
+    append = T,
+    safer = T) {
   if (!is.null(dim(data))) {
     if (verbose) {
       record_count <- nrow(data)
@@ -477,7 +489,8 @@ append_data <- function(dbase, trg_table, data, verbose = T, verbose_sqlsave = F
       }
 
       print(sprintf(
-        "Inserting %s into the %s table", record_string,
+        "Inserting %s into the %s table",
+        record_string,
         trg_table
       ))
     }
@@ -485,9 +498,15 @@ append_data <- function(dbase, trg_table, data, verbose = T, verbose_sqlsave = F
     data <- sync_flds(data, dbase, trg_table)
 
     conn <- RODBC::odbcConnectAccess2007(dbase, uid = "", pwd = "")
-    RODBC::sqlSave(conn, data,
-      tablename = trg_table, rownames = F, fast = TRUE,
-      safer = safer, append = append, verbose = verbose_sqlsave
+    RODBC::sqlSave(
+      conn,
+      data,
+      tablename = trg_table,
+      rownames = F,
+      fast = TRUE,
+      safer = safer,
+      append = append,
+      verbose = verbose_sqlsave
     )
     return(RODBC::odbcClose(conn))
   }
@@ -514,16 +533,19 @@ assign_fn012_sizesam <- function(fn012, fn124, fn125) {
   in_fn124 <- unique(paste(fn124$PRJ_CD, fn124$SPC, fn124$GRP, sep = "_"))
   in_fn125 <- unique(paste(fn125$PRJ_CD, fn125$SPC, fn125$GRP, sep = "_"))
 
-  fn012$SIZSAM <- ifelse((key %in% in_fn124) &
-    (key %in% in_fn125), 3,
-  ifelse((key %in% in_fn124) & !(key %in% in_fn125), 2,
-    ifelse(!(key %in% in_fn124) & (key %in% in_fn125), 1, 0)
-  )
+  fn012$SIZSAM <- ifelse(
+    (key %in% in_fn124) &
+      (key %in% in_fn125),
+    3,
+    ifelse(
+      (key %in% in_fn124) & !(key %in% in_fn125),
+      2,
+      ifelse(!(key %in% in_fn124) & (key %in% in_fn125), 1, 0)
+    )
   )
 
   return(fn012)
 }
-
 
 
 ##' Augment the FN012 data
@@ -562,7 +584,6 @@ augment_fn012 <- function(fn011, fn012, fn123, prune_fn012, source) {
       fetch_sc012_protocol_data(protocols)
     }
   }
-
 
   # get the default FN012 prtocol values for all of the projects
   # included in the FN011 - returns default values with PRJ_CD field
@@ -614,8 +635,6 @@ augment_fn012 <- function(fn011, fn012, fn123, prune_fn012, source) {
 }
 
 
-
-
 ##' Fill missing FN012 size limits
 ##'
 ##' The FN012 table has several fields that are used to bound
@@ -637,14 +656,21 @@ fill_missing_fn012_limits <- function(fn012) {
       detail = TRUE
     ))
     # select the columns that the spc_limits has in common with fn012
-    spc_limits <- subset(spc_limits,
+    spc_limits <- subset(
+      spc_limits,
       select = names(spc_limits)[names(spc_limits) %in% names(incomplete)]
     )
     # get the columns of fn012 that are not in the spc_limits tables
     # (except for SPC)
-    fn012_columns <- subset(incomplete,
-      select = c("SPC", names(incomplete)[!names(incomplete) %in%
-        names(spc_limits)])
+    fn012_columns <- subset(
+      incomplete,
+      select = c(
+        "SPC",
+        names(incomplete)[
+          !names(incomplete) %in%
+            names(spc_limits)
+        ]
+      )
     )
     missing <- merge(fn012_columns, spc_limits, by = "SPC")
     complete <- subset(fn012, !is.na(fn012$GRP_DES))
@@ -712,7 +738,6 @@ fetch_sc012_protocol_data <- function(protocols) {
 }
 
 
-
 ##' Get field names for target table
 ##'
 ##' This function connects to at target database and execute a simple
@@ -729,9 +754,12 @@ fetch_sc012_protocol_data <- function(protocols) {
 get_trg_table_names <- function(trg_db, table) {
   conn <- RODBC::odbcConnectAccess2007(trg_db, uid = "", pwd = "")
   stmt <- sprintf("select * from [%s] where FALSE;", table)
-  dat <- RODBC::sqlQuery(conn, stmt,
-    as.is = TRUE, stringsAsFactors =
-      FALSE, na.strings = ""
+  dat <- RODBC::sqlQuery(
+    conn,
+    stmt,
+    as.is = TRUE,
+    stringsAsFactors = FALSE,
+    na.strings = ""
   )
   RODBC::odbcClose(conn)
   return(toupper(names(dat)))
@@ -794,9 +822,14 @@ insert_gps_tracks <- function(dbase, data) {
 
   conn <- RODBC::odbcConnectAccess2007(dbase, uid = "", pwd = "")
 
-  RODBC::sqlSave(conn, data,
-    tablename = "glis_tmp_table", rownames = F, fast = TRUE,
-    safer = FALSE, append = FALSE,
+  RODBC::sqlSave(
+    conn,
+    data,
+    tablename = "glis_tmp_table",
+    rownames = F,
+    fast = TRUE,
+    safer = FALSE,
+    append = FALSE,
   )
 
   # append the data from our tmp table to our target table, using the original field name
@@ -831,9 +864,6 @@ FROM
 }
 
 
-
-
-
 ##' Populate the FN012-Sampling Specs Table
 ##'
 ##' This function populates the FN012 table for project selected by
@@ -851,8 +881,11 @@ FROM
 ##' @param source - 'assessment' or 'creel'
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return dataframe
-populate_fn012 <- function(filters, glis_data, prune_fn012,
-                           source = c("assessment", "creel")) {
+populate_fn012 <- function(
+    filters,
+    glis_data,
+    prune_fn012,
+    source = c("assessment", "creel")) {
   source <- match.arg(source)
   if (source == "assessment") {
     fn012 <- get_FN012(filters)
@@ -860,13 +893,15 @@ populate_fn012 <- function(filters, glis_data, prune_fn012,
     fn012 <- get_SC012(filters)
   }
   fn012 <- augment_fn012(
-    glis_data$FN011, fn012, glis_data$FN123,
-    prune_fn012, source
+    glis_data$FN011,
+    fn012,
+    glis_data$FN123,
+    prune_fn012,
+    source
   )
   fn012 <- assign_fn012_sizesam(fn012, glis_data$FN124, glis_data$FN125)
   fn012 <- fill_missing_fn012_limits(fn012)
 }
-
 
 
 ##' Populate Gear-Effort-Process-Type from FN028 and FN121 tables
