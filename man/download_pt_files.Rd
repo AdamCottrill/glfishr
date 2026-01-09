@@ -43,7 +43,9 @@ create_target_dir is True, and the target directory does not exist
 it will be created. If xlsx_toc is true, an associated xlsx file
 will be created in the target directory - the spreadsheet will
 contain all of the fields contained in the file list, and a
-hyperlink to each of the downloaded files.
+hyperlink to each of the downloaded files.  If a file or report is
+identified more than once, only the first instance is downloaded,
+but every instance is still reported in the TOC file.
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

@@ -8,13 +8,14 @@
 ##' Add year to fishnet-like dataframe
 ##' @title Add year to fishnet-like dataframe
 ##' @param fn_data - data frame with the column 'prj_cd'
+##' @param colname - the name of the new column. Defaults to 'YEAR'.
 ##' @param silent - should the warnings be suppressed
 ##'
 ##' @return data frame
 ##' @export
 ##' @author R. Adam Cottrill
-add_year_column <- function(fn_data, silent = FALSE) {
-  if ("year" %in% tolower(names(fn_data))) {
+add_year_column <- function(fn_data, colname = "YEAR", silent = FALSE) {
+  if (colname %in% tolower(names(fn_data))) {
     return(fn_data)
   }
 
@@ -27,11 +28,14 @@ add_year_column <- function(fn_data, silent = FALSE) {
       stop(msg)
     }
   }
-  year <- substr(fn_data[, prj_cd_idx], 7, 8)
-  year <- ifelse(
-    as.numeric(year) <= 50,
-    as.numeric(paste0("20", year)),
-    as.numeric(paste0("19", year))
+  xyear <- substr(fn_data[, prj_cd_idx], 7, 8)
+  xyear <- ifelse(
+    as.numeric(xyear) <= 50,
+    as.numeric(paste0("20", xyear)),
+    as.numeric(paste0("19", xyear))
   )
-  return(cbind(year, fn_data))
+
+  fn_data <- cbind(xyear, fn_data)
+  names(fn_data)[which(names(fn_data) == 'xyear')] <- colname
+  return(fn_data)
 }
