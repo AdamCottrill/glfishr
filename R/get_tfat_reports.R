@@ -14,6 +14,9 @@
 #'
 #' @param filter_list list
 #'
+#' @param record_count - should data be returned, or just the number
+#'   of records that would be returned given the current filters.
+#'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #'
 #' @return dataframe
@@ -33,7 +36,7 @@
 #'
 #' # tags recovered from walleye or musky
 #' reports <- get_tfat_reports(list(spc = c("334", "132")))
-get_tfat_reports <- function(filter_list = list()) {
+get_tfat_reports <- function(filter_list = list(), record_count = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   my_url <- sprintf(
@@ -41,5 +44,12 @@ get_tfat_reports <- function(filter_list = list()) {
     get_tfat_root(),
     query_string
   )
-  return(api_to_dataframe(my_url, recursive = recursive))
+
+  data <- api_to_dataframe(
+    my_url,
+    recursive = recursive,
+    record_count = record_count
+  )
+
+  return(data)
 }

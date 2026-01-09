@@ -24,10 +24,14 @@
 #' tag_positions <- get_tag_attr_values("tag_position")
 #'
 #' tagstats <- get_tag_attr_values("tagstat")
-get_tag_attr_values <- function(what = c(
-                                  "tag_origin", "tag_colour",
-                                  "tag_type", "tag_position", "tagstat"
-                                )) {
+get_tag_attr_values <- function(
+    what = c(
+      "tag_origin",
+      "tag_colour",
+      "tag_type",
+      "tag_position",
+      "tagstat"
+    )) {
   what <- match.arg(what)
   payload <- fetch_tfat_lookups()
   values <- pluck_dataframe(payload, what)

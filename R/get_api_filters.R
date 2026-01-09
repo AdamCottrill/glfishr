@@ -1,4 +1,3 @@
-
 #' Connect to the api endpoint and return swagger documentation
 #'
 #' This function connects to the openapi/swagger endpoint specified by
@@ -17,11 +16,9 @@
 get_swagger_payload <- function(api_app) {
   swagger_url <- get_swagger_url(api_app)
 
-  response <- tryCatch(httr::GET(swagger_url),
-    error = function(err) {
-      stop("unable to fetch filters from the server. Is your VPN active?")
-    }
-  )
+  response <- tryCatch(httr::GET(swagger_url), error = function(err) {
+    stop("unable to fetch filters from the server. Is your VPN active?")
+  })
 
   json <- httr::content(response, "text", encoding = "UTF-8")
 
@@ -56,7 +53,6 @@ get_swagger_payload <- function(api_app) {
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return list
 get_api_filters <- function(api_app, create_list = TRUE) {
-
   payload <- get_swagger_payload(api_app)
 
   api_filters <- parse_swagger_payload(payload)
@@ -78,10 +74,14 @@ get_api_filters <- function(api_app, create_list = TRUE) {
 ##' filters infromation from.
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return character vector
-get_swagger_url <- function(api_app = c(
-                              "common", "project_tracker",
-                              "fn_portal", "creels", "tfat"
-                            )) {
+get_swagger_url <- function(
+    api_app = c(
+      "common",
+      "project_tracker",
+      "fn_portal",
+      "creels",
+      "tfat"
+    )) {
   api_app <- match.arg(api_app)
   domain <- get_domain()
 
@@ -140,47 +140,64 @@ parse_swagger_payload <- function(payload) {
 ##' @return list
 add_special_filters <- function(endpoint_name, values) {
   if (endpoint_name == "fn121") {
-    values <- rbind(values, data.frame(
-      name = "mu_type",
-      description = "Run get_mu_list() for a list of accepted abbreviations."
-    ))
+    values <- rbind(
+      values,
+      data.frame(
+        name = "mu_type",
+        description = "Run get_mu_list() for a list of accepted abbreviations."
+      )
+    )
   }
 
   if (endpoint_name == "gear") {
-    values <- rbind(values, data.frame(
-      name = c("all", "depreciated", "confirmed"),
-      description = c("Boolean value.", "Boolean value.", "Boolean value.")
-    ))
+    values <- rbind(
+      values,
+      data.frame(
+        name = c("all", "depreciated", "confirmed"),
+        description = c("Boolean value.", "Boolean value.", "Boolean value.")
+      )
+    )
   }
 
   if (endpoint_name == "fn012_protocol") {
-    values <- rbind(values, data.frame(
-      name = c("all", "active", "confirmed"),
-      description = c("Boolean value.", "Boolean value.", "Boolean value.")
-    ))
+    values <- rbind(
+      values,
+      data.frame(
+        name = c("all", "active", "confirmed"),
+        description = c("Boolean value.", "Boolean value.", "Boolean value.")
+      )
+    )
   }
 
   if (endpoint_name == "prj_ldr") {
-    values <- rbind(values, data.frame(
-      name = "all",
-      description = "Boolean value; default is FALSE."
-    ))
+    values <- rbind(
+      values,
+      data.frame(
+        name = "all",
+        description = "Boolean value; default is FALSE."
+      )
+    )
   }
 
   if (endpoint_name == "species") {
-    values <- rbind(values, data.frame(
-      name = "detail",
-      description = "Boolean value; default is FALSE."
-    ))
+    values <- rbind(
+      values,
+      data.frame(
+        name = "detail",
+        description = "Boolean value; default is FALSE."
+      )
+    )
   }
 
   if (endpoint_name == "fn126") {
-    values <- rbind(values, data.frame(
-      name = "itiscode",
-      description = "Boolean value; default is FALSE."
-    ))
+    values <- rbind(
+      values,
+      data.frame(
+        name = "itiscode",
+        description = "Boolean value; default is FALSE."
+      )
+    )
   }
-
 
   return(values)
 }

@@ -37,7 +37,6 @@ get_credentials <- function() {
   username <- Sys.getenv("GLIS_USERNAME")
   password <- Sys.getenv("GLIS_PASSWORD")
 
-
   if (username == "" || password == "") {
     msg <-
       paste0(

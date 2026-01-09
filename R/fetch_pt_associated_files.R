@@ -29,7 +29,7 @@
 #' @export
 #' @seealso [get_pt_associated_files()]
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' reports <- fetch_pt_associated_files(
 #'   list(
 #'     lake = "ON", year__gte = 2012,
@@ -62,11 +62,14 @@
 #' ), target_dir = "~/Target Folder Name")
 #' }
 #'
-fetch_pt_associated_files <- function(filter_list, target_dir,
-                                      xlsx_toc = TRUE,
-                                      create_target_dir = TRUE) {
+fetch_pt_associated_files <- function(
+    filter_list,
+    target_dir,
+    xlsx_toc = TRUE,
+    create_target_dir = TRUE) {
   files <- get_pt_associated_files(filter_list)
-  files <- subset(files,
+  files <- subset(
+    files,
     files$CURRENT == TRUE,
     select = c("PRJ_CD", "FILE_PATH")
   )

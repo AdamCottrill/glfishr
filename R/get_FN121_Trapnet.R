@@ -18,16 +18,27 @@
 #' and filter by "fn121trapnet" for additional information.
 #'
 #' @param filter_list list
+#'
 #' @param with_121 When 'FALSE', the default, only the trapnet fields
 #' from the FN121 table are returned. To return the whole FN121 table
 #' (excluding limnology, weather, and trawl fields), use 'with_121 = TRUE'.
+#'
 #' @param show_id When 'FALSE', the default, the 'slug'
 #' field is hidden from the data frame. To return this field
 #' as part of the data frame, use 'show_id = TRUE'.
+#'
 #' @param to_upper - should the names of the dataframe be converted to
 #' upper case?
 #'
+#' @param record_count - should data be returned, or just the number
+#'   of records that would be returned given the current filters.
+#'
+#' @param add_year_col - should a 'year' column be added to the
+#'   returned dataframe?  This argument is ignored if the data frame
+#'   does not contain a 'prj_cd' column.
+#'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
+#'
 #' @return dataframe
 #' @export
 #' @examples
@@ -47,7 +58,13 @@
 #'   bottom_type = "GP"
 #' ), show_id = TRUE)
 #'
-get_FN121_Trapnet <- function(filter_list = list(), with_121 = FALSE, show_id = FALSE, to_upper = TRUE) {
+get_FN121_Trapnet <- function(
+    filter_list = list(),
+    with_121 = FALSE,
+    show_id = FALSE,
+    to_upper = TRUE,
+    record_count = FALSE,
+    add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
 
   trapnet_filters <- filter_list[names(filter_list) != "mu_type"]
@@ -59,17 +76,23 @@ get_FN121_Trapnet <- function(filter_list = list(), with_121 = FALSE, show_id = 
     get_fn_portal_root(),
     query_string
   )
-  payload <- api_to_dataframe(my_url, recursive = recursive)
+  payload <- api_to_dataframe(
+    my_url,
+    recursive = recursive,
+    record_count = record_count
+  )
   payload <- prepare_payload(payload, show_id, to_upper)
 
   if (with_121 == TRUE) {
     trapnet_filters <- setdiff(names(filter_list), api_filters$fn121$name)
     new_filters <- filter_list[names(filter_list) %in% trapnet_filters == FALSE]
 
-    FN121 <- get_FN121(new_filters)
+    fn121 <- get_FN121(new_filters)
 
-    payload <- merge(FN121, payload)
+    payload <- merge(fn121, payload)
   }
+
+  if (add_year_col) payload <- add_year_column(payload)
 
   return(payload)
 }

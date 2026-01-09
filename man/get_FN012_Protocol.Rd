@@ -5,7 +5,12 @@
 \title{Get FN012_Protocol - Sampling specs (species and group) for a
 specific lake and protocol from FN_Portal API}
 \usage{
-get_FN012_Protocol(filter_list = list(), show_id = FALSE, to_upper = TRUE)
+get_FN012_Protocol(
+  filter_list = list(),
+  show_id = FALSE,
+  to_upper = TRUE,
+  record_count = FALSE
+)
 }
 \arguments{
 \item{filter_list}{list}
@@ -17,6 +22,11 @@ as part of the data frame, use 'show_id = TRUE'.}
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
 upper case?
+}}
+
+\item{record_count}{\itemize{
+\item should data be returned, or just the number
+of records that would be returned given the current filters.
 }}
 }
 \value{

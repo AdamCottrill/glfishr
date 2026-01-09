@@ -34,7 +34,10 @@ show_filters <- function(endpoint = "", filter_like = "") {
   creels_endpoints <- names(get_api_filters("creels", FALSE))
   common_endpoints <- names(get_api_filters("common", FALSE))
   pt_endpoints <- names(get_api_filters("project_tracker", FALSE))
-  all_endpoints <- do.call(c, list(fn_portal_endpoints, creels_endpoints, common_endpoints, pt_endpoints))
+  all_endpoints <- do.call(
+    c,
+    list(fn_portal_endpoints, creels_endpoints, common_endpoints, pt_endpoints)
+  )
 
   if (endpoint == "") {
     msg <-
@@ -47,7 +50,11 @@ show_filters <- function(endpoint = "", filter_like = "") {
     if (endpoint %in% creels_endpoints) api_app <- "creels"
     if (endpoint %in% common_endpoints) api_app <- "common"
     if (endpoint %in% pt_endpoints) api_app <- "project_tracker"
-    if (!endpoint %in% all_endpoints) stop("Oops, that endpoint is not valid. Run show_filters() for a list of valid endpoints.")
+    if (!endpoint %in% all_endpoints) {
+      stop(
+        "Oops, that endpoint is not valid. Run show_filters() for a list of valid endpoints."
+      )
+    }
 
     if (!exists("api_filters")) get_api_filters(api_app = api_app)
     filters <- api_filters[[endpoint]]

@@ -28,7 +28,10 @@
 #' cover_types <- get_cover_types()
 #' all_cover_types <- get_cover_types(list(all = TRUE))
 #' cover_type_slugs <- get_cover_types(show_id = TRUE)
-get_cover_types <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+get_cover_types <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
   # check_filters("cover_types", filter_list, "common")

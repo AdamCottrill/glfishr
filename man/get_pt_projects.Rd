@@ -4,7 +4,7 @@
 \alias{get_pt_projects}
 \title{get_pt_projects - Project Tracker Projects}
 \usage{
-get_pt_projects(filter_list = list(), to_upper = TRUE)
+get_pt_projects(filter_list = list(), to_upper = TRUE, record_count = FALSE)
 }
 \arguments{
 \item{filter_list}{list}
@@ -12,6 +12,11 @@ get_pt_projects(filter_list = list(), to_upper = TRUE)
 \item{to_upper}{\itemize{
 \item should the names of the returned dataframe be
 converted to upper case?
+}}
+
+\item{record_count}{\itemize{
+\item should data be returned, or just the number
+of records that would be returned given the current filters.
 }}
 }
 \value{

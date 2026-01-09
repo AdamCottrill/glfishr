@@ -8,8 +8,10 @@ species_data <- structure(
     ABBREV = c(NA, NA, NA, NA),
     SPC_NMCO = c("lake trout", "lake whitefish", "yellow perch", "walleye"),
     SPC_NMSC = c(
-      "Salvelinus namaycush", "Coregonus clupeaformis",
-      "Perca flavescens", "Sander vitreus"
+      "Salvelinus namaycush",
+      "Coregonus clupeaformis",
+      "Perca flavescens",
+      "Sander vitreus"
     ),
     SPC_NMFAM = c("SALMONINAE", "COREGONINAE", "PERCIDAE", "PERCIDAE"),
     SPC_LAB = c("LaTro", "LaWhi", "YePer", "Walle"),
@@ -27,7 +29,8 @@ species_data <- structure(
     FLEN2TLEN_ALPHA = c(6.99357, 3.83189, 1.35885, 3.64915),
     FLEN2TLEN_BETA = c(1.07702, 1.10289, 1.04306, 1.05276)
   ),
-  class = "data.frame", row.names = c(NA, 4L)
+  class = "data.frame",
+  row.names = c(NA, 4L)
 )
 
 # a small fn1012 table we will use for our test:
@@ -50,12 +53,12 @@ fn012 <- structure(
   ),
   row.names = c(
     9L,
-    11L, 37L, 38L
+    11L,
+    37L,
+    38L
   ),
   class = "data.frame"
 )
-
-
 
 
 # nothing missing, fn012 returns unchanged.
@@ -77,7 +80,8 @@ test_that("known species are populate if their values are null", {
   # with the correct values in the returned dataframe
 
   columns <- c(
-    "SPC", "FLEN_MIN",
+    "SPC",
+    "FLEN_MIN",
     "FLEN_MAX",
     "TLEN_MIN",
     "TLEN_MAX",
@@ -93,16 +97,19 @@ test_that("known species are populate if their values are null", {
   fn012_out <- fill_missing_fn012_limits(fn012)
 
   for (spc in c("331", "334")) {
-    observed <- fn012_out[fn012_out$SPC == spc, names(fn012_out) %in%
-      columns]
-    expected <- species_data[species_data$SPC == spc, names(species_data) %in%
-      columns]
+    observed <- fn012_out[
+      fn012_out$SPC == spc,
+      names(fn012_out) %in%
+        columns
+    ]
+    expected <- species_data[
+      species_data$SPC == spc,
+      names(species_data) %in%
+        columns
+    ]
     expect_equal(observed, expected, ignore_attr = TRUE)
   }
 })
-
-
-
 
 
 test_that("known species with values remain unchanged", {
@@ -110,7 +117,8 @@ test_that("known species with values remain unchanged", {
   # should be returned from the update function unchanged
 
   columns <- c(
-    "SPC", "FLEN_MIN",
+    "SPC",
+    "FLEN_MIN",
     "FLEN_MAX",
     "TLEN_MIN",
     "TLEN_MAX",
@@ -125,11 +133,17 @@ test_that("known species with values remain unchanged", {
   mockery::stub(fill_missing_fn012_limits, "get_species", species_data)
   fn012_out <- fill_missing_fn012_limits(fn012)
 
-  observed <- fn012_out[fn012_out$SPC == "081", names(fn012_out) %in%
-    columns]
+  observed <- fn012_out[
+    fn012_out$SPC == "081",
+    names(fn012_out) %in%
+      columns
+  ]
 
-  spc_data_081 <- species_data[species_data$SPC == "081", names(species_data) %in%
-    columns]
+  spc_data_081 <- species_data[
+    species_data$SPC == "081",
+    names(species_data) %in%
+      columns
+  ]
 
   original <- fn012[fn012$SPC == "081", names(fn012) %in% columns]
 
@@ -145,8 +159,10 @@ test_that("extra fields in spc not added to fn012", {
 
   expect_equal(names(fn012), names(fn012_out))
 
-  extra_names <- names(species_data)[!names(species_data) %in%
-    names(fn012)]
+  extra_names <- names(species_data)[
+    !names(species_data) %in%
+      names(fn012)
+  ]
   # the intersection of the names returned and the extra names should
   # be an emtpy character vector:
   expect_equal(intersect(extra_names, names(fn012_out)), character())

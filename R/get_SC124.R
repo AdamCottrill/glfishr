@@ -16,15 +16,24 @@
 #' filter by "sc124" for additional information.
 #'
 #' @param filter_list list
+#'
 #' @param show_id When 'FALSE', the default, the 'id' and 'slug'
 #'     fields are hidden from the data frame. To return these columns
 #'     as part of the data frame, use 'show_id = TRUE'.
+#'
 #' @param to_upper - should the names of the data-frame be converted to
 #' upper case?
 #'
 #' @param uncount - should the binned data be expanded to represent
 #' individual measurements.  A SC124 record with sizcnt=5 will be
 #' repeated 5 times in the returned data frame.
+#'
+#' @param record_count - should data be returned, or just the number
+#'   of records that would be returned given the current filters.
+#'
+#' @param add_year_col - should a 'year' column be added to the
+#'   returned dataframe?  This argument is ignored if the data frame
+#'   does not contain a 'prj_cd' column.
 #'
 #' @author Jeremy Holden \email{jeremy.holden@@ontario.ca}
 #' @return dataframe
@@ -43,7 +52,13 @@
 #' sc124 <- get_SC124(list(prj_cd = "LOA_SC19_002"),
 #'   uncount = TRUE
 #' )
-get_SC124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, uncount = FALSE) {
+get_SC124 <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE,
+    uncount = FALSE,
+    record_count = FALSE,
+    add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("sc124", filter_list, api_app = "creels")
@@ -52,13 +67,18 @@ get_SC124 <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE, un
     get_sc_portal_root(),
     query_string
   )
-  payload <- api_to_dataframe(my_url, recursive = recursive)
+  payload <- api_to_dataframe(
+    my_url,
+    recursive = recursive,
+    record_count = record_count
+  )
   payload <- prepare_payload(payload, show_id, to_upper)
 
-  if (uncount & length(payload)) {
+  if (uncount && length(payload)) {
     payload <- uncount_tally(payload, "SIZCNT")
-    return(payload)
   }
+
+  if (add_year_col) payload <- add_year_column(payload)
 
   return(payload)
 }

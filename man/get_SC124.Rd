@@ -8,7 +8,9 @@ get_SC124(
   filter_list = list(),
   show_id = FALSE,
   to_upper = TRUE,
-  uncount = FALSE
+  uncount = FALSE,
+  record_count = FALSE,
+  add_year_col = FALSE
 )
 }
 \arguments{
@@ -27,6 +29,17 @@ upper case?
 \item should the binned data be expanded to represent
 individual measurements.  A SC124 record with sizcnt=5 will be
 repeated 5 times in the returned data frame.
+}}
+
+\item{record_count}{\itemize{
+\item should data be returned, or just the number
+of records that would be returned given the current filters.
+}}
+
+\item{add_year_col}{\itemize{
+\item should a 'year' column be added to the
+returned dataframe?  This argument is ignored if the data frame
+does not contain a 'prj_cd' column.
 }}
 }
 \value{

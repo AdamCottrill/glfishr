@@ -4,7 +4,12 @@
 \alias{get_pt_reports}
 \title{get_pt_reports - Project Tracker Reports}
 \usage{
-get_pt_reports(filter_list = list(), to_upper = TRUE)
+get_pt_reports(
+  filter_list = list(),
+  to_upper = TRUE,
+  record_count = FALSE,
+  add_year_col = FALSE
+)
 }
 \arguments{
 \item{filter_list}{list}
@@ -12,6 +17,17 @@ get_pt_reports(filter_list = list(), to_upper = TRUE)
 \item{to_upper}{\itemize{
 \item should the names of the returned dataframe be
 converted to upper case?
+}}
+
+\item{record_count}{\itemize{
+\item should data be returned, or just the number
+of records that would be returned given the current filters.
+}}
+
+\item{add_year_col}{\itemize{
+\item should a 'year' column be added to the
+returned dataframe?  This argument is ignored if the data frame
+does not contain a 'prj_cd' column.
 }}
 }
 \value{
@@ -37,6 +53,7 @@ target directory.
 }
 \examples{
 
+
 reports <- get_pt_reports(list(
   lake = "ON", year__gte = 2017,
   year__lte = 2018
@@ -53,6 +70,7 @@ filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
 reports <- get_pt_reports(filters)
 
 reports <- get_pt_reports(list(lake = "HU", year = 2018))
+
 }
 \seealso{
 \code{\link[=fetch_pt_reports]{fetch_pt_reports()}}

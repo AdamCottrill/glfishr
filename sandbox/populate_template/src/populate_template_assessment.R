@@ -55,11 +55,14 @@
 #'   prune_fn012 = TRUE
 #' )
 #' }
-populate_template_assessment <- function(filters, template_database,
-                                         target = NULL,
-                                         overwrite = FALSE,
-                                         prune_fn012 = FALSE,
-                                         verbose = TRUE) {
+populate_template_assessment <- function(
+  filters,
+  template_database,
+  target = NULL,
+  overwrite = FALSE,
+  prune_fn012 = FALSE,
+  verbose = TRUE
+) {
   if (is.null(target)) {
     fname <- paste(sapply(filters, paste), collapse = "-")
     target <- file.path(getwd(), sprintf("%s.accdb", fname))
@@ -92,7 +95,9 @@ populate_template_assessment <- function(filters, template_database,
   glis_data$FN011 <- get_FN011(filters)
   if (is.null(dim(glis_data$FN011))) {
     message <-
-      sprintf("No Projects could not be found in FN_PORTAL using supplied filters")
+      sprintf(
+        "No Projects could not be found in FN_PORTAL using supplied filters"
+      )
     stop(message)
   }
 
@@ -141,13 +146,15 @@ populate_template_assessment <- function(filters, template_database,
   # report("FN121_GPS_Tracks")
   # glis_data$FN121_GPS_Tracks <- get_FN121_GPS_Tracks(filters)
 
-
   glis_data$FN011$LAKE <- glis_data$FN011$LAKE.ABBREV
   report("FN012")
   glis_data$FN012 <- populate_fn012(filters, glis_data, prune_fn012)
 
   print("Building Gear_Effort_Process_Types...")
-  glis_data$Gear_Effort_Process_Types <- populate_gept(glis_data$FN028, glis_data$FN121)
+  glis_data$Gear_Effort_Process_Types <- populate_gept(
+    glis_data$FN028,
+    glis_data$FN121
+  )
 
   #-------------------------------------------------------------------------
   # Table Adjustments
@@ -175,7 +182,6 @@ populate_template_assessment <- function(filters, template_database,
     glis_data$FN121 <- merge(glis_data$FN121, fn121_weather, all.x = TRUE)
   }
 
-
   #-------------------------------------------------------------------------
   # Table Relationship Validation
 
@@ -184,25 +190,37 @@ populate_template_assessment <- function(filters, template_database,
   SPC_ALIGN <- unique(SPC_ALIGN)
   SPC_ALIGN <- merge(SPC_ALIGN, glis_data$FN012, all.x = TRUE)
   if (any(is.na(SPC_ALIGN$SIZSAM))) {
-    stop("A record in the FN123 table has a SPC/GRP combination that is not included in the FN012 table. An FN012 record will need to be added for this SPC/GRP before continuing.")
+    stop(
+      "A record in the FN123 table has a SPC/GRP combination that is not included in the FN012 table. An FN012 record will need to be added for this SPC/GRP before continuing."
+    )
   }
 
   # Are all SUBSPACE values associated with a known SPACE?
   SPACE_CHECK <- as.vector(unique(glis_data$FN026_Subspace$SPACE))
   if (any(!(SPACE_CHECK %in% glis_data$FN026$SPACE))) {
-    stop("There is a SPACE value in the FN016_Subspace table that does not exist in the FN026 table.")
+    stop(
+      "There is a SPACE value in the FN016_Subspace table that does not exist in the FN026 table."
+    )
   }
 
   # Do all FN121 records have a valid SUBSPACE?
   FN121_SUBSPACE_CHECK <- as.vector(unique(glis_data$FN121$SUBSPACE))
-  if (any(!(glis_data$FN121_SUBSPACE_CHECK %in% glis_data$FN026_Subspace$SUBSPACE))) {
-    stop("There is a SUBSPACE value in the FN121 table that does not exist in the FN026_Subspace table.")
+  if (
+    any(
+      !(glis_data$FN121_SUBSPACE_CHECK %in% glis_data$FN026_Subspace$SUBSPACE)
+    )
+  ) {
+    stop(
+      "There is a SUBSPACE value in the FN121 table that does not exist in the FN026_Subspace table."
+    )
   }
 
   # Do all Stream_Dimension records have a valid SUBSPACE?
   SD_SUBSPACE_CHECK <- as.vector(unique(glis_data$Stream_Dimensions$SUBSPACE))
   if (any(!(SD_SUBSPACE_CHECK %in% glis_data$FN026_Subspace$SUBSPACE))) {
-    stop("There is a SUBSPACE value in the Stream_Dimensions table that does not exist in the FN026_Subspace table.")
+    stop(
+      "There is a SUBSPACE value in the Stream_Dimensions table that does not exist in the FN026_Subspace table."
+    )
   }
 
   # Append the data

@@ -40,7 +40,7 @@ It is often used in conjunction with \code{\link[=get_pt_associated_files]{get_p
 a dataframe containing attributes of the upload files.
 }
 \examples{
-\donttest{
+\dontrun{
 reports <- fetch_pt_associated_files(
   list(
     lake = "ON", year__gte = 2012,

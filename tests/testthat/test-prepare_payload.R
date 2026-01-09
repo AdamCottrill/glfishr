@@ -1,5 +1,6 @@
 payload <- data.frame(
-  prj_cd = "LHA_IA22_123", sam = 1,
+  prj_cd = "LHA_IA22_123",
+  sam = 1,
   slug = "lha_ia22_123-1",
   id = 1
 )
@@ -18,8 +19,6 @@ test_that("prepare payload handles empty payload", {
   observed <- prepare_payload(payload)
   expect_equal(observed, payload)
 })
-
-
 
 
 test_that("prepare payload return column names unchanged if to_upper=False", {
@@ -75,9 +74,6 @@ test_that("prepare payload works if slug is missing in payload and show_ids=T", 
   names(expected) <- toupper(names(expected))
   expect_equal(observed, expected)
 })
-
-
-
 
 
 test_that("prepare payload return includes ID and SLUG if show_id=True", {
@@ -136,10 +132,6 @@ test_that("prepare payload works if SLUG is missing in payload and show_ids=T", 
   names(expected) <- toupper(names(expected))
   expect_equal(observed, expected)
 })
-
-
-
-
 
 # return data frame without a slug field as is
 

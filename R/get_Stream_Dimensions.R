@@ -17,11 +17,20 @@
 #' and filter by "stream_dimensions" for additional information.
 #'
 #' @param filter_list list
+#'
 #' @param show_id When 'FALSE', the default, the 'slug' field is
 #'   hidden from the data frame. To return this field as part of the
 #'   data frame, use 'show_id = TRUE'.
+#'
 #' @param to_upper - should the names of the dataframe be converted to
 #'   upper case?
+#'
+#' @param record_count - should data be returned, or just the number
+#'   of records that would be returned given the current filters.
+#'
+#' @param add_year_col - should a 'year' column be added to the
+#'  returned dataframe?  This argument is ignored if the data frame
+#'  does not contain a 'prj_cd' column.
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
@@ -31,8 +40,13 @@
 #' show_filters("stream_dimensions")
 #' }
 #' # TODO: add more examples when more data is uploaded
-#' stream <- get_Stream_Dimensions(list(lake = "ER"))
-get_Stream_Dimensions <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+#' stream <- get_Stream_Dimensions(list(lake = "SU", year = "2015"))
+get_Stream_Dimensions <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE,
+    record_count = FALSE,
+    add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("stream_dimensions", filter_list, "fn_portal")
@@ -41,8 +55,17 @@ get_Stream_Dimensions <- function(filter_list = list(), show_id = FALSE, to_uppe
     get_fn_portal_root(),
     query_string
   )
-  payload <- api_to_dataframe(my_url, recursive = recursive)
-  payload <- prepare_payload(payload, show_id, to_upper)
+  payload <- api_to_dataframe(
+    my_url,
+    recursive = recursive,
+    record_count = record_count
+  )
+  payload <- prepare_payload(
+    payload,
+    show_id,
+    to_upper,
+    add_year_col = add_year_col
+  )
 
   return(payload)
 }

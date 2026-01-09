@@ -20,6 +20,12 @@
 #' @param to_upper - should the names of the returned dataframe be
 #'   converted to upper case?
 #'
+#' @param record_count - should data be returned, or just the number
+#'   of records that would be returned given the current filters.
+#'
+#' @param add_year_col - should a 'year' column be added to the
+#'   returned dataframe?  This argument is ignored if the data frame
+#'   does not contain a 'prj_cd' column.
 #'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
@@ -41,18 +47,34 @@
 #'
 #' filters <- list(lake = "SU", prj_cd = c("LSA_IA15_CIN", "LSA_IA17_CIN"))
 #' milestones <- get_pt_nr_milestones(filters)
-get_pt_nr_milestones <- function(filter_list = list(), to_upper = TRUE) {
+get_pt_nr_milestones <- function(
+    filter_list = list(),
+    to_upper = TRUE,
+    record_count = FALSE,
+    add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
-  check_filters("project_nr_milestones", filter_list, api_app = "project_tracker")
+  check_filters(
+    "project_nr_milestones",
+    filter_list,
+    api_app = "project_tracker"
+  )
   my_url <- sprintf(
     "%s/project_nr_milestones/%s",
     get_pt_portal_root(),
     query_string
   )
 
-  payload <- api_to_dataframe(my_url, recursive = recursive)
-  payload <- prepare_payload(payload, to_upper = to_upper)
+  payload <- api_to_dataframe(
+    my_url,
+    recursive = recursive,
+    record_count = record_count
+  )
+  payload <- prepare_payload(
+    payload,
+    to_upper = to_upper,
+    add_year_col = add_year_col
+  )
 
   return(payload)
 }

@@ -14,8 +14,7 @@ test_that("credentials are returned if both username and password are defined", 
 })
 
 
-test_that("warning message is presented if both username and password are missing - rstudioapi",
-{
+test_that("warning message is presented if both username and password are missing - rstudioapi", {
   username <- ""
   password <- ""
   withr::local_envvar(c("GLIS_USERNAME" = username, "GLIS_PASSWORD" = password))
@@ -30,8 +29,7 @@ test_that("warning message is presented if both username and password are missin
 })
 
 
-test_that("warning message is presented if GLIS_USERNAME is  missing - rstudioapi",
-{
+test_that("warning message is presented if GLIS_USERNAME is  missing - rstudioapi", {
   username <- ""
   password <- "123-donuts"
 
@@ -44,8 +42,6 @@ test_that("warning message is presented if GLIS_USERNAME is  missing - rstudioap
     observed <- get_credentials(),
     "Consider defining environment variables 'GLIS_USERNAME' and  "
   )
-
-
 })
 
 
@@ -62,16 +58,14 @@ test_that("warning message is presented if GLIS_PASSWORD is missing - rstudioapi
     observed <- get_credentials(),
     "Consider defining environment variables 'GLIS_USERNAME' and  "
   )
-
 })
 
 
-#===============================
+# ===============================
 # these three tests use the fallback readline function for
 # authentication rather than rstudioapi.
 
-test_that("warning message is presented if both username and password are missing - readline",
-{
+test_that("warning message is presented if both username and password are missing - readline", {
   username <- ""
   password <- ""
   withr::local_envvar(c("GLIS_USERNAME" = username, "GLIS_PASSWORD" = password))
@@ -85,8 +79,7 @@ test_that("warning message is presented if both username and password are missin
 })
 
 
-test_that("warning message is presented if GLIS_USERNAME is  missing - readline",
-{
+test_that("warning message is presented if GLIS_USERNAME is  missing - readline", {
   username <- ""
   password <- "123-donuts"
 
@@ -98,8 +91,6 @@ test_that("warning message is presented if GLIS_USERNAME is  missing - readline"
     observed <- get_credentials(),
     "Consider defining environment variables 'GLIS_USERNAME' and  "
   )
-
-
 })
 
 
@@ -115,5 +106,4 @@ test_that("warning message is presented if GLIS_PASSWORD is missing - readline",
     observed <- get_credentials(),
     "Consider defining environment variables 'GLIS_USERNAME' and  "
   )
-
 })

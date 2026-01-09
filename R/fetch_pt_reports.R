@@ -75,13 +75,15 @@
 #' )
 #' }
 #'
-fetch_pt_reports <- function(filter_list,
-                             target_dir,
-                             xlsx_toc = "report_toc.xlsx",
-                             create_target_dir = TRUE) {
+fetch_pt_reports <- function(
+    filter_list,
+    target_dir,
+    xlsx_toc = "report_toc.xlsx",
+    create_target_dir = TRUE) {
   reports <- get_pt_reports(filter_list)
   if (length(reports)) {
-    reports <- subset(reports,
+    reports <- subset(
+      reports,
       reports$CURRENT == TRUE,
       select = c("PRJ_CD", "PRJ_NM", "REPORT_TYPE", "REPORT_PATH")
     )

@@ -4,7 +4,12 @@
 \alias{get_FN013}
 \title{Get FN013 - Gear Description Data FN_Portal API}
 \usage{
-get_FN013(filter_list = list(), show_id = FALSE, to_upper = TRUE)
+get_FN013(
+  filter_list = list(),
+  show_id = FALSE,
+  to_upper = TRUE,
+  add_year_col = FALSE
+)
 }
 \arguments{
 \item{filter_list}{list}
@@ -16,6 +21,12 @@ as part of the data frame, use 'show_id = TRUE'.}
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
 upper case?
+}}
+
+\item{add_year_col}{\itemize{
+\item should a 'year' column be added to the
+returned dataframe?  This argument is ignored if the data frame
+does not contain a 'prj_cd' column.
 }}
 }
 \value{

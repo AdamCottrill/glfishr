@@ -20,6 +20,9 @@
 #' @param to_upper - should the names of the dataframe be converted to
 #' upper case?
 #'
+#' @param record_count - should data be returned, or just the number
+#'   of records that would be returned given the current filters.
+#'
 #' @author Rachel Henderson \email{rachel.henderson@@ontario.ca}
 #' @return dataframe
 #' @export
@@ -27,7 +30,11 @@
 #'
 #' tag_positions <- get_tag_positions()
 #' tag_position_slugs <- get_tag_positions(show_id = TRUE)
-get_tag_positions <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+get_tag_positions <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE,
+    record_count = FALSE) {
   query_string <- build_query_string(filter_list)
   common_api_url <- get_common_portal_root()
   # check_filters("tag_positions", filter_list, "common")
@@ -38,7 +45,7 @@ get_tag_positions <- function(filter_list = list(), show_id = FALSE, to_upper = 
     common_api_url,
     query_string
   )
-  payload <- api_to_dataframe(my_url)
+  payload <- api_to_dataframe(my_url, record_count = record_count)
   payload <- prepare_payload(payload, show_id, to_upper)
 
   return(payload)

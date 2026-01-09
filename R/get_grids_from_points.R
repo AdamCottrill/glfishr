@@ -43,7 +43,12 @@ get_grid5s_from_points <- function(request_body, to_upper = FALSE) {
     "%s/spatial_lookup/grid5s/",
     common_api_url
   )
-  payload <- api_to_dataframe(my_url, recursive = FALSE, request_body = request_body, request_type = "POST")
+  payload <- api_to_dataframe(
+    my_url,
+    recursive = FALSE,
+    request_body = request_body,
+    request_type = "POST"
+  )
   payload <- prepare_payload(payload, show_id = TRUE, to_upper = to_upper)
 
   return(payload)

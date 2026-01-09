@@ -4,7 +4,12 @@
 \alias{get_project_leads}
 \title{Get project leads - A list of project leads used in GLIS}
 \usage{
-get_project_leads(filter_list = list(), show_id = FALSE, to_upper = TRUE)
+get_project_leads(
+  filter_list = list(),
+  show_id = FALSE,
+  to_upper = TRUE,
+  record_count = FALSE
+)
 }
 \arguments{
 \item{filter_list}{list}
@@ -15,6 +20,11 @@ returned data frame}
 \item{to_upper}{\itemize{
 \item should the names of the dataframe be converted to
 upper case?
+}}
+
+\item{record_count}{\itemize{
+\item should data be returned, or just the number
+of records that would be returned given the current filters.
 }}
 }
 \value{

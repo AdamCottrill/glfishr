@@ -23,6 +23,10 @@
 #' @param to_upper - should the names of the dataframe be converted to
 #' upper case?
 #'
+#' @param add_year_col - should a 'year' column be added to the
+#'   returned dataframe?  This argument is ignored if the data frame
+#'   does not contain a 'prj_cd' column.
+#'
 #' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 #' @return dataframe
 #' @export
@@ -33,7 +37,11 @@
 #' boat_answers <- get_Angler_Answers(list(answer_text__like = "boat"))
 #'
 #' manitoulin_answers <- get_Angler_Answers(list(lake = "HU", prj_cd__like = "120"))
-get_Angler_Answers <- function(filter_list = list(), show_id = FALSE, to_upper = TRUE) {
+get_Angler_Answers <- function(
+    filter_list = list(),
+    show_id = FALSE,
+    to_upper = TRUE,
+    add_year_col = FALSE) {
   recursive <- ifelse(length(filter_list) == 0, FALSE, TRUE)
   query_string <- build_query_string(filter_list)
   check_filters("angler_answers", filter_list, api_app = "creels")
@@ -43,7 +51,12 @@ get_Angler_Answers <- function(filter_list = list(), show_id = FALSE, to_upper =
     query_string
   )
   payload <- api_to_dataframe(my_url, recursive = recursive)
-  payload <- prepare_payload(payload, show_id, to_upper)
+  payload <- prepare_payload(
+    payload,
+    show_id,
+    to_upper,
+    add_year_col = add_year_col
+  )
 
   return(payload)
 }

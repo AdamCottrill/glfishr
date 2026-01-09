@@ -9,7 +9,6 @@
 # |            2 | Y     | -     |
 # |            3 | Y     | Y     |
 
-
 prj_cds <- c(
   "LEM_SC18_SCR",
   "LEM_SC18_SCR",
@@ -38,8 +37,6 @@ grps <- c(
 )
 
 
-
-
 fn012_in <- data.frame(PRJ_CD = prj_cds, GRP = grps, SPC = spcs, SIZSAM = 0)
 fn124 <- data.frame(PRJ_CD = prj_cds, GRP = grps, SPC = spcs)
 fn125 <- data.frame(PRJ_CD = prj_cds, GRP = grps, SPC = spcs)
@@ -61,7 +58,6 @@ test_that("no change to fn012 when fn124 and fn125 are empty dataframes", {
 
   expect_equal(fn012_out, fn012_in)
 })
-
 
 
 test_that("sizsam updated to 3 both fn124 and fn125", {

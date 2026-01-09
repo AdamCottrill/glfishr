@@ -1,8 +1,10 @@
 *.Rhistory
 .vscode/
 notes.org
+sandbox/*
 sandbox.R
 *.accdb
 *.zip
 .#*
 *.Rproj
+.Rproj.user
