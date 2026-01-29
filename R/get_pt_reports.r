@@ -6,7 +6,7 @@
 #' report type.  Project specific filters include project code(s),
 #' years, lakes, and project lead.  Reports can also be filtered by
 #' their associated milestone.  Valid report types are: "Prj Prop",
-#' "Prj Prop Pres", "procvallog", "ProjDescPres", "Prj Desc",
+#' "Prj Prop Pres", "procvallog", "Data Val. Log", "ProjDescPres", "Prj Desc",
 #' "Protocol", "Field Report", "Prj Comp Rep", "Prj Comp Pres",
 #' "Sum Rep", and "Creel Estimates" and can be passed in as a single
 #' string or as character vector of one or more report types. Use
