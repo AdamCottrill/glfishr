@@ -55,14 +55,15 @@
 #' )
 #' }
 populate_template <- function(
-    filters,
-    template_database,
-    target = NULL,
-    source = c("assessment", "creel"),
-    overwrite = FALSE,
-    prune_fn012 = FALSE,
-    verbose = TRUE,
-    verbose_sqlsave = FALSE) {
+  filters,
+  template_database,
+  target = NULL,
+  source = c("assessment", "creel"),
+  overwrite = FALSE,
+  prune_fn012 = FALSE,
+  verbose = TRUE,
+  verbose_sqlsave = FALSE
+) {
   source <- match.arg(source)
 
   fname <- paste(sapply(filters, paste), collapse = "-")
@@ -472,13 +473,14 @@ add_missing_fn012 <- function(fn012, fn123) {
 ##' @return status of closed RODBC connection.
 ##' @export
 append_data <- function(
-    dbase,
-    trg_table,
-    data,
-    verbose = T,
-    verbose_sqlsave = F,
-    append = T,
-    safer = T) {
+  dbase,
+  trg_table,
+  data,
+  verbose = T,
+  verbose_sqlsave = F,
+  append = T,
+  safer = T
+) {
   if (!is.null(dim(data))) {
     if (verbose) {
       record_count <- nrow(data)
@@ -575,12 +577,14 @@ augment_fn012 <- function(fn011, fn012, fn123, prune_fn012, source) {
     fn011_flds <- c("PRJ_CD", "LAKE", "PROTOCOL")
     extra_fn012_flds <- c("LAKE", "PROTOCOL")
     fetch_012_protocol <- function(protocols) {
+      #assessment fn012:
       fetch_fn012_protocol_data(protocols)
     }
   } else {
     fn011_flds <- c("PRJ_CD", "LAKE")
     extra_fn012_flds <- c("LAKE")
     fetch_012_protocol <- function(protocols) {
+      #sport creel sc012:
       fetch_sc012_protocol_data(protocols)
     }
   }
@@ -589,6 +593,15 @@ augment_fn012 <- function(fn011, fn012, fn123, prune_fn012, source) {
   # included in the FN011 - returns default values with PRJ_CD field
   project_protocols <- fn011[, names(fn011) %in% fn011_flds]
   fn012_defaults <- fetch_012_protocol(project_protocols)
+
+  # TODO: CHECK that fn012_defaults actually has data. issue a warning
+  # if it doesn't and return:
+  # if (!('SPC' %in% names(fn012_defaults))){
+  # msg = "Unable to find any default Protocol Data.  Please ensure
+  # that a protocol and default FN012 table exists for each project type."
+  # stop(msg)
+  # }
+
   fn012_defaults$key <- with(fn012_defaults, paste(PRJ_CD, SPC, GRP, sep = "-"))
 
   # check the dimensions of the FN012:
@@ -882,10 +895,11 @@ FROM
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return dataframe
 populate_fn012 <- function(
-    filters,
-    glis_data,
-    prune_fn012,
-    source = c("assessment", "creel")) {
+  filters,
+  glis_data,
+  prune_fn012,
+  source = c("assessment", "creel")
+) {
   source <- match.arg(source)
   if (source == "assessment") {
     fn012 <- get_FN012(filters)

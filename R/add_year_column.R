@@ -36,6 +36,6 @@ add_year_column <- function(fn_data, colname = "YEAR", silent = FALSE) {
   )
 
   fn_data <- cbind(xyear, fn_data)
-  names(fn_data)[which(names(fn_data) == 'xyear')] <- colname
+  names(fn_data)[which(names(fn_data) == "xyear")] <- colname
   return(fn_data)
 }

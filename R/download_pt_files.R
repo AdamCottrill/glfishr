@@ -36,11 +36,10 @@
 #'
 #'
 download_pt_files <- function(
-  file_list,
-  target_dir,
-  xlsx_toc = "reports_toc.xlsx",
-  create_target_dir = TRUE
-) {
+    file_list,
+    target_dir,
+    xlsx_toc = "reports_toc.xlsx",
+    create_target_dir = TRUE) {
   if (missing(target_dir)) {
     stop("a target directory was not provided")
   }
@@ -78,7 +77,8 @@ download_pt_files <- function(
       )
       print(sprintf("downloading %s", fname))
       trg <- file.path(target_dir, basename(filename))
-      utils::download.file(filename, trg, mode = "wb")
+      url <- utils::URLencode(filename)
+      utils::download.file(url, trg, mode = "wb")
     }
   }
 
