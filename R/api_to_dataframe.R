@@ -43,16 +43,7 @@ api_to_dataframe <- function(
     request_type = "GET",
     request_body = NULL,
     record_count = FALSE) {
-  if (!exists("token")) get_token()
-
-  if (is.null(token)) {
-    warning(paste0(
-      "Your token was not retrieved successfully and some data may be hidden. \n",
-      "Run get_token() to re-enter your credentials."
-    ))
-  }
-
-  auth_header <- sprintf("Token %s", token)
+  auth_header <- get_auth_header()
 
   max_page_count <- 20
   url <- gsub("\\n", " ", url)
@@ -71,12 +62,7 @@ api_to_dataframe <- function(
       }
     )
   } else {
-    response <- tryCatch(
-      httr::GET(url, config = httr::add_headers(authorization = auth_header)),
-      error = function(err) {
-        print("Something is wrong. Unable to fetch the data from the server.")
-      }
-    )
+    response <- get_request(url, auth_header)
   }
 
   json <- httr::content(response, "text", encoding = "UTF-8")
@@ -154,4 +140,30 @@ api_to_dataframe <- function(
   }
 
   return(data)
+}
+
+
+get_request <- function(url, auth_header) {
+  response <- tryCatch(
+    httr::GET(url, config = httr::add_headers(Authorization = auth_header)),
+    error = function(err) {
+      print("Something is wrong. Unable to fetch the data from the server.")
+    }
+  )
+  return(response)
+}
+
+
+get_auth_header <- function() {
+  if (!exists("token")) {
+    get_token()
+  }
+  if (is.null(token)) {
+    warning(paste0(
+      "Your token was not retrieved successfully and some data may be hidden. \n",
+      "Run get_token() to re-enter your credentials."
+    ))
+  }
+  auth_header <- sprintf("Token %s", token)
+  return(auth_header)
 }

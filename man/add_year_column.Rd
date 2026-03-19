@@ -11,6 +11,10 @@ add_year_column(fn_data, colname = "YEAR", silent = FALSE)
 \item data frame with the column 'prj_cd'
 }}
 
+\item{colname}{\itemize{
+\item the name of the new column. Defaults to 'YEAR'.
+}}
+
 \item{silent}{\itemize{
 \item should the warnings be suppressed
 }}
